@@ -4,7 +4,7 @@
   "children": [
     {
       "name": "Basic Geospatial Knowledge",
-      "description": "Foundational geospatial concepts, data models, CRS, quality, analysis, and governance.",
+      "description": "Foundational geospatial concepts, data models, CRS, quality, and analysis.",
       "children": [
         {
           "name": "Relationship",
@@ -376,27 +376,6 @@
               ]
             }
           ]
-        },
-        {
-          "name": "Ethics",
-          "description": "Ethical, legal, and governance dimensions of geospatial practice.",
-          "children": [
-            {
-              "name": "Privacy",
-              "description": "Ethics and governance cover privacy, licensing, sharing constraints, and standards compliance for geospatial work. Responsible practice includes documenting sources, respecting licenses, and protecting sensitive locations. Export, metadata, and reporting tools support transparent and accountable dissemination.",
-              "tools": [
-                "ogr2ogr",
-                "geopandas.to_file()",
-                "geopandas.to_parquet()",
-                "gdalinfo",
-                "ogrinfo",
-                "QGIS Print Layout",
-                "QGIS Reports",
-                "QGIS Processing History",
-                "QGIS Processing Log"
-              ]
-            }
-          ]
         }
       ],
       "goal_verb": "Understand",
@@ -450,7 +429,6 @@
             "Buffer",
             "Clip",
             "Intersection",
-            "Difference",
             "Union",
             "Dissolve",
             "Merge Vector Layers",
@@ -458,7 +436,6 @@
             "Split Vector Layer",
             "Join attributes by location",
             "Join attributes by nearest",
-            "Extract by location",
             "Simplify"
           ]
         },
@@ -594,15 +571,6 @@
             "QGIS Print Layout",
             "QGIS Reports",
             "QGIS Server"
-          ]
-        },
-        {
-          "name": "Reporting",
-          "description": "Reporting documents methods, results, and caveats for stakeholders and reproducibility. Maps alone rarely suffice for audit or scientific communication. Layouts, reports, and processing logs capture both narrative and technical evidence.",
-          "tools": [
-            "QGIS Print Layout",
-            "QGIS Reports",
-            "QGIS Processing Log"
           ]
         }
       ],
@@ -929,15 +897,6 @@
             "GeoServer",
             "PostGIS",
             "DuckDB Spatial"
-          ]
-        },
-        {
-          "name": "Metadata",
-          "description": "Output metadata makes datasets discoverable and interpretable after dissemination. Machine- and human-readable descriptions preserve fitness-for-use information for future users. Inspection tools such as gdalinfo, ogrinfo, and rio info help generate and verify metadata artifacts.",
-          "tools": [
-            "gdalinfo",
-            "ogrinfo",
-            "rio info"
           ]
         }
       ],
