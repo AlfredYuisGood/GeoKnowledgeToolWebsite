@@ -7,7 +7,7 @@
       "description": "Foundational geospatial concepts, data models, CRS, quality, analysis, and governance.",
       "children": [
         {
-          "name": "1.1 Relationship",
+          "name": "Relationship",
           "description": "Spatial relationships, scale, uncertainty, and distance concepts.",
           "children": [
             {
@@ -85,7 +85,7 @@
           ]
         },
         {
-          "name": "1.2 Data Models",
+          "name": "Data Models",
           "description": "Core geospatial data structures and their processing ecosystems.",
           "children": [
             {
@@ -190,7 +190,7 @@
           ]
         },
         {
-          "name": "1.3 Coordinate Reference Systems",
+          "name": "Coordinate Reference Systems",
           "description": "How location is referenced, transformed, and validated.",
           "children": [
             {
@@ -247,7 +247,7 @@
           ]
         },
         {
-          "name": "1.4 Data Quality",
+          "name": "Data Quality",
           "description": "Trust, fitness for use, and documentation of geospatial data.",
           "children": [
             {
@@ -292,7 +292,7 @@
           ]
         },
         {
-          "name": "1.5 Spatial Analysis",
+          "name": "Spatial Analysis",
           "description": "Core analytical families spanning vector, raster, network, and statistics.",
           "children": [
             {
@@ -378,7 +378,7 @@
           ]
         },
         {
-          "name": "1.6 Ethics & Governance",
+          "name": "Ethics",
           "description": "Ethical, legal, and governance dimensions of geospatial practice.",
           "children": [
             {
@@ -988,7 +988,8 @@
           "tools": [
             "Apache Sedona",
             "GeoParquet",
-            "Cloud Optimized GeoTIFF (COG)"
+            "Cloud Optimized GeoTIFF (COG)",
+            "AWS"
           ]
         },
         {

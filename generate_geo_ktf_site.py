@@ -66,7 +66,7 @@ GEO_KTF_DATA = {
             "Basic Geospatial Knowledge",
             [
                 group(
-                    "1.1 Relationship",
+                    "Relationship",
                     [
                         leaf(
                             "Spatial relationships",
@@ -113,7 +113,7 @@ GEO_KTF_DATA = {
                     "Spatial relationships, scale, uncertainty, and distance concepts.",
                 ),
                 group(
-                    "1.2 Data Models",
+                    "Data Models",
                     [
                         leaf(
                             "Vector",
@@ -178,7 +178,7 @@ GEO_KTF_DATA = {
                     "Core geospatial data structures and their processing ecosystems.",
                 ),
                 group(
-                    "1.3 Coordinate Reference Systems",
+                    "Coordinate Reference Systems",
                     [
                         leaf(
                             "Geographic",
@@ -218,7 +218,7 @@ GEO_KTF_DATA = {
                     "How location is referenced, transformed, and validated.",
                 ),
                 group(
-                    "1.4 Data Quality",
+                    "Data Quality",
                     [
                         leaf(
                             "Metadata",
@@ -247,7 +247,7 @@ GEO_KTF_DATA = {
                     "Trust, fitness for use, and documentation of geospatial data.",
                 ),
                 group(
-                    "1.5 Spatial Analysis",
+                    "Spatial Analysis",
                     [
                         leaf(
                             "Vector Analysis",
@@ -302,7 +302,7 @@ GEO_KTF_DATA = {
                     "Core analytical families spanning vector, raster, network, and statistics.",
                 ),
                 group(
-                    "1.6 Ethics & Governance",
+                    "Ethics",
                     [
                         leaf(
                             "Privacy",
@@ -405,7 +405,7 @@ GEO_KTF_DATA = {
             [
                 leaf("Geospatial Libraries", ["GDAL / OGR", "GeoPandas", "Shapely", "Rasterio", "Fiona", "PyProj", "PDAL", "PySAL", "OTB (Orfeo ToolBox)"], "Core libraries used to implement geospatial operations."),
                 leaf("Network Analysis", ["pgRouting", "openrouteservice", "OSRM", "Valhalla"], "Routing engines and network analysis providers."),
-                leaf("Cloud", ["Apache Sedona", "GeoParquet", "Cloud Optimized GeoTIFF (COG)"], "Scalable formats and engines for large spatial data."),
+                leaf("Cloud", ["Apache Sedona", "GeoParquet", "Cloud Optimized GeoTIFF (COG)", "AWS"], "Scalable formats and engines for large spatial data."),
                 leaf("Basemap", ["OpenStreetMap", "Overture Maps", "Natural Earth", "Microsoft Planetary Computer", "Government Open Data APIs"], "Reference basemaps and open geospatial data sources."),
                 leaf("Web Mapping", ["MapLibre GL JS", "OpenLayers", "Leaflet", "GeoServer"], "Clients and servers for interactive web maps."),
                 leaf("AI", ["scikit-learn", "XGBoost", "PyTorch", "TensorFlow", "Segment Anything Model (SAM)"], "ML frameworks applied to geospatial tasks."),
