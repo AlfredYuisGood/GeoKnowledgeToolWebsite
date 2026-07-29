@@ -55,7 +55,7 @@
               ]
             },
             {
-              "name": "Uncertainty / Random",
+              "name": "Uncertainty",
               "description": "Uncertainty and randomness address incomplete knowledge, measurement error, and stochastic variation in spatial data and outputs. Communicating uncertainty is essential for honest cartography and robust decision support. Representative tools include random sampling utilities and styling/reporting features used to present variability.",
               "tools": [
                 "Random points in extent",
@@ -194,7 +194,7 @@
           "description": "How location is referenced, transformed, and validated.",
           "children": [
             {
-              "name": "Geographic / Projected CRS",
+              "name": "Geographic",
               "description": "Geographic CRS locate positions on an ellipsoidal Earth, while projected CRS map them onto a plane for measurement and mapping. Choosing between them affects distance, area, and visual distortion. This category covers defining, inspecting, and transforming CRS with pyproj, GeoPandas, PostGIS, and GDAL.",
               "tools": [
                 "pyproj.CRS",
@@ -206,7 +206,7 @@
               ]
             },
             {
-              "name": "Datums / Transformations",
+              "name": "Datums",
               "description": "Datums define the reference frame for horizontal (and related) coordinates, and transformations convert between frames. Incorrect datum handling is a frequent source of positional shift. Tools here inspect CRS definitions and apply PROJ-backed transformations safely.",
               "tools": [
                 "pyproj.CRS",
@@ -269,8 +269,8 @@
               ]
             },
             {
-              "name": "Accuracy / Precision",
-              "description": "Accuracy refers to closeness to true values, while precision refers to measurement resolution and repeatability. Both affect whether spatial conclusions are defensible. Inspecting CRS, georeferencing, and source metadata helps evaluate positional and attribute quality.",
+              "name": "Accuracy",
+              "description": "Accuracy refers to how close spatial measurements and locations are to their true values. Assessing accuracy is essential before using data for decisions, overlays, or modeling. Inspecting CRS, georeferencing, and source metadata helps evaluate positional and attribute quality.",
               "tools": [
                 "gdalinfo",
                 "ogrinfo",
@@ -382,7 +382,7 @@
           "description": "Ethical, legal, and governance dimensions of geospatial practice.",
           "children": [
             {
-              "name": "Privacy / Licensing / Sharing / Standards",
+              "name": "Privacy",
               "description": "Ethics and governance cover privacy, licensing, sharing constraints, and standards compliance for geospatial work. Responsible practice includes documenting sources, respecting licenses, and protecting sensitive locations. Export, metadata, and reporting tools support transparent and accountable dissemination.",
               "tools": [
                 "ogr2ogr",
@@ -606,7 +606,7 @@
           ]
         }
       ],
-      "goal_verb": "Do",
+      "goal_verb": "Action",
       "goal": "The operations to achieve objectives."
     },
     {
@@ -882,17 +882,8 @@
     },
     {
       "name": "Output Framework",
-      "description": "Deliverables and channels for maps, data, APIs, and reproducibility.",
+      "description": "Deliverables and channels for data, APIs, reports, and reproducibility.",
       "children": [
-        {
-          "name": "Maps",
-          "description": "Maps deliver spatial insights for print and interactive web audiences. They package analysis into visual arguments for decisions and communication. Layout and web-mapping tools produce both static and dynamic map outputs.",
-          "tools": [
-            "QGIS Print Layout",
-            "QGIS Server",
-            "MapLibre GL JS"
-          ]
-        },
         {
           "name": "Tables",
           "description": "Tables export attributes and summaries for spreadsheets, statistics, and databases. Many stakeholders consume results as tables rather than maps. GeoPandas and OGR writers provide interoperable tabular and spatial-table deliverables.",
@@ -950,14 +941,6 @@
           ]
         },
         {
-          "name": "Citations",
-          "description": "Citations attribute sources, methods, and contributors in geospatial products. Proper citation supports ethics, licensing compliance, and scholarly use. Reporting layouts help embed citation blocks in delivered materials.",
-          "tools": [
-            "QGIS Reports",
-            "QGIS Print Layout"
-          ]
-        },
-        {
           "name": "Logs & Reproducibility",
           "description": "Logs and reproducibility artifacts record how results were produced so analyses can be rerun and audited. They are essential for science, compliance, and teaching. Processing history, logs, and CLI runners capture executable lineage.",
           "tools": [
@@ -1000,7 +983,7 @@
           ]
         },
         {
-          "name": "Cloud / Big Data",
+          "name": "Cloud",
           "description": "Cloud and big-data providers enable scalable storage and compute for large spatial datasets. Formats like COG and GeoParquet optimize cloud-native access patterns. Sedona and related engines extend spatial analytics to distributed platforms.",
           "tools": [
             "Apache Sedona",
@@ -1009,7 +992,7 @@
           ]
         },
         {
-          "name": "Basemap / Data Sources",
+          "name": "Basemap",
           "description": "Basemap and data-source providers supply reference geography and open thematic layers. They ground analyses in shared, citable spatial context. OSM, Overture, Natural Earth, and open government APIs are common starting points.",
           "tools": [
             "OpenStreetMap",
@@ -1030,7 +1013,7 @@
           ]
         },
         {
-          "name": "AI / Machine Learning",
+          "name": "AI",
           "description": "AI and machine-learning providers supply models and frameworks for prediction and perception on spatial data. They extend classical GIS with learning-based workflows. scikit-learn, XGBoost, deep-learning stacks, and SAM represent this enabling layer.",
           "tools": [
             "scikit-learn",
