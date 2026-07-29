@@ -882,7 +882,7 @@
     },
     {
       "name": "Output Framework",
-      "description": "Deliverables and channels for data, APIs, reports, and reproducibility.",
+      "description": "Deliverables and channels for data, APIs, reports, and sharing.",
       "children": [
         {
           "name": "Tables",
@@ -938,15 +938,6 @@
             "gdalinfo",
             "ogrinfo",
             "rio info"
-          ]
-        },
-        {
-          "name": "Logs & Reproducibility",
-          "description": "Logs and reproducibility artifacts record how results were produced so analyses can be rerun and audited. They are essential for science, compliance, and teaching. Processing history, logs, and CLI runners capture executable lineage.",
-          "tools": [
-            "QGIS Processing History",
-            "QGIS Processing Log",
-            "qgis_process"
           ]
         }
       ],
