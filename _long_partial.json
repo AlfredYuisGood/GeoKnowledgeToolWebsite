@@ -1,0 +1,238 @@
+{
+  "Buffer": {
+    "source": "QGIS / ArcGIS Processing",
+    "blurb": "Buffer is a standard geoprocessing operation documented in QGIS and ArcGIS as creating a polygonal zone around input features at a user-specified distance. Points, lines, and polygons can all be buffered; the resulting polygons represent areas that are within that distance of the original geometry. Optional parameters commonly include dissolve behavior when buffers overlap, end-cap styles for lines, and separate distances by attribute. In GIS workflows, buffers are used for proximity analysis, setbacks, service catchments, and as intermediate layers before overlay operations such as clip or intersection."
+  },
+  "Clip": {
+    "source": "QGIS / ArcGIS Processing",
+    "blurb": "Clip extracts the portions of an input vector layer that fall inside the boundary of an overlay polygon layer. According to QGIS Processing documentation, only geometry parts inside the overlay are retained, producing a spatially subsetted dataset while preserving attributes of the clipped features. ArcGIS describes the same idea as cutting out a piece of one feature class using one or more polygons from another. Clip is widely used to restrict roads, parcels, or rasters-as-vectors to a study area, administrative boundary, or project footprint before analysis or map production."
+  },
+  "Intersection": {
+    "source": "QGIS / ArcGIS Processing",
+    "blurb": "Intersection overlays two vector layers and keeps only the overlapping portions, combining attributes from both inputs in the output. QGIS documents this under Vector overlay algorithms: features (or feature parts) that overlap the overlay layer are written out with merged attribute fields. The tool is fundamental for questions such as “which land-use polygons fall inside flood zones?” or “what habitat types intersect proposed corridors?” Because attributes are joined spatially, analysts should treat area-dependent fields carefully after geometries are split by the overlay."
+  },
+  "Difference": {
+    "source": "QGIS / ArcGIS Processing",
+    "blurb": "Difference (also called Erase in ArcGIS) returns the parts of the input layer that do not overlap the overlay layer. QGIS Vector overlay documentation describes it as subtracting the overlay geometry from the input. The result is useful for exclusion analysis—removing protected areas from candidate sites, erasing water bodies from land parcels, or isolating areas outside a service catchment. Output geometries may be multipart if the overlay punches holes or splits the input into disconnected pieces."
+  },
+  "Union": {
+    "source": "QGIS / ArcGIS Processing",
+    "blurb": "Union overlays polygon layers and preserves all areas from the inputs, splitting polygons wherever boundaries cross. QGIS and ArcGIS document Union as producing a planar fabric in which every region knows which input polygons contributed to it, typically with attributes from all participants. It is used to combine zoning, environmental, and administrative layers into a single analysis surface. Compared with Intersection, Union retains non-overlapping regions as well, so output feature counts and attribute complexity are usually higher."
+  },
+  "Dissolve": {
+    "source": "QGIS / ArcGIS Processing",
+    "blurb": "Dissolve aggregates features that share one or more attribute values (or dissolves everything into a single geometry). QGIS Processing describes dissolving as merging geometries and removing shared boundaries among features in the same group. Optional statistics can summarize numeric fields during aggregation. Typical uses include combining contiguous land-cover patches of the same class, dissolving buffer rings into a single zone, or simplifying administrative units for cartography and reporting."
+  },
+  "Centroids": {
+    "source": "QGIS Processing",
+    "blurb": "Centroids creates a point at the geometric center of each input feature. In QGIS, the algorithm can produce centroids for polygons (and other geometries) for labeling, distance calculations, or as seeds for further analysis. Note that for concave or multipart polygons the geometric centroid may fall outside the feature; some workflows prefer point-on-surface instead. Centroid layers are commonly joined back to attributes for nearest-hub, clustering, or network routing inputs."
+  },
+  "Convex hull": {
+    "source": "QGIS Processing",
+    "blurb": "Convex hull builds the smallest convex polygon that completely contains each input geometry (or a set of geometries). QGIS documents this as a vector geometry algorithm useful for approximating the overall spatial extent of a cluster of points or irregular shapes. Convex envelopes support exploratory mapping, outlier visualization, and as simplified footprints for spatial indexing or cartographic emphasis when detailed boundaries are unnecessary."
+  },
+  "Voronoi polygons": {
+    "source": "QGIS Processing",
+    "blurb": "Voronoi polygons (Thiessen polygons) partition space so that every location belongs to the nearest seed point. QGIS provides a Voronoi polygons algorithm that converts an input point layer into proximal polygons. The method is used for allocating service areas to facilities when travel is assumed isotropic, interpolating categorical attributes, and exploring spatial influence zones. Results depend strongly on the distribution of seed points and the analysis extent."
+  },
+  "Simplify": {
+    "source": "QGIS Processing",
+    "blurb": "Simplify reduces the number of vertices in geometries using a tolerance, following algorithms such as Douglas–Peucker as exposed in QGIS Processing. Official descriptions emphasize preserving overall shape while removing redundant detail for faster rendering, smaller file sizes, and multi-scale cartography. Excessive tolerance can shift boundaries and break topology, so validation is recommended after generalization, especially for analytical overlays."
+  },
+  "Generalize": {
+    "source": "QGIS Processing",
+    "blurb": "Generalize is the broader cartographic process of reducing geometric detail for a target map scale. In QGIS toolboxes, generalization operators (including simplify and related smoothing/weeding tools) help prepare layers for small-scale display. Official cartographic guidance stresses that generalization is not only vertex removal but also selection, exaggeration, and symbolization decisions. In Geo-KTF it represents scale-aware geometry reduction before mapping or multi-resolution analysis."
+  },
+  "Split with lines": {
+    "source": "QGIS Processing",
+    "blurb": "Split with lines cuts polygon or line features wherever they are crossed by features from a line layer. QGIS documents this as a geometry operation that inserts break points and produces separate features along the cutting lines. It is used to segment parcels by roads, split habitats by survey transects, or divide networks at intersections before attribute assignment and network building."
+  },
+  "Line intersections": {
+    "source": "QGIS Processing",
+    "blurb": "Line intersections creates point features at locations where lines from two layers cross. QGIS lists this under vector overlay/analysis tools for extracting crossing locations between networks or linear events. Outputs support conflict detection, interchange mapping, and as candidate nodes when constructing graphs from digitised linework."
+  },
+  "Join attributes by location": {
+    "source": "QGIS Processing",
+    "blurb": "Join attributes by location transfers attribute fields from one vector layer to another based on a spatial predicate (intersects, contains, within, touches, etc.). QGIS Processing documents options for join type (one-to-one / one-to-many) and predicate selection. It is the GUI equivalent of a spatial join and is central to enrichment workflows such as attaching census attributes to points or summarizing events inside polygons."
+  },
+  "Join attributes by nearest": {
+    "source": "QGIS Processing",
+    "blurb": "Join attributes by nearest attaches attributes from the closest feature in a second layer, optionally recording the distance. QGIS documents this for nearest-neighbor enrichment when a topological predicate is too strict. Typical uses include assigning each address to the nearest facility, linking sample points to the closest stream reach, or seeding network analyses with closest-node attributes."
+  },
+  "Extract by location": {
+    "source": "QGIS Processing",
+    "blurb": "Extract by location selects features from an input layer that satisfy a spatial relationship with a selecting layer. QGIS documents predicates such as intersect, contain, and within, producing either a new layer or a selection set. It is the standard way to subset observations inside a study area or relative to hazard polygons without modifying geometries through overlay."
+  },
+  "Merge Vector Layers": {
+    "source": "QGIS Processing",
+    "blurb": "Merge Vector Layers combines multiple vector layers of the same geometry type into one layer. QGIS Processing describes schema reconciliation so fields are aligned in the output. The tool supports data compilation from tiled downloads, departmental datasets, or time slices prior to analysis. Coordinate reference systems should match (or be reprojected) before merging to avoid silent misalignment."
+  },
+  "Multipart to Singleparts": {
+    "source": "QGIS Processing",
+    "blurb": "Multipart to Singleparts explodes multipart geometries into separate single-part features. QGIS documents this conversion when each component needs its own record for area calculation, labeling, or selection. It is frequently run before topology checks, area statistics, or exports to formats/systems that handle single-part features more reliably."
+  },
+  "Split Vector Layer": {
+    "source": "QGIS Processing",
+    "blurb": "Split Vector Layer writes separate output layers (or files) for each unique value of a chosen attribute. QGIS documents it as a practical way to package data by region, class, or owner. Downstream processing can then run per split without filtering repeatedly inside models."
+  },
+  "Delete Duplicate Geometries": {
+    "source": "QGIS Processing",
+    "blurb": "Delete Duplicate Geometries removes features that share identical geometries, helping clean imported CAD/GIS data. QGIS Processing describes duplicate detection as a geometry-equality check; attribute handling depends on tool options. Cleaning duplicates prevents double counting in overlays, statistics, and network connectivity builds."
+  },
+  "Refactor Fields": {
+    "source": "QGIS Processing",
+    "blurb": "Refactor Fields reshapes a layer’s attribute schema: renaming, reordering, changing types, computing expressions, and dropping fields. QGIS documents it as a schema-management algorithm essential before joins, database loads, or publication. Stable field names and types improve interoperability with PostGIS, GeoPackage, and scripted GeoPandas workflows."
+  },
+  "Reproject Layer": {
+    "source": "QGIS Processing",
+    "blurb": "Reproject Layer transforms a vector layer from its source CRS into a target CRS using PROJ-backed transformations. QGIS Processing documentation stresses choosing an appropriate transformation pipeline, especially across datums. Correct reprojection is required before distance/area calculations in projected units and before overlays with other layers."
+  },
+  "Reproject layer": {
+    "source": "QGIS Processing",
+    "blurb": "Reproject Layer transforms a vector layer from its source CRS into a target CRS using PROJ-backed transformations. QGIS Processing documentation stresses choosing an appropriate transformation pipeline, especially across datums. Correct reprojection is required before distance/area calculations in projected units and before overlays with other layers."
+  },
+  "Check Geometries": {
+    "source": "QGIS Processing",
+    "blurb": "Check Geometries inspects vector features for validity and topological problems such as self-intersections, duplicate nodes, and incorrect ring orientation. QGIS geometry checker tooling documents reports that help locate errors before analysis. Invalid geometries can cause buffers, overlays, and spatial SQL predicates to fail or return incomplete results."
+  },
+  "Fix Geometries": {
+    "source": "QGIS Processing",
+    "blurb": "Fix Geometries attempts to repair invalid geometries into standards-valid forms (for example, correcting self-intersections). QGIS documents this as a preprocessing step when data must pass ST_IsValid-style checks. Repairs should be reviewed because automated fixes can alter shape slightly; keep originals for audit trails."
+  },
+  "QGIS Geometry Checker": {
+    "source": "QGIS Plugin",
+    "blurb": "The QGIS Geometry Checker plugin validates layers against configurable geometry and topology rules, reporting error locations for interactive repair. Official QGIS plugin documentation positions it as a quality-assurance tool for production datasets. Teams use it before publishing basemaps, running models, or loading features into PostGIS constraints."
+  },
+  "QGIS Geometry Checker Plugin": {
+    "source": "QGIS Plugin",
+    "blurb": "The QGIS Geometry Checker plugin validates layers against configurable geometry and topology rules, reporting error locations for interactive repair. Official QGIS plugin documentation positions it as a quality-assurance tool for production datasets. Teams use it before publishing basemaps, running models, or loading features into PostGIS constraints."
+  },
+  "Distance Matrix": {
+    "source": "QGIS Processing",
+    "blurb": "Distance Matrix computes distances between features in one layer, or between two point layers, and writes a matrix or long table of results. QGIS documents options for linear, square, and summary distance outputs. It supports accessibility studies, nearest-neighbor exploration, and as input to clustering when a full origin–destination cost table is needed on the plane."
+  },
+  "Distance matrix": {
+    "source": "QGIS Processing",
+    "blurb": "Distance Matrix computes distances between features in one layer, or between two point layers, and writes a matrix or long table of results. QGIS documents options for linear, square, and summary distance outputs. It supports accessibility studies, nearest-neighbor exploration, and as input to clustering when a full origin–destination cost table is needed on the plane."
+  },
+  "Distance to nearest hub": {
+    "source": "QGIS Processing",
+    "blurb": "Distance to nearest hub measures each feature’s distance to the closest hub feature and can optionally create hub lines. QGIS documents this for facility allocation and sparse network approximation on the Euclidean plane. Outputs commonly feed equity analysis, coverage gaps, and quick prototypes before full network routing."
+  },
+  "DBSCAN clustering": {
+    "source": "QGIS / scikit-learn",
+    "blurb": "DBSCAN clustering groups points that are densely packed and labels sparse points as noise, based on neighborhood radius and minimum points parameters. QGIS exposes a DBSCAN-style clustering tool; scikit-learn provides the canonical DBSCAN estimator. Official ML documentation emphasizes that DBSCAN finds arbitrarily shaped clusters without pre-specifying cluster count, making it popular for hotspot detection in event data."
+  },
+  "Heatmap / kernel density estimation": {
+    "source": "QGIS / spatial stats",
+    "blurb": "Heatmap / kernel density estimation (KDE) produces a continuous density surface from point occurrences using a kernel function and bandwidth. QGIS Heatmap tools and spatial-statistics literature describe KDE as estimating intensity of a spatial point process. It is used for crime, crash, species, and social-media event mapping; bandwidth choice strongly controls smoothness and apparent hotspots."
+  },
+  "Heatmap (Kernel Density Estimation)": {
+    "source": "QGIS / spatial stats",
+    "blurb": "Heatmap / kernel density estimation (KDE) produces a continuous density surface from point occurrences using a kernel function and bandwidth. QGIS Heatmap tools and spatial-statistics literature describe KDE as estimating intensity of a spatial point process. It is used for crime, crash, species, and social-media event mapping; bandwidth choice strongly controls smoothness and apparent hotspots."
+  },
+  "Kernel Density Estimation": {
+    "source": "Spatial statistics",
+    "blurb": "Kernel Density Estimation creates a smoothed density surface from point events by placing a kernel at each observation and summing contributions on a grid. Methodological references treat bandwidth and kernel shape as critical parameters. In Geo-KTF workflows it underpins hotspot visualization and as a covariate in urban growth or risk models."
+  },
+  "Create grid": {
+    "source": "QGIS Processing",
+    "blurb": "Create grid builds a regular vector grid—rectangles, diamonds, or hexagons—over a specified extent and spacing. QGIS documents grid creation for sampling designs, aggregation units, and analysis frameworks. Hexagonal grids are popular for reducing orientation bias in density and coverage analyses."
+  },
+  "Generate points (pixel centroids) inside polygons": {
+    "source": "QGIS Processing",
+    "blurb": "This QGIS algorithm places points at raster pixel centroids that fall inside polygon features. Official Processing descriptions position it as a bridge between raster sampling schemes and vector analysis, useful for zonal validation, stratified sampling, and converting raster frameworks into point sets for statistical tests."
+  },
+  "Random points in extent": {
+    "source": "QGIS Processing",
+    "blurb": "Random points in extent creates randomly located points inside a given map extent. QGIS documents parameters for point count and optional minimum distance. Random point patterns support Monte Carlo testing, survey design, and null models for spatial statistics."
+  },
+  "Random points in polygons": {
+    "source": "QGIS Processing",
+    "blurb": "Random points in polygons generates random points constrained within polygon features, with counts per polygon or density options as documented in QGIS Processing. It is used for habitat sampling, randomized inspections, and simulating event locations under a polygonal mask."
+  },
+  "Random selection": {
+    "source": "QGIS Processing",
+    "blurb": "Random selection draws a random subset of features from a vector layer. QGIS documents percentage or count-based selection modes. Random subsets support quality-control sampling, train/test splits for spatial ML, and unbiased inspection of large layers."
+  },
+  "TIN Interpolation": {
+    "source": "QGIS Processing",
+    "blurb": "TIN Interpolation builds a triangulated irregular network from sample points and estimates values across the surface. QGIS interpolation tools document TIN as preserving sample locations as triangle nodes. It is widely used for elevation and continuous fields when sample density varies spatially."
+  },
+  "IDW Interpolation": {
+    "source": "QGIS Processing",
+    "blurb": "IDW Interpolation estimates raster cell values as distance-weighted averages of nearby sample points. QGIS documents power parameters that control how quickly influence decays with distance. IDW is a common deterministic interpolator for continuous environmental variables when a geostatistical model is not required."
+  },
+  "Delaunay triangulation": {
+    "source": "QGIS Processing",
+    "blurb": "Delaunay triangulation connects points into triangles such that no point lies inside the circumcircle of any triangle. QGIS geometry tools expose Delaunay meshes used as the basis for TIN surfaces and as a structure for neighborhood definitions. It is a classical computational-geometry building block in terrain and interpolation workflows."
+  },
+  "Weighted Overlay": {
+    "source": "QGIS / ArcGIS",
+    "blurb": "Weighted Overlay combines multiple standardized criterion rasters using weights that reflect relative importance, producing a suitability score surface. ArcGIS documentation popularized Weighted Overlay for multi-criteria evaluation; QGIS provides analogous raster calculator / weighted sum workflows. It is central to site selection and land-suitability analysis."
+  },
+  "Fuzzy Overlay": {
+    "source": "QGIS Processing",
+    "blurb": "Fuzzy Overlay combines membership rasters with fuzzy operators (AND/OR/gamma-style combinations) rather than crisp thresholds. Documentation in fuzzy multi-criteria GIS methods and QGIS fuzzy tools emphasizes graded suitability. It is used when criteria are uncertain or when gradual transitions better represent real-world preference."
+  },
+  "Raster Calculator": {
+    "source": "QGIS / ArcGIS",
+    "blurb": "Raster Calculator evaluates map-algebra expressions on one or more raster bands, cell by cell. QGIS and ArcGIS document expression syntax for arithmetic, conditional logic, and boolean masks. It is the workhorse for indices (e.g., NDVI-style formulas), reclassification, and combining criteria in suitability models."
+  },
+  "Shortest Path": {
+    "source": "QGIS network analysis",
+    "blurb": "Shortest Path finds a least-cost route between locations on a network graph using impedance such as length or travel time. QGIS network analysis tools document point-to-point routing on line networks with connectivity rules. It supports emergency response, logistics prototyping, and accessibility diagnostics before deploying full routing engines."
+  },
+  "Service Area": {
+    "source": "QGIS / network analysis",
+    "blurb": "Service Area (isochrone/catchment on a network) computes the set of network edges or polygons reachable from facilities within a cost threshold. QGIS and ArcGIS Network Analyst documentation describe service areas for coverage planning. Outputs show who can be reached in a given time/distance and where coverage gaps remain."
+  },
+  "Slope": {
+    "source": "QGIS / GDAL DEM",
+    "blurb": "Slope calculates terrain steepness from a DEM, typically in degrees or percent rise. GDAL and QGIS DEM tools document slope as a first derivative of elevation used in hazard, hydrology, and engineering analyses. Accurate slope requires a projected CRS with linear units and an appropriate DEM resolution."
+  },
+  "Aspect": {
+    "source": "QGIS / GDAL DEM",
+    "blurb": "Aspect computes the downslope direction of the steepest gradient at each DEM cell, usually reported in degrees from north. GDAL gdaldem aspect and QGIS terrain tools document aspect for insolation, fire behavior, and ecological modeling. Flat areas are often coded with a special value."
+  },
+  "Hillshade": {
+    "source": "QGIS / GDAL DEM",
+    "blurb": "Hillshade renders shaded relief by illuminating a DEM with a virtual light source at a given azimuth and altitude. GDAL gdaldem hillshade and QGIS documentation describe hillshade as a visualization aid rather than a physical quantity. It improves cartographic readability of terrain and can be blended with thematic rasters."
+  },
+  "Roughness": {
+    "source": "QGIS / GDAL DEM",
+    "blurb": "Roughness summarizes local elevation variability within a neighborhood, as implemented in GDAL gdaldem roughness. Official GDAL documentation defines roughness using the largest difference between a central cell and its neighbors. It supports habitat, roughness-length, and mobility analyses."
+  },
+  "TRI": {
+    "source": "QGIS / GDAL DEM",
+    "blurb": "TRI (Terrain Ruggedness Index) measures the sum of absolute elevation differences between a cell and its neighborhood. GDAL gdaldem TRI documents this metric for quantifying rugged terrain. Higher TRI indicates more dissected topography relevant to ecology, recreation, and infrastructure difficulty."
+  },
+  "TPI": {
+    "source": "QGIS / GDAL DEM",
+    "blurb": "TPI (Topographic Position Index) compares a cell’s elevation to the mean of its neighborhood, distinguishing ridges, slopes, and valleys. GDAL gdaldem TPI documents the index for landform classification. TPI underpins ecological niche mapping and geomorphometric segmentation."
+  },
+  "Viewshed": {
+    "source": "QGIS / GDAL DEM",
+    "blurb": "Viewshed determines which DEM cells are visible from one or more observer points, accounting for terrain occlusion. GDAL gdal_viewshed and QGIS visibility tools document observer height, target height, and refraction-style parameters. Applications include tower siting, scenic analysis, and security planning."
+  },
+  "Contour": {
+    "source": "QGIS / GDAL DEM",
+    "blurb": "Contour generates isolines connecting equal values on a raster surface, most often elevation. GDAL gdal_contour and QGIS contour algorithms document interval selection and attribute labeling of elevations. Contours remain a standard cartographic representation of continuous fields."
+  },
+  "Fill sinks": {
+    "source": "QGIS Hydrology",
+    "blurb": "Fill sinks removes depressions in a DEM that would trap flow routing algorithms. Hydrological preprocessing documentation (QGIS/SAGA/GRASS style fill tools) describes filling as creating a hydrologically conditioned surface. It is typically required before flow direction, accumulation, and watershed delineation."
+  },
+  "Watershed": {
+    "source": "QGIS Hydrology",
+    "blurb": "Watershed delineation identifies the upslope contributing area draining to pour points or stream outlets. QGIS hydrological toolchains document watersheds as polygons derived from flow direction and accumulation surfaces. Catchments support flood studies, water supply planning, and pollutant routing."
+  },
+  "Flow accumulation": {
+    "source": "QGIS Hydrology",
+    "blurb": "Flow accumulation counts how much upstream area (or weighted runoff) drains through each DEM cell along flow paths. Hydrology tool docs describe it as the basis for extracting stream networks by thresholding. High accumulation cells indicate channels and concentrated flow."
+  },
+  "Flow direction": {
+    "source": "QGIS Hydrology",
+    "blurb": "Flow direction assigns each DEM cell the steepest downslope neighbor direction used by D8 or related routing models. Official hydrology preprocessing guides treat flow direction as the backbone of accumulation and watershed steps. Correct depression filling improves direction reliability."
+  }
+}

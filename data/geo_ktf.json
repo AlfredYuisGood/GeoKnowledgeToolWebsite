@@ -1,0 +1,1048 @@
+{
+  "name": "Geo-KTF",
+  "description": "Geo Knowledge Tool Framework: six pillars that move from understanding foundations, to doing operations, applying workflows, ensuring quality, delivering outputs, and enabling analysis with providers.",
+  "children": [
+    {
+      "name": "Basic Geospatial Knowledge",
+      "description": "Foundational geospatial concepts, data models, CRS, quality, analysis, and governance.",
+      "children": [
+        {
+          "name": "1.1 Relationship",
+          "description": "Spatial relationships, scale, uncertainty, and distance concepts.",
+          "children": [
+            {
+              "name": "Spatial relationships",
+              "description": "Spatial relationships describe how geographic features interact through containment, overlap, adjacency, and proximity. Understanding these relations is foundational for overlay analysis, spatial joins, and rule-based queries. Tools in this category implement buffers, clips, intersections, and predicate tests across desktop GIS, PostGIS, and GeoPandas.",
+              "tools": [
+                "Buffer",
+                "Clip",
+                "Intersection",
+                "Difference",
+                "Union",
+                "Dissolve",
+                "Centroids",
+                "Convex hull",
+                "Voronoi polygons",
+                "Split with lines",
+                "Line intersections",
+                "Join attributes by location",
+                "Join attributes by nearest",
+                "Extract by location",
+                "ST_Buffer",
+                "ST_Intersects",
+                "ST_Contains",
+                "ST_Within",
+                "ST_Overlaps",
+                "ST_Touches",
+                "ST_Crosses",
+                "ST_DWithin",
+                "geopandas.overlay()",
+                "geopandas.sjoin()",
+                "geopandas.sjoin_nearest()"
+              ]
+            },
+            {
+              "name": "Scale",
+              "description": "Scale concerns how geographic phenomena are represented and processed at different resolutions and levels of detail. Choosing an appropriate scale affects generalization, sampling density, and the meaning of measured patterns. This category covers simplification, grids, overviews, and multi-resolution raster preparation.",
+              "tools": [
+                "Simplify",
+                "Generalize",
+                "Create grid",
+                "Generate points (pixel centroids) inside polygons",
+                "gdaladdo",
+                "gdalbuildvrt",
+                "gdal_retile"
+              ]
+            },
+            {
+              "name": "Uncertainty / Random",
+              "description": "Uncertainty and randomness address incomplete knowledge, measurement error, and stochastic variation in spatial data and outputs. Communicating uncertainty is essential for honest cartography and robust decision support. Representative tools include random sampling utilities and styling/reporting features used to present variability.",
+              "tools": [
+                "Random points in extent",
+                "Random points in polygons",
+                "Random selection",
+                "QGIS Print Layout",
+                "QGIS Reports",
+                "QGIS Label settings",
+                "QGIS Style Manager"
+              ]
+            },
+            {
+              "name": "Distance",
+              "description": "Distance provides a quantitative basis for nearness, accessibility, density, and neighborhood definitions. Both metric distances and topological notions of proximity matter depending on the CRS and analysis design. This category links distance matrices, nearest-hub measures, clustering, and distance-aware spatial predicates.",
+              "tools": [
+                "Distance matrix",
+                "Distance to nearest hub",
+                "DBSCAN clustering",
+                "Heatmap / kernel density estimation",
+                "ST_Intersects",
+                "ST_DWithin",
+                "ST_Contains",
+                "geopandas.sjoin()",
+                "geopandas.overlay()"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "1.2 Data Models",
+          "description": "Core geospatial data structures and their processing ecosystems.",
+          "children": [
+            {
+              "name": "Vector",
+              "description": "Vector data models represent geographic entities as points, lines, and polygons with attributes and optional topology. They are ideal for discrete features with crisp boundaries and rich tabular properties. This category covers inspection, conversion, overlays, joins, and validity checks in OGR, GeoPandas, and PostGIS.",
+              "tools": [
+                "ogrinfo",
+                "ogr2ogr",
+                "geopandas.read_file()",
+                "geopandas.read_postgis()",
+                "geopandas.to_file()",
+                "geopandas.to_crs()",
+                "geopandas.overlay()",
+                "geopandas.sjoin()",
+                "geopandas.sjoin_nearest()",
+                "geopandas.to_parquet()",
+                "ST_Transform",
+                "ST_IsValid",
+                "ST_IsValidDetail"
+              ]
+            },
+            {
+              "name": "Raster",
+              "description": "Raster data models store values on a regular grid and are used for continuous fields and categorical surfaces such as imagery, elevation, and land cover. Cell size, extent, nodata, and georeferencing determine analytical validity. Tools here inspect, translate, warp, mosaic, and compute map algebra with GDAL and Rasterio.",
+              "tools": [
+                "gdalinfo",
+                "gdal_translate",
+                "gdalwarp",
+                "gdalbuildvrt",
+                "gdal_merge",
+                "gdal_calc",
+                "gdal_contour",
+                "gdal_proximity",
+                "gdal_fillnodata",
+                "gdal_polygonize",
+                "rasterio.open()",
+                "rasterio.mask.mask()",
+                "rasterio.features.rasterize()",
+                "rasterio.merge.merge()"
+              ]
+            },
+            {
+              "name": "Point Cloud",
+              "description": "Point clouds are dense 3D measurements, commonly from LiDAR or photogrammetry, capturing surface structure at high detail. They require specialized pipelines for reading, filtering, reprojection, and derived products. PDAL readers, filters, and writers are the representative tooling for this data model.",
+              "tools": [
+                "PDAL pipeline",
+                "readers.las",
+                "filters.crop",
+                "filters.range",
+                "filters.reprojection",
+                "writers.las",
+                "writers.gdal"
+              ]
+            },
+            {
+              "name": "Mesh",
+              "description": "Mesh datasets represent surfaces as connected faces and edges, often used for 3D visualization and simulation. They support calculations and exports that bridge mesh structures with conventional GIS layers. QGIS mesh tools illustrate how meshes are inspected, calculated, and converted for mapping.",
+              "tools": [
+                "Mesh Calculator",
+                "Export mesh edges",
+                "Export mesh faces",
+                "Export mesh on grid",
+                "QGIS 3D Map View"
+              ]
+            },
+            {
+              "name": "TIN",
+              "description": "A TIN (triangulated irregular network) models surfaces from irregularly spaced points using triangles. It preserves sample locations and adapts density where relief or variation is high. This category focuses on TIN interpolation and Delaunay triangulation as core construction methods.",
+              "tools": [
+                "TIN Interpolation",
+                "Delaunay triangulation"
+              ]
+            },
+            {
+              "name": "DEM",
+              "description": "Digital elevation models encode terrain height on a grid and underpin slope, aspect, hydrology, and visibility analyses. Quality depends on resolution, vertical datum, and hydrologic conditioning. GDAL DEM tools derive hillshade, morphometric indices, contours, and viewsheds from elevation surfaces.",
+              "tools": [
+                "gdaldem hillshade",
+                "gdaldem slope",
+                "gdaldem aspect",
+                "gdaldem roughness",
+                "gdaldem TRI",
+                "gdaldem TPI",
+                "gdal_contour",
+                "gdal_viewshed"
+              ]
+            },
+            {
+              "name": "Network",
+              "description": "Network data models represent connectivity as graphs of nodes and edges with costs such as length or travel time. They enable routing, catchments, and accessibility that planar buffers cannot capture. pgRouting algorithms exemplify graph-based analysis on top of PostGIS.",
+              "tools": [
+                "pgr_dijkstra",
+                "pgr_aStar",
+                "pgr_drivingDistance",
+                "pgr_dijkstraVia",
+                "pgr_KSP",
+                "pgr_dijkstraCostMatrix",
+                "pgr_dijkstraNear",
+                "pgr_dijkstraNearCost"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "1.3 Coordinate Reference Systems",
+          "description": "How location is referenced, transformed, and validated.",
+          "children": [
+            {
+              "name": "Geographic / Projected CRS",
+              "description": "Geographic CRS locate positions on an ellipsoidal Earth, while projected CRS map them onto a plane for measurement and mapping. Choosing between them affects distance, area, and visual distortion. This category covers defining, inspecting, and transforming CRS with pyproj, GeoPandas, PostGIS, and GDAL.",
+              "tools": [
+                "pyproj.CRS",
+                "pyproj.Transformer",
+                "geopandas.to_crs()",
+                "ST_Transform",
+                "gdalwarp",
+                "projinfo"
+              ]
+            },
+            {
+              "name": "Datums / Transformations",
+              "description": "Datums define the reference frame for horizontal (and related) coordinates, and transformations convert between frames. Incorrect datum handling is a frequent source of positional shift. Tools here inspect CRS definitions and apply PROJ-backed transformations safely.",
+              "tools": [
+                "pyproj.CRS",
+                "pyproj.Transformer",
+                "ST_Transform",
+                "gdalwarp",
+                "projinfo"
+              ]
+            },
+            {
+              "name": "Vertical CRS",
+              "description": "Vertical CRS define how heights and depths are referenced, including ellipsoidal heights and orthometric systems tied to a geoid. Mixing vertical references without conversion produces elevation errors in engineering and flood analyses. Inspection tools help identify vertical CRS metadata on datasets.",
+              "tools": [
+                "pyproj.CRS",
+                "gdalinfo"
+              ]
+            },
+            {
+              "name": "Units",
+              "description": "CRS definitions carry linear or angular units that determine how coordinates and distances should be interpreted. Using degree-based layers for meter buffers is a classic mistake. Metadata inspection with pyproj and GDAL/OGR clarifies units before analysis.",
+              "tools": [
+                "pyproj.CRS",
+                "gdalinfo",
+                "ogrinfo"
+              ]
+            },
+            {
+              "name": "Common CRS Errors",
+              "description": "Common CRS errors include missing CRS tags, axis-order confusion, and applying the wrong transformation. These issues often look like small shifts or complete misalignment on the map. This category highlights safer transformer settings and explicit reprojection workflows.",
+              "tools": [
+                "pyproj.Transformer(always_xy=True)",
+                "geopandas.to_crs()",
+                "ST_Transform",
+                "gdalwarp",
+                "Reproject layer"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "1.4 Data Quality",
+          "description": "Trust, fitness for use, and documentation of geospatial data.",
+          "children": [
+            {
+              "name": "Metadata",
+              "description": "Metadata documents what a dataset is, how it was produced, and how it should be used. Rich metadata improves discovery, fitness-for-use decisions, and long-term stewardship. Inspection utilities such as gdalinfo and ogrinfo surface key metadata for rasters and vectors.",
+              "tools": [
+                "gdalinfo",
+                "ogrinfo",
+                "geopandas.read_file()",
+                "rasterio.open()"
+              ]
+            },
+            {
+              "name": "Lineage",
+              "description": "Lineage records the processing history that led to a dataset or result. Transparent lineage supports reproducibility, audit, and teaching. QGIS Processing History and logs are practical mechanisms for capturing how analytical steps were executed.",
+              "tools": [
+                "QGIS Processing History",
+                "QGIS Processing Log"
+              ]
+            },
+            {
+              "name": "Accuracy / Precision",
+              "description": "Accuracy refers to closeness to true values, while precision refers to measurement resolution and repeatability. Both affect whether spatial conclusions are defensible. Inspecting CRS, georeferencing, and source metadata helps evaluate positional and attribute quality.",
+              "tools": [
+                "gdalinfo",
+                "ogrinfo",
+                "pyproj.CRS",
+                "pyproj.Transformer"
+              ]
+            },
+            {
+              "name": "Validity",
+              "description": "Geometric validity ensures features meet topological and structural rules required by overlay and spatial SQL operations. Invalid geometries can silently drop from analyses or crash tools. Geometry checkers and fix utilities detect and repair common validity problems.",
+              "tools": [
+                "QGIS Geometry Checker Plugin",
+                "Check Geometries",
+                "Fix Geometries",
+                "ST_IsValid",
+                "ST_IsValidDetail"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "1.5 Spatial Analysis",
+          "description": "Core analytical families spanning vector, raster, network, and statistics.",
+          "children": [
+            {
+              "name": "Vector Analysis",
+              "description": "Vector analysis comprises geometric and attribute operations on points, lines, and polygons. It includes overlays, buffers, dissolves, and spatial joins used throughout GIS practice. Mastery of these operations is essential before composing multi-step workflows.",
+              "tools": [
+                "Buffer",
+                "Clip",
+                "Intersection",
+                "Difference",
+                "Union",
+                "Dissolve",
+                "Centroids",
+                "Convex hull",
+                "Voronoi polygons",
+                "Split with lines",
+                "Line intersections",
+                "Join attributes by location",
+                "Join attributes by nearest",
+                "Extract by location",
+                "Distance matrix",
+                "Distance to nearest hub"
+              ]
+            },
+            {
+              "name": "Raster Analysis",
+              "description": "Raster analysis applies map algebra, resampling, and neighborhood operations on gridded surfaces. It supports indices, reclassification, proximity, and conversion to vectors. GDAL and raster calculators are core executors of these methods.",
+              "tools": [
+                "Raster Calculator",
+                "gdal_calc",
+                "gdal_proximity",
+                "gdal_fillnodata",
+                "gdal_polygonize",
+                "gdalwarp",
+                "gdal_translate"
+              ]
+            },
+            {
+              "name": "Terrain Analysis",
+              "description": "Terrain analysis derives landform metrics and surfaces from elevation data, such as slope, aspect, and ruggedness. These products inform hazard, ecology, and engineering studies. DEM tools generate the standard morphometric suite used in geospatial workflows.",
+              "tools": [
+                "gdaldem slope",
+                "gdaldem aspect",
+                "gdaldem hillshade",
+                "gdaldem roughness",
+                "gdaldem TRI",
+                "gdaldem TPI",
+                "gdal_contour",
+                "gdal_viewshed"
+              ]
+            },
+            {
+              "name": "Network Analysis",
+              "description": "Network analysis solves path, cost, and catchment problems on connected graphs rather than on the open plane. It underpins logistics, emergency response, and service planning. Routing algorithms compute least-cost paths and driving-distance catchments.",
+              "tools": [
+                "pgr_dijkstra",
+                "pgr_aStar",
+                "pgr_drivingDistance",
+                "pgr_dijkstraVia",
+                "pgr_KSP",
+                "pgr_dijkstraCostMatrix"
+              ]
+            },
+            {
+              "name": "Spatial Statistics",
+              "description": "Spatial statistics summarize pattern, clustering, and density in geographic distributions. They help distinguish structured spatial process from randomness. Heatmaps, distance summaries, and clustering tools provide exploratory statistical views of point patterns.",
+              "tools": [
+                "DBSCAN clustering",
+                "Heatmap / kernel density estimation",
+                "Distance matrix",
+                "Distance to nearest hub"
+              ]
+            },
+            {
+              "name": "Spatial Interpolation",
+              "description": "Spatial interpolation estimates continuous surfaces from discrete sample points. Method choice (TIN, IDW, or others) affects smoothness and error characteristics. This category introduces foundational interpolators used before geostatistical modeling.",
+              "tools": [
+                "TIN Interpolation",
+                "IDW Interpolation",
+                "gdal_grid"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "1.6 Ethics & Governance",
+          "description": "Ethical, legal, and governance dimensions of geospatial practice.",
+          "children": [
+            {
+              "name": "Privacy / Licensing / Sharing / Standards",
+              "description": "Ethics and governance cover privacy, licensing, sharing constraints, and standards compliance for geospatial work. Responsible practice includes documenting sources, respecting licenses, and protecting sensitive locations. Export, metadata, and reporting tools support transparent and accountable dissemination.",
+              "tools": [
+                "ogr2ogr",
+                "geopandas.to_file()",
+                "geopandas.to_parquet()",
+                "gdalinfo",
+                "ogrinfo",
+                "QGIS Print Layout",
+                "QGIS Reports",
+                "QGIS Processing History",
+                "QGIS Processing Log"
+              ]
+            }
+          ]
+        }
+      ],
+      "goal_verb": "Understand",
+      "goal": "The foundations of geospatial analysis."
+    },
+    {
+      "name": "Analytical Capabilities",
+      "description": "Software-independent operations bridging concepts and executable tools.",
+      "children": [
+        {
+          "name": "Data Inspection",
+          "description": "Data inspection is the first operational step: examining structure, CRS, extent, schema, and content before analysis. It prevents wasted effort on misaligned or incomplete inputs. Command-line and Python inspectors provide authoritative summaries for rasters, vectors, and point clouds.",
+          "tools": [
+            "gdalinfo",
+            "ogrinfo",
+            "geopandas.read_file()",
+            "geopandas.read_postgis()",
+            "rasterio.open()",
+            "pdal pipeline"
+          ]
+        },
+        {
+          "name": "Data Conversion",
+          "description": "Data conversion transforms formats, encodings, and storage targets while preserving meaning where possible. Interoperability across desktop, database, and cloud depends on reliable conversion. ogr2ogr, GDAL translate/warp, and GeoPandas writers are standard conversion pathways.",
+          "tools": [
+            "ogr2ogr",
+            "gdal_translate",
+            "gdalwarp",
+            "gdalbuildvrt",
+            "geopandas.to_file()",
+            "geopandas.to_parquet()",
+            "geopandas.to_postgis()"
+          ]
+        },
+        {
+          "name": "CRS Management",
+          "description": "CRS management assigns, inspects, and reprojects spatial reference systems so layers align and measurements are valid. Explicit transformations reduce datum and axis-order errors. pyproj, GeoPandas, PostGIS, and GDAL provide complementary CRS operations.",
+          "tools": [
+            "pyproj.CRS",
+            "pyproj.Transformer",
+            "projinfo",
+            "ST_Transform",
+            "geopandas.to_crs()",
+            "gdalwarp"
+          ]
+        },
+        {
+          "name": "Vector Processing",
+          "description": "Vector processing executes geometry and attribute operations that reshape layers for analysis and mapping. Typical tasks include overlay, dissolve, multipart handling, and spatial joins. These capabilities are the workhorse operations of desktop GIS toolboxes.",
+          "tools": [
+            "Buffer",
+            "Clip",
+            "Intersection",
+            "Difference",
+            "Union",
+            "Dissolve",
+            "Merge Vector Layers",
+            "Multipart to Singleparts",
+            "Split Vector Layer",
+            "Join attributes by location",
+            "Join attributes by nearest",
+            "Extract by location",
+            "Simplify"
+          ]
+        },
+        {
+          "name": "Raster Processing",
+          "description": "Raster processing covers resampling, algebra, mosaicking, proximity, and raster-vector conversion. It prepares imagery and surfaces for modeling and visualization. GDAL utilities and raster calculators implement most production raster pipelines.",
+          "tools": [
+            "Raster Calculator",
+            "gdal_calc",
+            "gdal_translate",
+            "gdalwarp",
+            "gdal_proximity",
+            "gdal_fillnodata",
+            "gdal_polygonize",
+            "gdal_contour",
+            "gdalbuildvrt",
+            "gdal_merge"
+          ]
+        },
+        {
+          "name": "Database Processing",
+          "description": "Database processing performs geospatial read/write and computation inside spatial databases. Keeping analysis close to storage improves scalability and governance. PostGIS/GeoPandas and DuckDB spatial functions exemplify in-database geospatial capability.",
+          "tools": [
+            "ST_Buffer",
+            "ST_Intersects",
+            "ST_DWithin",
+            "ST_Transform",
+            "ST_IsValid",
+            "geopandas.read_postgis()",
+            "geopandas.to_postgis()",
+            "DuckDB ST_Read"
+          ]
+        },
+        {
+          "name": "Spatial SQL",
+          "description": "Spatial SQL expresses spatial predicates and overlays declaratively in queries. It enables reproducible, set-based analysis on large tables with indexes. PostGIS geometry functions are the reference implementation for this capability.",
+          "tools": [
+            "ST_Intersects",
+            "ST_Contains",
+            "ST_Within",
+            "ST_Buffer",
+            "ST_DWithin",
+            "ST_Intersection",
+            "ST_Distance",
+            "ST_Transform"
+          ]
+        },
+        {
+          "name": "Geocoding",
+          "description": "Geocoding converts place names and addresses to coordinates, and reverse geocoding does the opposite. It connects tabular records to the map for enrichment and routing. Open and commercial geocoding services provide this capability at scale.",
+          "tools": [
+            "openrouteservice geocoding",
+            "Nominatim",
+            "Google Geocoding API",
+            "ArcGIS Geocoding Service"
+          ]
+        },
+        {
+          "name": "Routing",
+          "description": "Routing computes paths, costs, and directions on transportation networks. It is more realistic than straight-line distance for mobility questions. Desktop network tools, pgRouting, and web routing APIs implement complementary routing styles.",
+          "tools": [
+            "Shortest Path",
+            "Service Area",
+            "Distance Matrix",
+            "pgr_dijkstra",
+            "pgr_aStar",
+            "pgr_drivingDistance",
+            "openrouteservice directions"
+          ]
+        },
+        {
+          "name": "Accessibility",
+          "description": "Accessibility measures how reachable destinations are given time, distance, or impedance constraints. Isochrones and service areas communicate coverage and equity. Network and openrouteservice tools generate accessibility surfaces for planning.",
+          "tools": [
+            "Service Area",
+            "Distance Matrix",
+            "openrouteservice isochrones",
+            "pgr_drivingDistance"
+          ]
+        },
+        {
+          "name": "Remote Sensing",
+          "description": "Remote sensing capabilities process Earth observation imagery into analysis-ready products and derived information. Typical steps include stacking, warping, band math, masking, and classification prep. GDAL, Rasterio, and OTB applications support these operations.",
+          "tools": [
+            "gdal_translate",
+            "gdalwarp",
+            "gdal_calc",
+            "gdalbuildvrt",
+            "rasterio.mask.mask()",
+            "rasterio.features.rasterize()",
+            "OTB BandMath",
+            "OTB KMeansClassification",
+            "OTB ComputeImagesStatistics"
+          ]
+        },
+        {
+          "name": "Spatial Statistics",
+          "description": "This capability quantifies spatial autocorrelation, hotspots, and density with inferential or exploratory statistics. Spatial weights encode neighborhood structure for many tests. PySAL/ESDA and heatmap tools operationalize these methods in Python and GIS.",
+          "tools": [
+            "esda.Moran",
+            "esda.Moran_Local",
+            "esda.Geary",
+            "esda.GetisOrd",
+            "libpysal.weights",
+            "Heatmap (Kernel Density Estimation)"
+          ]
+        },
+        {
+          "name": "Spatial Interpolation",
+          "description": "Interpolation capabilities predict values at unsampled locations to create continuous surfaces. Deterministic and geostatistical methods trade off simplicity and uncertainty modeling. IDW, TIN, gdal_grid, and PyKrige cover common implementation options.",
+          "tools": [
+            "IDW Interpolation",
+            "TIN Interpolation",
+            "gdal_grid",
+            "PyKrige"
+          ]
+        },
+        {
+          "name": "Spatial Clustering",
+          "description": "Spatial clustering groups observations by location and optionally by attributes to reveal structure. Algorithms differ in whether cluster count is specified and how noise is treated. DBSCAN and k-means style tools are widely used entry points.",
+          "tools": [
+            "DBSCAN clustering",
+            "K-means clustering",
+            "scikit-learn DBSCAN"
+          ]
+        },
+        {
+          "name": "Cartography",
+          "description": "Cartography encodes spatial information visually through symbols, hierarchy, and layout. Good cartography communicates uncertainty and supports decisions without misleading. QGIS styling, layout, and server tools represent practical cartographic production.",
+          "tools": [
+            "QGIS Style Manager",
+            "QGIS Symbol Selector",
+            "QGIS Print Layout",
+            "QGIS Reports",
+            "QGIS Server"
+          ]
+        },
+        {
+          "name": "Reporting",
+          "description": "Reporting documents methods, results, and caveats for stakeholders and reproducibility. Maps alone rarely suffice for audit or scientific communication. Layouts, reports, and processing logs capture both narrative and technical evidence.",
+          "tools": [
+            "QGIS Print Layout",
+            "QGIS Reports",
+            "QGIS Processing Log"
+          ]
+        }
+      ],
+      "goal_verb": "Do",
+      "goal": "The operations to achieve objectives."
+    },
+    {
+      "name": "Workflow",
+      "description": "Reusable analytical workflows that combine capabilities for real tasks.",
+      "children": [
+        {
+          "name": "Site Selection",
+          "description": "Site selection combines spatial criteria to identify candidate locations for facilities or interventions. It typically blends buffers, overlays, and suitability scoring. This workflow shows how foundational operations become a decision-oriented sequence.",
+          "tools": [
+            "Buffer",
+            "Clip",
+            "Intersection",
+            "Join attributes by location",
+            "Raster Calculator",
+            "Weighted Overlay"
+          ]
+        },
+        {
+          "name": "Suitability Analysis",
+          "description": "Suitability analysis scores places against weighted multi-criteria models. It translates policy or scientific preferences into a comparable surface or ranking. Raster algebra, weighted overlay, and model builders implement this workflow pattern.",
+          "tools": [
+            "Raster Calculator",
+            "gdal_calc",
+            "Weighted Overlay",
+            "Fuzzy Overlay",
+            "QGIS Model Designer"
+          ]
+        },
+        {
+          "name": "Catchment Analysis",
+          "description": "Catchment analysis delineates areas served by facilities or outlets under network or drainage logic. It answers who or what falls within a service or contributing area. Service areas, driving distance, and isochrones are common executors.",
+          "tools": [
+            "Service Area",
+            "pgr_drivingDistance",
+            "openrouteservice isochrones",
+            "Distance Matrix"
+          ]
+        },
+        {
+          "name": "Accessibility Analysis",
+          "description": "Accessibility analysis evaluates how easily people or goods can reach destinations. It uses routing costs, matrices, and catchments rather than simple buffers. This workflow supports equity, transport, and service-planning questions.",
+          "tools": [
+            "Shortest Path",
+            "Service Area",
+            "Distance Matrix",
+            "openrouteservice directions",
+            "openrouteservice matrices"
+          ]
+        },
+        {
+          "name": "Demographic Enrichment",
+          "description": "Demographic enrichment attaches population or socioeconomic attributes to spatial features. Spatial joins and containment predicates transfer census-like information onto points or polygons. Enrichment enables equity and demand analyses downstream.",
+          "tools": [
+            "Join attributes by location",
+            "geopandas.sjoin()",
+            "ST_Intersects",
+            "ST_Contains"
+          ]
+        },
+        {
+          "name": "Hazard Assessment",
+          "description": "Hazard assessment maps exposure and susceptibility using terrain, overlays, and thematic criteria. It supports preparedness and risk communication. Slope, aspect, and spatial intersection tools commonly appear in hazard screening workflows.",
+          "tools": [
+            "Slope",
+            "Aspect",
+            "Hillshade",
+            "Raster Calculator",
+            "ST_Intersects"
+          ]
+        },
+        {
+          "name": "Environmental Assessment",
+          "description": "Environmental assessment evaluates conditions and potential impacts across landscapes. Buffering, proximity, and raster criteria help quantify pressure and sensitivity. This workflow connects analytical capabilities to environmental decision processes.",
+          "tools": [
+            "Buffer",
+            "Intersection",
+            "Raster Calculator",
+            "gdal_proximity",
+            "gdal_fillnodata"
+          ]
+        },
+        {
+          "name": "Infrastructure Planning",
+          "description": "Infrastructure planning uses networks, catchments, and proximity to site and evaluate facilities and corridors. It balances access, cost, and constraint layers. Routing and buffer-based screens are typical early planning steps.",
+          "tools": [
+            "Shortest Path",
+            "Service Area",
+            "Distance Matrix",
+            "Buffer",
+            "ST_DWithin"
+          ]
+        },
+        {
+          "name": "Land Use Analysis",
+          "description": "Land use analysis characterizes and compares how land is occupied and changing. Overlay and dissolve operations aggregate classes for reporting and modeling. Raster and vector pathways both support land-use evidence building.",
+          "tools": [
+            "Clip",
+            "Intersection",
+            "Union",
+            "Dissolve",
+            "Raster Calculator"
+          ]
+        },
+        {
+          "name": "Change Detection",
+          "description": "Change detection compares multi-temporal datasets to locate where and how landscapes changed. Alignment and consistent preprocessing are prerequisites for meaningful differences. Warping, band math, and mosaic tools prepare comparable image dates.",
+          "tools": [
+            "gdalwarp",
+            "gdal_translate",
+            "Raster Calculator",
+            "OTB BandMath",
+            "gdalbuildvrt"
+          ]
+        },
+        {
+          "name": "Terrain Analysis",
+          "description": "This workflow applies DEM derivatives to answer applied terrain questions in planning and hazard contexts. Slope, ruggedness, contours, and viewsheds are combined rather than used in isolation. It demonstrates end-to-end terrain reasoning beyond single metrics.",
+          "tools": [
+            "Slope",
+            "Aspect",
+            "Hillshade",
+            "TRI",
+            "TPI",
+            "Roughness",
+            "Viewshed",
+            "Contour"
+          ]
+        },
+        {
+          "name": "Hydrological Analysis",
+          "description": "Hydrological analysis models surface drainage using filled DEMs, flow direction, accumulation, and watersheds. It supports flood, watershed management, and infrastructure design. Hydrology toolchains convert elevation into process-relevant catchments.",
+          "tools": [
+            "Fill sinks",
+            "Watershed",
+            "Flow accumulation",
+            "Flow direction"
+          ]
+        },
+        {
+          "name": "Visibility Analysis",
+          "description": "Visibility analysis determines what can be seen from observer locations given terrain occlusion. It informs tower siting, scenic assessment, and security planning. Viewshed tools operationalize line-of-sight reasoning on DEMs.",
+          "tools": [
+            "Viewshed"
+          ]
+        },
+        {
+          "name": "Remote Sensing Classification",
+          "description": "Remote sensing classification assigns thematic classes to pixels or objects from imagery. Training data quality and feature design strongly control accuracy. OTB training and unsupervised classification applications exemplify this workflow.",
+          "tools": [
+            "OTB TrainImagesClassifier",
+            "OTB KMeansClassification",
+            "OTB BandMath"
+          ]
+        },
+        {
+          "name": "Urban Growth Analysis",
+          "description": "Urban growth analysis tracks expansion patterns and intensifying development over time. Change layers, density surfaces, and raster criteria help interpret growth processes. This workflow connects remote sensing and spatial statistics to planning questions.",
+          "tools": [
+            "Raster Calculator",
+            "Change Detection",
+            "Kernel Density Estimation"
+          ]
+        }
+      ],
+      "goal_verb": "Apply",
+      "goal": "Reusable workflows for real-world tasks."
+    },
+    {
+      "name": "Validation",
+      "description": "Quality, correctness, and reproducibility checks for data and outputs.",
+      "children": [
+        {
+          "name": "Geometry Validation",
+          "description": "Geometry validation detects and repairs invalid vector geometries before overlays and spatial SQL. Catching errors early prevents incomplete or failed analyses. Checker and fix tools, plus Shapely/PostGIS validity tests, form this capability.",
+          "tools": [
+            "Check Geometries",
+            "Fix Geometries",
+            "QGIS Geometry Checker",
+            "ST_IsValid",
+            "ST_IsValidDetail",
+            "geometry.is_valid (Shapely)"
+          ]
+        },
+        {
+          "name": "CRS Validation",
+          "description": "CRS validation confirms that coordinate systems are correctly assigned and that transformations are appropriate. Misvalidated CRS are a leading cause of spatial error. Inspection and reprojection tools verify alignment across layers.",
+          "tools": [
+            "pyproj.CRS",
+            "pyproj.Transformer",
+            "projinfo",
+            "ST_Transform",
+            "gdalwarp",
+            "Reproject Layer"
+          ]
+        },
+        {
+          "name": "Metadata Validation",
+          "description": "Metadata validation checks whether descriptive information is complete and consistent with the data payload. Gaps in CRS, lineage, or content description reduce trust. Inspection utilities help verify machine-readable metadata fields.",
+          "tools": [
+            "gdalinfo",
+            "ogrinfo",
+            "rio info",
+            "geopandas.read_file()"
+          ]
+        },
+        {
+          "name": "Schema Validation",
+          "description": "Schema validation ensures fields, types, and structure match expectations for joins and loads. Inconsistent schemas break automation and databases. Refactoring and duplicate-removal tools help enforce clean attribute structures.",
+          "tools": [
+            "ogrinfo",
+            "geopandas.read_file()",
+            "geopandas.read_postgis()",
+            "Refactor Fields",
+            "Delete Duplicate Geometries"
+          ]
+        },
+        {
+          "name": "Topology Validation",
+          "description": "Topology validation enforces rules about how features share boundaries and interiors. Clean topology improves network building and polygon overlays. Validity checks are the practical entry point before stricter topological rulesets.",
+          "tools": [
+            "Check Geometries",
+            "Fix Geometries",
+            "ST_IsValid",
+            "ST_IsValidDetail",
+            "geometry.is_valid"
+          ]
+        },
+        {
+          "name": "Data Quality Assessment",
+          "description": "Data quality assessment summarizes indicators such as completeness, ranges, and basic statistics across datasets. It provides an evidence-based quality snapshot for intake and QA. Field and raster statistics tools support rapid assessment.",
+          "tools": [
+            "Basic Statistics for Fields",
+            "Field Statistics",
+            "gdalinfo",
+            "ogrinfo"
+          ]
+        },
+        {
+          "name": "Statistical Validation",
+          "description": "Statistical validation uses spatial statistics to test whether patterns are structured or consistent with expectations. It supports scientific and operational quality claims. PySAL diagnostics provide formal tests of spatial association.",
+          "tools": [
+            "esda.Moran",
+            "esda.Moran_Local",
+            "esda.Geary",
+            "esda.GetisOrd",
+            "libpysal.weights"
+          ]
+        },
+        {
+          "name": "Result Validation",
+          "description": "Result validation audits analytical outputs against methods, parameters, and processing trails. Reproducibility requires that runs can be reconstructed and reviewed. Processing history, logs, reports, and qgis_process enable this assurance.",
+          "tools": [
+            "QGIS Processing History",
+            "QGIS Processing Log",
+            "QGIS Reports",
+            "qgis_process"
+          ]
+        },
+        {
+          "name": "Risk Detection",
+          "description": "Risk detection flags high-impact defects—invalid geometries, CRS pitfalls, or metadata gaps—before downstream use. It prioritizes failures that would silently corrupt results. Validity and CRS checks are first-line risk sensors.",
+          "tools": [
+            "ST_IsValid",
+            "ST_IsValidDetail",
+            "pyproj.Transformer(always_xy=True)",
+            "gdalinfo"
+          ]
+        }
+      ],
+      "goal_verb": "Ensure",
+      "goal": "Quality and reliability of results."
+    },
+    {
+      "name": "Output Framework",
+      "description": "Deliverables and channels for maps, data, APIs, and reproducibility.",
+      "children": [
+        {
+          "name": "Maps",
+          "description": "Maps deliver spatial insights for print and interactive web audiences. They package analysis into visual arguments for decisions and communication. Layout and web-mapping tools produce both static and dynamic map outputs.",
+          "tools": [
+            "QGIS Print Layout",
+            "QGIS Server",
+            "MapLibre GL JS"
+          ]
+        },
+        {
+          "name": "Tables",
+          "description": "Tables export attributes and summaries for spreadsheets, statistics, and databases. Many stakeholders consume results as tables rather than maps. GeoPandas and OGR writers provide interoperable tabular and spatial-table deliverables.",
+          "tools": [
+            "geopandas.to_file()",
+            "geopandas.to_parquet()",
+            "geopandas.to_postgis()",
+            "ogr2ogr"
+          ]
+        },
+        {
+          "name": "GIS Files",
+          "description": "GIS files package geometries and attributes for exchange across software ecosystems. Format choice affects fidelity, size, and cloud readiness. Conversion tools produce GeoPackage, GeoParquet, and related analysis-ready files.",
+          "tools": [
+            "ogr2ogr",
+            "gdal_translate",
+            "gdalwarp",
+            "geopandas.to_file()",
+            "geopandas.to_parquet()"
+          ]
+        },
+        {
+          "name": "Reports",
+          "description": "Reports combine narrative, figures, and methods for stakeholders and archives. They document assumptions that maps alone leave implicit. QGIS reports and print layouts support structured analytical storytelling.",
+          "tools": [
+            "QGIS Reports",
+            "QGIS Print Layout"
+          ]
+        },
+        {
+          "name": "Dashboards",
+          "description": "Dashboards provide interactive operational views of changing spatial conditions. They emphasize monitoring and exploration over static publication. Server and web-map stacks deliver dashboard-style spatial products.",
+          "tools": [
+            "QGIS Server",
+            "MapLibre GL JS"
+          ]
+        },
+        {
+          "name": "APIs",
+          "description": "APIs expose spatial data and processing programmatically to applications. They enable integration beyond desktop GIS. QGIS Server, GeoServer, PostGIS, and DuckDB spatial illustrate service and query endpoints.",
+          "tools": [
+            "QGIS Server",
+            "GeoServer",
+            "PostGIS",
+            "DuckDB Spatial"
+          ]
+        },
+        {
+          "name": "Metadata",
+          "description": "Output metadata makes datasets discoverable and interpretable after dissemination. Machine- and human-readable descriptions preserve fitness-for-use information for future users. Inspection tools such as gdalinfo, ogrinfo, and rio info help generate and verify metadata artifacts.",
+          "tools": [
+            "gdalinfo",
+            "ogrinfo",
+            "rio info"
+          ]
+        },
+        {
+          "name": "Citations",
+          "description": "Citations attribute sources, methods, and contributors in geospatial products. Proper citation supports ethics, licensing compliance, and scholarly use. Reporting layouts help embed citation blocks in delivered materials.",
+          "tools": [
+            "QGIS Reports",
+            "QGIS Print Layout"
+          ]
+        },
+        {
+          "name": "Logs & Reproducibility",
+          "description": "Logs and reproducibility artifacts record how results were produced so analyses can be rerun and audited. They are essential for science, compliance, and teaching. Processing history, logs, and CLI runners capture executable lineage.",
+          "tools": [
+            "QGIS Processing History",
+            "QGIS Processing Log",
+            "qgis_process"
+          ]
+        }
+      ],
+      "goal_verb": "Deliver",
+      "goal": "Outputs for decision making and sharing."
+    },
+    {
+      "name": "Provider Registry",
+      "description": "Software ecosystems, libraries, and infrastructure behind the tools.",
+      "children": [
+        {
+          "name": "Geospatial Libraries",
+          "description": "Geospatial libraries implement core algorithms and I/O used across the framework. They are the software foundations behind many GUI tools and scripts. GDAL/OGR, GeoPandas, Shapely, Rasterio, and related packages dominate open stacks.",
+          "tools": [
+            "GDAL / OGR",
+            "GeoPandas",
+            "Shapely",
+            "Rasterio",
+            "Fiona",
+            "PyProj",
+            "PDAL",
+            "PySAL",
+            "OTB (Orfeo ToolBox)"
+          ]
+        },
+        {
+          "name": "Network Analysis",
+          "description": "Network analysis providers supply routing engines and graph services for accessibility applications. They differ in deployment model, profiles, and performance. pgRouting, openrouteservice, OSRM, and Valhalla are representative providers.",
+          "tools": [
+            "pgRouting",
+            "openrouteservice",
+            "OSRM",
+            "Valhalla"
+          ]
+        },
+        {
+          "name": "Cloud / Big Data",
+          "description": "Cloud and big-data providers enable scalable storage and compute for large spatial datasets. Formats like COG and GeoParquet optimize cloud-native access patterns. Sedona and related engines extend spatial analytics to distributed platforms.",
+          "tools": [
+            "Apache Sedona",
+            "GeoParquet",
+            "Cloud Optimized GeoTIFF (COG)"
+          ]
+        },
+        {
+          "name": "Basemap / Data Sources",
+          "description": "Basemap and data-source providers supply reference geography and open thematic layers. They ground analyses in shared, citable spatial context. OSM, Overture, Natural Earth, and open government APIs are common starting points.",
+          "tools": [
+            "OpenStreetMap",
+            "Overture Maps",
+            "Natural Earth",
+            "Microsoft Planetary Computer",
+            "Government Open Data APIs"
+          ]
+        },
+        {
+          "name": "Web Mapping",
+          "description": "Web mapping providers deliver client libraries and servers for interactive maps. They turn analytical outputs into usable online products. MapLibre, OpenLayers, Leaflet, and GeoServer cover major open web-mapping pathways.",
+          "tools": [
+            "MapLibre GL JS",
+            "OpenLayers",
+            "Leaflet",
+            "GeoServer"
+          ]
+        },
+        {
+          "name": "AI / Machine Learning",
+          "description": "AI and machine-learning providers supply models and frameworks for prediction and perception on spatial data. They extend classical GIS with learning-based workflows. scikit-learn, XGBoost, deep-learning stacks, and SAM represent this enabling layer.",
+          "tools": [
+            "scikit-learn",
+            "XGBoost",
+            "PyTorch",
+            "TensorFlow",
+            "Segment Anything Model (SAM)"
+          ]
+        }
+      ],
+      "goal_verb": "Enable",
+      "goal": "Resources and platforms to power analysis."
+    }
+  ]
+}
