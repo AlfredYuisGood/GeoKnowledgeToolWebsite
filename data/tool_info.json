@@ -116,7 +116,7 @@
     "blurb": "DBSCAN clustering groups nearby points with density-based clustering and flags noise points. Documented under QGIS / scikit-learn; confirm CRS, units, and input validity before use.",
     "relations": {
       "Distance": "DBSCAN clustering groups nearby points with density-based clustering and flags noise points. In Distance, which covers quantitative nearness, accessibility, and neighborhood definitions in space, this tool is a representative way to carry out that work. Documented under QGIS / scikit-learn; confirm CRS, units, and input validity before use.",
-      "Spatial Clustering": "DBSCAN clustering groups nearby points with density-based clustering and flags noise points. In Spatial Clustering, which covers grouping observations by location and/or attributes, this tool is a representative way to carry out that work. Documented under QGIS / scikit-learn; confirm CRS, units, and input validity before use.",
+      "Clustering": "DBSCAN clustering groups nearby points with density-based clustering and flags noise points. In Clustering, which covers grouping observations by location and/or attributes, this tool is a representative way to carry out that work. Documented under QGIS / scikit-learn; confirm CRS, units, and input validity before use.",
       "Spatial Statistics": "DBSCAN clustering groups nearby points with density-based clustering and flags noise points. In Spatial Statistics, which covers pattern, clustering, autocorrelation, and density in geographic distributions, this tool is a representative way to carry out that work. Documented under QGIS / scikit-learn; confirm CRS, units, and input validity before use."
     }
   },
@@ -307,7 +307,8 @@
     "source": "Open geospatial format",
     "blurb": "GeoParquet stores vector geometries in Parquet for columnar, cloud-friendly interchange. Documented under Open geospatial format; confirm CRS, units, and input validity before use.",
     "relations": {
-      "Cloud": "GeoParquet stores vector geometries in Parquet for columnar, cloud-friendly interchange. In Cloud, which covers scalable cloud storage, formats, and compute for large spatial data, this tool is a representative way to carry out that work. Documented under Open geospatial format; confirm CRS, units, and input validity before use."
+      "Cloud": "GeoParquet stores vector geometries in Parquet for columnar, cloud-friendly interchange. In Cloud, which covers scalable cloud storage, formats, and compute for large spatial data, this tool is a representative way to carry out that work. Documented under Open geospatial format; confirm CRS, units, and input validity before use.",
+      "Temporal Data": "GeoParquet stores vector geometries in Parquet for columnar, cloud-friendly interchange. In Temporal Data, which covers time-stamped and multi-temporal geospatial datasets for trend and change analysis, this tool is a representative way to carry out that work. Documented under Open geospatial format; confirm CRS, units, and input validity before use."
     }
   },
   "GeoServer": {
@@ -323,6 +324,13 @@
     "blurb": "Google Geocoding API geocodes addresses and reverse-geocodes coordinates through a web API. Documented under Google Maps Platform; confirm CRS, units, and input validity before use.",
     "relations": {
       "Geocoding": "Google Geocoding API geocodes addresses and reverse-geocodes coordinates through a web API. In Geocoding, which covers converting between addresses/places and coordinates, this tool is a representative way to carry out that work. Documented under Google Maps Platform; confirm CRS, units, and input validity before use."
+    }
+  },
+  "Google Maps": {
+    "source": "Google Maps Platform",
+    "blurb": "Google Maps provides global basemap tiles, road/place context, and hosted map services for web and mobile applications. Documented under Google Maps Platform; confirm CRS, terms of use, and attribution requirements before use.",
+    "relations": {
+      "Basemap": "Google Maps provides global basemap tiles, road/place context, and hosted map services for web and mobile applications. In Basemap, which covers reference basemaps and open geospatial data sources, this tool is a representative way to carry out that work. Documented under Google Maps Platform; confirm CRS, terms of use, and attribution requirements before use."
     }
   },
   "Government Open Data APIs": {
@@ -398,7 +406,7 @@
     "source": "scikit-learn / QGIS",
     "blurb": "K-means clustering partitions observations into k clusters by minimizing within-cluster variance. Documented under scikit-learn / QGIS; confirm CRS, units, and input validity before use.",
     "relations": {
-      "Spatial Clustering": "K-means clustering partitions observations into k clusters by minimizing within-cluster variance. In Spatial Clustering, which covers grouping observations by location and/or attributes, this tool is a representative way to carry out that work. Documented under scikit-learn / QGIS; confirm CRS, units, and input validity before use."
+      "Clustering": "K-means clustering partitions observations into k clusters by minimizing within-cluster variance. In Clustering, which covers grouping observations by location and/or attributes, this tool is a representative way to carry out that work. Documented under scikit-learn / QGIS; confirm CRS, units, and input validity before use."
     }
   },
   "Kernel Density Estimation": {
@@ -516,6 +524,13 @@
     "blurb": "OTB TrainImagesClassifier trains a supervised image classifier from labeled training samples. Documented under Orfeo ToolBox; confirm CRS, units, and input validity before use.",
     "relations": {
       "Remote Sensing Classification": "OTB TrainImagesClassifier trains a supervised image classifier from labeled training samples. In Remote Sensing Classification, which covers supervised or unsupervised labeling of imagery, this tool is a representative way to carry out that work. Documented under Orfeo ToolBox; confirm CRS, units, and input validity before use."
+    }
+  },
+  "OpenAI API": {
+    "source": "OpenAI",
+    "blurb": "OpenAI API provides hosted language and multimodal model endpoints that can be called from geospatial applications for classification, extraction, and workflow assistance. Documented under OpenAI; confirm data-governance, privacy, and input validity requirements before use.",
+    "relations": {
+      "APIs": "OpenAI API provides hosted language and multimodal model endpoints that can be called from geospatial applications for classification, extraction, and workflow assistance. In APIs, which covers programmatic access to spatial data and services, this tool is a representative way to carry out that work. Documented under OpenAI; confirm data-governance, privacy, and input validity requirements before use."
     }
   },
   "OpenLayers": {
@@ -693,6 +708,7 @@
     "source": "QGIS Processing",
     "blurb": "Random points in polygons creates randomly located points constrained inside polygon features. Documented under QGIS Processing; confirm CRS, units, and input validity before use.",
     "relations": {
+      "Privacy": "Random points in polygons creates randomly located points constrained inside polygon features. In Privacy, which covers protecting sensitive geospatial information before sharing, this tool is a representative way to carry out that work. Documented under QGIS Processing; confirm CRS, units, and input validity before use.",
       "Uncertainty": "Random points in polygons creates randomly located points constrained inside polygon features. In Uncertainty, which covers incomplete knowledge, measurement error, and communicating variability in spatial results, this tool is a representative way to carry out that work. Documented under QGIS Processing; confirm CRS, units, and input validity before use."
     }
   },
@@ -700,6 +716,7 @@
     "source": "QGIS Processing",
     "blurb": "Random selection randomly selects a subset of features from a vector layer. Documented under QGIS Processing; confirm CRS, units, and input validity before use.",
     "relations": {
+      "Privacy": "Random selection randomly selects a subset of features from a vector layer. In Privacy, which covers protecting sensitive geospatial information before sharing, this tool is a representative way to carry out that work. Documented under QGIS Processing; confirm CRS, units, and input validity before use.",
       "Uncertainty": "Random selection randomly selects a subset of features from a vector layer. In Uncertainty, which covers incomplete knowledge, measurement error, and communicating variability in spatial results, this tool is a representative way to carry out that work. Documented under QGIS Processing; confirm CRS, units, and input validity before use."
     }
   },
@@ -715,7 +732,8 @@
       "Raster Processing": "Raster Calculator evaluates map-algebra expressions on one or more raster bands. In Raster Processing, which covers executable raster geoprocessing operators, this tool is a representative way to carry out that work. Documented under QGIS / ArcGIS; confirm CRS, units, and input validity before use.",
       "Site Selection": "Raster Calculator evaluates map-algebra expressions on one or more raster bands. In Site Selection, which covers combining criteria to identify candidate locations, this tool is a representative way to carry out that work. Documented under QGIS / ArcGIS; confirm CRS, units, and input validity before use.",
       "Suitability Analysis": "Raster Calculator evaluates map-algebra expressions on one or more raster bands. In Suitability Analysis, which covers scoring locations against multi-criteria suitability models, this tool is a representative way to carry out that work. Documented under QGIS / ArcGIS; confirm CRS, units, and input validity before use.",
-      "Urban Growth Analysis": "Raster Calculator evaluates map-algebra expressions on one or more raster bands. In Urban Growth Analysis, which covers mapping and quantifying urban expansion patterns, this tool is a representative way to carry out that work. Documented under QGIS / ArcGIS; confirm CRS, units, and input validity before use."
+      "Urban Growth Analysis": "Raster Calculator evaluates map-algebra expressions on one or more raster bands. In Urban Growth Analysis, which covers mapping and quantifying urban expansion patterns, this tool is a representative way to carry out that work. Documented under QGIS / ArcGIS; confirm CRS, units, and input validity before use.",
+      "Temporal Analysis": "Raster Calculator evaluates map-algebra expressions on one or more raster bands. In Temporal Analysis, which covers change and trend analysis across time-stamped geospatial datasets, this tool is a representative way to carry out that work. Documented under QGIS / ArcGIS; confirm CRS, units, and input validity before use."
     }
   },
   "Rasterio": {
@@ -729,6 +747,7 @@
     "source": "QGIS Processing",
     "blurb": "Refactor Fields renames, reorders, casts, and otherwise reshapes a layer’s attribute schema. Documented under QGIS Processing; confirm CRS, units, and input validity before use.",
     "relations": {
+      "Privacy": "Refactor Fields renames, reorders, casts, and otherwise reshapes a layer’s attribute schema. In Privacy, which covers protecting sensitive geospatial information before sharing, this tool is a representative way to carry out that work. Documented under QGIS Processing; confirm CRS, units, and input validity before use.",
       "Schema Validation": "Refactor Fields renames, reorders, casts, and otherwise reshapes a layer’s attribute schema. In Schema Validation, which covers checking attribute schemas, duplicates, and field structure, this tool is a representative way to carry out that work. Documented under QGIS Processing; confirm CRS, units, and input validity before use."
     }
   },
@@ -1085,7 +1104,8 @@
       "Raster Analysis": "gdal_calc evaluates band math expressions to create new rasters (indices, masks, conditionals). In Raster Analysis, which covers map algebra, resampling, and neighborhood operations on grids, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
       "Raster Processing": "gdal_calc evaluates band math expressions to create new rasters (indices, masks, conditionals). In Raster Processing, which covers executable raster geoprocessing operators, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
       "Remote Sensing": "gdal_calc evaluates band math expressions to create new rasters (indices, masks, conditionals). In Remote Sensing, which covers processing Earth observation imagery into analysis-ready products, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
-      "Suitability Analysis": "gdal_calc evaluates band math expressions to create new rasters (indices, masks, conditionals). In Suitability Analysis, which covers scoring locations against multi-criteria suitability models, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use."
+      "Suitability Analysis": "gdal_calc evaluates band math expressions to create new rasters (indices, masks, conditionals). In Suitability Analysis, which covers scoring locations against multi-criteria suitability models, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
+      "Temporal Analysis": "gdal_calc evaluates band math expressions to create new rasters (indices, masks, conditionals). In Temporal Analysis, which covers change and trend analysis across time-stamped geospatial datasets, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use."
     }
   },
   "gdal_contour": {
@@ -1159,7 +1179,9 @@
       "Raster": "gdal_translate converts rasters between formats/drivers, selects bands, and can assign georeferencing. In Raster, which covers the Raster data model—values on a regular georeferenced grid, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
       "Raster Analysis": "gdal_translate converts rasters between formats/drivers, selects bands, and can assign georeferencing. In Raster Analysis, which covers map algebra, resampling, and neighborhood operations on grids, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
       "Raster Processing": "gdal_translate converts rasters between formats/drivers, selects bands, and can assign georeferencing. In Raster Processing, which covers executable raster geoprocessing operators, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
-      "Remote Sensing": "gdal_translate converts rasters between formats/drivers, selects bands, and can assign georeferencing. In Remote Sensing, which covers processing Earth observation imagery into analysis-ready products, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use."
+      "Remote Sensing": "gdal_translate converts rasters between formats/drivers, selects bands, and can assign georeferencing. In Remote Sensing, which covers processing Earth observation imagery into analysis-ready products, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
+      "Temporal Data": "gdal_translate converts rasters between formats/drivers, selects bands, and can assign georeferencing. In Temporal Data, which covers time-stamped and multi-temporal geospatial datasets for trend and change analysis, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
+      "Temporal Analysis": "gdal_translate converts rasters between formats/drivers, selects bands, and can assign georeferencing. In Temporal Analysis, which covers change and trend analysis across time-stamped geospatial datasets, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use."
     }
   },
   "gdal_viewshed": {
@@ -1186,7 +1208,9 @@
       "Raster": "gdalbuildvrt creates a virtual mosaic (VRT) that references tiles without rewriting them. In Raster, which covers the Raster data model—values on a regular georeferenced grid, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
       "Raster Processing": "gdalbuildvrt creates a virtual mosaic (VRT) that references tiles without rewriting them. In Raster Processing, which covers executable raster geoprocessing operators, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
       "Remote Sensing": "gdalbuildvrt creates a virtual mosaic (VRT) that references tiles without rewriting them. In Remote Sensing, which covers processing Earth observation imagery into analysis-ready products, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
-      "Scale": "gdalbuildvrt creates a virtual mosaic (VRT) that references tiles without rewriting them. In Scale, which covers representation and processing of geography at different resolutions and levels of detail, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use."
+      "Scale": "gdalbuildvrt creates a virtual mosaic (VRT) that references tiles without rewriting them. In Scale, which covers representation and processing of geography at different resolutions and levels of detail, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
+      "Temporal Data": "gdalbuildvrt creates a virtual mosaic (VRT) that references tiles without rewriting them. In Temporal Data, which covers time-stamped and multi-temporal geospatial datasets for trend and change analysis, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
+      "Temporal Analysis": "gdalbuildvrt creates a virtual mosaic (VRT) that references tiles without rewriting them. In Temporal Analysis, which covers change and trend analysis across time-stamped geospatial datasets, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use."
     }
   },
   "gdaldem TPI": {
@@ -1267,7 +1291,9 @@
       "Raster": "gdalwarp reprojects, resamples, and clips rasters into a new georeferenced dataset. In Raster, which covers the Raster data model—values on a regular georeferenced grid, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
       "Raster Analysis": "gdalwarp reprojects, resamples, and clips rasters into a new georeferenced dataset. In Raster Analysis, which covers map algebra, resampling, and neighborhood operations on grids, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
       "Raster Processing": "gdalwarp reprojects, resamples, and clips rasters into a new georeferenced dataset. In Raster Processing, which covers executable raster geoprocessing operators, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
-      "Remote Sensing": "gdalwarp reprojects, resamples, and clips rasters into a new georeferenced dataset. In Remote Sensing, which covers processing Earth observation imagery into analysis-ready products, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use."
+      "Remote Sensing": "gdalwarp reprojects, resamples, and clips rasters into a new georeferenced dataset. In Remote Sensing, which covers processing Earth observation imagery into analysis-ready products, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
+      "Temporal Data": "gdalwarp reprojects, resamples, and clips rasters into a new georeferenced dataset. In Temporal Data, which covers time-stamped and multi-temporal geospatial datasets for trend and change analysis, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use.",
+      "Temporal Analysis": "gdalwarp reprojects, resamples, and clips rasters into a new georeferenced dataset. In Temporal Analysis, which covers change and trend analysis across time-stamped geospatial datasets, this tool is a representative way to carry out that work. Documented under GDAL; confirm CRS, units, and input validity before use."
     }
   },
   "geometry.is_valid": {
@@ -1385,6 +1411,7 @@
     "relations": {
       "Data Conversion": "ogr2ogr converts and transforms vector datasets between formats, including CRS and SQL filters. In Data Conversion, which covers transforming formats, encodings, and storage targets, this tool is a representative way to carry out that work. Documented under GDAL/OGR; confirm CRS, units, and input validity before use.",
       "GIS Files": "ogr2ogr converts and transforms vector datasets between formats, including CRS and SQL filters. In GIS Files, which covers interoperable geospatial file deliverables, this tool is a representative way to carry out that work. Documented under GDAL/OGR; confirm CRS, units, and input validity before use.",
+      "Privacy": "ogr2ogr converts and transforms vector datasets between formats, including CRS and SQL filters. In Privacy, which covers protecting sensitive geospatial information before sharing, this tool is a representative way to carry out that work. Documented under GDAL/OGR; confirm CRS, units, and input validity before use.",
       "Tables": "ogr2ogr converts and transforms vector datasets between formats, including CRS and SQL filters. In Tables, which covers tabular exports of attributes and summaries for stakeholders, this tool is a representative way to carry out that work. Documented under GDAL/OGR; confirm CRS, units, and input validity before use.",
       "Vector": "ogr2ogr converts and transforms vector datasets between formats, including CRS and SQL filters. In Vector, which covers the Vector data model—points, lines, and polygons with attributes, this tool is a representative way to carry out that work. Documented under GDAL/OGR; confirm CRS, units, and input validity before use."
     }
@@ -1599,7 +1626,8 @@
     "relations": {
       "Data Inspection": "rasterio.open() opens a raster dataset and exposes bands as arrays with CRS/transform metadata. In Data Inspection, which covers inspecting structure, extent, CRS, and content before analysis, this tool is a representative way to carry out that work. Documented under Rasterio; confirm CRS, units, and input validity before use.",
       "Metadata": "rasterio.open() opens a raster dataset and exposes bands as arrays with CRS/transform metadata. In Metadata, which covers documenting what a dataset is, how it was produced, and how it should be used, this tool is a representative way to carry out that work. Documented under Rasterio; confirm CRS, units, and input validity before use.",
-      "Raster": "rasterio.open() opens a raster dataset and exposes bands as arrays with CRS/transform metadata. In Raster, which covers the Raster data model—values on a regular georeferenced grid, this tool is a representative way to carry out that work. Documented under Rasterio; confirm CRS, units, and input validity before use."
+      "Raster": "rasterio.open() opens a raster dataset and exposes bands as arrays with CRS/transform metadata. In Raster, which covers the Raster data model—values on a regular georeferenced grid, this tool is a representative way to carry out that work. Documented under Rasterio; confirm CRS, units, and input validity before use.",
+      "Temporal Data": "rasterio.open() opens a raster dataset and exposes bands as arrays with CRS/transform metadata. In Temporal Data, which covers time-stamped and multi-temporal geospatial datasets for trend and change analysis, this tool is a representative way to carry out that work. Documented under Rasterio; confirm CRS, units, and input validity before use."
     }
   },
   "readers.las": {
@@ -1627,7 +1655,7 @@
     "source": "scikit-learn",
     "blurb": "scikit-learn DBSCAN clusters nearby samples with DBSCAN for spatial pattern discovery. Documented under scikit-learn; confirm CRS, units, and input validity before use.",
     "relations": {
-      "Spatial Clustering": "scikit-learn DBSCAN clusters nearby samples with DBSCAN for spatial pattern discovery. In Spatial Clustering, which covers grouping observations by location and/or attributes, this tool is a representative way to carry out that work. Documented under scikit-learn; confirm CRS, units, and input validity before use."
+      "Clustering": "scikit-learn DBSCAN clusters nearby samples with DBSCAN for spatial pattern discovery. In Clustering, which covers grouping observations by location and/or attributes, this tool is a representative way to carry out that work. Documented under scikit-learn; confirm CRS, units, and input validity before use."
     }
   },
   "writers.gdal": {

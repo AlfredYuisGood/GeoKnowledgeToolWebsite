@@ -25,7 +25,6 @@
                 "Voronoi polygons",
                 "Split with lines",
                 "Line intersections",
-                "Join attributes by location",
                 "Join attributes by nearest",
                 "Extract by location",
                 "ST_Buffer",
@@ -80,6 +79,39 @@
                 "ST_Contains",
                 "geopandas.sjoin()",
                 "geopandas.overlay()"
+              ]
+            },
+            {
+              "name": "Adjacency",
+              "description": "Adjacency describes which features touch or share boundaries without necessarily overlapping interiors. It is fundamental for neighborhood modeling, polygon topology, and many spatial allocation tasks. Predicate and intersection tools operationalize adjacency in vector workflows and spatial SQL.",
+              "tools": [
+                "ST_Touches",
+                "ST_Intersects",
+                "geopandas.sjoin()",
+                "Line intersections",
+                "Extract by location"
+              ]
+            },
+            {
+              "name": "Containment",
+              "description": "Containment captures inside/outside relationships, such as points within polygons or polygons within regions. It underpins zoning checks, coverage analysis, and spatial joins by inclusion. SQL predicates and clip/join operations are the practical implementation pattern for this concept.",
+              "tools": [
+                "ST_Contains",
+                "ST_Within",
+                "ST_Intersects",
+                "geopandas.sjoin()",
+                "Clip"
+              ]
+            },
+            {
+              "name": "Connectivity",
+              "description": "Connectivity concerns whether locations are linked by traversable paths in a network rather than straight-line proximity. It is central to routing, service accessibility, and corridor analysis. Graph algorithms such as Dijkstra and driving-distance routines are representative implementations.",
+              "tools": [
+                "pgr_dijkstra",
+                "pgr_aStar",
+                "pgr_KSP",
+                "pgr_drivingDistance",
+                "openrouteservice directions"
               ]
             }
           ]
@@ -186,6 +218,48 @@
                 "pgr_dijkstraNear",
                 "pgr_dijkstraNearCost"
               ]
+            },
+            {
+              "name": "Temporal Data",
+              "description": "Temporal data models attach valid times, timestamps, or time ranges to geospatial observations. They enable longitudinal analysis, trend detection, and event sequencing beyond static maps. Multi-date raster and change-detection workflows are common operational expressions of this model.",
+              "tools": [
+                "gdalwarp",
+                "gdal_translate",
+                "gdalbuildvrt",
+                "rasterio.open()",
+                "GeoParquet"
+              ]
+            },
+            {
+              "name": "Hex Grid",
+              "description": "Hex-grid models discretize space into regular cells, often used for aggregation, indexing, and scale-stable comparison. Hex tessellations reduce directional bias relative to square grids in many use cases. Grid-generation and spatial-join tools are common ways to implement this model in practice.",
+              "tools": [
+                "Create grid",
+                "geopandas.sjoin()",
+                "ST_Intersects",
+                "Join attributes by nearest"
+              ]
+            },
+            {
+              "name": "Trajectory",
+              "description": "Trajectory models represent moving objects as ordered positions or paths through time. They support mobility analytics such as route behavior, path similarity, and travel-cost interpretation. Matrix and routing engines provide core computational support for trajectory reasoning.",
+              "tools": [
+                "Distance Matrix",
+                "Shortest Path",
+                "pgr_dijkstra",
+                "openrouteservice directions",
+                "pgr_drivingDistance"
+              ]
+            },
+            {
+              "name": "3D",
+              "description": "3D models represent buildings and urban surfaces with volumetric or mesh-based structures. They enable visibility, height-aware planning, and richer urban context than 2D footprints alone. Mesh and 3D-view tooling provides the practical bridge from model to analysis.",
+              "tools": [
+                "QGIS 3D Map View",
+                "Export mesh faces",
+                "Export mesh edges",
+                "Mesh Calculator"
+              ]
             }
           ]
         },
@@ -288,6 +362,16 @@
                 "ST_IsValid",
                 "ST_IsValidDetail"
               ]
+            },
+            {
+              "name": "Privacy",
+              "description": "Privacy in geospatial data quality addresses risks of identifying individuals, sensitive facilities, or protected sites from coordinates and attributes. Quality review must consider whether outputs are safe to share, not only whether they are accurate. Randomization, schema minimization, and selective export workflows help reduce disclosure risk while preserving analytical utility.",
+              "tools": [
+                "Random points in polygons",
+                "Random selection",
+                "Refactor Fields",
+                "ogr2ogr"
+              ]
             }
           ]
         },
@@ -310,7 +394,6 @@
                 "Voronoi polygons",
                 "Split with lines",
                 "Line intersections",
-                "Join attributes by location",
                 "Join attributes by nearest",
                 "Extract by location",
                 "Distance matrix",
@@ -434,7 +517,6 @@
             "Merge Vector Layers",
             "Multipart to Singleparts",
             "Split Vector Layer",
-            "Join attributes by location",
             "Join attributes by nearest",
             "Simplify"
           ]
@@ -554,7 +636,7 @@
           ]
         },
         {
-          "name": "Spatial Clustering",
+          "name": "Clustering",
           "description": "Spatial clustering groups observations by location and optionally by attributes to reveal structure. Algorithms differ in whether cluster count is specified and how noise is treated. DBSCAN and k-means style tools are widely used entry points.",
           "tools": [
             "DBSCAN clustering",
@@ -569,8 +651,18 @@
             "QGIS Style Manager",
             "QGIS Symbol Selector",
             "QGIS Print Layout",
-            "QGIS Reports",
-            "QGIS Server"
+            "QGIS Reports"
+          ]
+        },
+        {
+          "name": "Trajectory Analysis",
+          "description": "Trajectory analysis studies ordered movement paths and travel behavior through space and time. It combines route computation, path comparison, and travel-cost summaries for mobility questions. Network-routing and matrix tools are practical foundations for this capability.",
+          "tools": [
+            "Distance Matrix",
+            "Shortest Path",
+            "pgr_dijkstra",
+            "openrouteservice directions",
+            "pgr_drivingDistance"
           ]
         }
       ],
@@ -588,7 +680,6 @@
             "Buffer",
             "Clip",
             "Intersection",
-            "Join attributes by location",
             "Raster Calculator",
             "Weighted Overlay"
           ]
@@ -629,7 +720,6 @@
           "name": "Demographic Enrichment",
           "description": "Demographic enrichment attaches population or socioeconomic attributes to spatial features. Spatial joins and containment predicates transfer census-like information onto points or polygons. Enrichment enables equity and demand analyses downstream.",
           "tools": [
-            "Join attributes by location",
             "geopandas.sjoin()",
             "ST_Intersects",
             "ST_Contains"
@@ -666,17 +756,6 @@
             "Distance Matrix",
             "Buffer",
             "ST_DWithin"
-          ]
-        },
-        {
-          "name": "Land Use Analysis",
-          "description": "Land use analysis characterizes and compares how land is occupied and changing. Overlay and dissolve operations aggregate classes for reporting and modeling. Raster and vector pathways both support land-use evidence building.",
-          "tools": [
-            "Clip",
-            "Intersection",
-            "Union",
-            "Dissolve",
-            "Raster Calculator"
           ]
         },
         {
@@ -732,11 +811,15 @@
         },
         {
           "name": "Urban Growth Analysis",
-          "description": "Urban growth analysis tracks expansion patterns and intensifying development over time. Change layers, density surfaces, and raster criteria help interpret growth processes. This workflow connects remote sensing and spatial statistics to planning questions.",
+          "description": "Urban growth analysis tracks expansion patterns and intensifying development over time. It typically combines multi-date alignment, change detection, and density or clustering signals to reveal where growth concentrates. This workflow connects remote sensing, raster processing, and spatial statistics to planning questions.",
           "tools": [
             "Raster Calculator",
             "Change Detection",
-            "Kernel Density Estimation"
+            "Kernel Density Estimation",
+            "Heatmap (Kernel Density Estimation)",
+            "DBSCAN clustering",
+            "gdalwarp",
+            "gdalbuildvrt"
           ]
         }
       ],
@@ -804,16 +887,6 @@
           ]
         },
         {
-          "name": "Data Quality Assessment",
-          "description": "Data quality assessment summarizes indicators such as completeness, ranges, and basic statistics across datasets. It provides an evidence-based quality snapshot for intake and QA. Field and raster statistics tools support rapid assessment.",
-          "tools": [
-            "Basic Statistics for Fields",
-            "Field Statistics",
-            "gdalinfo",
-            "ogrinfo"
-          ]
-        },
-        {
           "name": "Statistical Validation",
           "description": "Statistical validation uses spatial statistics to test whether patterns are structured or consistent with expectations. It supports scientific and operational quality claims. PySAL diagnostics provide formal tests of spatial association.",
           "tools": [
@@ -833,23 +906,13 @@
             "QGIS Reports",
             "qgis_process"
           ]
-        },
-        {
-          "name": "Risk Detection",
-          "description": "Risk detection flags high-impact defects—invalid geometries, CRS pitfalls, or metadata gaps—before downstream use. It prioritizes failures that would silently corrupt results. Validity and CRS checks are first-line risk sensors.",
-          "tools": [
-            "ST_IsValid",
-            "ST_IsValidDetail",
-            "pyproj.Transformer(always_xy=True)",
-            "gdalinfo"
-          ]
         }
       ],
       "goal_verb": "Ensure",
       "goal": "Quality and reliability of results."
     },
     {
-      "name": "Output Framework",
+      "name": "Output",
       "description": "Deliverables and channels for data, APIs, reports, and sharing.",
       "children": [
         {
@@ -869,6 +932,9 @@
             "ogr2ogr",
             "gdal_translate",
             "gdalwarp",
+            "gdalbuildvrt",
+            "gdal_merge",
+            "gdal_retile",
             "geopandas.to_file()",
             "geopandas.to_parquet()"
           ]
@@ -891,12 +957,13 @@
         },
         {
           "name": "APIs",
-          "description": "APIs expose spatial data and processing programmatically to applications. They enable integration beyond desktop GIS. QGIS Server, GeoServer, PostGIS, and DuckDB spatial illustrate service and query endpoints.",
+          "description": "APIs expose spatial data and processing programmatically to applications. They enable integration beyond desktop GIS and can connect GIS outputs with AI services. QGIS Server, GeoServer, PostGIS, DuckDB spatial, and OpenAI API illustrate service and query endpoints.",
           "tools": [
             "QGIS Server",
             "GeoServer",
             "PostGIS",
-            "DuckDB Spatial"
+            "DuckDB Spatial",
+            "OpenAI API"
           ]
         }
       ],
@@ -909,7 +976,7 @@
       "children": [
         {
           "name": "Geospatial Libraries",
-          "description": "Geospatial libraries implement core algorithms and I/O used across the framework. They are the software foundations behind many GUI tools and scripts. GDAL/OGR, GeoPandas, Shapely, Rasterio, and related packages dominate open stacks.",
+          "description": "Geospatial libraries implement core algorithms and I/O used across the framework. They are the software foundations behind many GUI tools and scripts. GDAL/OGR, GeoPandas, Shapely, Rasterio, PostGIS, DuckDB Spatial, and related packages dominate practical stacks.",
           "tools": [
             "GDAL / OGR",
             "GeoPandas",
@@ -919,7 +986,10 @@
             "PyProj",
             "PDAL",
             "PySAL",
-            "OTB (Orfeo ToolBox)"
+            "OTB (Orfeo ToolBox)",
+            "DuckDB Spatial",
+            "PostGIS",
+            "Apache Sedona"
           ]
         },
         {
@@ -944,9 +1014,10 @@
         },
         {
           "name": "Basemap",
-          "description": "Basemap and data-source providers supply reference geography and open thematic layers. They ground analyses in shared, citable spatial context. OSM, Overture, Natural Earth, and open government APIs are common starting points.",
+          "description": "Basemap and data-source providers supply reference geography and open thematic layers. They ground analyses in shared, citable spatial context. OSM, Google Maps, Overture, Natural Earth, and open government APIs are common starting points.",
           "tools": [
             "OpenStreetMap",
+            "Google Maps",
             "Overture Maps",
             "Natural Earth",
             "Microsoft Planetary Computer",
@@ -965,13 +1036,16 @@
         },
         {
           "name": "AI",
-          "description": "AI and machine-learning providers supply models and frameworks for prediction and perception on spatial data. They extend classical GIS with learning-based workflows. scikit-learn, XGBoost, deep-learning stacks, and SAM represent this enabling layer.",
+          "description": "AI and machine-learning providers supply models and frameworks for prediction and perception on spatial data. They extend classical GIS with learning-based workflows. scikit-learn, XGBoost, PyTorch, TensorFlow, SAM, and OTB classification tools represent this enabling layer.",
           "tools": [
             "scikit-learn",
             "XGBoost",
             "PyTorch",
             "TensorFlow",
-            "Segment Anything Model (SAM)"
+            "Segment Anything Model (SAM)",
+            "OTB TrainImagesClassifier",
+            "OTB KMeansClassification",
+            "scikit-learn DBSCAN"
           ]
         }
       ],
