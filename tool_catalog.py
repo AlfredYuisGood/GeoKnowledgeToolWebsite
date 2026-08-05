@@ -1,9 +1,16 @@
 """Tool catalog for Geo-KTF: source and concise per-category blurbs."""
 
 TOOL_INFO = {
+    'Apache Jena': {
+        'source': 'Apache Software Foundation',
+        'blurb': 'Apache Jena is an Apache Java framework for RDF and SPARQL. It stores and queries linked-data graphs at larger scale than lightweight Python tooling. Expected output: SPARQL results from a Jena dataset/store.',
+        'relations': {
+            'Knowledge Graph': 'Apache Jena is a Java framework for building Semantic Web and linked-data applications. It stores RDF graphs, runs SPARQL queries, and can work with ontologies for inference. Paired with GeoSPARQL vocabularies and geometry literals, it supports knowledge-graph queries that combine spatial predicates with typed relationships among places and features.',
+        },
+    },
     'Apache Sedona': {
         'source': 'Apache Sedona',
-        'blurb': 'Sedona extends Apache Spark and Flink with spatial types, spatial SQL functions, and spatial indexes so geometry work can be distributed across a cluster. It reads and writes Shapefile, GeoJSON, GeoParquet, and raster sources, exposing ST_ functions familiar from PostGIS. Spatial joins combine partitioning with R-tree or quad-tree indexes to avoid full cross products. RDD, DataFrame, SQL, and Python interfaces make it a practical fit for datasets too large for one machine.',
+        'blurb': 'Apache Sedona is a spatial computing layer for Apache Spark/Flink. It runs distributed spatial SQL and joins when data exceeds one machine. Expected output: distributed spatial query results/DataFrames.',
         'relations': {
             'Cloud': 'Sedona extends Apache Spark and Flink with spatial types, spatial SQL functions, and spatial indexes so geometry work can be distributed across a cluster. It reads and writes Shapefile, GeoJSON, GeoParquet, and raster sources, exposing ST_ functions familiar from PostGIS. Spatial joins combine partitioning with R-tree or quad-tree indexes to avoid full cross products. RDD, DataFrame, SQL, and Python interfaces make it a practical fit for datasets too large for one machine.',
             'Geospatial Libraries': 'Sedona extends Apache Spark and Flink with spatial types, spatial SQL functions, and spatial indexes so geometry work can be distributed across a cluster. It reads and writes Shapefile, GeoJSON, GeoParquet, and raster sources, exposing ST_ functions familiar from PostGIS. Spatial joins combine partitioning with R-tree or quad-tree indexes to avoid full cross products. RDD, DataFrame, SQL, and Python interfaces make it a practical fit for datasets too large for one machine.',
@@ -11,21 +18,42 @@ TOOL_INFO = {
     },
     'ArcGIS Geocoding Service': {
         'source': 'Esri ArcGIS',
-        'blurb': 'Esri\'s geocoding service resolves addresses, place names, and points of interest into coordinates through REST endpoints such as findAddressCandidates and geocodeAddresses. Batch geocoding handles many records in a single request, while reverse geocoding returns an address for a given point. Responses carry match scores, parsed address components, and a location in the requested spatial reference. An ArcGIS token is required, and storing returned results is governed by the service licence terms.',
+        'blurb': 'ArcGIS Geocoding Service is Esri’s geocoding REST API. It supports single and batch geocoding plus reverse geocoding with match scores. Expected output: candidate locations and addresses (token required).',
         'relations': {
-            'APIs': 'Esri\'s geocoding service resolves addresses, place names, and points of interest into coordinates through REST endpoints such as findAddressCandidates and geocodeAddresses. Batch geocoding handles many records in a single request, while reverse geocoding returns an address for a given point. Responses carry match scores, parsed address components, and a location in the requested spatial reference. An ArcGIS token is required, and storing returned results is governed by the service licence terms.',
-            'Geocoding': 'Esri\'s geocoding service resolves addresses, place names, and points of interest into coordinates through REST endpoints such as findAddressCandidates and geocodeAddresses. Batch geocoding handles many records in a single request, while reverse geocoding returns an address for a given point. Responses carry match scores, parsed address components, and a location in the requested spatial reference. An ArcGIS token is required, and storing returned results is governed by the service licence terms.',
+            'APIs': "Esri's geocoding service resolves addresses, place names, and points of interest into coordinates through REST endpoints such as findAddressCandidates and geocodeAddresses. Batch geocoding handles many records in a single request, while reverse geocoding returns an address for a given point. Responses carry match scores, parsed address components, and a location in the requested spatial reference. An ArcGIS token is required, and storing returned results is governed by the service licence terms.",
+            'Geocoding': "Esri's geocoding service resolves addresses, place names, and points of interest into coordinates through REST endpoints such as findAddressCandidates and geocodeAddresses. Batch geocoding handles many records in a single request, while reverse geocoding returns an address for a given point. Responses carry match scores, parsed address components, and a location in the requested spatial reference. An ArcGIS token is required, and storing returned results is governed by the service licence terms.",
+        },
+    },
+    'ArcGIS Notebooks': {
+        'source': 'Esri',
+        'blurb': 'ArcGIS Notebooks are Jupyter notebooks hosted in ArcGIS Online/Enterprise. They combine ArcGIS Python APIs with literate documentation for reproducible GIS workflows. Expected output: executed notebooks and derived layers/files.',
+        'relations': {
+            'Notebooks': 'ArcGIS Notebooks provide a Jupyter-based environment inside ArcGIS Online or Enterprise with the ArcGIS API for Python and common data-science libraries preinstalled. Analysts mix markdown, code, and maps to document reproducible GIS workflows. Notebooks can schedule tasks and call hosted content without leaving the ArcGIS identity model.',
+        },
+    },
+    'ArcGIS Online': {
+        'source': 'Esri',
+        'blurb': 'ArcGIS Online is Esri’s cloud GIS platform. It hosts layers, web maps, apps, and analysis for organisational sharing. Expected output: hosted services, web maps, and shared content items.',
+        'relations': {
+            'Cloud': "ArcGIS Online is Esri's cloud GIS platform for hosting layers, web maps, apps, and analysis services. Organisations publish feature and tile services, share content with groups, and run hosted geoprocessing without managing their own servers. It pairs with ArcGIS Pro and web SDKs, and licensing plus credit consumption govern storage and analysis use.",
+        },
+    },
+    'ArcGIS StoryMaps': {
+        'source': 'Esri',
+        'blurb': 'ArcGIS StoryMaps is Esri’s narrative mapping product. It guides readers through maps, text, and media as a spatial story for outreach and teaching. Expected output: a published story URL.',
+        'relations': {
+            'Story Maps': 'ArcGIS StoryMaps builds narrative web stories that interleave maps, text, images, and media in a guided sequence. Authors place map actions, sidecars, and immersive blocks so readers follow a spatial argument rather than exploring a raw GIS project. Published stories are shareable URLs suited to outreach, reporting, and teaching.',
         },
     },
     'Aspect': {
         'source': 'QGIS / GDAL DEM',
-        'blurb': 'Aspect derives the compass direction of steepest downhill slope from a digital elevation model. Output values run from 0 to 360 degrees measured clockwise from north, with flat cells flagged separately. A Z factor parameter rescales elevation when vertical and horizontal units differ, for example metres of height against degrees of longitude. Results feed solar exposure, habitat, and snowmelt studies, and quality depends directly on the resolution and noise of the input DEM.',
+        'blurb': 'Computes downhill-facing direction from a DEM (degrees from north). Used in solar, ecology, and snow analyses.',
         'relations': {
         },
     },
     'Assign projection': {
         'source': 'QGIS Processing',
-        'blurb': 'This algorithm writes a coordinate reference system definition onto a layer whose CRS is missing or wrong. Coordinates themselves are untouched, so nothing is reprojected; only the declared system changes. Reach for it when a Shapefile arrives without a .prj file or carries an incorrect identifier, then reproject afterwards if different coordinates are needed. An incorrect assignment sends features to the wrong part of the world, so the original system must genuinely be known.',
+        'blurb': 'Assign projection is a QGIS Processing CRS tool. It writes a CRS definition without changing coordinates—use when the tag is missing or wrong. Expected output: the same coordinates with updated CRS metadata.',
         'relations': {
             'CRS Management': 'This algorithm writes a coordinate reference system definition onto a layer whose CRS is missing or wrong. Coordinates themselves are untouched, so nothing is reprojected; only the declared system changes. Reach for it when a Shapefile arrives without a .prj file or carries an incorrect identifier, then reproject afterwards if different coordinates are needed. An incorrect assignment sends features to the wrong part of the world, so the original system must genuinely be known.',
             'CRS Validation': 'This algorithm writes a coordinate reference system definition onto a layer whose CRS is missing or wrong. Coordinates themselves are untouched, so nothing is reprojected; only the declared system changes. Reach for it when a Shapefile arrives without a .prj file or carries an incorrect identifier, then reproject afterwards if different coordinates are needed. An incorrect assignment sends features to the wrong part of the world, so the original system must genuinely be known.',
@@ -34,14 +62,14 @@ TOOL_INFO = {
     },
     'AWS': {
         'source': 'Amazon Web Services',
-        'blurb': 'Amazon Web Services supplies the object storage, compute, and database services that many geospatial pipelines run on. S3 hosts cloud-native formats such as Cloud Optimized GeoTIFF and GeoParquet, which clients read with HTTP range requests instead of downloading whole files. EC2, Lambda, and container services provide elastic processing for tiling, model inference, and batch conversion, while RDS can run PostgreSQL with PostGIS. Access control, region choice, and egress costs shape practical design decisions.',
+        'blurb': 'AWS (Amazon Web Services) is a major cloud infrastructure provider. It hosts COGs/GeoParquet on S3 and runs compute for large geospatial pipelines. Expected output: stored datasets and processed results in cloud services.',
         'relations': {
             'Cloud': 'Amazon Web Services supplies the object storage, compute, and database services that many geospatial pipelines run on. S3 hosts cloud-native formats such as Cloud Optimized GeoTIFF and GeoParquet, which clients read with HTTP range requests instead of downloading whole files. EC2, Lambda, and container services provide elastic processing for tiling, model inference, and batch conversion, while RDS can run PostgreSQL with PostGIS. Access control, region choice, and egress costs shape practical design decisions.',
         },
     },
     'Basic Statistics for Fields': {
         'source': 'QGIS Processing',
-        'blurb': 'Given a vector layer and one attribute field, this algorithm produces summary statistics as an HTML report plus numeric outputs. Numeric fields yield count, unique values, minimum, maximum, range, sum, mean, median, standard deviation, coefficient of variation, and quartiles. Text fields instead return counts with minimum and maximum string lengths, and date fields return temporal extremes. Null values are tallied separately, which makes the report a quick audit before heavier analysis begins.',
+        'blurb': 'Basic Statistics for Fields is a QGIS Processing summary tool. It computes count, min, max, mean, median, and related stats for one attribute as a quick data audit. Expected output: an HTML/text report plus numeric statistic outputs.',
         'relations': {
             'Result Validation': 'Given a vector layer and one attribute field, this algorithm produces summary statistics as an HTML report plus numeric outputs. Numeric fields yield count, unique values, minimum, maximum, range, sum, mean, median, standard deviation, coefficient of variation, and quartiles. Text fields instead return counts with minimum and maximum string lengths, and date fields return temporal extremes. Null values are tallied separately, which makes the report a quick audit before heavier analysis begins.',
             'Tables': 'Given a vector layer and one attribute field, this algorithm produces summary statistics as an HTML report plus numeric outputs. Numeric fields yield count, unique values, minimum, maximum, range, sum, mean, median, standard deviation, coefficient of variation, and quartiles. Text fields instead return counts with minimum and maximum string lengths, and date fields return temporal extremes. Null values are tallied separately, which makes the report a quick audit before heavier analysis begins.',
@@ -49,7 +77,7 @@ TOOL_INFO = {
     },
     'Buffer': {
         'source': 'QGIS / ArcGIS Processing',
-        'blurb': 'Buffer builds polygons around input features at a fixed distance or a distance read from an attribute field. Segment count controls how smoothly curves are approximated, while end cap style, join style, and mitre limit shape line endings and corners. Negative distances shrink polygons, and the dissolve option merges overlapping buffers into single features. Distance is measured in layer units, so projected coordinates are normally required before metric results mean anything.',
+        'blurb': 'Buffer is a core geoprocessing tool in QGIS and ArcGIS. It builds polygons around features at a fixed or attribute-based distance so you can model proximity and setbacks in projected units. Expected output: a polygon layer of buffer zones (optionally dissolved).',
         'relations': {
             'Environmental Assessment': 'Buffer builds polygons around input features at a fixed distance or a distance read from an attribute field. Segment count controls how smoothly curves are approximated, while end cap style, join style, and mitre limit shape line endings and corners. Negative distances shrink polygons, and the dissolve option merges overlapping buffers into single features. Distance is measured in layer units, so projected coordinates are normally required before metric results mean anything.',
             'Hazard Assessment': 'Buffer builds polygons around input features at a fixed distance or a distance read from an attribute field. Segment count controls how smoothly curves are approximated, while end cap style, join style, and mitre limit shape line endings and corners. Negative distances shrink polygons, and the dissolve option merges overlapping buffers into single features. Distance is measured in layer units, so projected coordinates are normally required before metric results mean anything.',
@@ -60,9 +88,23 @@ TOOL_INFO = {
             'Vector Processing': 'Buffer builds polygons around input features at a fixed distance or a distance read from an attribute field. Segment count controls how smoothly curves are approximated, while end cap style, join style, and mitre limit shape line endings and corners. Negative distances shrink polygons, and the dissolve option merges overlapping buffers into single features. Distance is measured in layer units, so projected coordinates are normally required before metric results mean anything.',
         },
     },
+    'categorized renderer': {
+        'source': 'QGIS',
+        'blurb': 'A categorized renderer is a QGIS thematic mapping mode. It assigns a distinct symbol to each unique attribute value for qualitative maps. Expected output: a categorical map appearance with a class legend.',
+        'relations': {
+            'Cartography': 'QGIS renderer that gives each unique attribute value its own symbol—ideal for land-use codes or status categories. Builds qualitative thematic maps with an editable legend.',
+        },
+    },
+    'Cellular Automata': {
+        'source': 'Geocomputation method',
+        'blurb': 'Cellular automata are a geocomputation modelling style used in research tools and NetLogo/Mesa models. They update each cell from local neighbourhood rules over time to simulate processes like urban growth or fire spread. Expected output: a sequence of grid states or a final simulated landscape raster.',
+        'relations': {
+            'Geocomputation': 'Cellular automata evolve a grid of cells by local neighbourhood rules iterated over discrete time steps. In geography they model urban growth, fire spread, and land-cover change where global behaviour emerges from local interactions. Implementations appear in NetLogo, Mesa, and custom raster loops; rule design and neighbourhood size dominate outcomes.',
+        },
+    },
     'Centroids': {
         'source': 'QGIS Processing',
-        'blurb': 'One point per input feature is returned at the geometric centre of mass. For concave polygons, rings, or multipart features that centre can fall outside the geometry, so an option forces the point to lie inside the surface instead. Multipart handling may emit a centroid per part rather than one for the whole feature. Attributes carry across unchanged, which makes the output convenient for labelling, table joins, or distance measurement.',
+        'blurb': 'Centroids is a QGIS Processing algorithm. It places one point at the geometric centre of each feature (with an option to force points inside), which helps labelling and distance work. Expected output: a point layer with original attributes.',
         'relations': {
             'Vector Analysis': 'One point per input feature is returned at the geometric centre of mass. For concave polygons, rings, or multipart features that centre can fall outside the geometry, so an option forces the point to lie inside the surface instead. Multipart handling may emit a centroid per part rather than one for the whole feature. Attributes carry across unchanged, which makes the output convenient for labelling, table joins, or distance measurement.',
         },
@@ -75,23 +117,30 @@ TOOL_INFO = {
     },
     'Channel network': {
         'source': 'QGIS / SAGA',
-        'blurb': 'This SAGA-based algorithm traces stream channels across a hydrologically prepared elevation model. Flow directions and an initiation criterion, typically accumulated catchment area above a threshold, decide where channels begin. Outputs include a channel raster, a vector line network, and channel route information suitable for further hydrological work. Depressions normally have to be filled first, and the chosen threshold directly controls how dense the resulting drainage network appears.',
+        'blurb': 'Channel network is a SAGA-based stream extraction tool in QGIS Processing. It traces channels where accumulation exceeds a threshold on a conditioned DEM. Expected output: stream rasters and/or vector channel lines.',
         'relations': {
             'Hydrological Analysis': 'This SAGA-based algorithm traces stream channels across a hydrologically prepared elevation model. Flow directions and an initiation criterion, typically accumulated catchment area above a threshold, decide where channels begin. Outputs include a channel raster, a vector line network, and channel route information suitable for further hydrological work. Depressions normally have to be filled first, and the chosen threshold directly controls how dense the resulting drainage network appears.',
         },
     },
     'Check Geometries': {
         'source': 'QGIS Processing',
-        'blurb': 'Part of the Geometry Checker toolset, this algorithm tests a vector layer against selected validity rules and reports what fails. Checks cover self-intersections, duplicate nodes, invalid polygons, sliver areas, gaps and overlaps between neighbours, minimum segment length, and angle thresholds. Three outputs are produced: valid features, invalid features, and an error layer holding point locations with messages. Nothing is repaired automatically, so the report is meant to guide targeted fixes.',
+        'blurb': 'Check Geometries is part of the QGIS Geometry Checker toolset. It tests selected validity/topology rules and reports failures without auto-fixing everything. Expected output: valid/invalid feature sets plus an error point layer with messages.',
         'relations': {
             'Geometry Validation': 'Part of the Geometry Checker toolset, this algorithm tests a vector layer against selected validity rules and reports what fails. Checks cover self-intersections, duplicate nodes, invalid polygons, sliver areas, gaps and overlaps between neighbours, minimum segment length, and angle thresholds. Three outputs are produced: valid features, invalid features, and an error layer holding point locations with messages. Nothing is repaired automatically, so the report is meant to guide targeted fixes.',
             'Topology Validation': 'Part of the Geometry Checker toolset, this algorithm tests a vector layer against selected validity rules and reports what fails. Checks cover self-intersections, duplicate nodes, invalid polygons, sliver areas, gaps and overlaps between neighbours, minimum segment length, and angle thresholds. Three outputs are produced: valid features, invalid features, and an error layer holding point locations with messages. Nothing is repaired automatically, so the report is meant to guide targeted fixes.',
             'Validity': 'Part of the Geometry Checker toolset, this algorithm tests a vector layer against selected validity rules and reports what fails. Checks cover self-intersections, duplicate nodes, invalid polygons, sliver areas, gaps and overlaps between neighbours, minimum segment length, and angle thresholds. Three outputs are produced: valid features, invalid features, and an error layer holding point locations with messages. Nothing is repaired automatically, so the report is meant to guide targeted fixes.',
         },
     },
+    'CKAN': {
+        'source': 'Open Knowledge Foundation / CKAN',
+        'blurb': 'CKAN is open-source data portal software. With spatial extensions it supports dataset catalogues and bounding-box search for government open data. Expected output: a public data catalogue with dataset pages/APIs.',
+        'relations': {
+            'SDI / Catalogs': 'CKAN is an open-source data portal used by many governments to publish catalogues of datasets. Extensions such as ckanext-spatial add bounding-box search, harvest of ISO metadata, and previews for geospatial resources. It is a common face of a spatial data infrastructure even when the files themselves live on separate storage.',
+        },
+    },
     'Clip': {
         'source': 'QGIS / ArcGIS Processing',
-        'blurb': 'Clip cuts an input layer to the boundary of an overlay polygon layer, keeping only the portions falling inside. Geometry type of the input is preserved, so lines stay lines and polygons stay polygons, and attributes come from the input alone. Unlike intersection, no fields from the clip layer appear in the result. Both layers should share a coordinate reference system, and the overlay is dissolved internally to avoid duplicated output parts.',
+        'blurb': 'Clip is a standard overlay tool in QGIS and ArcGIS. It cuts an input layer to overlay polygon boundaries and keeps only the inside parts, without bringing overlay attributes. Expected output: a clipped layer of the same geometry type as the input.',
         'relations': {
             'Containment': 'Clip cuts an input layer to the boundary of an overlay polygon layer, keeping only the portions falling inside. Geometry type of the input is preserved, so lines stay lines and polygons stay polygons, and attributes come from the input alone. Unlike intersection, no fields from the clip layer appear in the result. Both layers should share a coordinate reference system, and the overlay is dissolved internally to avoid duplicated output parts.',
             'Environmental Assessment': 'Clip cuts an input layer to the boundary of an overlay polygon layer, keeping only the portions falling inside. Geometry type of the input is preserved, so lines stay lines and polygons stay polygons, and attributes come from the input alone. Unlike intersection, no fields from the clip layer appear in the result. Both layers should share a coordinate reference system, and the overlay is dissolved internally to avoid duplicated output parts.',
@@ -103,59 +152,67 @@ TOOL_INFO = {
     },
     'Cloud Optimized GeoTIFF (COG)': {
         'source': 'OGC / GDAL ecosystem',
-        'blurb': 'COG is an ordinary GeoTIFF organised so remote clients fetch only the bytes they need. Internal tiling plus precomputed overviews, arranged in a predictable layout, let HTTP range requests pull a single tile or a coarse pyramid level. GDAL writes the format through its COG driver, while gdaladdo and gdal_translate options control overview levels and compression such as DEFLATE, LZW, or ZSTD. Web maps and cloud analysis then work without a tile server.',
+        'blurb': 'Cloud Optimized GeoTIFF (COG) is an OGC/community GeoTIFF profile. It enables HTTP range reads of tiles/overviews so apps fetch only needed bytes. Expected output: a COG file readable efficiently from object storage.',
         'relations': {
             'Cloud': 'COG is an ordinary GeoTIFF organised so remote clients fetch only the bytes they need. Internal tiling plus precomputed overviews, arranged in a predictable layout, let HTTP range requests pull a single tile or a coarse pyramid level. GDAL writes the format through its COG driver, while gdaladdo and gdal_translate options control overview levels and compression such as DEFLATE, LZW, or ZSTD. Web maps and cloud analysis then work without a tile server.',
         },
     },
     'Contour': {
         'source': 'QGIS / GDAL',
-        'blurb': 'Lines of equal elevation are drawn from a single raster band, using the GDAL contour utility underneath. An interval sets vertical spacing between lines, an offset shifts where levels start, and an attribute name stores each line\'s value. Ignoring nodata prevents spurious contours along raster edges, and an explicit list of levels can replace the regular interval. Smoother output usually requires resampling or filtering the input rather than post-processing the lines.',
+        'blurb': 'Contour is a QGIS tool built on GDAL contouring. It draws isolines of equal value from a raster band (usually elevation) for readable terrain maps. Expected output: a line (or polygon) vector layer of contours with level attributes.',
         'relations': {
-            'Terrain Analysis': 'Lines of equal elevation are drawn from a single raster band, using the GDAL contour utility underneath. An interval sets vertical spacing between lines, an offset shifts where levels start, and an attribute name stores each line\'s value. Ignoring nodata prevents spurious contours along raster edges, and an explicit list of levels can replace the regular interval. Smoother output usually requires resampling or filtering the input rather than post-processing the lines.',
+            'Cartography': 'Draws contour lines (isolines) of equal value from a raster band—most often elevation. You set the vertical interval or a list of levels; each line stores its value as an attribute. Ignoring nodata avoids false contours along raster edges. Smoother lines usually need a smoother input surface first.',
         },
     },
     'Convex hull': {
         'source': 'QGIS Processing',
-        'blurb': 'The convex hull is the smallest convex polygon enclosing a set of points or the vertices of a geometry, much like stretching a rubber band around them. In QGIS the operation runs per feature, so multipart geometries yield one hull each unless features are aggregated first. Output attributes include hull area and perimeter. Hulls suit study-area extents and coarse footprints, though they ignore concavities and can badly overstate real coverage.',
+        'blurb': 'Convex hull is a QGIS Processing geometry tool. It builds the smallest convex polygon enclosing each geometry, like a rubber band around the shape. Expected output: a polygon layer of hulls (rough extents, ignoring concavities).',
         'relations': {
             'Vector Analysis': 'The convex hull is the smallest convex polygon enclosing a set of points or the vertices of a geometry, much like stretching a rubber band around them. In QGIS the operation runs per feature, so multipart geometries yield one hull each unless features are aggregated first. Output attributes include hull area and perimeter. Hulls suit study-area extents and coarse footprints, though they ignore concavities and can badly overstate real coverage.',
         },
     },
     'Create grid': {
         'source': 'QGIS Processing',
-        'blurb': 'A regular vector lattice is generated across a specified extent in a chosen CRS. Grid types include points, lines, rectangles, diamonds, and hexagons, with horizontal and vertical spacing plus optional overlay controlling cell size and overlap. Every cell carries coordinate attributes describing its position. Typical uses are binning point data, building sampling frames, and producing fishnets for tiling; spacing follows CRS units, so metric cells require a projected system.',
+        'blurb': 'Create grid is a QGIS Processing tool. It builds a regular vector lattice over an extent for sampling or aggregation frames. Expected output: a polygon (or line) grid layer in a chosen CRS.',
         'relations': {
             'Hex Grid': 'A regular vector lattice is generated across a specified extent in a chosen CRS. Grid types include points, lines, rectangles, diamonds, and hexagons, with horizontal and vertical spacing plus optional overlay controlling cell size and overlap. Every cell carries coordinate attributes describing its position. Typical uses are binning point data, building sampling frames, and producing fishnets for tiling; spacing follows CRS units, so metric cells require a projected system.',
             'Precision': 'A regular vector lattice is generated across a specified extent in a chosen CRS. Grid types include points, lines, rectangles, diamonds, and hexagons, with horizontal and vertical spacing plus optional overlay controlling cell size and overlap. Every cell carries coordinate attributes describing its position. Typical uses are binning point data, building sampling frames, and producing fishnets for tiling; spacing follows CRS units, so metric cells require a projected system.',
             'Scale': 'A regular vector lattice is generated across a specified extent in a chosen CRS. Grid types include points, lines, rectangles, diamonds, and hexagons, with horizontal and vertical spacing plus optional overlay controlling cell size and overlap. Every cell carries coordinate attributes describing its position. Typical uses are binning point data, building sampling frames, and producing fishnets for tiling; spacing follows CRS units, so metric cells require a projected system.',
         },
     },
+    'CREATE INDEX USING GIST': {
+        'source': 'PostgreSQL / PostGIS',
+        'blurb': 'CREATE INDEX USING GIST is PostgreSQL/PostGIS SQL for spatial indexes. It accelerates bounding-box filters behind most ST_ predicates on large tables. Expected output: a GiST index on a geometry/geography column.',
+        'relations': {
+            'Spatial Indexing': 'Creating a GiST index on a geometry or geography column lets PostgreSQL accelerate bounding-box filters that underlie most PostGIS predicates. Typical SQL is CREATE INDEX ON table USING GIST (geom). Without it, ST_Intersects and similar joins fall back to sequential scans. Analyse the table after bulk loads so the planner trusts the index.',
+        },
+    },
     'DBSCAN clustering': {
         'source': 'QGIS / scikit-learn',
-        'blurb': 'Density-based clustering groups nearby points without needing the number of clusters declared in advance. Two parameters drive it: maximum distance between clustered points and minimum cluster size, so dense neighbourhoods form clusters while sparse points remain noise with a null cluster identifier. Arbitrarily shaped clusters can be found, unlike with k-means. Output adds a cluster field and optionally cluster sizes, and distance units follow the layer coordinate reference system.',
+        'blurb': 'DBSCAN clustering is a QGIS Processing density-clustering tool. It groups nearby points and labels sparse points as noise without choosing the number of clusters in advance. Expected output: a layer with cluster ID attributes (and noise labels).',
         'relations': {
             'Clustering': 'Density-based clustering groups nearby points without needing the number of clusters declared in advance. Two parameters drive it: maximum distance between clustered points and minimum cluster size, so dense neighbourhoods form clusters while sparse points remain noise with a null cluster identifier. Arbitrarily shaped clusters can be found, unlike with k-means. Output adds a cluster field and optionally cluster sizes, and distance units follow the layer coordinate reference system.',
+            'Point Pattern Analysis': 'Density-based clustering groups nearby points without needing the number of clusters declared in advance. Two parameters drive it: maximum distance between clustered points and minimum cluster size, so dense neighbourhoods form clusters while sparse points remain noise with a null cluster identifier. Arbitrarily shaped clusters can be found, unlike with k-means. Output adds a cluster field and optionally cluster sizes, and distance units follow the layer coordinate reference system.',
             'Urban Growth Analysis': 'Density-based clustering groups nearby points without needing the number of clusters declared in advance. Two parameters drive it: maximum distance between clustered points and minimum cluster size, so dense neighbourhoods form clusters while sparse points remain noise with a null cluster identifier. Arbitrarily shaped clusters can be found, unlike with k-means. Output adds a cluster field and optionally cluster sizes, and distance units follow the layer coordinate reference system.',
         },
     },
     'Delaunay triangulation': {
         'source': 'QGIS Processing',
-        'blurb': 'An input point layer is connected into non-overlapping triangles where no point falls inside any triangle\'s circumcircle. The result is a polygon layer whose features record the indices of their three vertices, and it is the geometric dual of a Voronoi diagram. Triangulations underpin TIN surface building, proximity graphs, and mesh generation. Duplicate or collinear points degrade the outcome, and only point geometry, not attributes, determines how triangles form.',
+        'blurb': 'Delaunay triangulation is a QGIS Processing triangulation tool. It connects points into non-overlapping triangles used to build TINs and related surfaces. Expected output: a triangular mesh/polygon layer of Delaunay faces.',
         'relations': {
-            'TIN': 'An input point layer is connected into non-overlapping triangles where no point falls inside any triangle\'s circumcircle. The result is a polygon layer whose features record the indices of their three vertices, and it is the geometric dual of a Voronoi diagram. Triangulations underpin TIN surface building, proximity graphs, and mesh generation. Duplicate or collinear points degrade the outcome, and only point geometry, not attributes, determines how triangles form.',
+            'TIN': "An input point layer is connected into non-overlapping triangles where no point falls inside any triangle's circumcircle. The result is a polygon layer whose features record the indices of their three vertices, and it is the geometric dual of a Voronoi diagram. Triangulations underpin TIN surface building, proximity graphs, and mesh generation. Duplicate or collinear points degrade the outcome, and only point geometry, not attributes, determines how triangles form.",
         },
     },
     'Delete Duplicate Geometries': {
         'source': 'QGIS Processing',
-        'blurb': 'Features whose geometries are identical collapse to a single feature, and attribute values are ignored when deciding what counts as duplicated. The retained feature keeps its own attributes, so differing attribute content among duplicates is discarded rather than merged. Counts of removed features are reported, which helps quantify how dirty an input dataset was. Geometries that only nearly coincide survive, so snapping or geometry repair may be needed first.',
+        'blurb': 'Delete Duplicate Geometries is a QGIS Processing cleanup tool. It collapses features with identical geometries to a single feature to remove digitising duplicates. Expected output: a deduplicated layer.',
         'relations': {
             'Topology Validation': 'Features whose geometries are identical collapse to a single feature, and attribute values are ignored when deciding what counts as duplicated. The retained feature keeps its own attributes, so differing attribute content among duplicates is discarded rather than merged. Counts of removed features are reported, which helps quantify how dirty an input dataset was. Geometries that only nearly coincide survive, so snapping or geometry repair may be needed first.',
         },
     },
     'Difference': {
         'source': 'QGIS / ArcGIS Processing',
-        'blurb': 'Difference erases the parts of input features covered by an overlay layer, returning only what remains. Attributes come from the input layer alone and geometry type is preserved. Order matters: swapping input and overlay produces a different answer, and symmetrical difference is a separate algorithm. Invalid geometries in either layer are a frequent cause of failure, so repairing them beforehand is prudent; both layers should share the same coordinate reference system.',
+        'blurb': 'Difference (Erase) is an overlay tool in QGIS/ArcGIS Processing. It removes parts of the input covered by an overlay layer, which is useful for exclusion zones. Expected output: the input geometry minus the overlay areas.',
         'relations': {
             'Overlay': 'Difference erases the parts of input features covered by an overlay layer, returning only what remains. Attributes come from the input layer alone and geometry type is preserved. Order matters: swapping input and overlay produces a different answer, and symmetrical difference is a separate algorithm. Invalid geometries in either layer are a frequent cause of failure, so repairing them beforehand is prudent; both layers should share the same coordinate reference system.',
             'Vector Analysis': 'Difference erases the parts of input features covered by an overlay layer, returning only what remains. Attributes come from the input layer alone and geometry type is preserved. Order matters: swapping input and overlay produces a different answer, and symmetrical difference is a separate algorithm. Invalid geometries in either layer are a frequent cause of failure, so repairing them beforehand is prudent; both layers should share the same coordinate reference system.',
@@ -164,7 +221,7 @@ TOOL_INFO = {
     },
     'Dissolve': {
         'source': 'QGIS / ArcGIS Processing',
-        'blurb': 'Features merge into single geometries, either combining everything or grouping by one or more attribute fields. Shared boundaries between merged polygons disappear, while non-adjacent members become multipart features. Output attributes are taken from the first feature of each group unless statistics are computed separately, so summing populations needs an explicit aggregation step. Slivers and unsnapped edges can leave hairline gaps that survive the merge and show up in later overlays.',
+        'blurb': 'Dissolve is a vector aggregation tool in QGIS/ArcGIS. It merges features into larger ones, optionally grouped by attributes, removing shared boundaries within groups. Expected output: fewer multipart or single dissolved features with aggregated geometry.',
         'relations': {
             'Overlay': 'Features merge into single geometries, either combining everything or grouping by one or more attribute fields. Shared boundaries between merged polygons disappear, while non-adjacent members become multipart features. Output attributes are taken from the first feature of each group unless statistics are computed separately, so summing populations needs an explicit aggregation step. Slivers and unsnapped edges can leave hairline gaps that survive the merge and show up in later overlays.',
             'Site Selection': 'Features merge into single geometries, either combining everything or grouping by one or more attribute fields. Shared boundaries between merged polygons disappear, while non-adjacent members become multipart features. Output attributes are taken from the first feature of each group unless statistics are computed separately, so summing populations needs an explicit aggregation step. Slivers and unsnapped edges can leave hairline gaps that survive the merge and show up in later overlays.',
@@ -174,56 +231,50 @@ TOOL_INFO = {
     },
     'Distance Matrix': {
         'source': 'QGIS Processing',
-        'blurb': 'The QGIS distance matrix algorithm measures straight-line distances between features of an input point layer and a target point layer, keyed by unique identifier fields. Three output styles exist: a linear table of source, target, and distance rows; a rectangular matrix; and a summary giving mean, standard deviation, minimum, and maximum distance per source. Limiting the number of nearest target points keeps large jobs tractable. Distances use CRS units, favouring projected data.',
+        'blurb': 'Distance Matrix is a QGIS Processing tool for point-to-point distances. It measures straight-line distances between two point layers (not road-network travel time) and can summarise nearest targets. Expected output: a distance table, matrix, or summary statistics in CRS units.',
         'relations': {
-            'Accessibility': 'The QGIS distance matrix algorithm measures straight-line distances between features of an input point layer and a target point layer, keyed by unique identifier fields. Three output styles exist: a linear table of source, target, and distance rows; a rectangular matrix; and a summary giving mean, standard deviation, minimum, and maximum distance per source. Limiting the number of nearest target points keeps large jobs tractable. Distances use CRS units, favouring projected data.',
-            'Accessibility Analysis': 'The QGIS distance matrix algorithm measures straight-line distances between features of an input point layer and a target point layer, keyed by unique identifier fields. Three output styles exist: a linear table of source, target, and distance rows; a rectangular matrix; and a summary giving mean, standard deviation, minimum, and maximum distance per source. Limiting the number of nearest target points keeps large jobs tractable. Distances use CRS units, favouring projected data.',
+            'Accessibility': 'Distance Matrix is a QGIS Processing tool for point-to-point distances. Here it is used as a straight-line proximity matrix—not network travel time—so project the data for metre results. Expected output: a distance table, matrix, or summary statistics in CRS units.',
+            'Accessibility Analysis': 'Distance Matrix is a QGIS Processing tool for point-to-point distances. Here it is used as a straight-line proximity matrix—not network travel time—so project the data for metre results. Expected output: a distance table, matrix, or summary statistics in CRS units.',
+            'Distance': 'The QGIS Distance matrix algorithm measures straight-line distances between features of an input point layer and a target point layer, keyed by unique identifier fields. Outputs include a linear (N×M) table, a square matrix, or a summary of mean, standard deviation, minimum, and maximum distance per source. Limiting the number of nearest targets keeps large jobs tractable. Distances use CRS units, so projected data are preferred; network travel matrices from routing APIs are a separate, impedance-based alternative.',
             'Infrastructure Planning': 'The QGIS distance matrix algorithm measures straight-line distances between features of an input point layer and a target point layer, keyed by unique identifier fields. Three output styles exist: a linear table of source, target, and distance rows; a rectangular matrix; and a summary giving mean, standard deviation, minimum, and maximum distance per source. Limiting the number of nearest target points keeps large jobs tractable. Distances use CRS units, favouring projected data.',
-            'Routing': 'The QGIS distance matrix algorithm measures straight-line distances between features of an input point layer and a target point layer, keyed by unique identifier fields. Three output styles exist: a linear table of source, target, and distance rows; a rectangular matrix; and a summary giving mean, standard deviation, minimum, and maximum distance per source. Limiting the number of nearest target points keeps large jobs tractable. Distances use CRS units, favouring projected data.',
-        },
-    },
-    'Distance matrix': {
-        'source': 'QGIS Processing',
-        'blurb': 'Lower-cased, this names the same family of point-to-point distance tabulation found in QGIS Processing and in routing services returning travel cost tables. Euclidean versions compute geometric separation for every source and target pair, producing either a full matrix or a nearest-neighbour subset. Network-based variants replace straight lines with road distance or duration. Output size grows with the product of the two layer counts, so filtering sources and targets first avoids enormous tables.',
-        'relations': {
-            'Distance': 'Lower-cased, this names the same family of point-to-point distance tabulation found in QGIS Processing and in routing services returning travel cost tables. Euclidean versions compute geometric separation for every source and target pair, producing either a full matrix or a nearest-neighbour subset. Network-based variants replace straight lines with road distance or duration. Output size grows with the product of the two layer counts, so filtering sources and targets first avoids enormous tables.',
-            'Vector Analysis': 'Lower-cased, this names the same family of point-to-point distance tabulation found in QGIS Processing and in routing services returning travel cost tables. Euclidean versions compute geometric separation for every source and target pair, producing either a full matrix or a nearest-neighbour subset. Network-based variants replace straight lines with road distance or duration. Output size grows with the product of the two layer counts, so filtering sources and targets first avoids enormous tables.',
+            'Location-Allocation': 'Distance Matrix is a QGIS Processing tool for point-to-point distances. It can serve as a simple Euclidean cost matrix for location models when a network matrix is unavailable. Expected output: a distance table, matrix, or summary statistics in CRS units.',
+            'Vector Analysis': 'The QGIS Distance matrix algorithm measures straight-line distances between features of an input point layer and a target point layer, keyed by unique identifier fields. Outputs include a linear (N×M) table, a square matrix, or a summary of mean, standard deviation, minimum, and maximum distance per source. Limiting the number of nearest targets keeps large jobs tractable. Distances use CRS units, so projected data are preferred; network travel matrices from routing APIs are a separate, impedance-based alternative.',
         },
     },
     'Distance to nearest hub': {
         'source': 'QGIS Processing',
-        'blurb': 'For every input feature the closest feature in a hub layer is found, and the hub\'s chosen name field is recorded alongside the separation distance. Output can be points at original locations carrying HubName and HubDist attributes, or straight lines drawn from feature to matched hub. Distances are measured from feature centroids and reported in metres, feet, or layer units as selected. Nearest-facility and service catchment questions are the usual motivation.',
+        'blurb': 'Distance to nearest hub is a QGIS Processing proximity tool. It finds each feature’s closest hub and records hub identity and distance, optionally as connecting lines. Expected output: points or lines with HubName/HubDist-style fields.',
         'relations': {
-            'Distance': 'For every input feature the closest feature in a hub layer is found, and the hub\'s chosen name field is recorded alongside the separation distance. Output can be points at original locations carrying HubName and HubDist attributes, or straight lines drawn from feature to matched hub. Distances are measured from feature centroids and reported in metres, feet, or layer units as selected. Nearest-facility and service catchment questions are the usual motivation.',
-            'Vector Analysis': 'For every input feature the closest feature in a hub layer is found, and the hub\'s chosen name field is recorded alongside the separation distance. Output can be points at original locations carrying HubName and HubDist attributes, or straight lines drawn from feature to matched hub. Distances are measured from feature centroids and reported in metres, feet, or layer units as selected. Nearest-facility and service catchment questions are the usual motivation.',
+            'Distance': "For every input feature the closest feature in a hub layer is found, and the hub's chosen name field is recorded alongside the separation distance. Output can be points at original locations carrying HubName and HubDist attributes, or straight lines drawn from feature to matched hub. Distances are measured from feature centroids and reported in metres, feet, or layer units as selected. Nearest-facility and service catchment questions are the usual motivation.",
+            'Vector Analysis': "For every input feature the closest feature in a hub layer is found, and the hub's chosen name field is recorded alongside the separation distance. Output can be points at original locations carrying HubName and HubDist attributes, or straight lines drawn from feature to matched hub. Distances are measured from feature centroids and reported in metres, feet, or layer units as selected. Nearest-facility and service catchment questions are the usual motivation.",
         },
     },
     'DuckDB Spatial': {
         'source': 'DuckDB',
-        'blurb': 'The spatial extension adds a GEOMETRY type and several hundred ST_ functions to DuckDB\'s in-process analytical engine. Installed and loaded with INSTALL spatial and LOAD spatial, it supports predicates, measurements, overlays, PROJ-based transformation, and reading or writing files through GDAL. Columnar execution makes it quick over GeoParquet, including files held remotely on object storage. Indexing support is thinner than PostGIS, so it suits analytical batch queries more than transactional serving.',
+        'blurb': 'DuckDB Spatial is the spatial extension for DuckDB. It adds geometry types and ST_ functions for fast in-process spatial SQL on local/Parquet data. Expected output: query results and spatial tables/files.',
         'relations': {
-            'APIs': 'The spatial extension adds a GEOMETRY type and several hundred ST_ functions to DuckDB\'s in-process analytical engine. Installed and loaded with INSTALL spatial and LOAD spatial, it supports predicates, measurements, overlays, PROJ-based transformation, and reading or writing files through GDAL. Columnar execution makes it quick over GeoParquet, including files held remotely on object storage. Indexing support is thinner than PostGIS, so it suits analytical batch queries more than transactional serving.',
-            'Geospatial Libraries': 'The spatial extension adds a GEOMETRY type and several hundred ST_ functions to DuckDB\'s in-process analytical engine. Installed and loaded with INSTALL spatial and LOAD spatial, it supports predicates, measurements, overlays, PROJ-based transformation, and reading or writing files through GDAL. Columnar execution makes it quick over GeoParquet, including files held remotely on object storage. Indexing support is thinner than PostGIS, so it suits analytical batch queries more than transactional serving.',
+            'APIs': "The spatial extension adds a GEOMETRY type and several hundred ST_ functions to DuckDB's in-process analytical engine. Installed and loaded with INSTALL spatial and LOAD spatial, it supports predicates, measurements, overlays, PROJ-based transformation, and reading or writing files through GDAL. Columnar execution makes it quick over GeoParquet, including files held remotely on object storage. Indexing support is thinner than PostGIS, so it suits analytical batch queries more than transactional serving.",
+            'Geospatial Libraries': "The spatial extension adds a GEOMETRY type and several hundred ST_ functions to DuckDB's in-process analytical engine. Installed and loaded with INSTALL spatial and LOAD spatial, it supports predicates, measurements, overlays, PROJ-based transformation, and reading or writing files through GDAL. Columnar execution makes it quick over GeoParquet, including files held remotely on object storage. Indexing support is thinner than PostGIS, so it suits analytical batch queries more than transactional serving.",
         },
     },
     'DuckDB ST_Read': {
         'source': 'DuckDB Spatial',
-        'blurb': 'ST_Read is the table function in DuckDB\'s spatial extension that ingests vector files through GDAL/OGR. Handing it a path to GeoPackage, Shapefile, GeoJSON, FlatGeobuf, or many other formats returns a queryable table with a geometry column. Optional arguments select a layer, apply a spatial filter, restrict fields, or keep original WKB geometry. Because reading happens inside SQL, files can be joined and aggregated directly without a separate import step.',
+        'blurb': 'DuckDB ST_Read is a DuckDB Spatial table function. It reads vector files through GDAL/OGR directly into SQL without a separate import step. Expected output: a queryable table with geometry.',
         'relations': {
-            'Database Processing': 'ST_Read is the table function in DuckDB\'s spatial extension that ingests vector files through GDAL/OGR. Handing it a path to GeoPackage, Shapefile, GeoJSON, FlatGeobuf, or many other formats returns a queryable table with a geometry column. Optional arguments select a layer, apply a spatial filter, restrict fields, or keep original WKB geometry. Because reading happens inside SQL, files can be joined and aggregated directly without a separate import step.',
+            'Database Processing': "ST_Read is the table function in DuckDB's spatial extension that ingests vector files through GDAL/OGR. Handing it a path to GeoPackage, Shapefile, GeoJSON, FlatGeobuf, or many other formats returns a queryable table with a geometry column. Optional arguments select a layer, apply a spatial filter, restrict fields, or keep original WKB geometry. Because reading happens inside SQL, files can be joined and aggregated directly without a separate import step.",
         },
     },
     'esda.Geary': {
         'source': 'PySAL ESDA',
-        'blurb': 'Geary\'s C measures spatial autocorrelation from squared differences between neighbouring values, making it more sensitive to local variation than Moran\'s I. Values near one indicate no autocorrelation, below one signals positive spatial association, and above one implies dissimilar neighbours. The class takes an attribute array with a spatial weights object and returns the statistic, its expectation, variance, and inference based on normality or random permutations. Weights specification drives the outcome.',
+        'blurb': 'esda.Geary is a PySAL ESDA class for Geary’s C. It measures global spatial autocorrelation as a complement to Moran’s I. Expected output: Geary’s C statistic with inference.',
         'relations': {
-            'Spatial Statistics': 'Geary\'s C measures spatial autocorrelation from squared differences between neighbouring values, making it more sensitive to local variation than Moran\'s I. Values near one indicate no autocorrelation, below one signals positive spatial association, and above one implies dissimilar neighbours. The class takes an attribute array with a spatial weights object and returns the statistic, its expectation, variance, and inference based on normality or random permutations. Weights specification drives the outcome.',
-            'Statistical Validation': 'Geary\'s C measures spatial autocorrelation from squared differences between neighbouring values, making it more sensitive to local variation than Moran\'s I. Values near one indicate no autocorrelation, below one signals positive spatial association, and above one implies dissimilar neighbours. The class takes an attribute array with a spatial weights object and returns the statistic, its expectation, variance, and inference based on normality or random permutations. Weights specification drives the outcome.',
+            'Spatial Statistics': "Geary's C measures spatial autocorrelation from squared differences between neighbouring values, making it more sensitive to local variation than Moran's I. Values near one indicate no autocorrelation, below one signals positive spatial association, and above one implies dissimilar neighbours. The class takes an attribute array with a spatial weights object and returns the statistic, its expectation, variance, and inference based on normality or random permutations. Weights specification drives the outcome.",
+            'Statistical Validation': "Geary's C measures spatial autocorrelation from squared differences between neighbouring values, making it more sensitive to local variation than Moran's I. Values near one indicate no autocorrelation, below one signals positive spatial association, and above one implies dissimilar neighbours. The class takes an attribute array with a spatial weights object and returns the statistic, its expectation, variance, and inference based on normality or random permutations. Weights specification drives the outcome.",
         },
     },
     'esda.GetisOrd': {
         'source': 'PySAL ESDA',
-        'blurb': 'Getis-Ord statistics identify concentrations of high or low values. The global G assesses whether high values cluster overall, while local Gi and Gi*, the latter including the observation itself, produce per-feature z-scores that map hot and cold spots. Inputs are an attribute array and a spatial weights object, usually distance-based, and inference relies on analytical or permutation-derived p-values. Testing many locations invites false positives without a multiple-comparison correction.',
+        'blurb': 'esda.GetisOrd is a PySAL ESDA hotspot tool. It computes Getis-Ord statistics to locate concentrations of high or low values. Expected output: Gi/Gi* scores for hotspot mapping.',
         'relations': {
             'Spatial Statistics': 'Getis-Ord statistics identify concentrations of high or low values. The global G assesses whether high values cluster overall, while local Gi and Gi*, the latter including the observation itself, produce per-feature z-scores that map hot and cold spots. Inputs are an attribute array and a spatial weights object, usually distance-based, and inference relies on analytical or permutation-derived p-values. Testing many locations invites false positives without a multiple-comparison correction.',
             'Statistical Validation': 'Getis-Ord statistics identify concentrations of high or low values. The global G assesses whether high values cluster overall, while local Gi and Gi*, the latter including the observation itself, produce per-feature z-scores that map hot and cold spots. Inputs are an attribute array and a spatial weights object, usually distance-based, and inference relies on analytical or permutation-derived p-values. Testing many locations invites false positives without a multiple-comparison correction.',
@@ -231,23 +282,23 @@ TOOL_INFO = {
     },
     'esda.Moran': {
         'source': 'PySAL ESDA',
-        'blurb': 'Moran\'s I summarises global spatial autocorrelation as the correlation between values and the weighted average of their neighbours. Results range broadly around an expected value of minus one over the number of observations minus one, with positive I indicating clustering of similar values and negative I indicating a checkerboard pattern. The class reports the statistic, expectation, variance, z-score, and permutation-based pseudo p-value, all conditional on the chosen weights.',
+        'blurb': 'esda.Moran is a PySAL ESDA class for Moran’s I. It measures global spatial autocorrelation to test whether similar values cluster. Expected output: Moran’s I statistic with inference (e.g., p-value).',
         'relations': {
-            'Spatial Statistics': 'Moran\'s I summarises global spatial autocorrelation as the correlation between values and the weighted average of their neighbours. Results range broadly around an expected value of minus one over the number of observations minus one, with positive I indicating clustering of similar values and negative I indicating a checkerboard pattern. The class reports the statistic, expectation, variance, z-score, and permutation-based pseudo p-value, all conditional on the chosen weights.',
-            'Statistical Validation': 'Moran\'s I summarises global spatial autocorrelation as the correlation between values and the weighted average of their neighbours. Results range broadly around an expected value of minus one over the number of observations minus one, with positive I indicating clustering of similar values and negative I indicating a checkerboard pattern. The class reports the statistic, expectation, variance, z-score, and permutation-based pseudo p-value, all conditional on the chosen weights.',
+            'Spatial Statistics': "Moran's I summarises global spatial autocorrelation as the correlation between values and the weighted average of their neighbours. Results range broadly around an expected value of minus one over the number of observations minus one, with positive I indicating clustering of similar values and negative I indicating a checkerboard pattern. The class reports the statistic, expectation, variance, z-score, and permutation-based pseudo p-value, all conditional on the chosen weights.",
+            'Statistical Validation': "Moran's I summarises global spatial autocorrelation as the correlation between values and the weighted average of their neighbours. Results range broadly around an expected value of minus one over the number of observations minus one, with positive I indicating clustering of similar values and negative I indicating a checkerboard pattern. The class reports the statistic, expectation, variance, z-score, and permutation-based pseudo p-value, all conditional on the chosen weights.",
         },
     },
     'esda.Moran_Local': {
         'source': 'PySAL ESDA',
-        'blurb': 'Local Moran\'s I decomposes global autocorrelation into a statistic for every observation, the basis of LISA cluster maps. Alongside per-feature values, the results expose quadrant codes distinguishing high-high, low-low, high-low, and low-high associations, plus pseudo p-values from conditional permutations. Mapping only significant locations is standard practice, and because thousands of tests are performed, false discovery rate adjustment is advisable. Weights and permutation count both affect conclusions.',
+        'blurb': 'esda.Moran_Local is a PySAL ESDA LISA tool. It finds local clusters and spatial outliers (high-high, low-low, etc.) for mapping. Expected output: local Moran indicators and cluster classifications.',
         'relations': {
-            'Spatial Statistics': 'Local Moran\'s I decomposes global autocorrelation into a statistic for every observation, the basis of LISA cluster maps. Alongside per-feature values, the results expose quadrant codes distinguishing high-high, low-low, high-low, and low-high associations, plus pseudo p-values from conditional permutations. Mapping only significant locations is standard practice, and because thousands of tests are performed, false discovery rate adjustment is advisable. Weights and permutation count both affect conclusions.',
-            'Statistical Validation': 'Local Moran\'s I decomposes global autocorrelation into a statistic for every observation, the basis of LISA cluster maps. Alongside per-feature values, the results expose quadrant codes distinguishing high-high, low-low, high-low, and low-high associations, plus pseudo p-values from conditional permutations. Mapping only significant locations is standard practice, and because thousands of tests are performed, false discovery rate adjustment is advisable. Weights and permutation count both affect conclusions.',
+            'Spatial Statistics': "Local Moran's I decomposes global autocorrelation into a statistic for every observation, the basis of LISA cluster maps. Alongside per-feature values, the results expose quadrant codes distinguishing high-high, low-low, high-low, and low-high associations, plus pseudo p-values from conditional permutations. Mapping only significant locations is standard practice, and because thousands of tests are performed, false discovery rate adjustment is advisable. Weights and permutation count both affect conclusions.",
+            'Statistical Validation': "Local Moran's I decomposes global autocorrelation into a statistic for every observation, the basis of LISA cluster maps. Alongside per-feature values, the results expose quadrant codes distinguishing high-high, low-low, high-low, and low-high associations, plus pseudo p-values from conditional permutations. Mapping only significant locations is standard practice, and because thousands of tests are performed, false discovery rate adjustment is advisable. Weights and permutation count both affect conclusions.",
         },
     },
     'Export mesh edges': {
         'source': 'QGIS Mesh tools',
-        'blurb': 'Mesh layers flatten to vector line features here, producing one line per mesh edge. Chosen dataset groups and a time step are sampled and written as attributes, so scalar or vector results travel with the geometry. An output CRS can be specified, and vector datasets may be exported as magnitude plus direction. The result lets mesh model output be styled, joined, and analysed with ordinary vector tools that cannot read meshes.',
+        'blurb': 'Export mesh edges is a QGIS mesh conversion tool. It turns mesh edges into ordinary vector lines for use outside mesh formats. Expected output: a line vector layer of mesh edges.',
         'relations': {
             '3D': 'Mesh layers flatten to vector line features here, producing one line per mesh edge. Chosen dataset groups and a time step are sampled and written as attributes, so scalar or vector results travel with the geometry. An output CRS can be specified, and vector datasets may be exported as magnitude plus direction. The result lets mesh model output be styled, joined, and analysed with ordinary vector tools that cannot read meshes.',
             'Mesh': 'Mesh layers flatten to vector line features here, producing one line per mesh edge. Chosen dataset groups and a time step are sampled and written as attributes, so scalar or vector results travel with the geometry. An output CRS can be specified, and vector datasets may be exported as magnitude plus direction. The result lets mesh model output be styled, joined, and analysed with ordinary vector tools that cannot read meshes.',
@@ -255,7 +306,7 @@ TOOL_INFO = {
     },
     'Export mesh faces': {
         'source': 'QGIS Mesh tools',
-        'blurb': 'Each face of a mesh becomes a polygon feature carrying values sampled from selected dataset groups at a given time step. Vector datasets can be written as magnitude and direction, or as x and y components, alongside the face geometry. Reprojection to a target coordinate reference system is supported during export. Face polygons suit area statistics, zonal summaries, or handing simulation results to workflows that only understand vector layers.',
+        'blurb': 'Export mesh faces is a QGIS mesh conversion tool. It turns mesh faces into polygons, optionally with sampled dataset values. Expected output: a polygon vector layer of faces.',
         'relations': {
             '3D': 'Each face of a mesh becomes a polygon feature carrying values sampled from selected dataset groups at a given time step. Vector datasets can be written as magnitude and direction, or as x and y components, alongside the face geometry. Reprojection to a target coordinate reference system is supported during export. Face polygons suit area statistics, zonal summaries, or handing simulation results to workflows that only understand vector layers.',
             'Mesh': 'Each face of a mesh becomes a polygon feature carrying values sampled from selected dataset groups at a given time step. Vector datasets can be written as magnitude and direction, or as x and y components, alongside the face geometry. Reprojection to a target coordinate reference system is supported during export. Face polygons suit area statistics, zonal summaries, or handing simulation results to workflows that only understand vector layers.',
@@ -263,26 +314,35 @@ TOOL_INFO = {
     },
     'Export mesh on grid': {
         'source': 'QGIS Mesh tools',
-        'blurb': 'Mesh dataset values are sampled onto a regular grid of points rather than the native mesh topology. Grid spacing, extent, and target CRS are parameters, while chosen dataset groups and a time step determine what each point records. Values come from interpolation across surrounding mesh elements. Regular sampling gives consistent point density for statistics, comparison between models, or conversion toward raster products such as interpolated depth or velocity surfaces.',
+        'blurb': 'Export mesh on grid is a QGIS mesh sampling tool. It samples mesh values onto a regular point grid that is easier to rasterise or join. Expected output: a point grid layer with sampled values.',
         'relations': {
             'Mesh': 'Mesh dataset values are sampled onto a regular grid of points rather than the native mesh topology. Grid spacing, extent, and target CRS are parameters, while chosen dataset groups and a time step determine what each point records. Values come from interpolation across surrounding mesh elements. Regular sampling gives consistent point density for statistics, comparison between models, or conversion toward raster products such as interpolated depth or velocity surfaces.',
         },
     },
     'Extract by location': {
         'source': 'QGIS Processing',
-        'blurb': 'Features are selected from an input layer according to a spatial relationship with a second layer. Predicates include intersects, contains, disjoint, equals, touches, overlaps, and within, and several may be combined so any match qualifies. Only whole features are copied and nothing is cut, which separates this from clip or intersection. Spatial indexes on both layers speed evaluation, and differing coordinate systems must be reconciled beforehand.',
+        'blurb': 'Extract by location is a QGIS Processing selection tool. It keeps input features that satisfy a spatial relationship with another layer, without cutting geometries. Expected output: a subset layer of matching features.',
         'relations': {
+            'Accuracy Assessment': 'Features are selected from an input layer according to a spatial relationship with a second layer. Predicates include intersects, contains, disjoint, equals, touches, overlaps, and within, and several may be combined so any match qualifies. Only whole features are copied and nothing is cut, which separates this from clip or intersection. Spatial indexes on both layers speed evaluation, and differing coordinate systems must be reconciled beforehand.',
             'Adjacency': 'Features are selected from an input layer according to a spatial relationship with a second layer. Predicates include intersects, contains, disjoint, equals, touches, overlaps, and within, and several may be combined so any match qualifies. Only whole features are copied and nothing is cut, which separates this from clip or intersection. Spatial indexes on both layers speed evaluation, and differing coordinate systems must be reconciled beforehand.',
             'Containment': 'Features are selected from an input layer according to a spatial relationship with a second layer. Predicates include intersects, contains, disjoint, equals, touches, overlaps, and within, and several may be combined so any match qualifies. Only whole features are copied and nothing is cut, which separates this from clip or intersection. Spatial indexes on both layers speed evaluation, and differing coordinate systems must be reconciled beforehand.',
             'Demographic Enrichment': 'Features are selected from an input layer according to a spatial relationship with a second layer. Predicates include intersects, contains, disjoint, equals, touches, overlaps, and within, and several may be combined so any match qualifies. Only whole features are copied and nothing is cut, which separates this from clip or intersection. Spatial indexes on both layers speed evaluation, and differing coordinate systems must be reconciled beforehand.',
+            'Remote Sensing': 'Selects features that have a chosen spatial relationship with another layer (intersect, within, contain, touch, and so on). Output is a subset of the input features—no geometry cutting. Commonly used to pull samples that fall inside reference polygons.',
             'Site Selection': 'Features are selected from an input layer according to a spatial relationship with a second layer. Predicates include intersects, contains, disjoint, equals, touches, overlaps, and within, and several may be combined so any match qualifies. Only whole features are copied and nothing is cut, which separates this from clip or intersection. Spatial indexes on both layers speed evaluation, and differing coordinate systems must be reconciled beforehand.',
             'Topology Validation': 'Features are selected from an input layer according to a spatial relationship with a second layer. Predicates include intersects, contains, disjoint, equals, touches, overlaps, and within, and several may be combined so any match qualifies. Only whole features are copied and nothing is cut, which separates this from clip or intersection. Spatial indexes on both layers speed evaluation, and differing coordinate systems must be reconciled beforehand.',
             'Vector Analysis': 'Features are selected from an input layer according to a spatial relationship with a second layer. Predicates include intersects, contains, disjoint, equals, touches, overlaps, and within, and several may be combined so any match qualifies. Only whole features are copied and nothing is cut, which separates this from clip or intersection. Spatial indexes on both layers speed evaluation, and differing coordinate systems must be reconciled beforehand.',
         },
     },
+    'FGDC CSDGM': {
+        'source': 'FGDC',
+        'blurb': 'FGDC CSDGM is the classic U.S. federal geospatial metadata content standard. It structures identification, quality, spatial reference, entities, and distribution sections for catalogues. Expected output: CSDGM metadata records.',
+        'relations': {
+            'Standards': 'The Content Standard for Digital Geospatial Metadata (CSDGM) is the classic U.S. Federal metadata standard describing identification, data quality, spatial reference, entities, and distribution. Many U.S. agencies still publish CSDGM records alongside newer ISO 19115 profiles. Catalogues and validators check completeness against its sections and elements.',
+        },
+    },
     'Field Statistics': {
         'source': 'QGIS Processing',
-        'blurb': 'Descriptive statistics for a single attribute column are computed and returned as numeric outputs plus a readable report. Numeric input yields count, sum, mean, median, minimum, maximum, range, standard deviation, and quartile values, while nulls and empty entries are tallied separately. Everything derives from stored attribute values, so geometry plays no part. Running this early exposes outliers, unexpected zeros, and missing data that would otherwise distort later analysis.',
+        'blurb': 'Field Statistics is a QGIS summary tool for attribute columns. It calculates descriptive statistics to check distributions before modelling or mapping. Expected output: numeric summaries and a readable report.',
         'relations': {
             'Result Validation': 'Descriptive statistics for a single attribute column are computed and returned as numeric outputs plus a readable report. Numeric input yields count, sum, mean, median, minimum, maximum, range, standard deviation, and quartile values, while nulls and empty entries are tallied separately. Everything derives from stored attribute values, so geometry plays no part. Running this early exposes outliers, unexpected zeros, and missing data that would otherwise distort later analysis.',
             'Tables': 'Descriptive statistics for a single attribute column are computed and returned as numeric outputs plus a readable report. Numeric input yields count, sum, mean, median, minimum, maximum, range, standard deviation, and quartile values, while nulls and empty entries are tallied separately. Everything derives from stored attribute values, so geometry plays no part. Running this early exposes outliers, unexpected zeros, and missing data that would otherwise distort later analysis.',
@@ -290,42 +350,42 @@ TOOL_INFO = {
     },
     'Fill sinks': {
         'source': 'QGIS Hydrology',
-        'blurb': 'Depressions in a digital elevation model trap flow and break drainage analysis, so this preprocessing step raises or breaches them until every cell drains toward the edge. Implementations follow Wang and Liu or Planchon and Darboux approaches, with a minimum slope parameter preserving a gentle gradient across filled areas. Outputs are a hydrologically conditioned DEM and sometimes flow direction and accumulation rasters. Aggressive filling can flatten genuine closed basins such as lakes.',
+        'blurb': 'Fill sinks is a hydrological preprocessing tool in QGIS/SAGA/GRASS workflows. It removes DEM depressions that trap flow so drainage algorithms can run consistently. Expected output: a hydrologically conditioned DEM.',
         'relations': {
             'Hydrological Analysis': 'Depressions in a digital elevation model trap flow and break drainage analysis, so this preprocessing step raises or breaches them until every cell drains toward the edge. Implementations follow Wang and Liu or Planchon and Darboux approaches, with a minimum slope parameter preserving a gentle gradient across filled areas. Outputs are a hydrologically conditioned DEM and sometimes flow direction and accumulation rasters. Aggressive filling can flatten genuine closed basins such as lakes.',
         },
     },
     'filters.crop': {
         'source': 'PDAL',
-        'blurb': 'This PDAL filter keeps only the points falling inside a specified region, given either as a bounds box in two or three dimensions or as a WKT or GeoJSON polygon. An outside option inverts the test so points within the region are discarded, and a distance argument can buffer polygon boundaries. Multiple bounds produce separate output views, which suits tiling. Cropping early in a pipeline cuts the volume passed to later stages.',
+        'blurb': 'filters.crop is a PDAL filter stage. It crops points to a box or polygon to keep only an area of interest. Expected output: a reduced point view.',
         'relations': {
             'Point Cloud': 'This PDAL filter keeps only the points falling inside a specified region, given either as a bounds box in two or three dimensions or as a WKT or GeoJSON polygon. An outside option inverts the test so points within the region are discarded, and a distance argument can buffer polygon boundaries. Multiple bounds produce separate output views, which suits tiling. Cropping early in a pipeline cuts the volume passed to later stages.',
         },
     },
     'filters.range': {
         'source': 'PDAL',
-        'blurb': 'Points are passed or rejected according to value ranges on named dimensions, expressed with an interval syntax such as Classification[2:2] for ground returns or Z[0:3000] to discard blunders. Ranges may be combined so all conditions must hold, and negation excludes a class. Because filtering happens on any dimension, intensity, return number, and scan angle can screen data as easily as classification. Newer pipelines may instead use expression-based filtering.',
+        'blurb': 'filters.range is a PDAL filter stage. It keeps points whose dimension values fall in specified ranges (class, return, intensity, …). Expected output: a filtered point view.',
         'relations': {
             'Point Cloud': 'Points are passed or rejected according to value ranges on named dimensions, expressed with an interval syntax such as Classification[2:2] for ground returns or Z[0:3000] to discard blunders. Ranges may be combined so all conditions must hold, and negation excludes a class. Because filtering happens on any dimension, intensity, return number, and scan angle can screen data as easily as classification. Newer pipelines may instead use expression-based filtering.',
         },
     },
     'filters.reprojection': {
         'source': 'PDAL',
-        'blurb': 'Point coordinates are transformed from one spatial reference system to another inside a PDAL pipeline, using PROJ through GDAL. An out_srs option states the destination, while in_srs supplies the source when the input file lacks reliable CRS metadata or carries the wrong one. Reprojecting before ground classification or raster generation keeps units consistent, and because coordinates are stored with scale and offset in LAS, adjusting those values afterwards preserves precision.',
+        'blurb': 'filters.reprojection is a PDAL filter stage. It reprojects point coordinates to another CRS inside the pipeline. Expected output: points in the target CRS.',
         'relations': {
             'Point Cloud': 'Point coordinates are transformed from one spatial reference system to another inside a PDAL pipeline, using PROJ through GDAL. An out_srs option states the destination, while in_srs supplies the source when the input file lacks reliable CRS metadata or carries the wrong one. Reprojecting before ground classification or raster generation keeps units consistent, and because coordinates are stored with scale and offset in LAS, adjusting those values afterwards preserves precision.',
         },
     },
     'Fiona': {
         'source': 'Python (Toblerity)',
-        'blurb': 'Fiona reads and writes vector data through OGR while keeping a plain Pythonic interface. Opening a dataset yields feature dictionaries with GeoJSON-like geometry and properties, plus a schema describing field names and types. Layers, filters, and coordinate reference metadata are exposed without wrapping data in a dataframe, which suits streaming very large files feature by feature. GeoPandas builds on it for tabular work, and Shapely handles the geometry operations.',
+        'blurb': 'Fiona is a Python OGR wrapper for vector I/O. It reads/writes GIS files with a simple dict-based interface as a lower-level companion to GeoPandas. Expected output: Python feature records or written vector files.',
         'relations': {
             'Geospatial Libraries': 'Fiona reads and writes vector data through OGR while keeping a plain Pythonic interface. Opening a dataset yields feature dictionaries with GeoJSON-like geometry and properties, plus a schema describing field names and types. Layers, filters, and coordinate reference metadata are exposed without wrapping data in a dataframe, which suits streaming very large files feature by feature. GeoPandas builds on it for tabular work, and Shapely handles the geometry operations.',
         },
     },
     'Fix Geometries': {
         'source': 'QGIS Processing',
-        'blurb': 'Invalid geometries are repaired where possible, producing an output layer whose features pass validity rules. Typical repairs close unclosed rings, resolve self-intersections by splitting into valid parts, and remove duplicate or degenerate nodes. Because a repair may turn a polygon into a multipolygon or drop zero-area slivers, output geometry type can differ from the input and areas may shift slightly. Running it before overlays prevents many otherwise cryptic processing errors.',
+        'blurb': 'Fix Geometries is a QGIS Processing repair tool. It attempts to make invalid geometries valid so overlays and databases do not fail. Expected output: a repaired layer (inspect remaining errors afterward).',
         'relations': {
             'Geometry Validation': 'Invalid geometries are repaired where possible, producing an output layer whose features pass validity rules. Typical repairs close unclosed rings, resolve self-intersections by splitting into valid parts, and remove duplicate or degenerate nodes. Because a repair may turn a polygon into a multipolygon or drop zero-area slivers, output geometry type can differ from the input and areas may shift slightly. Running it before overlays prevents many otherwise cryptic processing errors.',
             'Validity': 'Invalid geometries are repaired where possible, producing an output layer whose features pass validity rules. Typical repairs close unclosed rings, resolve self-intersections by splitting into valid parts, and remove duplicate or degenerate nodes. Because a repair may turn a polygon into a multipolygon or drop zero-area slivers, output geometry type can differ from the input and areas may shift slightly. Running it before overlays prevents many otherwise cryptic processing errors.',
@@ -333,41 +393,44 @@ TOOL_INFO = {
     },
     'Flow accumulation': {
         'source': 'QGIS Hydrology',
-        'blurb': 'Accumulated flow counts how many upslope cells drain through each cell of a conditioned elevation model, giving a proxy for contributing catchment area. Single-direction D8 and multiple-direction algorithms such as D-infinity distribute flow differently, changing how sharply channels emerge. Depressions generally must be filled beforehand, and results are commonly thresholded to extract stream networks. Values scale with cell size, so comparisons demand consistent resolution between rasters.',
+        'blurb': 'Flow accumulation is a hydrological tool in QGIS/SAGA/GRASS toolboxes. It counts how much upslope area drains through each cell, highlighting likely channels. Expected output: an accumulation raster (proxy catchment area).',
         'relations': {
             'Hydrological Analysis': 'Accumulated flow counts how many upslope cells drain through each cell of a conditioned elevation model, giving a proxy for contributing catchment area. Single-direction D8 and multiple-direction algorithms such as D-infinity distribute flow differently, changing how sharply channels emerge. Depressions generally must be filled beforehand, and results are commonly thresholded to extract stream networks. Values scale with cell size, so comparisons demand consistent resolution between rasters.',
         },
     },
     'Flow direction': {
         'source': 'QGIS Hydrology',
-        'blurb': 'Every cell records where water would move, based on steepest descent to its neighbours. D8 assigns one of eight directions encoded as powers of two, while multiple-flow methods split discharge among several downslope neighbours. Output forms the foundation for accumulation, watershed delineation, and stream extraction. Flat areas and depressions are inherently ambiguous, so filling or breaching the elevation model first is standard practice before direction is computed.',
+        'blurb': 'Flow direction is a hydrological tool in QGIS/SAGA/GRASS toolboxes. It records the downhill neighbour for each DEM cell as the basis for accumulation and streams. Expected output: a flow-direction raster.',
         'relations': {
             'Hydrological Analysis': 'Every cell records where water would move, based on steepest descent to its neighbours. D8 assigns one of eight directions encoded as powers of two, while multiple-flow methods split discharge among several downslope neighbours. Output forms the foundation for accumulation, watershed delineation, and stream extraction. Flat areas and depressions are inherently ambiguous, so filling or breaching the elevation model first is standard practice before direction is computed.',
         },
     },
     'Fuzzy Overlay': {
         'source': 'QGIS Processing',
-        'blurb': 'Several rasters whose values express membership between zero and one are combined here rather than crisp classes. Operators include AND, taking the minimum, OR, taking the maximum, PRODUCT, SUM, and GAMMA, a weighted blend of product and sum. Inputs must first pass through a fuzzification step that converts raw measurements into membership reflecting how strongly each cell satisfies a criterion. Suitability and mineral prospectivity modelling use it to avoid hard thresholds.',
+        'blurb': 'Fuzzy Overlay is a soft multi-criteria combination tool (ArcGIS/QGIS fuzzy workflows). It combines membership rasters (0–1) when thresholds are vague, unlike crisp weighted classes. Expected output: a continuous suitability/membership raster.',
         'relations': {
+            'Multi-Criteria Evaluation': 'Several rasters whose values express membership between zero and one are combined here rather than crisp classes. Operators include AND, taking the minimum, OR, taking the maximum, PRODUCT, SUM, and GAMMA, a weighted blend of product and sum. Inputs must first pass through a fuzzification step that converts raw measurements into membership reflecting how strongly each cell satisfies a criterion. Suitability and mineral prospectivity modelling use it to avoid hard thresholds.',
             'Suitability Analysis': 'Several rasters whose values express membership between zero and one are combined here rather than crisp classes. Operators include AND, taking the minimum, OR, taking the maximum, PRODUCT, SUM, and GAMMA, a weighted blend of product and sum. Inputs must first pass through a fuzzification step that converts raw measurements into membership reflecting how strongly each cell satisfies a criterion. Suitability and mineral prospectivity modelling use it to avoid hard thresholds.',
+            'Uncertainty Modeling': 'Several rasters whose values express membership between zero and one are combined here rather than crisp classes. Operators include AND, taking the minimum, OR, taking the maximum, PRODUCT, SUM, and GAMMA, a weighted blend of product and sum. Inputs must first pass through a fuzzification step that converts raw measurements into membership reflecting how strongly each cell satisfies a criterion. Suitability and mineral prospectivity modelling use it to avoid hard thresholds.',
         },
     },
     'GDAL / OGR': {
         'source': 'OSGeo',
-        'blurb': 'GDAL is the translator library behind most raster and vector geoprocessing, with OGR covering the vector side of the same codebase. Hundreds of drivers read and write formats from GeoTIFF and NetCDF to GeoPackage, Shapefile, and Parquet, exposing a common data model plus PROJ-based reprojection. Command-line utilities such as gdal_translate, gdalwarp, and ogr2ogr make it scriptable, while Python and C++ bindings embed it. QGIS, PostGIS, and Rasterio all depend on it.',
+        'blurb': 'GDAL/OGR is the OSGeo translator library and utilities for rasters (GDAL) and vectors (OGR). It underpins most GIS I/O and conversion across QGIS, PostGIS loaders, and Python tools. Expected output: converted datasets and metadata via its CLI/API.',
         'relations': {
             'Geospatial Libraries': 'GDAL is the translator library behind most raster and vector geoprocessing, with OGR covering the vector side of the same codebase. Hundreds of drivers read and write formats from GeoTIFF and NetCDF to GeoPackage, Shapefile, and Parquet, exposing a common data model plus PROJ-based reprojection. Command-line utilities such as gdal_translate, gdalwarp, and ogr2ogr make it scriptable, while Python and C++ bindings embed it. QGIS, PostGIS, and Rasterio all depend on it.',
         },
     },
     'gdal_calc': {
         'source': 'GDAL',
-        'blurb': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
+        'blurb': 'gdal_calc is GDAL’s NumPy raster calculator. It evaluates band expressions (A, B, C, …) for indices, masks, and change detection in scripts. Expected output: a computed raster.',
         'relations': {
             'Change Detection': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
             'Environmental Assessment': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
+            'Multi-Criteria Evaluation': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
             'Raster Analysis': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
             'Raster Processing': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
-            'Remote Sensing': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
+            'Remote Sensing': 'Command-line raster calculator using NumPy expressions on input bands (A, B, C, …). Ideal for scripted indices, masks, and change detection.',
             'Remote Sensing Classification': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
             'Suitability Analysis': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
             'Urban Growth Analysis': 'Raster algebra is expressed as a NumPy expression over input bands assigned to letters, so a difference of two files becomes something like A minus B. Multiple calc arguments generate multiband output, and options set the nodata value, output data type, format, and creation options. Inputs must share dimensions unless extent handling options are used. Because evaluation happens in NumPy, comparison and logical operators produce masks as easily as arithmetic produces indices.',
@@ -375,8 +438,9 @@ TOOL_INFO = {
     },
     'gdal_contour': {
         'source': 'GDAL',
-        'blurb': 'Contours are extracted from a raster band as lines or, with the polygonize option, as filled bands between levels. An interval sets regular spacing, fixed levels list explicit values, an exponential base supports logarithmic series, and attribute names store elevation or the minimum and maximum of each polygon band. Nodata can be declared so edges are not contoured. Output goes to any OGR-supported vector format.',
+        'blurb': 'gdal_contour is a GDAL contouring utility. It extracts isolines (or filled contour polygons) from a raster band with chosen intervals or levels. Expected output: a contour vector dataset.',
         'relations': {
+            'Cartography': 'GDAL utility that extracts contour lines—or filled contour polygons—from a raster band. Set a regular interval or fixed levels, name the elevation attributes, and write to any OGR vector format. Nodata handling stops contours from wrapping around empty cells.',
             'DEM': 'Contours are extracted from a raster band as lines or, with the polygonize option, as filled bands between levels. An interval sets regular spacing, fixed levels list explicit values, an exponential base supports logarithmic series, and attribute names store elevation or the minimum and maximum of each polygon band. Nodata can be declared so edges are not contoured. Output goes to any OGR-supported vector format.',
             'Raster Processing': 'Contours are extracted from a raster band as lines or, with the polygonize option, as filled bands between levels. An interval sets regular spacing, fixed levels list explicit values, an exponential base supports logarithmic series, and attribute names store elevation or the minimum and maximum of each polygon band. Nodata can be declared so edges are not contoured. Output goes to any OGR-supported vector format.',
             'Terrain Analysis': 'Contours are extracted from a raster band as lines or, with the polygonize option, as filled bands between levels. An interval sets regular spacing, fixed levels list explicit values, an exponential base supports logarithmic series, and attribute names store elevation or the minimum and maximum of each polygon band. Nodata can be declared so edges are not contoured. Output goes to any OGR-supported vector format.',
@@ -384,7 +448,7 @@ TOOL_INFO = {
     },
     'gdal_fillnodata': {
         'source': 'GDAL',
-        'blurb': 'Gaps in a raster are filled by interpolating from the valid pixels around each hole, using inverse distance weighting along the hole margins followed by optional smoothing iterations. A maximum search distance in pixels limits how far interpolation reaches, leaving larger voids untouched, and an explicit mask band can define what counts as missing. Filled values are estimates, so voids in elevation or index rasters should be documented rather than silently trusted.',
+        'blurb': 'gdal_fillnodata is a GDAL gap-filling utility. It interpolates into nodata holes from surrounding valid cells as cleanup before analysis. Expected output: a raster with filled gaps.',
         'relations': {
             'Environmental Assessment': 'Gaps in a raster are filled by interpolating from the valid pixels around each hole, using inverse distance weighting along the hole margins followed by optional smoothing iterations. A maximum search distance in pixels limits how far interpolation reaches, leaving larger voids untouched, and an explicit mask band can define what counts as missing. Filled values are estimates, so voids in elevation or index rasters should be documented rather than silently trusted.',
             'Raster Analysis': 'Gaps in a raster are filled by interpolating from the valid pixels around each hole, using inverse distance weighting along the hole margins followed by optional smoothing iterations. A maximum search distance in pixels limits how far interpolation reaches, leaving larger voids untouched, and an explicit mask band can define what counts as missing. Filled values are estimates, so voids in elevation or index rasters should be documented rather than silently trusted.',
@@ -393,14 +457,14 @@ TOOL_INFO = {
     },
     'gdal_grid': {
         'source': 'GDAL',
-        'blurb': 'Scattered point measurements from any OGR source are turned into a regular raster surface. Algorithm choices include inverse distance weighting, inverse distance to a nearest-neighbour set, nearest neighbour, linear triangulation, and moving averages, plus data metrics such as minimum, maximum, range, and count. Search radii, angle, smoothing, and power parameters tune each method, while output size, extent, and the attribute or Z value to interpolate are supplied separately.',
+        'blurb': 'gdal_grid is a GDAL interpolator. It grids scattered points to a raster using IDW, nearest, average, and related algorithms. Expected output: an interpolated raster surface.',
         'relations': {
             'Spatial Interpolation': 'Scattered point measurements from any OGR source are turned into a regular raster surface. Algorithm choices include inverse distance weighting, inverse distance to a nearest-neighbour set, nearest neighbour, linear triangulation, and moving averages, plus data metrics such as minimum, maximum, range, and count. Search radii, angle, smoothing, and power parameters tune each method, while output size, extent, and the attribute or Z value to interpolate are supplied separately.',
         },
     },
     'gdal_merge': {
         'source': 'GDAL',
-        'blurb': 'Several rasters are mosaicked into one output file, with later inputs painted over earlier ones where they overlap. Options set output resolution, extent, nodata handling, initialisation value, and output type, and a separate mode stacks each input as its own band instead of blending them spatially. All inputs must share a coordinate system, since no reprojection happens. For large mosaics a virtual raster plus warping is usually faster.',
+        'blurb': 'gdal_merge is a GDAL mosaic utility. It merges rasters into one file when a simple same-CRS mosaic is enough. Expected output: a single mosaicked raster.',
         'relations': {
             'GIS Files': 'Several rasters are mosaicked into one output file, with later inputs painted over earlier ones where they overlap. Options set output resolution, extent, nodata handling, initialisation value, and output type, and a separate mode stacks each input as its own band instead of blending them spatially. All inputs must share a coordinate system, since no reprojection happens. For large mosaics a virtual raster plus warping is usually faster.',
             'Raster': 'Several rasters are mosaicked into one output file, with later inputs painted over earlier ones where they overlap. Options set output resolution, extent, nodata handling, initialisation value, and output type, and a separate mode stacks each input as its own band instead of blending them spatially. All inputs must share a coordinate system, since no reprojection happens. For large mosaics a virtual raster plus warping is usually faster.',
@@ -409,7 +473,7 @@ TOOL_INFO = {
     },
     'gdal_polygonize': {
         'source': 'GDAL',
-        'blurb': 'Connected groups of pixels sharing the same value become vector polygons, with the pixel value written to an attribute named DN by default. A band can be selected, a mask restricts which pixels are considered, and eight-connectedness can replace the default four-connected neighbourhood. Continuous rasters produce an unusable explosion of tiny polygons, so classifying or reclassifying beforehand is essential; the result often needs a sieve or area filter.',
+        'blurb': 'gdal_polygonize is a GDAL raster-to-vector utility. It converts regions of equal cell value into polygons for GIS overlay work. Expected output: a polygon vector layer.',
         'relations': {
             'Raster Analysis': 'Connected groups of pixels sharing the same value become vector polygons, with the pixel value written to an attribute named DN by default. A band can be selected, a mask restricts which pixels are considered, and eight-connectedness can replace the default four-connected neighbourhood. Continuous rasters produce an unusable explosion of tiny polygons, so classifying or reclassifying beforehand is essential; the result often needs a sieve or area filter.',
             'Raster Processing': 'Connected groups of pixels sharing the same value become vector polygons, with the pixel value written to an attribute named DN by default. A band can be selected, a mask restricts which pixels are considered, and eight-connectedness can replace the default four-connected neighbourhood. Continuous rasters produce an unusable explosion of tiny polygons, so classifying or reclassifying beforehand is essential; the result often needs a sieve or area filter.',
@@ -417,7 +481,7 @@ TOOL_INFO = {
     },
     'gdal_proximity': {
         'source': 'GDAL',
-        'blurb': 'A distance raster is produced where every cell records how far it lies from the nearest target pixel. Targets are defined by a list of values, or by any non-zero pixel when no list is given, and distances are reported in georeferenced units or pixels. A maximum distance caps the computation, with cells beyond it taking a nodata or fixed value. Buffer zone modelling and cost surface preparation both draw on it.',
+        'blurb': 'gdal_proximity is a GDAL distance utility. It measures each cell’s distance to the nearest target cell for exposure and accessibility-style surfaces. Expected output: a proximity distance raster.',
         'relations': {
             'Environmental Assessment': 'A distance raster is produced where every cell records how far it lies from the nearest target pixel. Targets are defined by a list of values, or by any non-zero pixel when no list is given, and distances are reported in georeferenced units or pixels. A maximum distance caps the computation, with cells beyond it taking a nodata or fixed value. Buffer zone modelling and cost surface preparation both draw on it.',
             'Hazard Assessment': 'A distance raster is produced where every cell records how far it lies from the nearest target pixel. Targets are defined by a list of values, or by any non-zero pixel when no list is given, and distances are reported in georeferenced units or pixels. A maximum distance caps the computation, with cells beyond it taking a nodata or fixed value. Buffer zone modelling and cost surface preparation both draw on it.',
@@ -427,7 +491,7 @@ TOOL_INFO = {
     },
     'gdal_retile': {
         'source': 'GDAL',
-        'blurb': 'A large raster or a set of rasters is cut into regular tiles of a specified pixel size, written into a target directory. Optional pyramid levels create progressively coarser tile sets in subdirectories, and a CSV tile index can be emitted for cataloguing. Output format, data type, and creation options are configurable, and a source resampling method applies when building levels. Tiling makes serving and parallel processing of huge imagery practical.',
+        'blurb': 'gdal_retile is a GDAL tiling utility. It cuts rasters into tiles for web mapping or distributed processing. Expected output: a set of tiled raster files.',
         'relations': {
             'GIS Files': 'A large raster or a set of rasters is cut into regular tiles of a specified pixel size, written into a target directory. Optional pyramid levels create progressively coarser tile sets in subdirectories, and a CSV tile index can be emitted for cataloguing. Output format, data type, and creation options are configurable, and a source resampling method applies when building levels. Tiling makes serving and parallel processing of huge imagery practical.',
             'Scale': 'A large raster or a set of rasters is cut into regular tiles of a specified pixel size, written into a target directory. Optional pyramid levels create progressively coarser tile sets in subdirectories, and a CSV tile index can be emitted for cataloguing. Output format, data type, and creation options are configurable, and a source resampling method applies when building levels. Tiling makes serving and parallel processing of huge imagery practical.',
@@ -435,7 +499,7 @@ TOOL_INFO = {
     },
     'gdal_translate': {
         'source': 'GDAL',
-        'blurb': 'Rasters are converted between formats while optionally subsetting and adjusting them. A source window in pixels or a projected window crops the extent, band selection reorders or drops bands, output size or resolution resamples, and scaling maps input value ranges onto a new data type. Creation options control compression, tiling, and predictors, including COG output. Metadata, nodata, and colour tables can be set or stripped during the copy.',
+        'blurb': 'gdal_translate is a GDAL raster conversion utility. It changes format, bands, data type, and can write Cloud Optimized GeoTIFF efficiently. Expected output: a converted raster file.',
         'relations': {
             'Change Detection': 'Rasters are converted between formats while optionally subsetting and adjusting them. A source window in pixels or a projected window crops the extent, band selection reorders or drops bands, output size or resolution resamples, and scaling maps input value ranges onto a new data type. Creation options control compression, tiling, and predictors, including COG output. Metadata, nodata, and colour tables can be set or stripped during the copy.',
             'Data Conversion': 'Rasters are converted between formats while optionally subsetting and adjusting them. A source window in pixels or a projected window crops the extent, band selection reorders or drops bands, output size or resolution resamples, and scaling maps input value ranges onto a new data type. Creation options control compression, tiling, and predictors, including COG output. Metadata, nodata, and colour tables can be set or stripped during the copy.',
@@ -444,13 +508,13 @@ TOOL_INFO = {
             'Raster': 'Rasters are converted between formats while optionally subsetting and adjusting them. A source window in pixels or a projected window crops the extent, band selection reorders or drops bands, output size or resolution resamples, and scaling maps input value ranges onto a new data type. Creation options control compression, tiling, and predictors, including COG output. Metadata, nodata, and colour tables can be set or stripped during the copy.',
             'Raster Analysis': 'Rasters are converted between formats while optionally subsetting and adjusting them. A source window in pixels or a projected window crops the extent, band selection reorders or drops bands, output size or resolution resamples, and scaling maps input value ranges onto a new data type. Creation options control compression, tiling, and predictors, including COG output. Metadata, nodata, and colour tables can be set or stripped during the copy.',
             'Raster Processing': 'Rasters are converted between formats while optionally subsetting and adjusting them. A source window in pixels or a projected window crops the extent, band selection reorders or drops bands, output size or resolution resamples, and scaling maps input value ranges onto a new data type. Creation options control compression, tiling, and predictors, including COG output. Metadata, nodata, and colour tables can be set or stripped during the copy.',
-            'Remote Sensing': 'Rasters are converted between formats while optionally subsetting and adjusting them. A source window in pixels or a projected window crops the extent, band selection reorders or drops bands, output size or resolution resamples, and scaling maps input value ranges onto a new data type. Creation options control compression, tiling, and predictors, including COG output. Metadata, nodata, and colour tables can be set or stripped during the copy.',
+            'Remote Sensing': 'Converts raster formats, subsets bands, rescales data types, and can write COGs. Swiss-army converter for raster files.',
             'Temporal Data': 'Rasters are converted between formats while optionally subsetting and adjusting them. A source window in pixels or a projected window crops the extent, band selection reorders or drops bands, output size or resolution resamples, and scaling maps input value ranges onto a new data type. Creation options control compression, tiling, and predictors, including COG output. Metadata, nodata, and colour tables can be set or stripped during the copy.',
         },
     },
     'gdal_viewshed': {
         'source': 'GDAL',
-        'blurb': 'Visibility from a single observer is computed over a raster elevation band. Observer x and y coordinates, height above the surface, optional target height, and a maximum distance define the analysis, and a curvature coefficient accounts for earth curvature and atmospheric refraction. Output is a raster coding visible, invisible, and out-of-range cells with configurable values, or, in DEM and ground modes, the minimum height needed for visibility.',
+        'blurb': 'gdal_viewshed is a GDAL visibility utility. It computes DEM viewsheds from observer points for siting and line-of-sight studies. Expected output: a visibility raster.',
         'relations': {
             'DEM': 'Visibility from a single observer is computed over a raster elevation band. Observer x and y coordinates, height above the surface, optional target height, and a maximum distance define the analysis, and a curvature coefficient accounts for earth curvature and atmospheric refraction. Output is a raster coding visible, invisible, and out-of-range cells with configurable values, or, in DEM and ground modes, the minimum height needed for visibility.',
             'Terrain Analysis': 'Visibility from a single observer is computed over a raster elevation band. Observer x and y coordinates, height above the surface, optional target height, and a maximum distance define the analysis, and a curvature coefficient accounts for earth curvature and atmospheric refraction. Output is a raster coding visible, invisible, and out-of-range cells with configurable values, or, in DEM and ground modes, the minimum height needed for visibility.',
@@ -459,7 +523,7 @@ TOOL_INFO = {
     },
     'gdaladdo': {
         'source': 'GDAL',
-        'blurb': 'Overviews, the reduced-resolution pyramid levels that make large rasters draw quickly, are built by this utility. Levels are listed explicitly or chosen automatically, and the resampling method may be nearest, average, gauss, cubic, mode, or others suited to categorical or continuous data. Overviews are embedded in formats that support them or written to a sidecar .ovr file, with compression controlled by configuration options. A clean switch removes existing pyramids.',
+        'blurb': 'gdaladdo is a GDAL overview builder. It adds pyramid levels so rasters display faster at small scales without changing full resolution. Expected output: the raster file with internal/external overviews.',
         'relations': {
             'Precision': 'Overviews, the reduced-resolution pyramid levels that make large rasters draw quickly, are built by this utility. Levels are listed explicitly or chosen automatically, and the resampling method may be nearest, average, gauss, cubic, mode, or others suited to categorical or continuous data. Overviews are embedded in formats that support them or written to a sidecar .ovr file, with compression controlled by configuration options. A clean switch removes existing pyramids.',
             'Scale': 'Overviews, the reduced-resolution pyramid levels that make large rasters draw quickly, are built by this utility. Levels are listed explicitly or chosen automatically, and the resampling method may be nearest, average, gauss, cubic, mode, or others suited to categorical or continuous data. Overviews are embedded in formats that support them or written to a sidecar .ovr file, with compression controlled by configuration options. A clean switch removes existing pyramids.',
@@ -467,32 +531,34 @@ TOOL_INFO = {
     },
     'gdalbuildvrt': {
         'source': 'GDAL',
-        'blurb': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
+        'blurb': 'gdalbuildvrt is a GDAL virtual mosaic utility. It references many rasters as one virtual dataset without copying pixels, ideal for large mosaics or time stacks. Expected output: a .vrt virtual raster.',
         'relations': {
             'Change Detection': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
             'Data Conversion': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
             'GIS Files': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
             'Raster': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
             'Raster Processing': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
-            'Remote Sensing': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
+            'Remote Sensing': 'Builds a virtual mosaic (VRT) that references source rasters without copying pixels. Useful for large mosaics and multi-date stacks.',
             'Scale': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
+            'Space-Time Analysis': 'A VRT can reference multi-date rasters as a virtual time stack so you can explore change without rewriting pixels.',
             'Temporal Data': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
             'Urban Growth Analysis': 'A virtual raster is assembled as a small XML file that references its input datasets without copying any pixels. Inputs become a mosaic by default, or separate bands with the appropriate switch, and options control target resolution, extent, nodata handling, band selection, and whether differing projections are tolerated. A file list avoids command-line limits with thousands of inputs. The resulting .vrt behaves like an ordinary raster for reading, warping, or statistics.',
         },
     },
     'gdaldem aspect': {
         'source': 'GDAL',
-        'blurb': 'Aspect mode derives slope direction from an elevation band, returning degrees clockwise from north by default, with a trigonometric option switching to counterclockwise from east. Flat areas yield minus nine thousand nine hundred and ninety-nine unless the zero-for-flat option is set. Horn\'s method is used unless Zevenbergen-Thorne is requested. Since the value is circular, averaging aspect numerically is invalid; vector or class-based summaries are needed instead.',
+        'blurb': 'gdaldem aspect is a GDAL DEM derivative mode. It computes downhill-facing direction for solar, ecology, and snow applications. Expected output: an aspect raster (degrees).',
         'relations': {
-            'DEM': 'Aspect mode derives slope direction from an elevation band, returning degrees clockwise from north by default, with a trigonometric option switching to counterclockwise from east. Flat areas yield minus nine thousand nine hundred and ninety-nine unless the zero-for-flat option is set. Horn\'s method is used unless Zevenbergen-Thorne is requested. Since the value is circular, averaging aspect numerically is invalid; vector or class-based summaries are needed instead.',
-            'Hazard Assessment': 'Aspect mode derives slope direction from an elevation band, returning degrees clockwise from north by default, with a trigonometric option switching to counterclockwise from east. Flat areas yield minus nine thousand nine hundred and ninety-nine unless the zero-for-flat option is set. Horn\'s method is used unless Zevenbergen-Thorne is requested. Since the value is circular, averaging aspect numerically is invalid; vector or class-based summaries are needed instead.',
-            'Terrain Analysis': 'Aspect mode derives slope direction from an elevation band, returning degrees clockwise from north by default, with a trigonometric option switching to counterclockwise from east. Flat areas yield minus nine thousand nine hundred and ninety-nine unless the zero-for-flat option is set. Horn\'s method is used unless Zevenbergen-Thorne is requested. Since the value is circular, averaging aspect numerically is invalid; vector or class-based summaries are needed instead.',
+            'DEM': "Aspect mode derives slope direction from an elevation band, returning degrees clockwise from north by default, with a trigonometric option switching to counterclockwise from east. Flat areas yield minus nine thousand nine hundred and ninety-nine unless the zero-for-flat option is set. Horn's method is used unless Zevenbergen-Thorne is requested. Since the value is circular, averaging aspect numerically is invalid; vector or class-based summaries are needed instead.",
+            'Hazard Assessment': "Aspect mode derives slope direction from an elevation band, returning degrees clockwise from north by default, with a trigonometric option switching to counterclockwise from east. Flat areas yield minus nine thousand nine hundred and ninety-nine unless the zero-for-flat option is set. Horn's method is used unless Zevenbergen-Thorne is requested. Since the value is circular, averaging aspect numerically is invalid; vector or class-based summaries are needed instead.",
+            'Terrain Analysis': "Aspect mode derives slope direction from an elevation band, returning degrees clockwise from north by default, with a trigonometric option switching to counterclockwise from east. Flat areas yield minus nine thousand nine hundred and ninety-nine unless the zero-for-flat option is set. Horn's method is used unless Zevenbergen-Thorne is requested. Since the value is circular, averaging aspect numerically is invalid; vector or class-based summaries are needed instead.",
         },
     },
     'gdaldem hillshade': {
         'source': 'GDAL',
-        'blurb': 'Shaded relief is generated from an elevation band with configurable azimuth, altitude, vertical exaggeration, and horizontal scale, the latter correcting for elevation in metres against geographic coordinates. Combined, multidirectional, and Igor modes offer alternatives to a single light source, reducing the loss of detail on slopes facing away from the sun. Output is an eight-bit greyscale image intended for display beneath other layers rather than for measurement.',
+        'blurb': 'gdaldem hillshade is a GDAL DEM visualisation mode. It creates shaded relief so terrain form is easy to read on maps. Expected output: a hillshade raster.',
         'relations': {
+            'Cartography': 'Creates a shaded-relief raster from a DEM so terrain form is easy to see. Light azimuth and altitude settings change the look; often combined with contours or hypsometric tint.',
             'DEM': 'Shaded relief is generated from an elevation band with configurable azimuth, altitude, vertical exaggeration, and horizontal scale, the latter correcting for elevation in metres against geographic coordinates. Combined, multidirectional, and Igor modes offer alternatives to a single light source, reducing the loss of detail on slopes facing away from the sun. Output is an eight-bit greyscale image intended for display beneath other layers rather than for measurement.',
             'Hazard Assessment': 'Shaded relief is generated from an elevation band with configurable azimuth, altitude, vertical exaggeration, and horizontal scale, the latter correcting for elevation in metres against geographic coordinates. Combined, multidirectional, and Igor modes offer alternatives to a single light source, reducing the loss of detail on slopes facing away from the sun. Output is an eight-bit greyscale image intended for display beneath other layers rather than for measurement.',
             'Terrain Analysis': 'Shaded relief is generated from an elevation band with configurable azimuth, altitude, vertical exaggeration, and horizontal scale, the latter correcting for elevation in metres against geographic coordinates. Combined, multidirectional, and Igor modes offer alternatives to a single light source, reducing the loss of detail on slopes facing away from the sun. Output is an eight-bit greyscale image intended for display beneath other layers rather than for measurement.',
@@ -500,7 +566,7 @@ TOOL_INFO = {
     },
     'gdaldem roughness': {
         'source': 'GDAL',
-        'blurb': 'Roughness mode returns the largest difference in elevation between a cell and any of its eight neighbours, giving a simple measure of surface irregularity in the vertical units of the input. Smooth plains approach zero while cliffs and broken terrain produce large values. Because only the extreme difference is used, a single noisy pixel or interpolation artefact can dominate the result, so filtering or inspecting the DEM first is worthwhile.',
+        'blurb': 'gdaldem roughness is a GDAL DEM morphometric mode. It measures local elevation irregularity for landform characterisation. Expected output: a roughness raster.',
         'relations': {
             'DEM': 'Roughness mode returns the largest difference in elevation between a cell and any of its eight neighbours, giving a simple measure of surface irregularity in the vertical units of the input. Smooth plains approach zero while cliffs and broken terrain produce large values. Because only the extreme difference is used, a single noisy pixel or interpolation artefact can dominate the result, so filtering or inspecting the DEM first is worthwhile.',
             'Terrain Analysis': 'Roughness mode returns the largest difference in elevation between a cell and any of its eight neighbours, giving a simple measure of surface irregularity in the vertical units of the input. Smooth plains approach zero while cliffs and broken terrain produce large values. Because only the extreme difference is used, a single noisy pixel or interpolation artefact can dominate the result, so filtering or inspecting the DEM first is worthwhile.',
@@ -508,7 +574,7 @@ TOOL_INFO = {
     },
     'gdaldem slope': {
         'source': 'GDAL',
-        'blurb': 'Slope mode computes steepness from an elevation band, reporting degrees by default or percent rise when requested. A scale factor reconciles vertical and horizontal units, which is mandatory for elevation in metres stored in a geographic coordinate system, and the algorithm can be Horn or Zevenbergen-Thorne, the latter often preferred for smooth surfaces. Nodata cells propagate, and the computation reads a three by three neighbourhood around each pixel.',
+        'blurb': 'gdaldem slope is a GDAL DEM derivative mode. It computes steepness in degrees or percent for hazard and engineering analyses. Expected output: a slope raster.',
         'relations': {
             'DEM': 'Slope mode computes steepness from an elevation band, reporting degrees by default or percent rise when requested. A scale factor reconciles vertical and horizontal units, which is mandatory for elevation in metres stored in a geographic coordinate system, and the algorithm can be Horn or Zevenbergen-Thorne, the latter often preferred for smooth surfaces. Nodata cells propagate, and the computation reads a three by three neighbourhood around each pixel.',
             'Hazard Assessment': 'Slope mode computes steepness from an elevation band, reporting degrees by default or percent rise when requested. A scale factor reconciles vertical and horizontal units, which is mandatory for elevation in metres stored in a geographic coordinate system, and the algorithm can be Horn or Zevenbergen-Thorne, the latter often preferred for smooth surfaces. Nodata cells propagate, and the computation reads a three by three neighbourhood around each pixel.',
@@ -517,23 +583,23 @@ TOOL_INFO = {
     },
     'gdaldem TPI': {
         'source': 'GDAL',
-        'blurb': 'In this mode gdaldem outputs the Topographic Position Index, the difference between a cell\'s elevation and the mean of its eight neighbours. Ridges and local highs come out positive, valleys negative, and uniform slopes near zero. Computation uses a fixed three by three window, so the scale of landforms detected is dictated by raster resolution rather than a window parameter. Edge cells can be computed or left as nodata depending on the edge option.',
+        'blurb': 'gdaldem TPI is a GDAL Topographic Position Index mode. It shows whether cells sit above or below their neighbourhood mean (ridges vs valleys). Expected output: a TPI raster.',
         'relations': {
-            'DEM': 'In this mode gdaldem outputs the Topographic Position Index, the difference between a cell\'s elevation and the mean of its eight neighbours. Ridges and local highs come out positive, valleys negative, and uniform slopes near zero. Computation uses a fixed three by three window, so the scale of landforms detected is dictated by raster resolution rather than a window parameter. Edge cells can be computed or left as nodata depending on the edge option.',
-            'Terrain Analysis': 'In this mode gdaldem outputs the Topographic Position Index, the difference between a cell\'s elevation and the mean of its eight neighbours. Ridges and local highs come out positive, valleys negative, and uniform slopes near zero. Computation uses a fixed three by three window, so the scale of landforms detected is dictated by raster resolution rather than a window parameter. Edge cells can be computed or left as nodata depending on the edge option.',
+            'DEM': "In this mode gdaldem outputs the Topographic Position Index, the difference between a cell's elevation and the mean of its eight neighbours. Ridges and local highs come out positive, valleys negative, and uniform slopes near zero. Computation uses a fixed three by three window, so the scale of landforms detected is dictated by raster resolution rather than a window parameter. Edge cells can be computed or left as nodata depending on the edge option.",
+            'Terrain Analysis': "In this mode gdaldem outputs the Topographic Position Index, the difference between a cell's elevation and the mean of its eight neighbours. Ridges and local highs come out positive, valleys negative, and uniform slopes near zero. Computation uses a fixed three by three window, so the scale of landforms detected is dictated by raster resolution rather than a window parameter. Edge cells can be computed or left as nodata depending on the edge option.",
         },
     },
     'gdaldem TRI': {
         'source': 'GDAL',
-        'blurb': 'The Terrain Ruggedness Index mode reports local relief around each cell. Recent releases default to Riley\'s formulation, the square root of summed squared elevation differences to the eight neighbours, with Wilson\'s mean absolute difference available as an alternative, so the algorithm choice should be stated when reporting values. Results share the vertical units of the input and depend on cell size, making comparisons valid only at matching resolution.',
+        'blurb': 'gdaldem TRI is a GDAL Terrain Ruggedness Index mode. It summarises neighbourhood elevation variation as a ruggedness metric. Expected output: a TRI raster.',
         'relations': {
-            'DEM': 'The Terrain Ruggedness Index mode reports local relief around each cell. Recent releases default to Riley\'s formulation, the square root of summed squared elevation differences to the eight neighbours, with Wilson\'s mean absolute difference available as an alternative, so the algorithm choice should be stated when reporting values. Results share the vertical units of the input and depend on cell size, making comparisons valid only at matching resolution.',
-            'Terrain Analysis': 'The Terrain Ruggedness Index mode reports local relief around each cell. Recent releases default to Riley\'s formulation, the square root of summed squared elevation differences to the eight neighbours, with Wilson\'s mean absolute difference available as an alternative, so the algorithm choice should be stated when reporting values. Results share the vertical units of the input and depend on cell size, making comparisons valid only at matching resolution.',
+            'DEM': "The Terrain Ruggedness Index mode reports local relief around each cell. Recent releases default to Riley's formulation, the square root of summed squared elevation differences to the eight neighbours, with Wilson's mean absolute difference available as an alternative, so the algorithm choice should be stated when reporting values. Results share the vertical units of the input and depend on cell size, making comparisons valid only at matching resolution.",
+            'Terrain Analysis': "The Terrain Ruggedness Index mode reports local relief around each cell. Recent releases default to Riley's formulation, the square root of summed squared elevation differences to the eight neighbours, with Wilson's mean absolute difference available as an alternative, so the algorithm choice should be stated when reporting values. Results share the vertical units of the input and depend on cell size, making comparisons valid only at matching resolution.",
         },
     },
     'gdalinfo': {
         'source': 'GDAL',
-        'blurb': 'Metadata for a raster dataset is reported: driver, pixel dimensions, coordinate reference system in WKT or PROJ form, geotransform, corner coordinates in both projected and geographic terms, band data types, block sizes, nodata values, colour interpretation, and available overviews. Additional switches compute minimum and maximum, full statistics, or histograms, and a JSON option produces machine-readable output. Running it first answers most questions before any processing is attempted.',
+        'blurb': 'gdalinfo is a GDAL command-line utility. It prints raster metadata so you can verify size, CRS, bands, and nodata before processing. Expected output: a text report of dataset metadata.',
         'relations': {
             'CRS Validation': 'Metadata for a raster dataset is reported: driver, pixel dimensions, coordinate reference system in WKT or PROJ form, geotransform, corner coordinates in both projected and geographic terms, band data types, block sizes, nodata values, colour interpretation, and available overviews. Additional switches compute minimum and maximum, full statistics, or histograms, and a JSON option produces machine-readable output. Running it first answers most questions before any processing is attempted.',
             'Data Inspection': 'Metadata for a raster dataset is reported: driver, pixel dimensions, coordinate reference system in WKT or PROJ form, geotransform, corner coordinates in both projected and geographic terms, band data types, block sizes, nodata values, colour interpretation, and available overviews. Additional switches compute minimum and maximum, full statistics, or histograms, and a JSON option produces machine-readable output. Running it first answers most questions before any processing is attempted.',
@@ -547,7 +613,7 @@ TOOL_INFO = {
     },
     'gdalwarp': {
         'source': 'GDAL',
-        'blurb': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
+        'blurb': 'gdalwarp is a GDAL warping utility. It reprojects, resamples, clips, and mosaics rasters so layers share a common grid/CRS. Expected output: a warped/mosaicked raster.',
         'relations': {
             'CRS Management': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
             'CRS Validation': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
@@ -560,14 +626,14 @@ TOOL_INFO = {
             'Raster': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
             'Raster Analysis': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
             'Raster Processing': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
-            'Remote Sensing': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
+            'Remote Sensing': 'Reprojects, resamples, clips, and mosaics rasters in one utility. The usual tool when aligning imagery to a target CRS or grid.',
             'Urban Growth Analysis': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
             'Vertical CRS': 'Warping covers reprojection, resampling, mosaicking, and clipping in one utility. Source and target coordinate systems, target resolution or dimensions, output extent, and resampling method from nearest through bilinear, cubic, lanczos, average, and mode are all specified as options. A cutline vector can mask output, optionally cropping to its extent, and destination nodata governs edge fill. Multithreading and warp memory settings materially affect speed on large inputs.',
         },
     },
     'Generalize': {
         'source': 'QGIS Processing',
-        'blurb': 'Vertex counts in lines and polygons are reduced to simplify shape while keeping recognisable form. Algorithms range from Douglas-Peucker distance-based removal to smoothing and vertex reduction variants offered through the SAGA and GRASS providers. A tolerance controls how far simplified geometry may deviate from the original, expressed in layer units. Aggressive settings introduce topological problems such as self-intersections and gaps between formerly shared boundaries, so validity checking afterwards is wise.',
+        'blurb': 'Generalize is a QGIS/GRASS-style simplification tool exposed in Processing. It reduces shape detail while keeping recognisable form for small-scale maps. Expected output: generalised line/polygon geometries.',
         'relations': {
             'Precision': 'Vertex counts in lines and polygons are reduced to simplify shape while keeping recognisable form. Algorithms range from Douglas-Peucker distance-based removal to smoothing and vertex reduction variants offered through the SAGA and GRASS providers. A tolerance controls how far simplified geometry may deviate from the original, expressed in layer units. Aggressive settings introduce topological problems such as self-intersections and gaps between formerly shared boundaries, so validity checking afterwards is wise.',
             'Scale': 'Vertex counts in lines and polygons are reduced to simplify shape while keeping recognisable form. Algorithms range from Douglas-Peucker distance-based removal to smoothing and vertex reduction variants offered through the SAGA and GRASS providers. A tolerance controls how far simplified geometry may deviate from the original, expressed in layer units. Aggressive settings introduce topological problems such as self-intersections and gaps between formerly shared boundaries, so validity checking afterwards is wise.',
@@ -575,7 +641,7 @@ TOOL_INFO = {
     },
     'Generate points (pixel centroids) inside polygons': {
         'source': 'QGIS Processing',
-        'blurb': 'One point is created at the centre of every raster pixel whose centroid falls inside a polygon of the input vector layer. Inputs are a raster defining the grid and a polygon layer defining areas of interest; output points carry the polygon identifier. This offers a quick route from raster coverage to sampling locations, to per-zone cell counts, or to attaching pixel values through a subsequent raster sampling step.',
+        'blurb': 'This QGIS Processing tool creates sample points from raster pixels inside polygons. It places a point at each pixel centroid that falls inside a polygon, aligning samples to an image grid. Expected output: a point layer of pixel centres.',
         'relations': {
             'Scale': 'One point is created at the centre of every raster pixel whose centroid falls inside a polygon of the input vector layer. Inputs are a raster defining the grid and a polygon layer defining areas of interest; output points carry the polygon identifier. This offers a quick route from raster coverage to sampling locations, to per-zone cell counts, or to attaching pixel values through a subsequent raster sampling step.',
         },
@@ -588,40 +654,48 @@ TOOL_INFO = {
     },
     'geometry.is_valid (Shapely)': {
         'source': 'Shapely',
-        'blurb': 'Shapely exposes validity as an attribute on each geometry object, backed by the same GEOS predicate used across the ecosystem. A False result means operations like intersection or buffer may raise errors or produce nonsense, most often caused by self-intersecting polygon rings or holes crossing the shell. Pairing it with explain_validity pinpoints the problem, while make_valid returns a corrected geometry that may change type or shed zero-area slivers.',
+        'blurb': 'geometry.is_valid is a Shapely geometry property. It reports whether a geometry is topologically valid under GEOS rules before overlays or DB loads. Expected output: True/False (per geometry).',
         'relations': {
             'Geometry Validation': 'Shapely exposes validity as an attribute on each geometry object, backed by the same GEOS predicate used across the ecosystem. A False result means operations like intersection or buffer may raise errors or produce nonsense, most often caused by self-intersecting polygon rings or holes crossing the shell. Pairing it with explain_validity pinpoints the problem, while make_valid returns a corrected geometry that may change type or shed zero-area slivers.',
         },
     },
+    'GeoNetwork': {
+        'source': 'OSGeo / GeoNetwork',
+        'blurb': 'GeoNetwork is an OSGeo catalogue application. It publishes and searches ISO-style geospatial metadata as the discovery face of an SDI. Expected output: searchable catalogue records linking to data/services.',
+        'relations': {
+            'SDI / Catalogs': 'GeoNetwork is a catalogue application for managing spatially referenced resources via standardised metadata. It supports ISO 19115/19139 and related schemas, CSW harvesting, and map previews. Organisations use it as the discovery layer of a spatial data infrastructure that points users to download or service endpoints.',
+            'Standards': 'GeoNetwork is a catalogue application for managing spatially referenced resources via standardised metadata. It supports ISO 19115/19139 and related schemas, CSW harvesting, and map previews. Organisations use it as the discovery layer of a spatial data infrastructure that points users to download or service endpoints.',
+        },
+    },
     'GeoPandas': {
         'source': 'Python geospatial stack',
-        'blurb': 'GeoPandas extends pandas with a geometry column so vector data behaves like a dataframe. Reading and writing go through Fiona or Pyogrio, geometry operations come from Shapely, and reprojection uses PyProj, giving buffer, overlay, dissolve, and spatial join in a few lines. Spatial indexing accelerates sjoin and sjoin_nearest, and plotting hooks into Matplotlib. CRS handling stays explicit, keeping assignment of a coordinate system distinct from transformation between systems.',
+        'blurb': 'GeoPandas is a Python library that adds a geometry column to pandas. It makes vector GIS operations feel like dataframe analysis with overlays, joins, and CRS tools. Expected output: GeoDataFrames and exported GIS files/tables.',
         'relations': {
             'Geospatial Libraries': 'GeoPandas extends pandas with a geometry column so vector data behaves like a dataframe. Reading and writing go through Fiona or Pyogrio, geometry operations come from Shapely, and reprojection uses PyProj, giving buffer, overlay, dissolve, and spatial join in a few lines. Spatial indexing accelerates sjoin and sjoin_nearest, and plotting hooks into Matplotlib. CRS handling stays explicit, keeping assignment of a coordinate system distinct from transformation between systems.',
         },
     },
     'geopandas.overlay()': {
         'source': 'GeoPandas',
-        'blurb': 'Set-theoretic overlays between two GeoDataFrames are performed here, with how selecting intersection, union, identity, symmetric_difference, or difference. Attributes from both frames survive according to the chosen operation, and keep_geom_type discards fragments of lower dimension such as stray lines from polygon overlay. Both inputs must share a coordinate reference system, and invalid geometries should be repaired beforehand, since GEOS failures otherwise surface as opaque exceptions.',
+        'blurb': 'geopandas.overlay() is a GeoPandas overlay API. It runs intersection/union/difference/identity/symmetric_difference between polygon layers in Python. Expected output: an overlaid GeoDataFrame.',
         'relations': {
             'Overlay': 'Set-theoretic overlays between two GeoDataFrames are performed here, with how selecting intersection, union, identity, symmetric_difference, or difference. Attributes from both frames survive according to the chosen operation, and keep_geom_type discards fragments of lower dimension such as stray lines from polygon overlay. Both inputs must share a coordinate reference system, and invalid geometries should be repaired beforehand, since GEOS failures otherwise surface as opaque exceptions.',
         },
     },
     'geopandas.read_file()': {
         'source': 'GeoPandas',
-        'blurb': 'Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file\'s coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.',
+        'blurb': 'geopandas.read_file() is a GeoPandas I/O function. It loads vector files (GeoPackage, Shapefile, GeoJSON, …) into a GeoDataFrame via OGR. Expected output: a GeoDataFrame in memory.',
         'relations': {
-            'Data Inspection': 'Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file\'s coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.',
-            'Metadata': 'Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file\'s coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.',
-            'Metadata Validation': 'Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file\'s coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.',
-            'Schema Validation': 'Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file\'s coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.',
-            'Temporal Data': 'Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file\'s coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.',
-            'Vector': 'Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file\'s coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.',
+            'Data Inspection': "Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file's coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.",
+            'Metadata': "Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file's coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.",
+            'Metadata Validation': "Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file's coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.",
+            'Schema Validation': "Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file's coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.",
+            'Temporal Data': "Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file's coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.",
+            'Vector': "Vector data is loaded into a GeoDataFrame through Pyogrio or Fiona, covering any format their OGR build supports. A layer name or index selects from multi-layer sources, while bbox and mask arguments push spatial filtering down to the driver, and rows, columns, or a where clause limit what is read. The file's coordinate reference system populates the crs attribute, and missing or incorrect CRS metadata surfaces immediately as None.",
         },
     },
     'geopandas.read_postgis()': {
         'source': 'GeoPandas',
-        'blurb': 'A SQL query is executed against PostGIS and the result returned as a GeoDataFrame. The geometry column name is supplied through geom_col, a connection comes from SQLAlchemy or psycopg, and crs can be stated explicitly when the query strips SRID information. Because arbitrary SQL is allowed, joins, filters, and spatial predicates can run in the database where indexes live, reducing the volume transferred into Python.',
+        'blurb': 'geopandas.read_postgis() is a GeoPandas database reader. It runs SQL against PostGIS and returns geometries as a GeoDataFrame for Python analysis. Expected output: a GeoDataFrame from the query.',
         'relations': {
             'Data Inspection': 'A SQL query is executed against PostGIS and the result returned as a GeoDataFrame. The geometry column name is supplied through geom_col, a connection comes from SQLAlchemy or psycopg, and crs can be stated explicitly when the query strips SRID information. Because arbitrary SQL is allowed, joins, filters, and spatial predicates can run in the database where indexes live, reducing the volume transferred into Python.',
             'Database Processing': 'A SQL query is executed against PostGIS and the result returned as a GeoDataFrame. The geometry column name is supplied through geom_col, a connection comes from SQLAlchemy or psycopg, and crs can be stated explicitly when the query strips SRID information. Because arbitrary SQL is allowed, joins, filters, and spatial predicates can run in the database where indexes live, reducing the volume transferred into Python.',
@@ -631,7 +705,7 @@ TOOL_INFO = {
     },
     'geopandas.set_crs()': {
         'source': 'GeoPandas',
-        'blurb': 'A coordinate reference system is attached to a GeoDataFrame whose crs is missing, describing what the existing coordinates already mean. No coordinate values change, so this is metadata assignment rather than transformation, and to_crs must be used when different coordinates are wanted. Overwriting a CRS that is already set requires allow_override, a guard against accidental mislabelling. Choosing the wrong code here corrupts every later measurement and reprojection.',
+        'blurb': 'geopandas.set_crs() is a GeoPandas CRS tagging method. It assigns CRS metadata without transforming coordinates when the tag was missing. Expected output: the same coordinates with CRS set.',
         'relations': {
             'CRS Management': 'A coordinate reference system is attached to a GeoDataFrame whose crs is missing, describing what the existing coordinates already mean. No coordinate values change, so this is metadata assignment rather than transformation, and to_crs must be used when different coordinates are wanted. Overwriting a CRS that is already set requires allow_override, a guard against accidental mislabelling. Choosing the wrong code here corrupts every later measurement and reprojection.',
             'CRS Validation': 'A coordinate reference system is attached to a GeoDataFrame whose crs is missing, describing what the existing coordinates already mean. No coordinate values change, so this is metadata assignment rather than transformation, and to_crs must be used when different coordinates are wanted. Overwriting a CRS that is already set requires allow_override, a guard against accidental mislabelling. Choosing the wrong code here corrupts every later measurement and reprojection.',
@@ -640,16 +714,16 @@ TOOL_INFO = {
     },
     'geopandas.sjoin()': {
         'source': 'GeoPandas',
-        'blurb': 'Rows from two GeoDataFrames are joined according to a spatial predicate, typically intersects, within, or contains. The how argument selects left, right, or inner behaviour, determining whether unmatched records survive, and matched rows gain the other frame\'s attributes plus its index. Both frames must share a CRS, and a spatial index built through Shapely keeps large joins fast. One-to-many relationships duplicate left rows, changing counts.',
+        'blurb': 'geopandas.sjoin() is a GeoPandas spatial join. It joins two GeoDataFrames by predicates such as intersects or within to transfer attributes by location. Expected output: a joined GeoDataFrame.',
         'relations': {
-            'Containment': 'Rows from two GeoDataFrames are joined according to a spatial predicate, typically intersects, within, or contains. The how argument selects left, right, or inner behaviour, determining whether unmatched records survive, and matched rows gain the other frame\'s attributes plus its index. Both frames must share a CRS, and a spatial index built through Shapely keeps large joins fast. One-to-many relationships duplicate left rows, changing counts.',
-            'Demographic Enrichment': 'Rows from two GeoDataFrames are joined according to a spatial predicate, typically intersects, within, or contains. The how argument selects left, right, or inner behaviour, determining whether unmatched records survive, and matched rows gain the other frame\'s attributes plus its index. Both frames must share a CRS, and a spatial index built through Shapely keeps large joins fast. One-to-many relationships duplicate left rows, changing counts.',
-            'Hex Grid': 'Rows from two GeoDataFrames are joined according to a spatial predicate, typically intersects, within, or contains. The how argument selects left, right, or inner behaviour, determining whether unmatched records survive, and matched rows gain the other frame\'s attributes plus its index. Both frames must share a CRS, and a spatial index built through Shapely keeps large joins fast. One-to-many relationships duplicate left rows, changing counts.',
+            'Containment': "Rows from two GeoDataFrames are joined according to a spatial predicate, typically intersects, within, or contains. The how argument selects left, right, or inner behaviour, determining whether unmatched records survive, and matched rows gain the other frame's attributes plus its index. Both frames must share a CRS, and a spatial index built through Shapely keeps large joins fast. One-to-many relationships duplicate left rows, changing counts.",
+            'Demographic Enrichment': "Rows from two GeoDataFrames are joined according to a spatial predicate, typically intersects, within, or contains. The how argument selects left, right, or inner behaviour, determining whether unmatched records survive, and matched rows gain the other frame's attributes plus its index. Both frames must share a CRS, and a spatial index built through Shapely keeps large joins fast. One-to-many relationships duplicate left rows, changing counts.",
+            'Hex Grid': "Rows from two GeoDataFrames are joined according to a spatial predicate, typically intersects, within, or contains. The how argument selects left, right, or inner behaviour, determining whether unmatched records survive, and matched rows gain the other frame's attributes plus its index. Both frames must share a CRS, and a spatial index built through Shapely keeps large joins fast. One-to-many relationships duplicate left rows, changing counts.",
         },
     },
     'geopandas.sjoin_nearest()': {
         'source': 'GeoPandas',
-        'blurb': 'Nearest-feature joining pairs each geometry with the closest one in another frame rather than requiring overlap. A max_distance bound restricts matching, distance_col writes the measured separation into the output, and exclusive prevents self-matching when joining a frame to itself. Since distances follow CRS units, a projected system is needed for metre-based thresholds. Ties can yield multiple matches for one input row, so duplicates deserve checking.',
+        'blurb': 'geopandas.sjoin_nearest() is a GeoPandas nearest join. It matches each geometry to the closest feature in another frame, optionally with a max distance. Expected output: a GeoDataFrame with nearest attributes/distance.',
         'relations': {
             'Demographic Enrichment': 'Nearest-feature joining pairs each geometry with the closest one in another frame rather than requiring overlap. A max_distance bound restricts matching, distance_col writes the measured separation into the output, and exclusive prevents self-matching when joining a frame to itself. Since distances follow CRS units, a projected system is needed for metre-based thresholds. Ties can yield multiple matches for one input row, so duplicates deserve checking.',
             'Distance': 'Nearest-feature joining pairs each geometry with the closest one in another frame rather than requiring overlap. A max_distance bound restricts matching, distance_col writes the measured separation into the output, and exclusive prevents self-matching when joining a frame to itself. Since distances follow CRS units, a projected system is needed for metre-based thresholds. Ties can yield multiple matches for one input row, so duplicates deserve checking.',
@@ -657,7 +731,7 @@ TOOL_INFO = {
     },
     'geopandas.to_crs()': {
         'source': 'GeoPandas',
-        'blurb': 'Geometries are transformed into a target coordinate reference system given as a CRS object, EPSG code, or authority string, with PROJ applying the necessary datum shift. The frame must already carry a valid crs, since the source definition drives the pipeline; without one, set_crs comes first. Choosing an appropriate projected system before computing area, length, or buffers is what makes those measurements defensible over regional extents.',
+        'blurb': 'geopandas.to_crs() is a GeoPandas reprojection method. It transforms geometries to a target CRS so distance/area work is valid. Expected output: a reprojected GeoDataFrame.',
         'relations': {
             'CRS Management': 'Geometries are transformed into a target coordinate reference system given as a CRS object, EPSG code, or authority string, with PROJ applying the necessary datum shift. The frame must already carry a valid crs, since the source definition drives the pipeline; without one, set_crs comes first. Choosing an appropriate projected system before computing area, length, or buffers is what makes those measurements defensible over regional extents.',
             'CRS Validation': 'Geometries are transformed into a target coordinate reference system given as a CRS object, EPSG code, or authority string, with PROJ applying the necessary datum shift. The frame must already carry a valid crs, since the source definition drives the pipeline; without one, set_crs comes first. Choosing an appropriate projected system before computing area, length, or buffers is what makes those measurements defensible over regional extents.',
@@ -668,7 +742,7 @@ TOOL_INFO = {
     },
     'geopandas.to_file()': {
         'source': 'GeoPandas',
-        'blurb': 'A GeoDataFrame is written to disk through OGR, with the driver inferred from the file extension or stated explicitly. GeoPackage handles long field names, multiple layers, and mixed types comfortably, whereas Shapefile truncates field names to ten characters, limits field types, and splits into several sidecar files. A layer argument names the target table and mode allows appending. The active CRS is recorded in the output automatically.',
+        'blurb': 'geopandas.to_file() is a GeoPandas writer. It exports a GeoDataFrame to common vector formats through OGR. Expected output: a GIS file on disk.',
         'relations': {
             'Data Conversion': 'A GeoDataFrame is written to disk through OGR, with the driver inferred from the file extension or stated explicitly. GeoPackage handles long field names, multiple layers, and mixed types comfortably, whereas Shapefile truncates field names to ten characters, limits field types, and splits into several sidecar files. A layer argument names the target table and mode allows appending. The active CRS is recorded in the output automatically.',
             'GIS Files': 'A GeoDataFrame is written to disk through OGR, with the driver inferred from the file extension or stated explicitly. GeoPackage handles long field names, multiple layers, and mixed types comfortably, whereas Shapefile truncates field names to ten characters, limits field types, and splits into several sidecar files. A layer argument names the target table and mode allows appending. The active CRS is recorded in the output automatically.',
@@ -678,7 +752,7 @@ TOOL_INFO = {
     },
     'geopandas.to_parquet()': {
         'source': 'GeoPandas',
-        'blurb': 'Vector data is saved as GeoParquet, embedding geometry column metadata and the coordinate reference system alongside columnar values. Compression codec, row group size, index handling, and schema version are configurable, and geometry is encoded as WKB by default. Reading back with read_parquet restores geometries and CRS without a translation layer. Column pruning and predicate pushdown make the format markedly faster than GeoJSON or Shapefile for large tables.',
+        'blurb': 'geopandas.to_parquet() is a GeoPandas writer for GeoParquet. It stores vectors in columnar Parquet with geometry/CRS metadata for analytics and cloud use. Expected output: a GeoParquet file.',
         'relations': {
             'Data Conversion': 'Vector data is saved as GeoParquet, embedding geometry column metadata and the coordinate reference system alongside columnar values. Compression codec, row group size, index handling, and schema version are configurable, and geometry is encoded as WKB by default. Reading back with read_parquet restores geometries and CRS without a translation layer. Column pruning and predicate pushdown make the format markedly faster than GeoJSON or Shapefile for large tables.',
             'GIS Files': 'Vector data is saved as GeoParquet, embedding geometry column metadata and the coordinate reference system alongside columnar values. Compression codec, row group size, index handling, and schema version are configurable, and geometry is encoded as WKB by default. Reading back with read_parquet restores geometries and CRS without a translation layer. Column pruning and predicate pushdown make the format markedly faster than GeoJSON or Shapefile for large tables.',
@@ -688,64 +762,108 @@ TOOL_INFO = {
     },
     'geopandas.to_postgis()': {
         'source': 'GeoPandas',
-        'blurb': 'A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame\'s SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.',
+        'blurb': 'geopandas.to_postgis() is a GeoPandas database writer. It loads a GeoDataFrame into a PostGIS table over SQLAlchemy. Expected output: a PostGIS table.',
         'relations': {
-            'Data Conversion': 'A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame\'s SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.',
-            'Database Processing': 'A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame\'s SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.',
-            'Tables': 'A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame\'s SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.',
-            'Vector': 'A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame\'s SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.',
+            'Data Conversion': "A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame's SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.",
+            'Database Processing': "A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame's SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.",
+            'Tables': "A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame's SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.",
+            'Vector': "A GeoDataFrame is written into a PostGIS table over a SQLAlchemy connection. The if_exists argument chooses between failing, replacing, or appending, index controls whether the dataframe index becomes a column, dtype lets specific column types be forced, and chunksize batches large inserts. Geometry is stored with the frame's SRID, so a correct CRS must be set beforehand. Creating a spatial index afterwards is normally necessary for query performance.",
         },
     },
     'GeoParquet': {
         'source': 'Open geospatial format',
-        'blurb': 'GeoParquet stores vector features in Apache Parquet, adding standardised metadata that records geometry columns, encoding, and coordinate reference system. Columnar layout with compression and predicate pushdown makes large tables far quicker to scan than row-oriented formats, and files behave well on object storage. Geometry is normally encoded as WKB, with optional bounding-box columns aiding spatial filtering. GDAL, GeoPandas, DuckDB, and Sedona can all read and write the format.',
+        'blurb': 'GeoParquet is a Parquet-based vector format with geometry/CRS metadata. It supports fast columnar analytics and cloud data-lake workflows for features. Expected output: GeoParquet files queryable by analytics engines.',
         'relations': {
             'Cloud': 'GeoParquet stores vector features in Apache Parquet, adding standardised metadata that records geometry columns, encoding, and coordinate reference system. Columnar layout with compression and predicate pushdown makes large tables far quicker to scan than row-oriented formats, and files behave well on object storage. Geometry is normally encoded as WKB, with optional bounding-box columns aiding spatial filtering. GDAL, GeoPandas, DuckDB, and Sedona can all read and write the format.',
+            'Space-Time Analysis': 'GeoParquet efficiently stores large event or track tables with time fields for filtering spatiotemporal subsets.',
             'Temporal Data': 'GeoParquet stores vector features in Apache Parquet, adding standardised metadata that records geometry columns, encoding, and coordinate reference system. Columnar layout with compression and predicate pushdown makes large tables far quicker to scan than row-oriented formats, and files behave well on object storage. Geometry is normally encoded as WKB, with optional bounding-box columns aiding spatial filtering. GDAL, GeoPandas, DuckDB, and Sedona can all read and write the format.',
+        },
+    },
+    'Georeferencer': {
+        'source': 'QGIS',
+        'blurb': 'Georeferencer is a QGIS tool for registering images to a map CRS. It uses ground control points and a chosen transformation so scanned maps or unreferenced imagery align to real coordinates. Expected output: a georeferenced raster (with GCPs/world file) plus residual diagnostics.',
+        'relations': {
+            'Data Acquisition': 'The QGIS Georeferencer aligns an unreferenced image or scanned map to a coordinate system using ground control points. Users pick image pixels and matching map coordinates, choose a transformation (e.g. polynomial, thin-plate spline), and write a georeferenced raster with GCPs or a world file. Residual error reports guide whether more points or a different model is needed.',
         },
     },
     'GeoServer': {
         'source': 'OSGeo',
-        'blurb': 'GeoServer publishes geospatial data as standards-based web services including WMS, WMTS, WFS, and WCS, drawing on sources such as PostGIS, Shapefile, GeoTIFF, and image mosaics. Styling uses SLD or CSS extensions, while layer groups, tile caching through GeoWebCache, and security rules are configured through a web administration interface or REST API. Java deployment sits behind a servlet container. Organisations needing interoperable, catalogued services choose it over a single bundled map.',
+        'blurb': 'GeoServer is an OSGeo Java map server. It publishes PostGIS/files as WMS/WMTS/WFS/WCS for interoperable web access. Expected output: OGC web services and rendered map images/features.',
         'relations': {
             'APIs': 'GeoServer publishes geospatial data as standards-based web services including WMS, WMTS, WFS, and WCS, drawing on sources such as PostGIS, Shapefile, GeoTIFF, and image mosaics. Styling uses SLD or CSS extensions, while layer groups, tile caching through GeoWebCache, and security rules are configured through a web administration interface or REST API. Java deployment sits behind a servlet container. Organisations needing interoperable, catalogued services choose it over a single bundled map.',
             'Dashboards': 'GeoServer publishes geospatial data as standards-based web services including WMS, WMTS, WFS, and WCS, drawing on sources such as PostGIS, Shapefile, GeoTIFF, and image mosaics. Styling uses SLD or CSS extensions, while layer groups, tile caching through GeoWebCache, and security rules are configured through a web administration interface or REST API. Java deployment sits behind a servlet container. Organisations needing interoperable, catalogued services choose it over a single bundled map.',
             'Web Mapping': 'GeoServer publishes geospatial data as standards-based web services including WMS, WMTS, WFS, and WCS, drawing on sources such as PostGIS, Shapefile, GeoTIFF, and image mosaics. Styling uses SLD or CSS extensions, while layer groups, tile caching through GeoWebCache, and security rules are configured through a web administration interface or REST API. Java deployment sits behind a servlet container. Organisations needing interoperable, catalogued services choose it over a single bundled map.',
         },
     },
+    'GeoSPARQL': {
+        'source': 'OGC',
+        'blurb': 'GeoSPARQL is an OGC standard extending SPARQL/RDF with geometry and spatial filters. It enables semantic queries that also use intersects/within-style tests. Expected output: SPARQL result sets over spatial RDF data.',
+        'relations': {
+            'Knowledge Graph': 'GeoSPARQL is an OGC standard that extends SPARQL and RDF with a geospatial vocabulary, geometry literals, and spatial filter functions. Queries can ask which features intersect a region while also traversing semantic links in a knowledge graph. Triple stores that implement the standard become spatially aware linked-data engines.',
+        },
+    },
+    'Google Colab': {
+        'source': 'Google',
+        'blurb': 'Google Colab is Google’s browser-hosted Jupyter environment. It provides free/paid runtimes (optional GPU) for teaching and prototyping geospatial Python. Expected output: executed notebooks and saved artifacts (e.g., to Drive).',
+        'relations': {
+            'Notebooks': 'Google Colaboratory hosts free or paid Jupyter notebooks in the browser with optional GPU/TPU runtimes. Geospatial stacks such as GeoPandas, Rasterio, and Earth Engine Python APIs are commonly installed in a session for teaching and prototyping. Files can mount Drive or cloud storage, though session lifetime and dependency installs must be planned.',
+        },
+    },
+    'Google Earth Engine': {
+        'source': 'Google',
+        'blurb': 'Google Earth Engine is Google’s planetary EO cloud platform. It runs parallel JS/Python analysis on a huge imagery catalogue without hosting the archive locally. Expected output: computed images/tables exported to Drive/Cloud Storage.',
+        'relations': {
+            'Cloud': "Google Earth Engine is a cloud platform that pairs a multi-petabyte catalogue of Earth observation data with parallel JavaScript and Python APIs. Users compose image collections, reducers, and classifiers that run on Google's servers and export results to Drive or Cloud Storage. It is widely used for planetary-scale remote sensing without local DEM/imagery archives.",
+        },
+    },
     'Google Geocoding API': {
         'source': 'Google Maps Platform',
-        'blurb': 'Google\'s geocoding endpoint converts addresses into coordinates and, in reverse, coordinates into formatted addresses. Requests are HTTP calls carrying an API key; responses return formatted address, address components, place identifier, geometry with location type, and a viewport. Component filtering, region biasing, and bounds narrow the search, while status codes distinguish zero results from quota or key problems. Terms of service restrict caching and often require display alongside a Google map.',
+        'blurb': 'Google Geocoding API is Google’s address geocoding web service. It converts addresses to coordinates and reverse-geocodes points under Google’s key and terms. Expected output: JSON geocoding results with locations.',
         'relations': {
-            'APIs': 'Google\'s geocoding endpoint converts addresses into coordinates and, in reverse, coordinates into formatted addresses. Requests are HTTP calls carrying an API key; responses return formatted address, address components, place identifier, geometry with location type, and a viewport. Component filtering, region biasing, and bounds narrow the search, while status codes distinguish zero results from quota or key problems. Terms of service restrict caching and often require display alongside a Google map.',
-            'Geocoding': 'Google\'s geocoding endpoint converts addresses into coordinates and, in reverse, coordinates into formatted addresses. Requests are HTTP calls carrying an API key; responses return formatted address, address components, place identifier, geometry with location type, and a viewport. Component filtering, region biasing, and bounds narrow the search, while status codes distinguish zero results from quota or key problems. Terms of service restrict caching and often require display alongside a Google map.',
+            'APIs': "Google's geocoding endpoint converts addresses into coordinates and, in reverse, coordinates into formatted addresses. Requests are HTTP calls carrying an API key; responses return formatted address, address components, place identifier, geometry with location type, and a viewport. Component filtering, region biasing, and bounds narrow the search, while status codes distinguish zero results from quota or key problems. Terms of service restrict caching and often require display alongside a Google map.",
+            'Geocoding': "Google's geocoding endpoint converts addresses into coordinates and, in reverse, coordinates into formatted addresses. Requests are HTTP calls carrying an API key; responses return formatted address, address components, place identifier, geometry with location type, and a viewport. Component filtering, region biasing, and bounds narrow the search, while status codes distinguish zero results from quota or key problems. Terms of service restrict caching and often require display alongside a Google map.",
         },
     },
     'Google Maps': {
         'source': 'Google Maps Platform',
-        'blurb': 'The Google Maps platform bundles map tiles, geocoding, directions, distance matrix, places, and elevation services behind a shared key and quota system. JavaScript, mobile, and web service interfaces cover interactive display and server-side queries alike. Coverage, routing quality, and place data are strong, which explains heavy commercial adoption. Costs scale per request and licence terms limit storing or redisplaying results away from Google maps, so open alternatives often win for bulk processing.',
+        'blurb': 'Google Maps is Google’s mapping platform. It provides basemap tiles and related location APIs under Google keys/quotas. Expected output: map tiles and API location responses.',
         'relations': {
             'Basemap': 'The Google Maps platform bundles map tiles, geocoding, directions, distance matrix, places, and elevation services behind a shared key and quota system. JavaScript, mobile, and web service interfaces cover interactive display and server-side queries alike. Coverage, routing quality, and place data are strong, which explains heavy commercial adoption. Costs scale per request and licence terms limit storing or redisplaying results away from Google maps, so open alternatives often win for bulk processing.',
         },
     },
     'Government Open Data APIs': {
         'source': 'Public agencies',
-        'blurb': 'National, state, and municipal agencies expose authoritative datasets through catalogues and APIs built on platforms such as CKAN, Socrata, ArcGIS Hub, and OGC API endpoints. Typical holdings include cadastral parcels, administrative boundaries, addresses, transport networks, census statistics, and environmental monitoring. Metadata records document lineage, currency, and licensing, which matters whenever results must be defensible. Access patterns range from bulk download to paged queries, and update frequency differs sharply between agencies.',
+        'blurb': 'Government Open Data APIs are public-sector catalogue/API endpoints (CKAN, ArcGIS Hub, OGC API, etc.). They publish authoritative boundaries and thematic open data for reuse. Expected output: downloadable datasets or API feature responses.',
         'relations': {
             'Basemap': 'National, state, and municipal agencies expose authoritative datasets through catalogues and APIs built on platforms such as CKAN, Socrata, ArcGIS Hub, and OGC API endpoints. Typical holdings include cadastral parcels, administrative boundaries, addresses, transport networks, census statistics, and environmental monitoring. Metadata records document lineage, currency, and licensing, which matters whenever results must be defensible. Access patterns range from bulk download to paged queries, and update frequency differs sharply between agencies.',
         },
     },
+    'GPSBabel': {
+        'source': 'GPSBabel project',
+        'blurb': 'GPSBabel is an open GNSS format converter. It converts waypoints/tracks/routes among many device and GIS formats and can filter tracks. Expected output: converted GPS files (e.g., GPX/KML).',
+        'relations': {
+            'Data Acquisition': 'GPSBabel converts waypoints, tracks, and routes among dozens of GNSS and GIS formats, including GPX, KML, and device-specific dumps. Filters can simplify tracks, remove duplicates, or reproject as part of conversion. It is a practical bridge between handheld receivers, phone exports, and desktop GIS layers.',
+        },
+    },
+    'graduated renderer': {
+        'source': 'QGIS',
+        'blurb': 'A graduated renderer is a QGIS thematic mapping mode. It classifies a numeric field into ranges and colours (or sizes) each class for choropleth-style maps. Expected output: a classified thematic map appearance with a legend.',
+        'relations': {
+            'Cartography': 'QGIS renderer that classifies a numeric field into ranges and colours (or sizes) each class—classic choropleth maps. Classification mode (quantile, natural breaks, equal interval, etc.) changes the story the map tells.',
+        },
+    },
     'HDBSCAN': {
         'source': 'hdbscan / scikit-learn-contrib',
-        'blurb': 'HDBSCAN builds on DBSCAN by turning the density problem into a hierarchy and extracting the most stable clusters from it. Instead of a fixed distance threshold, the leading parameter is minimum cluster size, with optional minimum samples controlling conservatism, so clusters of differing density can be recovered together. Points in sparse regions are labelled noise, and membership probabilities express confidence. Implementations ship in the hdbscan package and in recent scikit-learn releases.',
+        'blurb': 'HDBSCAN is a hierarchical density-clustering library/algorithm. It finds stable clusters without fixing K and can label noise when density varies. Expected output: cluster labels (and probabilities/noise flags).',
         'relations': {
             'Clustering': 'HDBSCAN builds on DBSCAN by turning the density problem into a hierarchy and extracting the most stable clusters from it. Instead of a fixed distance threshold, the leading parameter is minimum cluster size, with optional minimum samples controlling conservatism, so clusters of differing density can be recovered together. Points in sparse regions are labelled noise, and membership probabilities express confidence. Implementations ship in the hdbscan package and in recent scikit-learn releases.',
         },
     },
     'Heatmap (Kernel Density Estimation)': {
         'source': 'QGIS / spatial stats',
-        'blurb': 'A point layer becomes a continuous density raster through this algorithm. A search radius, optional radius field, output pixel size, and kernel shape, chosen among quartic, triangular, uniform, triweight, and Epanechnikov, control smoothing, while a weight field lets some points count more heavily. Output can be raw density or scaled values. Radius dominates appearance: too small produces spiky isolated blobs, too large smears away genuine local concentrations.',
+        'blurb': 'Heatmap (KDE) is a QGIS Processing density tool. It turns points into a smooth density raster so event intensity is easy to see (it does not assign cluster IDs). Expected output: a continuous density raster.',
         'relations': {
+            'Point Pattern Analysis': 'A point layer becomes a continuous density raster through this algorithm. A search radius, optional radius field, output pixel size, and kernel shape, chosen among quartic, triangular, uniform, triweight, and Epanechnikov, control smoothing, while a weight field lets some points count more heavily. Output can be raw density or scaled values. Radius dominates appearance: too small produces spiky isolated blobs, too large smears away genuine local concentrations.',
             'Spatial Statistics': 'A point layer becomes a continuous density raster through this algorithm. A search radius, optional radius field, output pixel size, and kernel shape, chosen among quartic, triangular, uniform, triweight, and Epanechnikov, control smoothing, while a weight field lets some points count more heavily. Output can be raw density or scaled values. Radius dominates appearance: too small produces spiky isolated blobs, too large smears away genuine local concentrations.',
             'Urban Growth Analysis': 'A point layer becomes a continuous density raster through this algorithm. A search radius, optional radius field, output pixel size, and kernel shape, chosen among quartic, triangular, uniform, triweight, and Epanechnikov, control smoothing, while a weight field lets some points count more heavily. Output can be raw density or scaled values. Radius dominates appearance: too small produces spiky isolated blobs, too large smears away genuine local concentrations.',
         },
@@ -758,20 +876,34 @@ TOOL_INFO = {
     },
     'Hillshade': {
         'source': 'QGIS / GDAL DEM',
-        'blurb': 'Hillshade renders shaded relief by simulating illumination of an elevation surface. Azimuth sets light direction, vertical angle or altitude sets sun height, and a Z factor exaggerates relief when units differ or subtle terrain needs emphasis. Output is typically an eight-bit grey raster used as a backdrop beneath thematic layers. Because it is a visualisation product, the values carry no physical meaning and should not be fed into quantitative analysis.',
+        'blurb': 'Shaded-relief visualisation from a DEM (same family as gdaldem hillshade). Emphasises landform for cartography.',
         'relations': {
+        },
+    },
+    'Hugging Face Transformers': {
+        'source': 'Hugging Face',
+        'blurb': 'Hugging Face Transformers is a library for pretrained transformer models (vision and multimodal). In GeoAI it is used to load and fine-tune foundation models for EO imagery and related tasks. Expected output: model checkpoints and inference outputs (embeddings, labels, or masks).',
+        'relations': {
+            'AI': 'Hugging Face Transformers is a library for pretrained transformer models (vision and multimodal). In GeoAI it is used to load and fine-tune foundation models for EO imagery and related tasks. Expected output: model checkpoints and inference outputs (embeddings, labels, or masks).',
+        },
+    },
+    'iD Editor': {
+        'source': 'OpenStreetMap / Mapbox',
+        'blurb': 'iD Editor is the default browser editor for OpenStreetMap. It lets contributors draw and tag features quickly with imagery backgrounds. Expected output: OSM changesets uploaded to the OSM database.',
+        'relations': {
+            'Data Acquisition': "iD is the default browser editor for OpenStreetMap: click to add points, lines, and polygons, apply tags, and save a changeset. Imagery backgrounds and validation warnings help newcomers contribute VGI safely. It favours simplicity over JOSM's power-user feature set.",
         },
     },
     'IDW Interpolation': {
         'source': 'QGIS Processing',
-        'blurb': 'Inverse distance weighting predicts values at unsampled locations as a weighted average of nearby measurements, with influence declining as distance grows. A distance coefficient P sharpens or flattens that decline: larger values give close samples more say. Inputs are point layers with a numeric attribute or Z value, plus extent and pixel size for the output raster. Because interpolated values never exceed the sampled range, maxima and minima occur only at data points, and uneven sampling degrades quality.',
+        'blurb': 'IDW Interpolation is a QGIS Processing interpolator (also common elsewhere). It predicts unsampled values as a distance-weighted average of nearby points—fast and simple, without kriging variance. Expected output: a continuous interpolated raster surface.',
         'relations': {
             'Spatial Interpolation': 'Inverse distance weighting predicts values at unsampled locations as a weighted average of nearby measurements, with influence declining as distance grows. A distance coefficient P sharpens or flattens that decline: larger values give close samples more say. Inputs are point layers with a numeric attribute or Z value, plus extent and pixel size for the output raster. Because interpolated values never exceed the sampled range, maxima and minima occur only at data points, and uneven sampling degrades quality.',
         },
     },
     'Intersection': {
         'source': 'QGIS / ArcGIS Processing',
-        'blurb': 'Intersection keeps only the geometric overlap between an input layer and an overlay layer, and the output carries attributes from both. Features that do not overlap disappear entirely, and output geometry can be lower dimension than the input, for instance lines where polygons meet. Matching coordinate reference systems are expected, and invalid geometries commonly cause failures. Overlay work of this kind multiplies feature counts, so results are often dissolved afterwards.',
+        'blurb': 'Intersection is a classic overlay operation in desktop GIS toolboxes. It keeps only the geometric overlap between two layers and combines attributes from both, answering where A and B coincide. Expected output: a new layer of overlapping pieces with joined attributes.',
         'relations': {
             'Environmental Assessment': 'Intersection keeps only the geometric overlap between an input layer and an overlay layer, and the output carries attributes from both. Features that do not overlap disappear entirely, and output geometry can be lower dimension than the input, for instance lines where polygons meet. Matching coordinate reference systems are expected, and invalid geometries commonly cause failures. Overlay work of this kind multiplies feature counts, so results are often dissolved afterwards.',
             'Hazard Assessment': 'Intersection keeps only the geometric overlap between an input layer and an overlay layer, and the output carries attributes from both. Features that do not overlap disappear entirely, and output geometry can be lower dimension than the input, for instance lines where polygons meet. Matching coordinate reference systems are expected, and invalid geometries commonly cause failures. Overlay work of this kind multiplies feature counts, so results are often dissolved afterwards.',
@@ -782,9 +914,23 @@ TOOL_INFO = {
             'Vector Processing': 'Intersection keeps only the geometric overlap between an input layer and an overlay layer, and the output carries attributes from both. Features that do not overlap disappear entirely, and output geometry can be lower dimension than the input, for instance lines where polygons meet. Matching coordinate reference systems are expected, and invalid geometries commonly cause failures. Overlay work of this kind multiplies feature counts, so results are often dissolved afterwards.',
         },
     },
+    'ISO 19115': {
+        'source': 'ISO / TC 211',
+        'blurb': 'ISO 19115 is an ISO/TC 211 metadata standard for geographic information. It defines how to describe datasets/services (title, extent, CRS, lineage, constraints) for discovery. Expected output: standards-compliant metadata records (often ISO 19139 XML).',
+        'relations': {
+            'Standards': 'ISO 19115 defines the international schema for describing geographic information and services—title, abstract, extent, CRS, lineage, constraints, and contacts. Profiles and ISO 19115-1/19115-2 refine content for datasets and imagery. Catalogues encode records in XML (often 19139) so discovery remains consistent across organisations.',
+        },
+    },
+    'JavaScript for GIS': {
+        'source': 'Web GIS languages',
+        'blurb': 'JavaScript for GIS refers to web-mapping languages/libraries (Leaflet, MapLibre, OpenLayers). It builds interactive browser maps and custom map UIs outside desktop GIS. Expected output: web map applications in the browser.',
+        'relations': {
+            'Development': 'JavaScript (and TypeScript) powers browser GIS through libraries such as Leaflet, MapLibre GL JS, OpenLayers, and CesiumJS, plus Node services. Developers build interactive maps, vector-tile clients, and custom UI around spatial APIs. It is the primary language for web mapping products that do not ship as desktop GIS.',
+        },
+    },
     'Join attributes by location': {
         'source': 'QGIS Processing',
-        'blurb': 'Attributes from a second layer are appended to input features that satisfy a chosen spatial relationship such as intersects, contains, within, touches, or overlaps. Join type controls whether only the first matching feature is used, whether every match creates its own output feature, and whether unmatched input features are discarded. Selected fields can be restricted with a prefix added to avoid name clashes. Nothing about the geometry changes.',
+        'blurb': 'Join attributes by location is a QGIS Processing spatial join. It appends attributes from another layer based on a spatial relationship such as intersects or within. Expected output: an attribute-enriched layer (one-to-one or one-to-many depending on settings).',
         'relations': {
             'Demographic Enrichment': 'Attributes from a second layer are appended to input features that satisfy a chosen spatial relationship such as intersects, contains, within, touches, or overlaps. Join type controls whether only the first matching feature is used, whether every match creates its own output feature, and whether unmatched input features are discarded. Selected fields can be restricted with a prefix added to avoid name clashes. Nothing about the geometry changes.',
             'Hex Grid': 'Attributes from a second layer are appended to input features that satisfy a chosen spatial relationship such as intersects, contains, within, touches, or overlaps. Join type controls whether only the first matching feature is used, whether every match creates its own output feature, and whether unmatched input features are discarded. Selected fields can be restricted with a prefix added to avoid name clashes. Nothing about the geometry changes.',
@@ -792,7 +938,7 @@ TOOL_INFO = {
     },
     'Join attributes by nearest': {
         'source': 'QGIS Processing',
-        'blurb': 'Rather than requiring overlap, this algorithm matches each input feature to its closest features in a second layer. A maximum number of neighbours and an optional maximum distance bound the search, and the output gains the joined attributes plus distance, feature index, and nearest-point coordinates. Unmatched inputs may be kept or dropped. Distances follow layer units, so a projected coordinate reference system keeps thresholds meaningful.',
+        'blurb': 'Join attributes by nearest is a QGIS Processing spatial join. It copies attributes from the closest feature in another layer and can record distance, without needing overlap. Expected output: the input layer enriched with nearest-neighbour fields (and optional distance).',
         'relations': {
             'Demographic Enrichment': 'Rather than requiring overlap, this algorithm matches each input feature to its closest features in a second layer. A maximum number of neighbours and an optional maximum distance bound the search, and the output gains the joined attributes plus distance, feature index, and nearest-point coordinates. Unmatched inputs may be kept or dropped. Distances follow layer units, so a projected coordinate reference system keeps thresholds meaningful.',
             'Distance': 'Rather than requiring overlap, this algorithm matches each input feature to its closest features in a second layer. A maximum number of neighbours and an optional maximum distance bound the search, and the output gains the joined attributes plus distance, feature index, and nearest-point coordinates. Unmatched inputs may be kept or dropped. Distances follow layer units, so a projected coordinate reference system keeps thresholds meaningful.',
@@ -800,11 +946,32 @@ TOOL_INFO = {
             'Vector Processing': 'Rather than requiring overlap, this algorithm matches each input feature to its closest features in a second layer. A maximum number of neighbours and an optional maximum distance bound the search, and the output gains the joined attributes plus distance, feature index, and nearest-point coordinates. Unmatched inputs may be kept or dropped. Distances follow layer units, so a projected coordinate reference system keeps thresholds meaningful.',
         },
     },
+    'JOSM': {
+        'source': 'OpenStreetMap',
+        'blurb': 'JOSM is a desktop Java OpenStreetMap editor. It supports advanced validation, presets, and bulk edits beyond the browser iD editor. Expected output: OSM changesets uploaded via the OSM API.',
+        'relations': {
+            'Data Acquisition': "JOSM is a desktop Java editor for OpenStreetMap with rich tagging presets, validation, imagery backgrounds, and plugin support. It suits complex edits, bulk uploads, and offline work that browser editors handle less well. Changesets upload to the OSM API under the contributor's account and licence terms.",
+        },
+    },
+    'Jupyter Notebook': {
+        'source': 'Project Jupyter',
+        'blurb': 'Jupyter Notebook (JupyterLab) is Project Jupyter’s literate computing interface. It mixes code, narrative, and figures for reproducible geospatial analysis. Expected output: .ipynb notebooks and exported HTML/Markdown reports.',
+        'relations': {
+            'Notebooks': 'Jupyter Notebook (and JupyterLab) interleaves executable code cells with markdown narrative and inline figures. The geospatial Python stack—GeoPandas, Rasterio, xarray, PySAL—runs naturally in notebooks for exploratory analysis and teaching. Export to HTML or Markdown preserves a literate record of the workflow.',
+        },
+    },
     'K-means clustering': {
         'source': 'scikit-learn / QGIS',
-        'blurb': 'K-means partitions features into a chosen number of groups by minimising within-cluster variance around cluster means. The count of clusters must be supplied in advance, and results depend on initial seeding, so repeated runs can differ slightly. Clusters tend toward compact, similarly sized blobs, which suits homogeneous point distributions but struggles with elongated or nested shapes. Output writes a cluster identifier onto each feature, ready for styling or per-cluster summary statistics.',
+        'blurb': 'K-means clustering is a QGIS Processing partitioning tool. It assigns features to a fixed number of groups by similarity when you already know how many clusters you want. Expected output: features labelled with cluster IDs 0…K-1.',
         'relations': {
             'Clustering': 'K-means partitions features into a chosen number of groups by minimising within-cluster variance around cluster means. The count of clusters must be supplied in advance, and results depend on initial seeding, so repeated runs can differ slightly. Clusters tend toward compact, similarly sized blobs, which suits homogeneous point distributions but struggles with elongated or nested shapes. Output writes a cluster identifier onto each feature, ready for styling or per-cluster summary statistics.',
+        },
+    },
+    'Keras': {
+        'source': 'Keras / TensorFlow',
+        'blurb': 'Keras is a high-level deep-learning API (now integrated with TensorFlow). It lets you build and train neural nets with less boilerplate, including CNNs for imagery. Expected output: trained Keras/TensorFlow models and inference predictions.',
+        'relations': {
+            'AI': 'Keras is a high-level deep-learning API (now integrated with TensorFlow). It lets you build and train neural nets with less boilerplate, including CNNs for imagery. Expected output: trained Keras/TensorFlow models and inference predictions.',
         },
     },
     'Kernel Density Estimation': {
@@ -815,7 +982,7 @@ TOOL_INFO = {
     },
     'Leaflet': {
         'source': 'Leaflet.js',
-        'blurb': 'Leaflet is a compact JavaScript library for interactive web maps, built around tile layers, markers, popups, and vector overlays such as GeoJSON. Its API stays deliberately small, with panning, zooming, and layer control working across desktop and mobile out of the box. Plugins extend it toward clustering, heatmaps, drawing, and WMS consumption. Rendering relies on raster tiles plus SVG or canvas overlays rather than WebGL, keeping it lightweight for modest datasets.',
+        'blurb': 'Leaflet is a lightweight open-source JavaScript map library. It makes interactive tiled maps with markers and GeoJSON with a small API and many plugins. Expected output: an interactive web map in the browser.',
         'relations': {
             'Dashboards': 'Leaflet is a compact JavaScript library for interactive web maps, built around tile layers, markers, popups, and vector overlays such as GeoJSON. Its API stays deliberately small, with panning, zooming, and layer control working across desktop and mobile out of the box. Plugins extend it toward clustering, heatmaps, drawing, and WMS consumption. Rendering relies on raster tiles plus SVG or canvas overlays rather than WebGL, keeping it lightweight for modest datasets.',
             'Web Mapping': 'Leaflet is a compact JavaScript library for interactive web maps, built around tile layers, markers, popups, and vector overlays such as GeoJSON. Its API stays deliberately small, with panning, zooming, and layer control working across desktop and mobile out of the box. Plugins extend it toward clustering, heatmaps, drawing, and WMS consumption. Rendering relies on raster tiles plus SVG or canvas overlays rather than WebGL, keeping it lightweight for modest datasets.',
@@ -823,15 +990,23 @@ TOOL_INFO = {
     },
     'libpysal.weights': {
         'source': 'PySAL',
-        'blurb': 'Spatial weights define who counts as a neighbour, and this module builds them. Contiguity options include Queen and Rook from polygon layers, while distance-based constructors offer k-nearest neighbours, distance bands, and kernel weights with adjustable bandwidth. Weights objects expose neighbour lists, cardinalities, and transformations such as row standardisation, and they warn about islands with no neighbours. Every autocorrelation statistic and spatial regression downstream inherits the consequences of this choice.',
+        'blurb': 'libpysal.weights is a PySAL module for spatial weights. It defines neighbour relationships (contiguity, distance, knn) required by most spatial stats and regressions. Expected output: a spatial weights object/matrix.',
         'relations': {
+            'Spatial Regression': 'Spatial weights define who counts as a neighbour, and this module builds them. Contiguity options include Queen and Rook from polygon layers, while distance-based constructors offer k-nearest neighbours, distance bands, and kernel weights with adjustable bandwidth. Weights objects expose neighbour lists, cardinalities, and transformations such as row standardisation, and they warn about islands with no neighbours. Every autocorrelation statistic and spatial regression downstream inherits the consequences of this choice.',
             'Spatial Statistics': 'Spatial weights define who counts as a neighbour, and this module builds them. Contiguity options include Queen and Rook from polygon layers, while distance-based constructors offer k-nearest neighbours, distance bands, and kernel weights with adjustable bandwidth. Weights objects expose neighbour lists, cardinalities, and transformations such as row standardisation, and they warn about islands with no neighbours. Every autocorrelation statistic and spatial regression downstream inherits the consequences of this choice.',
             'Statistical Validation': 'Spatial weights define who counts as a neighbour, and this module builds them. Contiguity options include Queen and Rook from polygon layers, while distance-based constructors offer k-nearest neighbours, distance bands, and kernel weights with adjustable bandwidth. Weights objects expose neighbour lists, cardinalities, and transformations such as row standardisation, and they warn about islands with no neighbours. Every autocorrelation statistic and spatial regression downstream inherits the consequences of this choice.',
         },
     },
+    'LightGBM': {
+        'source': 'Microsoft / LightGBM',
+        'blurb': 'LightGBM is a fast gradient-boosting library from Microsoft. It trains accurate tabular models efficiently and is widely used for land-cover and other feature-based geospatial prediction. Expected output: a trained booster and predicted classes or values.',
+        'relations': {
+            'AI': 'LightGBM is a fast gradient-boosting library from Microsoft. It trains accurate tabular models efficiently and is widely used for land-cover and other feature-based geospatial prediction. Expected output: a trained booster and predicted classes or values.',
+        },
+    },
     'Line intersections': {
         'source': 'QGIS Processing',
-        'blurb': 'Where lines from two layers cross, this algorithm creates point features at the crossing locations. Attributes from both input line layers are carried into the result, optionally restricted to selected fields, which makes it easy to see which pairs of lines meet. Shared endpoints and overlapping collinear segments behave differently from clean crossings, so topology deserves attention. Road and rail conflict detection, and stream crossing inventories, are common applications.',
+        'blurb': 'Line intersections is a QGIS Processing tool. It creates points where lines from two layers cross, useful for junctions and conflict detection. Expected output: a point layer at crossing locations.',
         'relations': {
             'Adjacency': 'Where lines from two layers cross, this algorithm creates point features at the crossing locations. Attributes from both input line layers are carried into the result, optionally restricted to selected fields, which makes it easy to see which pairs of lines meet. Shared endpoints and overlapping collinear segments behave differently from clean crossings, so topology deserves attention. Road and rail conflict detection, and stream crossing inventories, are common applications.',
             'Overlay': 'Where lines from two layers cross, this algorithm creates point features at the crossing locations. Attributes from both input line layers are carried into the result, optionally restricted to selected fields, which makes it easy to see which pairs of lines meet. Shared endpoints and overlapping collinear segments behave differently from clean crossings, so topology deserves attention. Road and rail conflict detection, and stream crossing inventories, are common applications.',
@@ -840,59 +1015,118 @@ TOOL_INFO = {
     },
     'MapLibre GL JS': {
         'source': 'MapLibre',
-        'blurb': 'MapLibre GL JS renders vector tiles in the browser with WebGL, following a JSON style specification that describes sources, layers, paint, and layout properties. Client-side rendering allows smooth zooming, rotation, pitch, and data-driven styling expressions without regenerating tiles. It began as an open fork of Mapbox GL JS and keeps a compatible style format. Raster sources, terrain, GeoJSON, and 3D extrusions are supported alongside vector tiles.',
+        'blurb': 'MapLibre GL JS is an open-source WebGL vector-tile map library. It renders smooth, style-driven interactive maps from vector tiles and GeoJSON. Expected output: an interactive styled web map.',
         'relations': {
             'Dashboards': 'MapLibre GL JS renders vector tiles in the browser with WebGL, following a JSON style specification that describes sources, layers, paint, and layout properties. Client-side rendering allows smooth zooming, rotation, pitch, and data-driven styling expressions without regenerating tiles. It began as an open fork of Mapbox GL JS and keeps a compatible style format. Raster sources, terrain, GeoJSON, and 3D extrusions are supported alongside vector tiles.',
+            'Story Maps': 'MapLibre can power interactive map panes inside custom narrative web pages with guided fly-tos and layer toggles.',
             'Web Mapping': 'MapLibre GL JS renders vector tiles in the browser with WebGL, following a JSON style specification that describes sources, layers, paint, and layout properties. Client-side rendering allows smooth zooming, rotation, pitch, and data-driven styling expressions without regenerating tiles. It began as an open fork of Mapbox GL JS and keeps a compatible style format. Raster sources, terrain, GeoJSON, and 3D extrusions are supported alongside vector tiles.',
         },
     },
     'Merge Vector Layers': {
         'source': 'QGIS Processing',
-        'blurb': 'Several vector layers of the same geometry type are combined into one output. Attribute schemas are unified, so fields present in only some inputs appear with null values elsewhere, and two extra fields record the originating layer name and path. A destination CRS is required, and inputs in other systems are reprojected during the merge. Point, line, and polygon inputs cannot be mixed, and single and multipart variants are treated as compatible.',
+        'blurb': 'Merge Vector Layers is a QGIS Processing tool. It stacks multiple layers of the same geometry type into one dataset for combined analysis. Expected output: a single vector layer (schema differences may introduce nulls).',
         'relations': {
             'Vector Processing': 'Several vector layers of the same geometry type are combined into one output. Attribute schemas are unified, so fields present in only some inputs appear with null values elsewhere, and two extra fields record the originating layer name and path. A destination CRS is required, and inputs in other systems are reprojected during the merge. Point, line, and polygon inputs cannot be mixed, and single and multipart variants are treated as compatible.',
         },
     },
+    'mesa': {
+        'source': 'Project Mesa',
+        'blurb': 'mesa is a Python framework for agent-based modelling (Project Mesa). It lets agents interact on grids or continuous spaces under scheduled rules to simulate spatial processes. Expected output: simulation runs with agent/grid states, often viewed in a browser dashboard.',
+        'relations': {
+            'Geocomputation': 'mesa is a Python framework for agent-based modelling (Project Mesa). It lets agents interact on grids or continuous spaces under scheduled rules to simulate spatial processes. Expected output: simulation runs with agent/grid states, often viewed in a browser dashboard.',
+        },
+    },
     'Mesh Calculator': {
         'source': 'QGIS Mesh tools',
-        'blurb': 'Arithmetic is applied to mesh dataset groups, producing a new dataset group from an expression referencing existing groups with operators and functions. A time range restricts which steps are evaluated, and an extent or mask layer limits the spatial domain. Output is written to a mesh file or added as a virtual dataset group. Depth minus bed elevation, velocity magnitude, and threshold flagging are typical hydraulic modelling uses.',
+        'blurb': 'Mesh Calculator is a QGIS mesh analysis tool. It evaluates expressions on mesh datasets to derive new quantities for visualisation or export. Expected output: computed mesh dataset values.',
         'relations': {
             '3D': 'Arithmetic is applied to mesh dataset groups, producing a new dataset group from an expression referencing existing groups with operators and functions. A time range restricts which steps are evaluated, and an extent or mask layer limits the spatial domain. Output is written to a mesh file or added as a virtual dataset group. Depth minus bed elevation, velocity magnitude, and threshold flagging are typical hydraulic modelling uses.',
             'Mesh': 'Arithmetic is applied to mesh dataset groups, producing a new dataset group from an expression referencing existing groups with operators and functions. A time range restricts which steps are evaluated, and an extent or mask layer limits the spatial domain. Output is written to a mesh file or added as a virtual dataset group. Depth minus bed elevation, velocity magnitude, and threshold flagging are typical hydraulic modelling uses.',
         },
     },
+    'mgwr.GWR': {
+        'source': 'PySAL mgwr',
+        'blurb': 'mgwr.GWR is Geographically Weighted Regression in the PySAL mgwr package. It fits local regressions whose coefficients vary across space to reveal non-stationarity. Expected output: local coefficient surfaces and local fit diagnostics.',
+        'relations': {
+            'Spatial Regression': 'Geographically Weighted Regression fits local linear models whose coefficients vary smoothly over space, revealing non-stationarity that a single global regression hides. Bandwidth selection controls how many neighbours influence each local fit. Diagnostics include local R² and parameter surfaces mapped back to study-area geography.',
+        },
+    },
     'Microsoft Planetary Computer': {
         'source': 'Microsoft',
-        'blurb': 'The Planetary Computer combines a large catalogue of open environmental data with a STAC API and hosted compute. Collections cover Sentinel, Landsat, MODIS, elevation, land cover, and climate products, stored as Cloud Optimized GeoTIFF or Zarr in Azure storage. Searches return STAC items whose asset URLs are signed for access, and the Hub offers Jupyter environments with Dask for scaling. Data can equally be pulled into local Python workflows.',
+        'blurb': 'Microsoft Planetary Computer is Microsoft’s planetary EO data platform. It exposes large public imagery archives through STAC-style access for scalable analysis. Expected output: discoverable assets and analysis-ready data access.',
         'relations': {
             'Basemap': 'The Planetary Computer combines a large catalogue of open environmental data with a STAC API and hosted compute. Collections cover Sentinel, Landsat, MODIS, elevation, land cover, and climate products, stored as Cloud Optimized GeoTIFF or Zarr in Azure storage. Searches return STAC items whose asset URLs are signed for access, and the Hub offers Jupyter environments with Dask for scaling. Data can equally be pulled into local Python workflows.',
+            'SDI / Catalogs': 'The Planetary Computer combines a large catalogue of open environmental data with a STAC API and hosted compute. Collections cover Sentinel, Landsat, MODIS, elevation, land cover, and climate products, stored as Cloud Optimized GeoTIFF or Zarr in Azure storage. Searches return STAC items whose asset URLs are signed for access, and the Hub offers Jupyter environments with Dask for scaling. Data can equally be pulled into local Python workflows.',
+        },
+    },
+    'Monte Carlo simulation': {
+        'source': 'Uncertainty / simulation method',
+        'blurb': 'Monte Carlo simulation is an uncertainty method used in GIS workflows (not one single vendor button). It reruns a model many times with random input variation to show a range of outcomes instead of one brittle map. Expected output: an ensemble of results and summary statistics/confidence surfaces.',
+        'relations': {
+            'Uncertainty Modeling': 'Monte Carlo simulation draws many random realisations of uncertain inputs, runs the model on each, and summarises the distribution of outputs. In GIS it propagates positional or attribute error into buffers, overlays, and suitability scores. The ensemble of results communicates confidence intervals instead of a single brittle map.',
+        },
+    },
+    'MovingPandas': {
+        'source': 'MovingPandas / PySAL ecosystem',
+        'blurb': 'MovingPandas is a Python trajectory library in the PySAL ecosystem. It analyses GPS tracks with splitting, generalisation, speed, stops, and path metrics on GeoPandas. Expected output: trajectory objects, derived attributes, and plots/exports.',
+        'relations': {
+            'Space-Time Analysis': 'MovingPandas extends GeoPandas with trajectory data structures for movement analysis. It supports splitting, generalising, and measuring trajectories, plus speed, direction, and stop detection. Plots and exports help explore GPS tracks and other time-ordered point sequences in Python.',
+            'Trajectory Analysis': 'MovingPandas extends GeoPandas with trajectory data structures for movement analysis. It supports splitting, generalising, and measuring trajectories, plus speed, direction, and stop detection. Plots and exports help explore GPS tracks and other time-ordered point sequences in Python.',
+        },
+    },
+    'Multilevel B-Spline Interpolation': {
+        'source': 'QGIS / SAGA',
+        'blurb': 'Multilevel B-Spline Interpolation is a SAGA algorithm available in QGIS Processing. It fits a hierarchy of smooth B-spline surfaces to scattered points, often smoother than IDW. Expected output: a smooth interpolated raster grid.',
+        'relations': {
+            'Spatial Interpolation': 'Multilevel B-spline interpolation fits a hierarchy of B-spline surfaces to scattered points, refining detail where sample density allows. It often produces smoother surfaces than IDW while remaining deterministic. Parameters control grid resolution and refinement levels; sparse regions stay smoother than densely sampled ones.',
         },
     },
     'Multipart to Singleparts': {
         'source': 'QGIS Processing',
-        'blurb': 'Multipart geometries are split so each part becomes its own feature, with attributes duplicated across the resulting records. A multipolygon representing an island group therefore yields one polygon per island, each retaining the original attribute values. Feature counts rise accordingly, and any per-feature identifier is no longer unique. This step is often needed before per-part measurement, since areas and lengths otherwise summarise the whole collection.',
+        'blurb': 'Multipart to Singleparts is a QGIS Processing tool. It splits multipart geometries into separate single-part features when each part must be handled alone. Expected output: a layer with one feature per part.',
         'relations': {
             'Vector Processing': 'Multipart geometries are split so each part becomes its own feature, with attributes duplicated across the resulting records. A multipolygon representing an island group therefore yields one polygon per island, each retaining the original attribute values. Feature counts rise accordingly, and any per-feature identifier is no longer unique. This step is often needed before per-part measurement, since areas and lengths otherwise summarise the whole collection.',
         },
     },
     'Natural Earth': {
         'source': 'Natural Earth',
-        'blurb': 'Natural Earth provides public domain small-scale vector and raster basemap data at 1:10 million, 1:50 million, and 1:110 million scales. Themes include countries, states, coastlines, rivers, lakes, populated places, roads, and shaded relief imagery, with layers designed to align cleanly with one another. Attributes carry name variants and ranking fields useful for label filtering. It suits world and continental maps, not local analysis, given the deliberate generalisation.',
+        'blurb': 'Natural Earth is a public-domain cartographic dataset collection. It provides clean cultural/physical layers at multiple scales for atlas-style basemaps. Expected output: ready-to-use vector/raster basemap layers.',
         'relations': {
             'Basemap': 'Natural Earth provides public domain small-scale vector and raster basemap data at 1:10 million, 1:50 million, and 1:110 million scales. Themes include countries, states, coastlines, rivers, lakes, populated places, roads, and shaded relief imagery, with layers designed to align cleanly with one another. Attributes carry name variants and ranking fields useful for label filtering. It suits world and continental maps, not local analysis, given the deliberate generalisation.',
         },
     },
+    'NetLogo': {
+        'source': 'Northwestern University / CCL',
+        'blurb': 'NetLogo is a widely taught agent-based modelling environment from Northwestern’s CCL. It uses a simple language and visual world so agents and patches follow rules you write, optionally linked to GIS data. Expected output: simulated spatial scenarios and plots/exports from the model world.',
+        'relations': {
+            'Geocomputation': 'NetLogo is a widely taught agent-based modelling environment from Northwestern’s CCL. It uses a simple language and visual world so agents and patches follow rules you write, optionally linked to GIS data. Expected output: simulated spatial scenarios and plots/exports from the model world.',
+        },
+    },
     'Nominatim': {
         'source': 'OpenStreetMap / OSMF',
-        'blurb': 'Nominatim searches OpenStreetMap data by name and address, and also performs reverse geocoding from coordinates to the nearest addressable feature. Responses include display name, structured address parts, bounding box, OSM identifiers, and an importance score. Structured queries, country codes, and viewbox parameters constrain results. The public instance enforces a strict usage policy of roughly one request per second with attribution, so bulk geocoding calls for a self-hosted deployment.',
+        'blurb': 'Nominatim is the OpenStreetMap search/geocoding service. It converts place names/addresses to coordinates and reverse-geocodes points (respect usage policy for bulk jobs). Expected output: geocoding result places with coordinates.',
         'relations': {
             'APIs': 'Nominatim searches OpenStreetMap data by name and address, and also performs reverse geocoding from coordinates to the nearest addressable feature. Responses include display name, structured address parts, bounding box, OSM identifiers, and an importance score. Structured queries, country codes, and viewbox parameters constrain results. The public instance enforces a strict usage policy of roughly one request per second with attribution, so bulk geocoding calls for a self-hosted deployment.',
             'Geocoding': 'Nominatim searches OpenStreetMap data by name and address, and also performs reverse geocoding from coordinates to the nearest addressable feature. Responses include display name, structured address parts, bounding box, OSM identifiers, and an importance score. Structured queries, country codes, and viewbox parameters constrain results. The public instance enforces a strict usage policy of roughly one request per second with attribution, so bulk geocoding calls for a self-hosted deployment.',
         },
     },
+    'OD Matrix from Layers as Lines (m:n)': {
+        'source': 'QGIS Processing',
+        'blurb': 'OD Matrix from Layers as Lines (m:n) is a QGIS Processing tool. It draws straight lines from every origin to every destination as a simple OD geometry scaffold. Expected output: a line layer of origin–destination links (Euclidean, not network paths).',
+        'relations': {
+            'Location-Allocation': 'This QGIS algorithm builds an origin–destination line layer by connecting every feature in an origin layer to every feature in a destination layer (m:n). Attributes can carry identifiers from both ends for later cost joining. The geometry is straight-line unless followed by a network routing step that replaces Euclidean links with paths.',
+        },
+    },
+    'ODK Collect': {
+        'source': 'ODK / Get ODK',
+        'blurb': 'ODK Collect is an Android form-based survey app (ODK). It captures GPS, photos, and structured answers with skip logic for field campaigns. Expected output: submitted survey records (often geotagged tables).',
+        'relations': {
+            'Data Acquisition': 'ODK Collect is an Android app for form-based field data collection, including GPS points, photos, and complex skip logic defined in XLSForm. Forms download from an ODK server; completed submissions upload when connectivity returns. It is a standard open stack for surveys that must land as structured, geotagged tables.',
+        },
+    },
     'ogr2ogr': {
         'source': 'GDAL/OGR',
-        'blurb': 'Vector data is converted between OGR formats with substantial transformation along the way. Options reproject between coordinate systems, apply attribute filters or full SQL statements, clip to a spatial extent or cutline layer, rename layers, force a geometry type, select or reorder fields, and pass driver-specific creation options. Append and overwrite modes support incremental loading, including into PostGIS, making it a standard tool in ETL scripting.',
+        'blurb': 'ogr2ogr is the main GDAL/OGR vector conversion utility. It converts formats and can reproject, clip, and SQL-filter during ETL between systems. Expected output: a new vector file or database layer.',
         'relations': {
             'Data Conversion': 'Vector data is converted between OGR formats with substantial transformation along the way. Options reproject between coordinate systems, apply attribute filters or full SQL statements, clip to a spatial extent or cutline layer, rename layers, force a geometry type, select or reorder fields, and pass driver-specific creation options. Append and overwrite modes support incremental loading, including into PostGIS, making it a standard tool in ETL scripting.',
             'GIS Files': 'Vector data is converted between OGR formats with substantial transformation along the way. Options reproject between coordinate systems, apply attribute filters or full SQL statements, clip to a spatial extent or cutline layer, rename layers, force a geometry type, select or reorder fields, and pass driver-specific creation options. Append and overwrite modes support incremental loading, including into PostGIS, making it a standard tool in ETL scripting.',
@@ -903,7 +1137,7 @@ TOOL_INFO = {
     },
     'ogrinfo': {
         'source': 'GDAL/OGR',
-        'blurb': 'Vector datasets are inspected without modification. Output lists available layers and, for each, the geometry type, feature count, extent, coordinate reference system, and field definitions with types and widths. A summary-only switch avoids dumping every feature, while SQL execution allows ad hoc queries against the source and a JSON mode produces structured output. Running it before conversion reveals encoding, schema, and CRS surprises that would otherwise break a pipeline.',
+        'blurb': 'ogrinfo is a GDAL/OGR command-line utility. It prints vector dataset layers, CRS, schema, and feature counts without modifying files. Expected output: a text report of vector metadata.',
         'relations': {
             'CRS Validation': 'Vector datasets are inspected without modification. Output lists available layers and, for each, the geometry type, feature count, extent, coordinate reference system, and field definitions with types and widths. A summary-only switch avoids dumping every feature, while SQL execution allows ad hoc queries against the source and a JSON mode produces structured output. Running it before conversion reveals encoding, schema, and CRS surprises that would otherwise break a pipeline.',
             'Data Inspection': 'Vector datasets are inspected without modification. Output lists available layers and, for each, the geometry type, feature count, extent, coordinate reference system, and field definitions with types and widths. A summary-only switch avoids dumping every feature, while SQL execution allows ad hoc queries against the source and a JSON mode produces structured output. Running it before conversion reveals encoding, schema, and CRS surprises that would otherwise break a pipeline.',
@@ -921,17 +1155,25 @@ TOOL_INFO = {
         'relations': {
         },
     },
+    'OpenDroneMap': {
+        'source': 'OpenDroneMap',
+        'blurb': 'OpenDroneMap is an open photogrammetry pipeline. It turns overlapping drone/aerial photos into orthomosaics, point clouds, DEMs, and meshes. Expected output: orthophoto, point cloud, DEM/DSM, and related products.',
+        'relations': {
+            'Data Acquisition': 'OpenDroneMap (ODM) is an open photogrammetry pipeline that turns overlapping drone or aerial photos into orthomosaics, point clouds, DEMs, and textured meshes. It automates camera calibration, Structure from Motion, dense matching, and georeferencing when GCPs or geotags are available. WebODM adds a browser UI and task queue for production runs.',
+            'Remote Sensing': 'Open photogrammetry pipeline that turns overlapping drone or aerial photos into orthomosaics, point clouds, DEMs, and meshes. Automates Structure from Motion, dense matching, and georeferencing when geotags or GCPs are available.',
+        },
+    },
     'OpenLayers': {
         'source': 'OSGeo',
-        'blurb': 'OpenLayers is a full-featured JavaScript mapping library supporting raster tiles, vector tiles, WMS, WMTS, WFS, and GeoJSON sources in one framework. Built-in projection handling reprojects layers on the fly, which few browser libraries manage, and controls, interactions, and styling are highly configurable. Canvas and WebGL renderers cover large vector datasets. The API surface is larger than Leaflet\'s, trading simplicity for standards coverage and fine control.',
+        'blurb': 'OpenLayers is a full-featured open-source JavaScript mapping library. It supports many OGC services and on-the-fly reprojection for standards-heavy apps. Expected output: an interactive web map with rich layer types.',
         'relations': {
-            'Dashboards': 'OpenLayers is a full-featured JavaScript mapping library supporting raster tiles, vector tiles, WMS, WMTS, WFS, and GeoJSON sources in one framework. Built-in projection handling reprojects layers on the fly, which few browser libraries manage, and controls, interactions, and styling are highly configurable. Canvas and WebGL renderers cover large vector datasets. The API surface is larger than Leaflet\'s, trading simplicity for standards coverage and fine control.',
-            'Web Mapping': 'OpenLayers is a full-featured JavaScript mapping library supporting raster tiles, vector tiles, WMS, WMTS, WFS, and GeoJSON sources in one framework. Built-in projection handling reprojects layers on the fly, which few browser libraries manage, and controls, interactions, and styling are highly configurable. Canvas and WebGL renderers cover large vector datasets. The API surface is larger than Leaflet\'s, trading simplicity for standards coverage and fine control.',
+            'Dashboards': "OpenLayers is a full-featured JavaScript mapping library supporting raster tiles, vector tiles, WMS, WMTS, WFS, and GeoJSON sources in one framework. Built-in projection handling reprojects layers on the fly, which few browser libraries manage, and controls, interactions, and styling are highly configurable. Canvas and WebGL renderers cover large vector datasets. The API surface is larger than Leaflet's, trading simplicity for standards coverage and fine control.",
+            'Web Mapping': "OpenLayers is a full-featured JavaScript mapping library supporting raster tiles, vector tiles, WMS, WMTS, WFS, and GeoJSON sources in one framework. Built-in projection handling reprojects layers on the fly, which few browser libraries manage, and controls, interactions, and styling are highly configurable. Canvas and WebGL renderers cover large vector datasets. The API surface is larger than Leaflet's, trading simplicity for standards coverage and fine control.",
         },
     },
     'openrouteservice': {
         'source': 'HeiGIT / openrouteservice',
-        'blurb': 'Openrouteservice offers routing and location services built on OpenStreetMap, exposed as an HTTP API with client libraries for Python, R, and JavaScript. Endpoints cover directions, isochrones, time-distance matrices, geocoding, points of interest, elevation, and vehicle route optimisation. Profiles span car, heavy vehicle, several cycling variants, walking, hiking, and wheelchair accessibility. The public instance enforces per-key rate and size limits, and the full stack can be self-hosted for heavier workloads.',
+        'blurb': 'openrouteservice is an open routing/location API stack (HeiGIT) on OpenStreetMap. It provides directions, isochrones, matrices, and geocoding via HTTP for apps that need OSM-based mobility. Expected output: JSON routing/accessibility/geocoding responses.',
         'relations': {
             'APIs': 'Openrouteservice offers routing and location services built on OpenStreetMap, exposed as an HTTP API with client libraries for Python, R, and JavaScript. Endpoints cover directions, isochrones, time-distance matrices, geocoding, points of interest, elevation, and vehicle route optimisation. Profiles span car, heavy vehicle, several cycling variants, walking, hiking, and wheelchair accessibility. The public instance enforces per-key rate and size limits, and the full stack can be self-hosted for heavier workloads.',
             'Geospatial Libraries': 'Openrouteservice offers routing and location services built on OpenStreetMap, exposed as an HTTP API with client libraries for Python, R, and JavaScript. Endpoints cover directions, isochrones, time-distance matrices, geocoding, points of interest, elevation, and vehicle route optimisation. Profiles span car, heavy vehicle, several cycling variants, walking, hiking, and wheelchair accessibility. The public instance enforces per-key rate and size limits, and the full stack can be self-hosted for heavier workloads.',
@@ -939,26 +1181,27 @@ TOOL_INFO = {
     },
     'openrouteservice directions': {
         'source': 'openrouteservice',
-        'blurb': 'Routes are computed between two or more coordinates for a chosen profile, returning geometry as encoded polyline or GeoJSON along with distance, duration, and elevation summaries. Turn-by-turn instructions, segment and step breakdowns, and alternative routes are available, and restrictions can avoid tolls, ferries, highways, or specified polygons. Coordinates are ordered longitude then latitude. Points are snapped to the nearest routable way, so an unreachable location returns an explicit error.',
+        'blurb': 'openrouteservice directions is an ORS routing endpoint. It returns paths for travel profiles such as driving or walking with distance and duration. Expected output: route geometry plus travel metrics.',
         'relations': {
             'Connectivity': 'Routes are computed between two or more coordinates for a chosen profile, returning geometry as encoded polyline or GeoJSON along with distance, duration, and elevation summaries. Turn-by-turn instructions, segment and step breakdowns, and alternative routes are available, and restrictions can avoid tolls, ferries, highways, or specified polygons. Coordinates are ordered longitude then latitude. Points are snapped to the nearest routable way, so an unreachable location returns an explicit error.',
             'Infrastructure Planning': 'Routes are computed between two or more coordinates for a chosen profile, returning geometry as encoded polyline or GeoJSON along with distance, duration, and elevation summaries. Turn-by-turn instructions, segment and step breakdowns, and alternative routes are available, and restrictions can avoid tolls, ferries, highways, or specified polygons. Coordinates are ordered longitude then latitude. Points are snapped to the nearest routable way, so an unreachable location returns an explicit error.',
             'Network Analysis': 'Routes are computed between two or more coordinates for a chosen profile, returning geometry as encoded polyline or GeoJSON along with distance, duration, and elevation summaries. Turn-by-turn instructions, segment and step breakdowns, and alternative routes are available, and restrictions can avoid tolls, ferries, highways, or specified polygons. Coordinates are ordered longitude then latitude. Points are snapped to the nearest routable way, so an unreachable location returns an explicit error.',
             'Routing': 'Routes are computed between two or more coordinates for a chosen profile, returning geometry as encoded polyline or GeoJSON along with distance, duration, and elevation summaries. Turn-by-turn instructions, segment and step breakdowns, and alternative routes are available, and restrictions can avoid tolls, ferries, highways, or specified polygons. Coordinates are ordered longitude then latitude. Points are snapped to the nearest routable way, so an unreachable location returns an explicit error.',
+            'Space-Time Analysis': 'Directions include travel duration and can support time-aware accessibility views when combined with schedules or timestamps. The API itself returns network paths and travel times rather than full GPS trajectory analytics.',
             'Trajectory': 'Routes are computed between two or more coordinates for a chosen profile, returning geometry as encoded polyline or GeoJSON along with distance, duration, and elevation summaries. Turn-by-turn instructions, segment and step breakdowns, and alternative routes are available, and restrictions can avoid tolls, ferries, highways, or specified polygons. Coordinates are ordered longitude then latitude. Points are snapped to the nearest routable way, so an unreachable location returns an explicit error.',
             'Trajectory Analysis': 'Routes are computed between two or more coordinates for a chosen profile, returning geometry as encoded polyline or GeoJSON along with distance, duration, and elevation summaries. Turn-by-turn instructions, segment and step breakdowns, and alternative routes are available, and restrictions can avoid tolls, ferries, highways, or specified polygons. Coordinates are ordered longitude then latitude. Points are snapped to the nearest routable way, so an unreachable location returns an explicit error.',
         },
     },
     'openrouteservice geocoding': {
         'source': 'openrouteservice',
-        'blurb': 'Geocoding endpoints wrap Pelias, resolving free-text queries into candidate locations and reverse-geocoding coordinates into addresses. Autocomplete suits interactive search, structured geocoding accepts separate address components, and results carry confidence scores, match types, and layer information such as address, street, locality, or region. Focus points and bounding boxes bias results toward an area of interest, while data blends OpenStreetMap, OpenAddresses, Who\'s on First, and Geonames.',
+        'blurb': 'openrouteservice geocoding is an ORS place-search endpoint (Pelias). It turns text into coordinates and reverse-geocodes points to addresses. Expected output: ranked geocoding candidate features.',
         'relations': {
-            'Geocoding': 'Geocoding endpoints wrap Pelias, resolving free-text queries into candidate locations and reverse-geocoding coordinates into addresses. Autocomplete suits interactive search, structured geocoding accepts separate address components, and results carry confidence scores, match types, and layer information such as address, street, locality, or region. Focus points and bounding boxes bias results toward an area of interest, while data blends OpenStreetMap, OpenAddresses, Who\'s on First, and Geonames.',
+            'Geocoding': "Geocoding endpoints wrap Pelias, resolving free-text queries into candidate locations and reverse-geocoding coordinates into addresses. Autocomplete suits interactive search, structured geocoding accepts separate address components, and results carry confidence scores, match types, and layer information such as address, street, locality, or region. Focus points and bounding boxes bias results toward an area of interest, while data blends OpenStreetMap, OpenAddresses, Who's on First, and Geonames.",
         },
     },
     'openrouteservice isochrones': {
         'source': 'openrouteservice',
-        'blurb': 'Reachability polygons are generated around one or more locations for a given profile, using either time or distance ranges. Multiple range values in a single request produce nested bands, an interval argument subdivides them evenly, and location_type switches between departing from and arriving at the points. Optional attributes report polygon area, reachable population, or total road length. Smoothing controls how tightly the boundary follows the underlying network.',
+        'blurb': 'openrouteservice isochrones is an ORS accessibility endpoint. It builds reachability polygons for time or distance limits around locations. Expected output: isochrone polygons (GeoJSON).',
         'relations': {
             'Accessibility': 'Reachability polygons are generated around one or more locations for a given profile, using either time or distance ranges. Multiple range values in a single request produce nested bands, an interval argument subdivides them evenly, and location_type switches between departing from and arriving at the points. Optional attributes report polygon area, reachable population, or total road length. Smoothing controls how tightly the boundary follows the underlying network.',
             'Accessibility Analysis': 'Reachability polygons are generated around one or more locations for a given profile, using either time or distance ranges. Multiple range values in a single request produce nested bands, an interval argument subdivides them evenly, and location_type switches between departing from and arriving at the points. Optional attributes report polygon area, reachable population, or total road length. Smoothing controls how tightly the boundary follows the underlying network.',
@@ -967,7 +1210,7 @@ TOOL_INFO = {
     },
     'openrouteservice matrices': {
         'source': 'openrouteservice',
-        'blurb': 'Travel cost tables are returned between sets of origins and destinations, with metrics selecting duration, distance, or both. Sources and destinations can be subsets of the supplied location list, allowing asymmetric matrices, and units are configurable. Requests are capped by the number of location pairs, which differs per profile on the public API, so large problems must be batched. Results feed facility location, assignment, and travelling-salesman style optimisation.',
+        'blurb': 'openrouteservice matrices is an ORS travel-matrix endpoint. It returns duration/distance between many origins and destinations for location models. Expected output: a travel cost matrix.',
         'relations': {
             'Accessibility': 'Travel cost tables are returned between sets of origins and destinations, with metrics selecting duration, distance, or both. Sources and destinations can be subsets of the supplied location list, allowing asymmetric matrices, and units are configurable. Requests are capped by the number of location pairs, which differs per profile on the public API, so large problems must be batched. Results feed facility location, assignment, and travelling-salesman style optimisation.',
             'Accessibility Analysis': 'Travel cost tables are returned between sets of origins and destinations, with metrics selecting duration, distance, or both. Sources and destinations can be subsets of the supplied location list, allowing asymmetric matrices, and units are configurable. Requests are capped by the number of location pairs, which differs per profile on the public API, so large problems must be batched. Results feed facility location, assignment, and travelling-salesman style optimisation.',
@@ -975,14 +1218,21 @@ TOOL_INFO = {
     },
     'OpenStreetMap': {
         'source': 'OpenStreetMap community',
-        'blurb': 'OpenStreetMap is a collaboratively edited global database of geographic features released under the Open Database Licence. Its data model uses nodes, ways, and relations described by free-form key-value tags rather than a fixed schema, so conventions matter when querying. Extracts are distributed as PBF or XML, queried live through Overpass, and rendered by many tile providers. Completeness and accuracy vary by region and by how active the local mapping community is.',
+        'blurb': 'OpenStreetMap is a collaborative world map database and community project. It provides open basemap data feeding routing, geocoding, and thematic extracts. Expected output: map data/tiles and downloadable OSM extracts.',
         'relations': {
             'Basemap': 'OpenStreetMap is a collaboratively edited global database of geographic features released under the Open Database Licence. Its data model uses nodes, ways, and relations described by free-form key-value tags rather than a fixed schema, so conventions matter when querying. Extracts are distributed as PBF or XML, queried live through Overpass, and rendered by many tile providers. Completeness and accuracy vary by region and by how active the local mapping community is.',
         },
     },
+    'ortools.routing': {
+        'source': 'Google OR-Tools',
+        'blurb': 'ortools.routing is Google OR-Tools’ vehicle routing solver API. It optimises tours and assignments with capacities and time windows using a cost matrix from GIS. Expected output: optimised routes/assignments and objective costs.',
+        'relations': {
+            'Location-Allocation': "OR-Tools' routing solvers tackle vehicle routing, travelling salesman, and related assignment problems with constraints on capacity, time windows, and fleets. Distance matrices often come from GIS network tools; OR-Tools then optimises the combinatorial tour. It bridges GIS accessibility layers with operations-research location and tour decisions.",
+        },
+    },
     'OSRM': {
         'source': 'Project OSRM',
-        'blurb': 'Open Source Routing Machine is a fast C++ routing engine built over OpenStreetMap data. Services cover route, table for duration and distance matrices, nearest for snapping, match for GPS trace alignment, trip for a travelling-salesman tour, and tile. Profiles written in Lua define how each road class, speed, and restriction is treated during preprocessing with contraction hierarchies or multi-level Dijkstra. Self-hosting gives unmetered querying at the cost of preparing extracts.',
+        'blurb': 'OSRM (Open Source Routing Machine) is a high-speed OSM routing engine. It powers custom routing services when you need very fast directions on self-hosted data. Expected output: route geometries and travel times via its API.',
         'relations': {
             'APIs': 'Open Source Routing Machine is a fast C++ routing engine built over OpenStreetMap data. Services cover route, table for duration and distance matrices, nearest for snapping, match for GPS trace alignment, trip for a travelling-salesman tour, and tile. Profiles written in Lua define how each road class, speed, and restriction is treated during preprocessing with contraction hierarchies or multi-level Dijkstra. Self-hosting gives unmetered querying at the cost of preparing extracts.',
             'Geospatial Libraries': 'Open Source Routing Machine is a fast C++ routing engine built over OpenStreetMap data. Services cover route, table for duration and distance matrices, nearest for snapping, match for GPS trace alignment, trip for a travelling-salesman tour, and tile. Profiles written in Lua define how each road class, speed, and restriction is treated during preprocessing with contraction hierarchies or multi-level Dijkstra. Self-hosting gives unmetered querying at the cost of preparing extracts.',
@@ -990,76 +1240,79 @@ TOOL_INFO = {
     },
     'OTB (Orfeo ToolBox)': {
         'source': 'CNES / Orfeo',
-        'blurb': 'Orfeo ToolBox is an open remote sensing library and application suite aimed at optical, radar, and very high resolution imagery. Applications cover radiometric calibration, orthorectification, pansharpening, segmentation, feature extraction, supervised and unsupervised classification, and change detection. Streaming and multithreading let it process images larger than memory. Applications run from the command line, a graphical launcher, Python bindings, or as QGIS Processing algorithms when the provider is configured.',
+        'blurb': 'OTB (Orfeo ToolBox) is an open remote-sensing toolbox (CNES/OSGeo). It provides applications for preprocessing, classification, and accuracy assessment of EO imagery. Expected output: processed images, class maps, and metric reports.',
         'relations': {
             'Geospatial Libraries': 'Orfeo ToolBox is an open remote sensing library and application suite aimed at optical, radar, and very high resolution imagery. Applications cover radiometric calibration, orthorectification, pansharpening, segmentation, feature extraction, supervised and unsupervised classification, and change detection. Streaming and multithreading let it process images larger than memory. Applications run from the command line, a graphical launcher, Python bindings, or as QGIS Processing algorithms when the provider is configured.',
         },
     },
     'OTB BandMath': {
         'source': 'Orfeo ToolBox',
-        'blurb': 'BandMath evaluates a mathematical expression pixel by pixel across one or more input images, writing a single-band result. Bands are referenced with a syntax such as im1b1 for the first band of the first image, and the parser supports arithmetic, comparison, logical, and trigonometric functions. Inputs must share the same size and geometry. Spectral indices, masking rules, and simple arithmetic combinations of dates are the everyday uses.',
+        'blurb': 'OTB BandMath is an Orfeo ToolBox application. It applies per-pixel math across bands for indices and thresholds in RS pipelines. Expected output: a computed image band/file.',
         'relations': {
             'Change Detection': 'BandMath evaluates a mathematical expression pixel by pixel across one or more input images, writing a single-band result. Bands are referenced with a syntax such as im1b1 for the first band of the first image, and the parser supports arithmetic, comparison, logical, and trigonometric functions. Inputs must share the same size and geometry. Spectral indices, masking rules, and simple arithmetic combinations of dates are the everyday uses.',
-            'Remote Sensing': 'BandMath evaluates a mathematical expression pixel by pixel across one or more input images, writing a single-band result. Bands are referenced with a syntax such as im1b1 for the first band of the first image, and the parser supports arithmetic, comparison, logical, and trigonometric functions. Inputs must share the same size and geometry. Spectral indices, masking rules, and simple arithmetic combinations of dates are the everyday uses.',
+            'Remote Sensing': 'Applies per-pixel mathematical expressions across image bands (indices, thresholds, combinations). Similar in spirit to a raster calculator, within the Orfeo ToolBox workflow.',
             'Remote Sensing Classification': 'BandMath evaluates a mathematical expression pixel by pixel across one or more input images, writing a single-band result. Bands are referenced with a syntax such as im1b1 for the first band of the first image, and the parser supports arithmetic, comparison, logical, and trigonometric functions. Inputs must share the same size and geometry. Spectral indices, masking rules, and simple arithmetic combinations of dates are the everyday uses.',
             'Urban Growth Analysis': 'BandMath evaluates a mathematical expression pixel by pixel across one or more input images, writing a single-band result. Bands are referenced with a syntax such as im1b1 for the first band of the first image, and the parser supports arithmetic, comparison, logical, and trigonometric functions. Inputs must share the same size and geometry. Spectral indices, masking rules, and simple arithmetic combinations of dates are the everyday uses.',
         },
     },
+    'OTB ComputeConfusionMatrix': {
+        'source': 'Orfeo ToolBox',
+        'blurb': 'OTB ComputeConfusionMatrix is an Orfeo ToolBox accuracy app. It compares a classified map with reference labels and reports confusion-matrix metrics. Expected output: a confusion matrix CSV plus precision/recall/F-score measures.',
+        'relations': {
+            'Accuracy Assessment': "OTB ConfusionMatrix compares a classified raster (or vector labels) with a reference dataset and writes a confusion matrix plus accuracy measures. It supports sampling strategies and reports overall accuracy and class scores used in remote-sensing validation. Reference quality and sampling design remain the analyst's responsibility.",
+            'Remote Sensing': 'Compares a classified image with ground-truth labels (raster or vector) and writes a confusion matrix plus per-class precision, recall, and F-score. Rows are reference classes; columns are predicted classes. Essential accuracy check after land-cover classification.',
+        },
+    },
     'OTB ComputeImagesStatistics': {
         'source': 'Orfeo ToolBox',
-        'blurb': 'Global per-band statistics are computed over a list of input images and written to an XML file. Mean and standard deviation are recorded, with an option to ignore a background value so nodata does not skew results. The output file is consumed by classification applications that centre and reduce features before training or prediction, keeping bands comparable. Running it on the same imagery used for training and inference avoids inconsistent scaling.',
+        'blurb': 'OTB ComputeImagesStatistics is an Orfeo ToolBox application. It computes band statistics used to normalise or prepare imagery for classification. Expected output: image statistics files/reports.',
         'relations': {
-            'Remote Sensing': 'Global per-band statistics are computed over a list of input images and written to an XML file. Mean and standard deviation are recorded, with an option to ignore a background value so nodata does not skew results. The output file is consumed by classification applications that centre and reduce features before training or prediction, keeping bands comparable. Running it on the same imagery used for training and inference avoids inconsistent scaling.',
+            'Remote Sensing': 'Computes band-wise statistics (means, standard deviations, and related summaries) over imagery, often as preparation for normalisation or classification. Helps characterise radiometry before modelling.',
             'Remote Sensing Classification': 'Global per-band statistics are computed over a list of input images and written to an XML file. Mean and standard deviation are recorded, with an option to ignore a background value so nodata does not skew results. The output file is consumed by classification applications that centre and reduce features before training or prediction, keeping bands comparable. Running it on the same imagery used for training and inference avoids inconsistent scaling.',
         },
     },
     'OTB KMeansClassification': {
         'source': 'Orfeo ToolBox',
-        'blurb': 'Unsupervised classification partitions image pixels into a requested number of classes using k-means on spectral values. Parameters set the class count, training sample size, maximum iterations, and convergence threshold, and a sampling rate keeps large scenes affordable. Output is a labelled image, optionally accompanied by the centroid file so the same clustering can be reapplied. Labels carry no semantic meaning until an analyst interprets each cluster.',
+        'blurb': 'OTB KMeansClassification is an Orfeo ToolBox unsupervised classifier. It groups pixels into spectral clusters without training labels (clusters still need interpretation). Expected output: a clustered classification image.',
         'relations': {
-            'Remote Sensing': 'Unsupervised classification partitions image pixels into a requested number of classes using k-means on spectral values. Parameters set the class count, training sample size, maximum iterations, and convergence threshold, and a sampling rate keeps large scenes affordable. Output is a labelled image, optionally accompanied by the centroid file so the same clustering can be reapplied. Labels carry no semantic meaning until an analyst interprets each cluster.',
+            'Remote Sensing': 'Unsupervised classification that groups pixels into a chosen number of spectral clusters (k-means). No training labels required; clusters still need interpretation afterward.',
             'Remote Sensing Classification': 'Unsupervised classification partitions image pixels into a requested number of classes using k-means on spectral values. Parameters set the class count, training sample size, maximum iterations, and convergence threshold, and a sampling rate keeps large scenes affordable. Output is a labelled image, optionally accompanied by the centroid file so the same clustering can be reapplied. Labels carry no semantic meaning until an analyst interprets each cluster.',
         },
     },
     'OTB TrainImagesClassifier': {
         'source': 'Orfeo ToolBox',
-        'blurb': 'Supervised models are trained from input images paired with vector training data holding a class label field. Available learners include random forest, support vector machine, boosting, k-nearest neighbours, decision trees, and neural networks, each with its own hyperparameters. Sample selection strategies balance classes, and a statistics file normalises features. Outputs are a model file plus a confusion matrix computed from validation samples, ready for use by the image classifier application.',
+        'blurb': 'OTB TrainImagesClassifier is an Orfeo ToolBox supervised classification app. It trains classifiers (e.g., RF/SVM) from imagery and labelled samples then classifies pixels. Expected output: a trained model and/or classified image.',
         'relations': {
-            'Remote Sensing': 'Supervised models are trained from input images paired with vector training data holding a class label field. Available learners include random forest, support vector machine, boosting, k-nearest neighbours, decision trees, and neural networks, each with its own hyperparameters. Sample selection strategies balance classes, and a statistics file normalises features. Outputs are a model file plus a confusion matrix computed from validation samples, ready for use by the image classifier application.',
+            'Remote Sensing': 'Trains a supervised pixel classifier (for example random forest or SVM) from imagery and labelled training samples, then can classify the image. Training quality and sample balance dominate accuracy.',
             'Remote Sensing Classification': 'Supervised models are trained from input images paired with vector training data holding a class label field. Available learners include random forest, support vector machine, boosting, k-nearest neighbours, decision trees, and neural networks, each with its own hyperparameters. Sample selection strategies balance classes, and a statistics file normalises features. Outputs are a model file plus a confusion matrix computed from validation samples, ready for use by the image classifier application.',
         },
     },
     'Overture Maps': {
         'source': 'Overture Maps Foundation',
-        'blurb': 'Overture Maps publishes open map data assembled from multiple contributors as monthly releases in GeoParquet. Themes span places, buildings, transportation, divisions, addresses, and base layers such as land and water, all sharing a documented schema. Global Entity Reference System identifiers give features stable identities across releases, easing change tracking and conflation. Because files are cloud-hosted Parquet, engines like DuckDB, Sedona, and GeoPandas can query them directly.',
+        'blurb': 'Overture Maps is an open map data project. It releases globally consistent themes (buildings, places, transportation, …) for modern basemaps. Expected output: downloadable open map theme datasets.',
         'relations': {
             'Basemap': 'Overture Maps publishes open map data assembled from multiple contributors as monthly releases in GeoParquet. Themes span places, buildings, transportation, divisions, addresses, and base layers such as land and water, all sharing a documented schema. Global Entity Reference System identifiers give features stable identities across releases, easing change tracking and conflation. Because files are cloud-hosted Parquet, engines like DuckDB, Sedona, and GeoPandas can query them directly.',
         },
     },
     'PDAL': {
         'source': 'PDAL project',
-        'blurb': 'The Point Data Abstraction Library translates and processes point clouds through composable pipelines. Readers cover LAS, LAZ, COPC, EPT, text, and sensor formats; filters crop, reproject, classify ground, thin, colourise, and compute height above ground; writers emit point files or rasters. Pipelines are declared in JSON, keeping processing reproducible and scriptable. Command-line tools plus Python bindings expose the same stages, and metadata such as classification and return number is preserved.',
+        'blurb': 'PDAL is the Point Data Abstraction Library. It processes LiDAR and other point clouds through JSON pipelines of readers, filters, and writers. Expected output: filtered clouds and derived products (LAS/LAZ/rasters).',
         'relations': {
             'Geospatial Libraries': 'The Point Data Abstraction Library translates and processes point clouds through composable pipelines. Readers cover LAS, LAZ, COPC, EPT, text, and sensor formats; filters crop, reproject, classify ground, thin, colourise, and compute height above ground; writers emit point files or rasters. Pipelines are declared in JSON, keeping processing reproducible and scriptable. Command-line tools plus Python bindings expose the same stages, and metadata such as classification and return number is preserved.',
         },
     },
     'PDAL pipeline': {
         'source': 'PDAL',
-        'blurb': 'A pipeline is PDAL\'s unit of work: a JSON document listing stages that data flows through in order. The first stage reads points, intermediate filters transform or subset them, and a final writer produces output, with each stage identified by type and configured by its own options. Stages can be chained or branched, and the pipeline can be validated, previewed for metadata, or executed. Reusing the same document makes point cloud processing auditable.',
+        'blurb': 'PDAL pipeline is PDAL’s JSON workflow (and CLI runner). It chains read → filter → write stages for reproducible point-cloud processing. Expected output: written point-cloud or raster products from the pipeline.',
         'relations': {
-            'Point Cloud': 'A pipeline is PDAL\'s unit of work: a JSON document listing stages that data flows through in order. The first stage reads points, intermediate filters transform or subset them, and a final writer produces output, with each stage identified by type and configured by its own options. Stages can be chained or branched, and the pipeline can be validated, previewed for metadata, or executed. Reusing the same document makes point cloud processing auditable.',
-        },
-    },
-    'pdal pipeline': {
-        'source': 'PDAL',
-        'blurb': 'The pipeline subcommand executes a JSON pipeline description from the command line, streaming points through its reader, filters, and writer stages. Options validate the document without running it, read from standard input, add verbosity for diagnostics, override stage parameters, or disable streaming mode when a filter needs the whole dataset in memory. Metadata about the run can be written out, which supports reproducible and auditable point cloud processing in scripts.',
-        'relations': {
-            'Data Inspection': 'The pipeline subcommand executes a JSON pipeline description from the command line, streaming points through its reader, filters, and writer stages. Options validate the document without running it, read from standard input, add verbosity for diagnostics, override stage parameters, or disable streaming mode when a filter needs the whole dataset in memory. Metadata about the run can be written out, which supports reproducible and auditable point cloud processing in scripts.',
+            'Data Inspection': 'A PDAL pipeline is a JSON document listing stages that point data flows through in order: a reader, optional filters, and a writer. The `pdal pipeline` command executes or validates that document from the CLI, with options for verbosity, parameter overrides, and non-streaming mode when a filter needs all points in memory. Reusing the same document makes point-cloud processing auditable and scriptable.',
+            'Point Cloud': "A pipeline is PDAL's unit of work: a JSON document listing stages that data flows through in order. The first stage reads points, intermediate filters transform or subset them, and a final writer produces output, with each stage identified by type and configured by its own options. Stages can be chained or branched, and the pipeline can be validated, previewed for metadata, or executed. Reusing the same document makes point cloud processing auditable.",
+            'Remote Sensing': 'JSON workflow that reads, filters, and writes point clouds in PDAL. The `pdal pipeline` command runs or validates it—reproducible LiDAR processing.',
         },
     },
     'pgr_aStar': {
         'source': 'pgRouting',
-        'blurb': 'A* finds a least-cost path while guiding the search toward the destination with a geometric heuristic, which usually visits fewer nodes than plain Dijkstra. The edges query must supply node coordinates as x1, y1, x2, y2 so the heuristic can estimate remaining distance, and options select among several heuristic formulations plus factor and epsilon parameters. Factor must align heuristic units with cost units, otherwise the result may not be optimal.',
+        'blurb': 'pgr_aStar is a pgRouting shortest-path function. It finds least-cost paths with a geometric heuristic that usually explores fewer nodes than plain Dijkstra. Expected output: a least-cost path result set.',
         'relations': {
             'Connectivity': 'A* finds a least-cost path while guiding the search toward the destination with a geometric heuristic, which usually visits fewer nodes than plain Dijkstra. The edges query must supply node coordinates as x1, y1, x2, y2 so the heuristic can estimate remaining distance, and options select among several heuristic formulations plus factor and epsilon parameters. Factor must align heuristic units with cost units, otherwise the result may not be optimal.',
             'Network': 'A* finds a least-cost path while guiding the search toward the destination with a geometric heuristic, which usually visits fewer nodes than plain Dijkstra. The edges query must supply node coordinates as x1, y1, x2, y2 so the heuristic can estimate remaining distance, and options select among several heuristic formulations plus factor and epsilon parameters. Factor must align heuristic units with cost units, otherwise the result may not be optimal.',
@@ -1071,7 +1324,7 @@ TOOL_INFO = {
     },
     'pgr_dijkstra': {
         'source': 'pgRouting',
-        'blurb': 'Shortest paths are computed over a graph defined by an SQL query returning edge identifier, source, target, cost, and reverse cost. One-to-one, one-to-many, many-to-one, many-to-many, and combination forms exist, and a directed flag decides whether reverse cost is honoured. Output rows give sequence, path identifier, node, edge, cost, and cumulative cost, with the final edge marked minus one. Negative reverse cost marks an edge as impassable in that direction.',
+        'blurb': 'pgr_dijkstra is a pgRouting shortest-path function. It finds least-cost routes on a network using Dijkstra, supporting one-to-one and many variants. Expected output: ordered path rows with node/edge/cost/aggregate cost.',
         'relations': {
             'Connectivity': 'Shortest paths are computed over a graph defined by an SQL query returning edge identifier, source, target, cost, and reverse cost. One-to-one, one-to-many, many-to-one, many-to-many, and combination forms exist, and a directed flag decides whether reverse cost is honoured. Output rows give sequence, path identifier, node, edge, cost, and cumulative cost, with the final edge marked minus one. Negative reverse cost marks an edge as impassable in that direction.',
             'Infrastructure Planning': 'Shortest paths are computed over a graph defined by an SQL query returning edge identifier, source, target, cost, and reverse cost. One-to-one, one-to-many, many-to-one, many-to-many, and combination forms exist, and a directed flag decides whether reverse cost is honoured. Output rows give sequence, path identifier, node, edge, cost, and cumulative cost, with the final edge marked minus one. Negative reverse cost marks an edge as impassable in that direction.',
@@ -1084,7 +1337,7 @@ TOOL_INFO = {
     },
     'pgr_dijkstraCostMatrix': {
         'source': 'pgRouting',
-        'blurb': 'A cost matrix is produced among a set of vertices by running Dijkstra between every pair, returning start vertex, end vertex, and aggregate cost without path detail. A directed flag controls symmetry, since asymmetric costs arise from one-way restrictions. The output is shaped for direct use by travelling salesman and other optimisation functions. Computation grows quadratically with vertex count, so restricting the vertex list keeps runtimes reasonable.',
+        'blurb': 'pgr_dijkstraCostMatrix is a pgRouting cost-matrix function. It computes least-cost travel between many vertex pairs without returning full geometries. Expected output: a cost matrix table.',
         'relations': {
             'Network': 'A cost matrix is produced among a set of vertices by running Dijkstra between every pair, returning start vertex, end vertex, and aggregate cost without path detail. A directed flag controls symmetry, since asymmetric costs arise from one-way restrictions. The output is shaped for direct use by travelling salesman and other optimisation functions. Computation grows quadratically with vertex count, so restricting the vertex list keeps runtimes reasonable.',
             'Network Analysis': 'A cost matrix is produced among a set of vertices by running Dijkstra between every pair, returning start vertex, end vertex, and aggregate cost without path detail. A directed flag controls symmetry, since asymmetric costs arise from one-way restrictions. The output is shaped for direct use by travelling salesman and other optimisation functions. Computation grows quadratically with vertex count, so restricting the vertex list keeps runtimes reasonable.',
@@ -1092,21 +1345,21 @@ TOOL_INFO = {
     },
     'pgr_dijkstraNear': {
         'source': 'pgRouting',
-        'blurb': 'Given one or more starting vertices and a set of possible destinations, this function returns the path to whichever destination is cheapest to reach rather than paths to all of them. A cap parameter allows the closest few to be returned instead of just one, and a directed flag governs traversal. Output includes the full path with aggregate cost. Nearest-hospital and nearest-depot questions map onto it directly.',
+        'blurb': 'pgr_dijkstraNear is a pgRouting nearest-destination function. It finds the path to the cheapest destination among candidates (nearest facility on the network). Expected output: path rows to the nearest target.',
         'relations': {
             'Network': 'Given one or more starting vertices and a set of possible destinations, this function returns the path to whichever destination is cheapest to reach rather than paths to all of them. A cap parameter allows the closest few to be returned instead of just one, and a directed flag governs traversal. Output includes the full path with aggregate cost. Nearest-hospital and nearest-depot questions map onto it directly.',
         },
     },
     'pgr_dijkstraNearCost': {
         'source': 'pgRouting',
-        'blurb': 'This variant reports only the cost of reaching the nearest destination, omitting the intermediate path rows. Returning start vertex, end vertex, and aggregate cost keeps result sets small, which matters when the query runs across many origins. A cap value can request the closest several destinations, and directedness follows the usual flag. It suits accessibility indicators and assignment problems where the route geometry itself is not needed.',
+        'blurb': 'pgr_dijkstraNearCost is a pgRouting nearest-cost function. It returns only the cost to the nearest destination when you need scores rather than mapped paths. Expected output: nearest-destination cost values.',
         'relations': {
             'Network': 'This variant reports only the cost of reaching the nearest destination, omitting the intermediate path rows. Returning start vertex, end vertex, and aggregate cost keeps result sets small, which matters when the query runs across many origins. A cap value can request the closest several destinations, and directedness follows the usual flag. It suits accessibility indicators and assignment problems where the route geometry itself is not needed.',
         },
     },
     'pgr_dijkstraVia': {
         'source': 'pgRouting',
-        'blurb': 'A route visiting a list of vertices in the given order is computed as a sequence of Dijkstra legs stitched together. Output rows identify the path segment, its start and end vertices, per-edge cost, aggregate cost within the leg, and the running total for the whole journey, so each stage can be styled separately. Strict and U-turn options control behaviour when a leg cannot be completed or must reverse at a stop.',
+        'blurb': 'pgr_dijkstraVia is a pgRouting via-route function. It chains Dijkstra legs through an ordered list of stops for fixed itineraries. Expected output: a concatenated path across waypoints.',
         'relations': {
             'Network': 'A route visiting a list of vertices in the given order is computed as a sequence of Dijkstra legs stitched together. Output rows identify the path segment, its start and end vertices, per-edge cost, aggregate cost within the leg, and the running total for the whole journey, so each stage can be styled separately. Strict and U-turn options control behaviour when a leg cannot be completed or must reverse at a stop.',
             'Network Analysis': 'A route visiting a list of vertices in the given order is computed as a sequence of Dijkstra legs stitched together. Output rows identify the path segment, its start and end vertices, per-edge cost, aggregate cost within the leg, and the running total for the whole journey, so each stage can be styled separately. Strict and U-turn options control behaviour when a leg cannot be completed or must reverse at a stop.',
@@ -1116,7 +1369,7 @@ TOOL_INFO = {
     },
     'pgr_drivingDistance': {
         'source': 'pgRouting',
-        'blurb': 'All nodes reachable from one or more start vertices within a given cost limit are returned, each with the aggregate cost of reaching it. The output is a set of vertices rather than a polygon, so an alpha shape or convex hull step is needed to draw a service area boundary. Directedness and an equicost option, which assigns shared nodes to their cheapest source, control behaviour with multiple starting points.',
+        'blurb': 'pgr_drivingDistance is a pgRouting catchment function. It finds all nodes reachable within a cost limit from start vertices for service-area style questions. Expected output: reachable nodes with aggregate costs.',
         'relations': {
             'Accessibility': 'All nodes reachable from one or more start vertices within a given cost limit are returned, each with the aggregate cost of reaching it. The output is a set of vertices rather than a polygon, so an alpha shape or convex hull step is needed to draw a service area boundary. Directedness and an equicost option, which assigns shared nodes to their cheapest source, control behaviour with multiple starting points.',
             'Accessibility Analysis': 'All nodes reachable from one or more start vertices within a given cost limit are returned, each with the aggregate cost of reaching it. The output is a set of vertices rather than a polygon, so an alpha shape or convex hull step is needed to draw a service area boundary. Directedness and an equicost option, which assigns shared nodes to their cheapest source, control behaviour with multiple starting points.',
@@ -1128,59 +1381,81 @@ TOOL_INFO = {
     },
     'pgr_KSP': {
         'source': 'pgRouting',
-        'blurb': 'K shortest paths between two vertices are found using Yen\'s algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.',
+        'blurb': 'pgr_KSP is a pgRouting K-shortest-path function (Yen). It returns several alternative routes ordered by cost when backups are needed. Expected output: K alternative path result sets.',
         'relations': {
-            'Connectivity': 'K shortest paths between two vertices are found using Yen\'s algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.',
-            'Network': 'K shortest paths between two vertices are found using Yen\'s algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.',
-            'Network Analysis': 'K shortest paths between two vertices are found using Yen\'s algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.',
-            'Routing': 'K shortest paths between two vertices are found using Yen\'s algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.',
+            'Connectivity': "K shortest paths between two vertices are found using Yen's algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.",
+            'Network': "K shortest paths between two vertices are found using Yen's algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.",
+            'Network Analysis': "K shortest paths between two vertices are found using Yen's algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.",
+            'Routing': "K shortest paths between two vertices are found using Yen's algorithm, returning the requested number of alternative routes ordered by cost. Results arrive as rows carrying path identifier, sequence, node, edge, cost, and aggregate cost, so each alternative can be reconstructed and mapped. A heap paths option exposes additional candidates discovered during the search. Alternatives matter when a single optimum is unsuitable due to capacity, risk, or scheduling constraints.",
         },
     },
     'pgRouting': {
         'source': 'pgRouting project',
-        'blurb': 'pgRouting extends PostGIS with network analysis functions operating on edge tables that carry identifier, source, target, cost, and optionally reverse cost columns. Algorithms include Dijkstra, A*, bidirectional variants, K shortest paths, driving distance, travelling salesman, flow, and contraction. Because everything runs as SQL, routing composes with joins, filters, and spatial predicates, and costs can be computed dynamically. Topology helpers create and validate the node and edge relationships first.',
+        'blurb': 'pgRouting is a PostgreSQL/PostGIS network analysis extension. It runs shortest path, driving distance, and related graph algorithms on edge tables. Expected output: path/cost result tables.',
         'relations': {
             'Geospatial Libraries': 'pgRouting extends PostGIS with network analysis functions operating on edge tables that carry identifier, source, target, cost, and optionally reverse cost columns. Algorithms include Dijkstra, A*, bidirectional variants, K shortest paths, driving distance, travelling salesman, flow, and contraction. Because everything runs as SQL, routing composes with joins, filters, and spatial predicates, and costs can be computed dynamically. Topology helpers create and validate the node and edge relationships first.',
         },
     },
+    'pointpats.centrography': {
+        'source': 'PySAL pointpats',
+        'blurb': 'pointpats.centrography is a PySAL pointpats summary module. It computes mean/median centres, standard distance, and standard deviational ellipses for point sets. Expected output: centrography statistics and optional ellipse geometry.',
+        'relations': {
+            'Point Pattern Analysis': 'Centrography summarises a point pattern with mean and median centres, standard distance, and standard deviational ellipses. These descriptors locate the centre of mass and directional spread of events without producing a full density surface. They complement kernel density maps with compact numeric summaries.',
+        },
+    },
+    'pointpats.PointPattern': {
+        'source': 'PySAL pointpats',
+        'blurb': 'pointpats.PointPattern is a PySAL pointpats data structure. It stores event coordinates for intensity and distance-based point pattern analysis. Expected output: a PointPattern object for further summaries/tests.',
+        'relations': {
+            'Point Pattern Analysis': 'PointPattern stores a set of planar point event coordinates and supports descriptive summaries used in point pattern analysis. It is the entry object for intensity estimates, centrography, and distance-based statistics in the pointpats package. A defined study window is required so edge effects are handled explicitly.',
+        },
+    },
     'PostGIS': {
         'source': 'PostGIS / OSGeo',
-        'blurb': 'PostGIS turns PostgreSQL into a spatial database with geometry, geography, and raster types alongside several hundred ST_ functions for measurement, predicates, overlay, and transformation. GiST indexes make bounding-box filtering fast, and the query planner combines spatial predicates with ordinary SQL joins and aggregates. Coordinate systems are tracked by SRID and reprojected through PROJ, while extensions add topology and routing. Standards compliance follows OGC Simple Features and SQL/MM.',
+        'blurb': 'PostGIS is the spatial extension for PostgreSQL (OSGeo). It adds geometry/geography types, spatial indexes, and hundreds of ST_ functions for storage and analysis. Expected output: spatial tables and query result sets.',
         'relations': {
             'APIs': 'PostGIS turns PostgreSQL into a spatial database with geometry, geography, and raster types alongside several hundred ST_ functions for measurement, predicates, overlay, and transformation. GiST indexes make bounding-box filtering fast, and the query planner combines spatial predicates with ordinary SQL joins and aggregates. Coordinate systems are tracked by SRID and reprojected through PROJ, while extensions add topology and routing. Standards compliance follows OGC Simple Features and SQL/MM.',
             'Geospatial Libraries': 'PostGIS turns PostgreSQL into a spatial database with geometry, geography, and raster types alongside several hundred ST_ functions for measurement, predicates, overlay, and transformation. GiST indexes make bounding-box filtering fast, and the query planner combines spatial predicates with ordinary SQL joins and aggregates. Coordinate systems are tracked by SRID and reprojected through PROJ, while extensions add topology and routing. Standards compliance follows OGC Simple Features and SQL/MM.',
+            'Spatial Indexing': 'PostGIS turns PostgreSQL into a spatial database with geometry, geography, and raster types alongside several hundred ST_ functions for measurement, predicates, overlay, and transformation. GiST indexes make bounding-box filtering fast, and the query planner combines spatial predicates with ordinary SQL joins and aggregates. Coordinate systems are tracked by SRID and reprojected through PROJ, while extensions add topology and routing. Standards compliance follows OGC Simple Features and SQL/MM.',
         },
     },
     'projinfo': {
         'source': 'PROJ',
-        'blurb': 'PROJ\'s inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.',
+        'blurb': 'projinfo is a PROJ command-line inspection tool. It prints CRS and coordinate-operation details to verify EPSG codes and transform paths. Expected output: a text report of CRS/operation info.',
         'relations': {
-            'CRS Management': 'PROJ\'s inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.',
-            'CRS Validation': 'PROJ\'s inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.',
-            'Common CRS Errors': 'PROJ\'s inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.',
-            'Datums': 'PROJ\'s inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.',
-            'Geographic': 'PROJ\'s inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.',
-            'Units': 'PROJ\'s inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.',
-            'Vertical CRS': 'PROJ\'s inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.',
+            'CRS Management': "PROJ's inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.",
+            'CRS Validation': "PROJ's inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.",
+            'Common CRS Errors': "PROJ's inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.",
+            'Datums': "PROJ's inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.",
+            'Geographic': "PROJ's inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.",
+            'Units': "PROJ's inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.",
+            'Vertical CRS': "PROJ's inspection utility prints information about coordinate reference systems and coordinate operations. Supplying an authority code, WKT, or PROJ string reports the definition in several formats, including WKT versions one and two and PROJJSON, along with datum, axis, and area of use details. Giving source and target systems instead lists candidate transformation pipelines ranked by accuracy, which is how to discover why two tools disagree by several metres.",
+        },
+    },
+    'pygeometa': {
+        'source': 'Geopython / pygeometa',
+        'blurb': 'pygeometa is a Geopython metadata generator. It creates standards-based metadata (e.g., ISO 19139) from simple YAML/dict records. Expected output: metadata XML/records for catalogues.',
+        'relations': {
+            'Standards': 'pygeometa generates geospatial metadata from YAML or dict-like metadata records into standards such as ISO 19139, WIGOS, and related profiles. It helps automate catalogue ingestion from project configuration instead of hand-editing XML. Validation against schemas catches missing mandatory elements early.',
         },
     },
     'PyKrige': {
         'source': 'Python',
-        'blurb': 'PyKrige implements kriging interpolation in Python, covering ordinary and universal kriging in two and three dimensions. Variogram models include linear, power, gaussian, spherical, exponential, and hole-effect forms, with parameters either fitted automatically or supplied directly, and anisotropy can be specified. Executing a model on a grid or on scattered points returns both predicted values and estimation variance, the latter quantifying uncertainty. Regression and classification kriging wrappers integrate scikit-learn estimators.',
+        'blurb': 'PyKrige is a Python kriging library. It performs geostatistical interpolation with variogram modelling and uncertainty estimates beyond simple IDW. Expected output: interpolated surfaces plus variance/uncertainty grids.',
         'relations': {
             'Spatial Interpolation': 'PyKrige implements kriging interpolation in Python, covering ordinary and universal kriging in two and three dimensions. Variogram models include linear, power, gaussian, spherical, exponential, and hole-effect forms, with parameters either fitted automatically or supplied directly, and anisotropy can be specified. Executing a model on a grid or on scattered points returns both predicted values and estimation variance, the latter quantifying uncertainty. Regression and classification kriging wrappers integrate scikit-learn estimators.',
         },
     },
     'PyProj': {
         'source': 'Python (pyproj)',
-        'blurb': 'PyProj wraps the PROJ library, giving Python objects for coordinate reference systems, transformations, and geodetic calculations. A CRS can be built from EPSG codes, WKT, PROJ strings, or authority names, and inspected for axis order, datum, and units. Transformer objects convert coordinates between systems, selecting an appropriate operation and optionally applying datum grids. Geod handles geodesic distance, azimuth, and area on the ellipsoid, avoiding planar approximations over long distances.',
+        'blurb': 'PyProj is the Python interface to PROJ. It defines CRSs and transforms coordinates accurately across datums. Expected output: CRS objects and transformed coordinates.',
         'relations': {
             'Geospatial Libraries': 'PyProj wraps the PROJ library, giving Python objects for coordinate reference systems, transformations, and geodetic calculations. A CRS can be built from EPSG codes, WKT, PROJ strings, or authority names, and inspected for axis order, datum, and units. Transformer objects convert coordinates between systems, selecting an appropriate operation and optionally applying datum grids. Geod handles geodesic distance, azimuth, and area on the ellipsoid, avoiding planar approximations over long distances.',
         },
     },
     'pyproj.CRS': {
         'source': 'PyProj',
-        'blurb': 'A coordinate reference system is represented as an object built from an EPSG code, WKT, PROJ string, PROJJSON, or authority name. Properties expose axis order and units, the datum and ellipsoid, whether the system is geographic, projected, or compound, and its declared area of use. Equality comparison and to_epsg lookups help reconcile definitions that differ textually but describe the same system. It underpins CRS handling in GeoPandas and Rasterio.',
+        'blurb': 'pyproj.CRS is a PyProj class for CRS definitions. It builds CRS objects from EPSG/WKT/PROJ so you can inspect axes, units, and datums. Expected output: a CRS object/metadata.',
         'relations': {
             'CRS Management': 'A coordinate reference system is represented as an object built from an EPSG code, WKT, PROJ string, PROJJSON, or authority name. Properties expose axis order and units, the datum and ellipsoid, whether the system is geographic, projected, or compound, and its declared area of use. Equality comparison and to_epsg lookups help reconcile definitions that differ textually but describe the same system. It underpins CRS handling in GeoPandas and Rasterio.',
             'CRS Validation': 'A coordinate reference system is represented as an object built from an EPSG code, WKT, PROJ string, PROJJSON, or authority name. Properties expose axis order and units, the datum and ellipsoid, whether the system is geographic, projected, or compound, and its declared area of use. Equality comparison and to_epsg lookups help reconcile definitions that differ textually but describe the same system. It underpins CRS handling in GeoPandas and Rasterio.',
@@ -1192,7 +1467,7 @@ TOOL_INFO = {
     },
     'pyproj.Transformer': {
         'source': 'PyProj',
-        'blurb': 'Transformer objects convert coordinates between two coordinate reference systems, created most often with from_crs and then reused for many points, since construction is the expensive part. An area of interest can steer selection toward a more accurate operation, and available pipelines with their accuracies can be listed before choosing. Arrays are handled efficiently, and by default axis order follows each CRS definition rather than always being longitude first.',
+        'blurb': 'pyproj.Transformer is a PyProj coordinate transformer. It converts coordinates between CRSs efficiently when created once and reused. Expected output: transformed coordinate arrays.',
         'relations': {
             'CRS Management': 'Transformer objects convert coordinates between two coordinate reference systems, created most often with from_crs and then reused for many points, since construction is the expensive part. An area of interest can steer selection toward a more accurate operation, and available pipelines with their accuracies can be listed before choosing. Arrays are handled efficiently, and by default axis order follows each CRS definition rather than always being longitude first.',
             'CRS Validation': 'Transformer objects convert coordinates between two coordinate reference systems, created most often with from_crs and then reused for many points, since construction is the expensive part. An area of interest can steer selection toward a more accurate operation, and available pipelines with their accuracies can be listed before choosing. Arrays are handled efficiently, and by default axis order follows each CRS definition rather than always being longitude first.',
@@ -1203,7 +1478,7 @@ TOOL_INFO = {
     },
     'pyproj.Transformer(always_xy=True)': {
         'source': 'PyProj',
-        'blurb': 'Passing always_xy forces coordinate input and output to be ordered as easting then northing, or longitude then latitude, regardless of the axis order declared by the CRS. This matters because EPSG:4326 formally defines latitude before longitude, so omitting the flag silently swaps values and places features in the wrong hemisphere. Most GIS data and libraries assume x before y, making the flag the usual choice for interoperable code.',
+        'blurb': 'pyproj.Transformer(always_xy=True) is a PyProj transformer mode. It forces easting/northing (or lon/lat) order to avoid axis-order bugs in some EPSG codes. Expected output: coordinates in consistent xy order.',
         'relations': {
             'CRS Validation': 'Passing always_xy forces coordinate input and output to be ordered as easting then northing, or longitude then latitude, regardless of the axis order declared by the CRS. This matters because EPSG:4326 formally defines latitude before longitude, so omitting the flag silently swaps values and places features in the wrong hemisphere. Most GIS data and libraries assume x before y, making the flag the usual choice for interoperable code.',
             'Common CRS Errors': 'Passing always_xy forces coordinate input and output to be ordered as easting then northing, or longitude then latitude, regardless of the axis order declared by the CRS. This matters because EPSG:4326 formally defines latitude before longitude, so omitting the flag silently swaps values and places features in the wrong hemisphere. Most GIS data and libraries assume x before y, making the flag the usual choice for interoperable code.',
@@ -1211,66 +1486,91 @@ TOOL_INFO = {
     },
     'PySAL': {
         'source': 'Python Spatial Analysis Library',
-        'blurb': 'PySAL is a family of Python packages for spatial data science. Libpysal supplies spatial weights, distance computations, and example datasets; esda covers exploratory analysis such as Moran\'s I, Geary\'s C, and Getis-Ord statistics; spreg fits spatial regression models; and further modules address regionalisation, segregation, inequality, and spatial interaction. Weights construction, whether contiguity, distance band, or k-nearest neighbour, shapes every downstream statistic and deserves explicit justification.',
+        'blurb': 'PySAL is the Python Spatial Analysis Library ecosystem. It provides weights, spatial stats, regression, point patterns, and related modules for scientific GIS. Expected output: statistical objects, maps of indicators, and model results.',
         'relations': {
-            'Geospatial Libraries': 'PySAL is a family of Python packages for spatial data science. Libpysal supplies spatial weights, distance computations, and example datasets; esda covers exploratory analysis such as Moran\'s I, Geary\'s C, and Getis-Ord statistics; spreg fits spatial regression models; and further modules address regionalisation, segregation, inequality, and spatial interaction. Weights construction, whether contiguity, distance band, or k-nearest neighbour, shapes every downstream statistic and deserves explicit justification.',
+            'Geospatial Libraries': "PySAL is a family of Python packages for spatial data science. Libpysal supplies spatial weights, distance computations, and example datasets; esda covers exploratory analysis such as Moran's I, Geary's C, and Getis-Ord statistics; spreg fits spatial regression models; and further modules address regionalisation, segregation, inequality, and spatial interaction. Weights construction, whether contiguity, distance band, or k-nearest neighbour, shapes every downstream statistic and deserves explicit justification.",
+        },
+    },
+    'pystac': {
+        'source': 'STAC project',
+        'blurb': 'pystac is a Python library for STAC. It reads, writes, and walks STAC catalogues for building or consuming cloud EO catalogs. Expected output: STAC objects in Python / written catalog files.',
+        'relations': {
+            'SDI / Catalogs': 'pystac is a Python library for reading, writing, and walking STAC Catalogs, Collections, and Items. It validates structure, resolves links, and helps build static or dynamic catalogues of cloud-hosted assets. Together with pystac-client it queries remote STAC APIs by space, time, and properties.',
+        },
+    },
+    'Python for GIS': {
+        'source': 'Python geospatial ecosystem',
+        'blurb': 'Python for GIS refers to the Python geospatial ecosystem (GeoPandas, Rasterio, PySAL, etc.). It automates analysis and pipelines beyond click-based GUI work. Expected output: scripts/notebooks producing GIS files, maps, and statistics.',
+        'relations': {
+            'Development': 'Python is the dominant scripting language for modern GIS through libraries such as GeoPandas, Rasterio, PyProj, PDAL bindings, PySAL, and many cloud SDKs. Scripts and notebooks automate conversion, analysis, and publishing beyond click-based GUI work. Packaging and environments (conda, venv) keep scientific stacks reproducible.',
         },
     },
     'PyTorch': {
         'source': 'Meta / Linux Foundation',
-        'blurb': 'PyTorch is a deep learning framework built around tensors, automatic differentiation, and composable neural network modules, with GPU acceleration through CUDA or Metal. Dynamic graph execution makes debugging straightforward, and the wider ecosystem adds vision models, distributed training, and deployment through TorchScript or ONNX. Geospatial work commonly pairs it with libraries such as TorchGeo for chipping imagery, handling coordinate metadata, and running segmentation or classification over tiles.',
+        'blurb': 'PyTorch is a deep-learning framework. It trains neural networks on imagery and geospatial tensors with flexible Python APIs. Expected output: trained models and inference tensors/maps.',
         'relations': {
             'AI': 'PyTorch is a deep learning framework built around tensors, automatic differentiation, and composable neural network modules, with GPU acceleration through CUDA or Metal. Dynamic graph execution makes debugging straightforward, and the wider ecosystem adds vision models, distributed training, and deployment through TorchScript or ONNX. Geospatial work commonly pairs it with libraries such as TorchGeo for chipping imagery, handling coordinate metadata, and running segmentation or classification over tiles.',
         },
     },
+    'QField': {
+        'source': 'OPENGIS.ch / QField',
+        'blurb': 'QField is a mobile field app for QGIS projects (OPENGIS.ch). It supports offline viewing/editing with GPS capture and sync back to desktop/cloud. Expected output: updated project layers/features from the field.',
+        'relations': {
+            'Data Acquisition': 'QField is a mobile app that takes QGIS projects into the field for viewing and editing. Surveyors capture geometries and attributes offline, then synchronise via QFieldCloud or file exchange. Forms, GPS positioning, and project styling follow the desktop QGIS configuration, reducing redesign for field crews.',
+        },
+    },
     'QGIS 3D Map View': {
         'source': 'QGIS',
-        'blurb': 'A 3D map view renders the current project in a navigable scene. Terrain can be driven by a DEM, a mesh layer, or an online elevation source, with vertical exaggeration adjusting relief, while vector layers gain 3D symbols including extruded polygons, point models, and line tubes. Camera navigation, lighting, shadows, and eye dome lighting are configurable, and point clouds display directly. Animations along camera paths can be exported as frames.',
+        'blurb': 'QGIS 3D Map View is the QGIS three-dimensional scene viewer. It shows terrain and extruded/modelled features for immersive exploration beyond 2D. Expected output: an interactive 3D view (exportable frames/animations depending on setup).',
         'relations': {
             '3D': 'A 3D map view renders the current project in a navigable scene. Terrain can be driven by a DEM, a mesh layer, or an online elevation source, with vertical exaggeration adjusting relief, while vector layers gain 3D symbols including extruded polygons, point models, and line tubes. Camera navigation, lighting, shadows, and eye dome lighting are configurable, and point clouds display directly. Animations along camera paths can be exported as frames.',
+            'Cartography': 'Shows the project in a navigable 3D scene with terrain from a DEM or mesh and extruded or model-based vector symbols. Useful for terrain and urban visualisation beyond 2D maps.',
             'Mesh': 'A 3D map view renders the current project in a navigable scene. Terrain can be driven by a DEM, a mesh layer, or an online elevation source, with vertical exaggeration adjusting relief, while vector layers gain 3D symbols including extruded polygons, point models, and line tubes. Camera navigation, lighting, shadows, and eye dome lighting are configurable, and point clouds display directly. Animations along camera paths can be exported as frames.',
         },
     },
     'QGIS Geometry Checker': {
         'source': 'QGIS Plugin',
-        'blurb': 'The Geometry Checker inspects vector layers for geometry and topology problems and offers guided repairs. Configurable tests include self-intersections, duplicate nodes, tiny areas and short segments, sliver polygons, gaps and overlaps between features, point-in-polygon rules, and angle thresholds, each with its own tolerance. A results table linked to the map canvas lets every reported error be zoomed to and reviewed individually. Selected fixes can then be applied back to the source layer.',
+        'blurb': 'QGIS Geometry Checker refers to QGIS geometry validation tooling (plugin/Processing). It finds structural and topological problems before overlays or publishing. Expected output: diagnostic error features and messages.',
         'relations': {
             'Geometry Validation': 'The Geometry Checker inspects vector layers for geometry and topology problems and offers guided repairs. Configurable tests include self-intersections, duplicate nodes, tiny areas and short segments, sliver polygons, gaps and overlaps between features, point-in-polygon rules, and angle thresholds, each with its own tolerance. A results table linked to the map canvas lets every reported error be zoomed to and reviewed individually. Selected fixes can then be applied back to the source layer.',
         },
     },
     'QGIS Geometry Checker Plugin': {
         'source': 'QGIS Plugin',
-        'blurb': 'Shipped as a core plugin, this tool must be enabled through the Plugin Manager before appearing under the Vector menu. Once active it runs a configurable battery of validity and topology checks across one or several layers, writing results to an error table and optional output layers. Automatic resolutions, such as deleting duplicates, snapping to neighbours, or splitting self-intersecting rings, are chosen per error type before being committed.',
+        'blurb': 'The Geometry Checker Plugin is a QGIS interactive validation add-on. It helps find and review geometry/topology problems with a guided interface. Expected output: error reports and optional fixes applied in the project.',
         'relations': {
             'Validity': 'Shipped as a core plugin, this tool must be enabled through the Plugin Manager before appearing under the Vector menu. Once active it runs a configurable battery of validity and topology checks across one or several layers, writing results to an error table and optional output layers. Automatic resolutions, such as deleting duplicates, snapping to neighbours, or splitting self-intersecting rings, are chosen per error type before being committed.',
         },
     },
     'QGIS Label settings': {
         'source': 'QGIS',
-        'blurb': 'Labelling is configured per layer through settings covering text, formatting, buffer, mask, background, shadow, and callouts, with the label expression or field determining content. Placement modes differ by geometry type, offering offset, cartographic, around point, parallel, curved, horizontal, and free options for polygons. Rendering controls scale visibility, feature limits, and obstacle behaviour, while data-defined overrides let any property respond to attribute values or expressions.',
+        'blurb': 'QGIS Label settings control feature labelling in QGIS. They manage fonts, placement, filters, and buffers so text remains readable. Expected output: labelled map features on canvas/layout.',
         'relations': {
-            'Cartography': 'Labelling is configured per layer through settings covering text, formatting, buffer, mask, background, shadow, and callouts, with the label expression or field determining content. Placement modes differ by geometry type, offering offset, cartographic, around point, parallel, curved, horizontal, and free options for polygons. Rendering controls scale visibility, feature limits, and obstacle behaviour, while data-defined overrides let any property respond to attribute values or expressions.',
+            'Cartography': 'Controls how feature labels are placed, filtered, and styled in QGIS—fonts, buffers, placement priority, and data-defined overrides. Good labelling is as important as symbol choice.',
         },
     },
     'QGIS Model Designer': {
         'source': 'QGIS Processing',
-        'blurb': 'Processing algorithms can be chained graphically into a reusable model. Inputs are declared as typed parameters, algorithm blocks consume earlier outputs, and dependencies determine execution order, with conditional branches and per-feature iteration available. Models save as .model3 files, appear in the Processing Toolbox like any other algorithm, and can be run in batch mode. Comments, groups, and help metadata make longer workflows readable and shareable.',
+        'blurb': 'QGIS Model Designer is the visual workflow builder in QGIS. It chains Processing algorithms into reusable models for repeatable multi-step analysis. Expected output: a saved model that can run batch jobs with defined outputs.',
         'relations': {
+            'Development': 'Processing algorithms can be chained graphically into a reusable model. Inputs are declared as typed parameters, algorithm blocks consume earlier outputs, and dependencies determine execution order, with conditional branches and per-feature iteration available. Models save as .model3 files, appear in the Processing Toolbox like any other algorithm, and can be run in batch mode. Comments, groups, and help metadata make longer workflows readable and shareable.',
+            'Geocomputation': 'Processing algorithms can be chained graphically into a reusable model. Inputs are declared as typed parameters, algorithm blocks consume earlier outputs, and dependencies determine execution order, with conditional branches and per-feature iteration available. Models save as .model3 files, appear in the Processing Toolbox like any other algorithm, and can be run in batch mode. Comments, groups, and help metadata make longer workflows readable and shareable.',
             'Lineage': 'Processing algorithms can be chained graphically into a reusable model. Inputs are declared as typed parameters, algorithm blocks consume earlier outputs, and dependencies determine execution order, with conditional branches and per-feature iteration available. Models save as .model3 files, appear in the Processing Toolbox like any other algorithm, and can be run in batch mode. Comments, groups, and help metadata make longer workflows readable and shareable.',
             'Suitability Analysis': 'Processing algorithms can be chained graphically into a reusable model. Inputs are declared as typed parameters, algorithm blocks consume earlier outputs, and dependencies determine execution order, with conditional branches and per-feature iteration available. Models save as .model3 files, appear in the Processing Toolbox like any other algorithm, and can be run in batch mode. Comments, groups, and help metadata make longer workflows readable and shareable.',
         },
     },
     'QGIS Print Layout': {
         'source': 'QGIS',
-        'blurb': 'Print layouts assemble map output for export. Items include one or more map frames with independent extents and scales, legends, scale bars, north arrows, labels, images, attribute tables, and HTML frames, all positioned on a page of chosen size. Atlas mode iterates over a coverage layer to generate one page per feature with dynamic text and extents. Export targets are PDF, SVG, and raster images with configurable resolution.',
+        'blurb': 'QGIS Print Layout is QGIS’s map-composition environment. It arranges map frames, legends, scale bars, and text for publication-quality pages or atlases. Expected output: PDF/SVG/image exports (optionally multi-page Atlas).',
         'relations': {
-            'Cartography': 'Print layouts assemble map output for export. Items include one or more map frames with independent extents and scales, legends, scale bars, north arrows, labels, images, attribute tables, and HTML frames, all positioned on a page of chosen size. Atlas mode iterates over a coverage layer to generate one page per feature with dynamic text and extents. Export targets are PDF, SVG, and raster images with configurable resolution.',
+            'Cartography': 'Builds map pages for export (PDF, SVG, image) with map frames, legends, scale bars, text, and tables. Atlas mode generates one page per feature for map books or simple story sequences.',
             'Reports': 'Print layouts assemble map output for export. Items include one or more map frames with independent extents and scales, legends, scale bars, north arrows, labels, images, attribute tables, and HTML frames, all positioned on a page of chosen size. Atlas mode iterates over a coverage layer to generate one page per feature with dynamic text and extents. Export targets are PDF, SVG, and raster images with configurable resolution.',
+            'Story Maps': 'Layouts can sequence maps, text, and figures into multi-page narrative PDFs—a static form of spatial storytelling.',
         },
     },
     'QGIS Processing History': {
         'source': 'QGIS',
-        'blurb': 'Every algorithm run through Processing is recorded, and the history dialog lists those executions with their parameter values and timestamps. Entries can be reopened in the algorithm dialog with settings restored, or copied as a Python command for scripting. Grouping by day and searching by text makes it practical to recover a forgotten parameter combination. Because it captures exactly what ran, it doubles as a lightweight audit record.',
+        'blurb': 'QGIS Processing History records algorithms you have run. It stores parameters so you can reproduce or re-run earlier steps. Expected output: a browsable history list and re-runnable commands.',
         'relations': {
             'Lineage': 'Every algorithm run through Processing is recorded, and the history dialog lists those executions with their parameter values and timestamps. Entries can be reopened in the algorithm dialog with settings restored, or copied as a Python command for scripting. Grouping by day and searching by text makes it practical to recover a forgotten parameter combination. Because it captures exactly what ran, it doubles as a lightweight audit record.',
             'Result Validation': 'Every algorithm run through Processing is recorded, and the history dialog lists those executions with their parameter values and timestamps. Entries can be reopened in the algorithm dialog with settings restored, or copied as a Python command for scripting. Grouping by day and searching by text makes it practical to recover a forgotten parameter combination. Because it captures exactly what ran, it doubles as a lightweight audit record.',
@@ -1278,7 +1578,7 @@ TOOL_INFO = {
     },
     'QGIS Processing Log': {
         'source': 'QGIS',
-        'blurb': 'The log records messages produced while algorithms execute, including the command issued to underlying providers such as GDAL, SAGA, or GRASS, along with warnings, feature counts, and elapsed time. Reading it is often the fastest way to understand why a run failed, since provider errors surface verbatim. Log verbosity and retention can be adjusted in options, and the text can be copied when reporting problems.',
+        'blurb': 'QGIS Processing Log shows messages from Processing runs. It surfaces errors and warnings when algorithms fail or need diagnosis. Expected output: timestamped log text for troubleshooting.',
         'relations': {
             'Lineage': 'The log records messages produced while algorithms execute, including the command issued to underlying providers such as GDAL, SAGA, or GRASS, along with warnings, feature counts, and elapsed time. Reading it is often the fastest way to understand why a run failed, since provider errors surface verbatim. Log verbosity and retention can be adjusted in options, and the text can be copied when reporting problems.',
             'Result Validation': 'The log records messages produced while algorithms execute, including the command issued to underlying providers such as GDAL, SAGA, or GRASS, along with warnings, feature counts, and elapsed time. Reading it is often the fastest way to understand why a run failed, since provider errors surface verbatim. Log verbosity and retention can be adjusted in options, and the text can be copied when reporting problems.',
@@ -1286,14 +1586,14 @@ TOOL_INFO = {
     },
     'QGIS Reports': {
         'source': 'QGIS',
-        'blurb': 'Reports extend layouts into structured multi-section documents. A report tree holds a header, footer, static layout sections, and field groups that iterate over a layer\'s values, nesting groups to produce hierarchical output such as one section per region and a page per site within it. Each section carries its own layout with maps and tables. Export produces a single PDF or a series of images covering all generated pages.',
+        'blurb': 'QGIS Reports builds structured multi-page report outputs from a project. It combines maps and attribute-driven sections for stakeholder documents. Expected output: a paginated report export.',
         'relations': {
-            'Reports': 'Reports extend layouts into structured multi-section documents. A report tree holds a header, footer, static layout sections, and field groups that iterate over a layer\'s values, nesting groups to produce hierarchical output such as one section per region and a page per site within it. Each section carries its own layout with maps and tables. Export produces a single PDF or a series of images covering all generated pages.',
+            'Reports': "Reports extend layouts into structured multi-section documents. A report tree holds a header, footer, static layout sections, and field groups that iterate over a layer's values, nesting groups to produce hierarchical output such as one section per region and a page per site within it. Each section carries its own layout with maps and tables. Export produces a single PDF or a series of images covering all generated pages.",
         },
     },
     'QGIS Server': {
         'source': 'QGIS',
-        'blurb': 'QGIS Server publishes QGIS projects as OGC web services, including WMS, WFS, WCS, WMTS, and OGC API Features. Because it uses the same rendering engine as the desktop, symbology, labelling, and print layouts carry through unchanged, and layouts become printable templates via GetPrint. Deployment runs as FastCGI behind a web server or in a container, with project settings controlling which layers are published and their metadata.',
+        'blurb': 'QGIS Server is the QGIS map server component. It publishes QGIS projects as OGC web services using desktop styling. Expected output: WMS/WFS (and related) web map services.',
         'relations': {
             'APIs': 'QGIS Server publishes QGIS projects as OGC web services, including WMS, WFS, WCS, WMTS, and OGC API Features. Because it uses the same rendering engine as the desktop, symbology, labelling, and print layouts carry through unchanged, and layouts become printable templates via GetPrint. Deployment runs as FastCGI behind a web server or in a container, with project settings controlling which layers are published and their metadata.',
             'Dashboards': 'QGIS Server publishes QGIS projects as OGC web services, including WMS, WFS, WCS, WMTS, and OGC API Features. Because it uses the same rendering engine as the desktop, symbology, labelling, and print layouts carry through unchanged, and layouts become printable templates via GetPrint. Deployment runs as FastCGI behind a web server or in a container, with project settings controlling which layers are published and their metadata.',
@@ -1302,54 +1602,75 @@ TOOL_INFO = {
     },
     'QGIS Style Manager': {
         'source': 'QGIS',
-        'blurb': 'Style resources are organised centrally here: marker, line, and fill symbols, colour ramps, text formats, label settings, legend patch shapes, and 3D symbols. Items can be tagged, marked as favourites, grouped, and searched, then exported to or imported from .xml style databases for sharing across a team. Symbols can be added directly from the current layer styling, and browsing the built-in library speeds consistent cartography.',
+        'blurb': 'QGIS Style Manager is the QGIS cartography style library. It stores and reuses symbols and styles so maps stay visually consistent across projects. Expected output: saved styles applied to layers.',
         'relations': {
-            'Cartography': 'Style resources are organised centrally here: marker, line, and fill symbols, colour ramps, text formats, label settings, legend patch shapes, and 3D symbols. Items can be tagged, marked as favourites, grouped, and searched, then exported to or imported from .xml style databases for sharing across a team. Symbols can be added directly from the current layer styling, and browsing the built-in library speeds consistent cartography.',
+            'Cartography': 'Central place in QGIS to create, store, and reuse layer styles and symbols. Keeps cartographic appearance consistent across projects.',
         },
     },
     'QGIS Symbol Selector': {
         'source': 'QGIS',
-        'blurb': 'The symbol selector is where a layer\'s symbol is built from stacked symbol layers, each with its own type such as simple fill, shapeburst, marker line, SVG marker, or geometry generator. Colour, size, offset, rotation, and units, whether millimetres, points, pixels, or map units, are set per layer, and data-defined overrides bind any property to an expression. Live preview and saving back to the style library round it out.',
+        'blurb': 'QGIS Symbol Selector is the QGIS dialog for designing feature symbols. It controls mark layers, colours, sizes, and patterns for points, lines, and polygons. Expected output: a configured symbol rendered on the map canvas.',
         'relations': {
-            'Cartography': 'The symbol selector is where a layer\'s symbol is built from stacked symbol layers, each with its own type such as simple fill, shapeburst, marker line, SVG marker, or geometry generator. Colour, size, offset, rotation, and units, whether millimetres, points, pixels, or map units, are set per layer, and data-defined overrides bind any property to an expression. Live preview and saving back to the style library round it out.',
+            'Cartography': 'QGIS dialog for designing point, line, and polygon symbols (layers, colours, sizes, patterns). Core control over how features look on the map.',
+        },
+    },
+    'QGIS Temporal Controller': {
+        'source': 'QGIS',
+        'blurb': 'QGIS Temporal Controller is the time filter/animation tool in QGIS. It steps through time so only matching features or frames display, aiding space-time exploration. Expected output: a time-filtered canvas view or animation sequence.',
+        'relations': {
+            'Space-Time Analysis': 'The Temporal Controller animates and filters layers that carry time fields or raster time series inside QGIS. A time cursor steps through intervals while canvas layers update to matching features or frames. It supports exploration of space-time dynamics without exporting to a separate video tool.',
         },
     },
     'qgis_process': {
         'source': 'QGIS',
-        'blurb': 'This command-line tool runs QGIS Processing algorithms without opening the desktop application. Subcommands list available providers and algorithms, print help with each parameter and its accepted values, and execute a run with parameters supplied as arguments or as a JSON document on standard input. A project file can be loaded so layers and settings resolve correctly, and JSON output makes results parseable. Models and scripts run alongside built-in algorithms.',
+        'blurb': 'qgis_process is the QGIS command-line Processing runner. It executes the same algorithms as the GUI without opening the desktop app, which helps automation. Expected output: algorithm result files written to specified paths.',
         'relations': {
+            'Development': 'This command-line tool runs QGIS Processing algorithms without opening the desktop application. Subcommands list available providers and algorithms, print help with each parameter and its accepted values, and execute a run with parameters supplied as arguments or as a JSON document on standard input. A project file can be loaded so layers and settings resolve correctly, and JSON output makes results parseable. Models and scripts run alongside built-in algorithms.',
             'Lineage': 'This command-line tool runs QGIS Processing algorithms without opening the desktop application. Subcommands list available providers and algorithms, print help with each parameter and its accepted values, and execute a run with parameters supplied as arguments or as a JSON document on standard input. A project file can be loaded so layers and settings resolve correctly, and JSON output makes results parseable. Models and scripts run alongside built-in algorithms.',
             'Result Validation': 'This command-line tool runs QGIS Processing algorithms without opening the desktop application. Subcommands list available providers and algorithms, print help with each parameter and its accepted values, and execute a run with parameters supplied as arguments or as a JSON document on standard input. A project file can be loaded so layers and settings resolve correctly, and JSON output makes results parseable. Models and scripts run alongside built-in algorithms.',
         },
     },
+    'R for GIS': {
+        'source': 'R spatial ecosystem',
+        'blurb': 'R for GIS refers to R spatial packages such as sf, terra, and spatstat. It combines spatial data structures with statistical modelling in one reproducible language. Expected output: spatial objects, models, and plots/reports.',
+        'relations': {
+            'Development': 'R supports geospatial analysis through packages such as sf, terra, stars, and spatstat, tightly integrated with statistical modelling. Analysts combine spatial objects with regression, sampling design, and visualisation in one literate workflow. It is especially strong where inference and spatial data must share the same script.',
+        },
+    },
     'Random points in extent': {
         'source': 'QGIS Processing',
-        'blurb': 'A requested number of points is generated at random positions inside a given rectangular extent. A minimum distance parameter enforces separation so points do not cluster unrealistically, and a random seed makes the outcome reproducible. Output is a point layer in the chosen CRS with sequential identifiers. Sampling designs, Monte Carlo testing, and synthetic data for demonstrations are the usual reasons to run it.',
+        'blurb': 'Random points in extent is a QGIS Processing sampling tool. It scatters random points inside a rectangle for unbiased spatial sampling designs. Expected output: a point layer within the given extent.',
         'relations': {
+            'Point Pattern Analysis': 'A requested number of points is generated at random positions inside a given rectangular extent. A minimum distance parameter enforces separation so points do not cluster unrealistically, and a random seed makes the outcome reproducible. Output is a point layer in the chosen CRS with sequential identifiers. Sampling designs, Monte Carlo testing, and synthetic data for demonstrations are the usual reasons to run it.',
             'Uncertainty': 'A requested number of points is generated at random positions inside a given rectangular extent. A minimum distance parameter enforces separation so points do not cluster unrealistically, and a random seed makes the outcome reproducible. Output is a point layer in the chosen CRS with sequential identifiers. Sampling designs, Monte Carlo testing, and synthetic data for demonstrations are the usual reasons to run it.',
+            'Uncertainty Modeling': 'A requested number of points is generated at random positions inside a given rectangular extent. A minimum distance parameter enforces separation so points do not cluster unrealistically, and a random seed makes the outcome reproducible. Output is a point layer in the chosen CRS with sequential identifiers. Sampling designs, Monte Carlo testing, and synthetic data for demonstrations are the usual reasons to run it.',
         },
     },
     'Random points in polygons': {
         'source': 'QGIS Processing',
-        'blurb': 'Random points are placed inside the polygons of an input layer, either a fixed count per polygon or a count taken from an attribute or density expression. Minimum distances between points, both within and between polygons, can be enforced, and a seed fixes the result for repeatability. Each output point records the identifier of its containing polygon. Field sampling designs and dasymetric-style disaggregation both rely on it.',
+        'blurb': 'Random points in polygons is a QGIS Processing sampling tool. It creates randomly located points inside polygons for surveys or accuracy samples. Expected output: a point layer of random sample locations.',
         'relations': {
+            'Accuracy Assessment': 'Random points are placed inside the polygons of an input layer, either a fixed count per polygon or a count taken from an attribute or density expression. Minimum distances between points, both within and between polygons, can be enforced, and a seed fixes the result for repeatability. Each output point records the identifier of its containing polygon. Field sampling designs and dasymetric-style disaggregation both rely on it.',
+            'Remote Sensing': 'Creates random points inside polygon features, with optional counts per polygon. Useful for accuracy assessment sampling and Monte Carlo designs. Points inherit the polygon CRS.',
             'Uncertainty': 'Random points are placed inside the polygons of an input layer, either a fixed count per polygon or a count taken from an attribute or density expression. Minimum distances between points, both within and between polygons, can be enforced, and a seed fixes the result for repeatability. Each output point records the identifier of its containing polygon. Field sampling designs and dasymetric-style disaggregation both rely on it.',
         },
     },
     'Random selection': {
         'source': 'QGIS Processing',
-        'blurb': 'A random subset of features in a layer is selected, sized either as an absolute number or as a percentage of the total. The selection lives in the map canvas rather than a new file, so it can drive subsequent algorithms configured to run on selected features only. Repeating the command reshuffles the choice. Quality control sampling and splitting training from validation data are frequent uses.',
+        'blurb': 'Random selection is a QGIS Processing sampling tool. It picks a random subset of features by count or percentage for validation or experiments. Expected output: a selected subset (or new layer) of features.',
         'relations': {
             'Uncertainty': 'A random subset of features in a layer is selected, sized either as an absolute number or as a percentage of the total. The selection lives in the map canvas rather than a new file, so it can drive subsequent algorithms configured to run on selected features only. Repeating the command reshuffles the choice. Quality control sampling and splitting training from validation data are frequent uses.',
+            'Uncertainty Modeling': 'A random subset of features in a layer is selected, sized either as an absolute number or as a percentage of the total. The selection lives in the map canvas rather than a new file, so it can drive subsequent algorithms configured to run on selected features only. Repeating the command reshuffles the choice. Quality control sampling and splitting training from validation data are frequent uses.',
         },
     },
     'Raster Calculator': {
         'source': 'QGIS / ArcGIS',
-        'blurb': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
+        'blurb': 'Raster Calculator is QGIS’s map-algebra tool. It evaluates expressions across raster layers/bands to build indices, masks, and suitability scores in the GUI. Expected output: a new raster of computed values.',
         'relations': {
             'Change Detection': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
             'Environmental Assessment': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
             'Hazard Assessment': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
+            'Multi-Criteria Evaluation': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
             'Raster Analysis': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
             'Raster Processing': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
             'Site Selection': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
@@ -1357,9 +1678,16 @@ TOOL_INFO = {
             'Urban Growth Analysis': 'Cell-by-cell expressions are evaluated across one or more raster bands to produce a new raster. Operators cover arithmetic, comparison, and logic, and functions include trigonometric, logarithmic, and conditional forms; band references combine the layer name with a band index. Output extent, cell size, and CRS are set explicitly, and inputs are expected to align. Nodata cells propagate, which quietly shrinks coverage when several layers are combined.',
         },
     },
+    'Raster Vision': {
+        'source': 'Azavea / Element 84',
+        'blurb': 'Raster Vision is an open framework for deep learning on satellite and aerial imagery. It builds end-to-end pipelines for chip creation, training, prediction, and evaluation for classification, segmentation, and detection. Expected output: trained models, prediction rasters/vectors, and evaluation reports.',
+        'relations': {
+            'AI': 'Raster Vision is an open framework for deep learning on satellite and aerial imagery. It builds end-to-end pipelines for chip creation, training, prediction, and evaluation for classification, segmentation, and detection. Expected output: trained models, prediction rasters/vectors, and evaluation reports.',
+        },
+    },
     'Rasterio': {
         'source': 'Python (Mapbox lineage)',
-        'blurb': 'Rasterio reads and writes raster data through GDAL while presenting bands as NumPy arrays. Datasets expose an affine transform, CRS, nodata value, block structure, and overviews, and windowed reads keep memory use bounded on very large files. Submodules handle masking by geometry, merging tiles, reprojection, resampling, and conversion between features and rasters. Context managers and explicit profiles make writing new files with controlled compression and tiling straightforward.',
+        'blurb': 'Rasterio is a Python library for geospatial rasters via GDAL. It reads/writes rasters as NumPy arrays with CRS and transform metadata for analysis. Expected output: arrays and raster files.',
         'relations': {
             'Geospatial Libraries': 'Rasterio reads and writes raster data through GDAL while presenting bands as NumPy arrays. Datasets expose an affine transform, CRS, nodata value, block structure, and overviews, and windowed reads keep memory use bounded on very large files. Submodules handle masking by geometry, merging tiles, reprojection, resampling, and conversion between features and rasters. Context managers and explicit profiles make writing new files with controlled compression and tiling straightforward.',
         },
@@ -1372,65 +1700,67 @@ TOOL_INFO = {
     },
     'rasterio.mask.mask()': {
         'source': 'Rasterio',
-        'blurb': 'A raster is masked by one or more geometries, returning an array with everything outside them set to nodata plus the corresponding transform. Setting crop trims the output to the geometry bounds, invert masks the interior instead, and all_touched includes partially covered pixels. Geometries must be in the raster\'s coordinate reference system, and a nodata value should be supplied when the dataset lacks one, otherwise masked areas are ambiguous.',
+        'blurb': 'rasterio.mask.mask() is a Rasterio AOI tool. It clips a raster to polygons and sets outside cells to nodata. Expected output: a masked array plus updated transform.',
         'relations': {
-            'Remote Sensing': 'A raster is masked by one or more geometries, returning an array with everything outside them set to nodata plus the corresponding transform. Setting crop trims the output to the geometry bounds, invert masks the interior instead, and all_touched includes partially covered pixels. Geometries must be in the raster\'s coordinate reference system, and a nodata value should be supplied when the dataset lacks one, otherwise masked areas are ambiguous.',
+            'Remote Sensing': 'Clips a raster to polygon geometries and sets outside cells to nodata. Standard way to extract an area of interest in Python.',
         },
     },
     'rasterio.merge.merge()': {
         'source': 'Rasterio',
-        'blurb': 'Multiple raster datasets are mosaicked into a single array with its transform. Target resolution and bounds can be forced, nodata handled explicitly, and the merge method chosen among first, last, minimum, maximum, sum, and count, or supplied as a custom callable. Inputs must share a coordinate reference system and band count. Memory use scales with the output extent, so very large mosaics are better handled through virtual rasters or tiling.',
+        'blurb': 'rasterio.merge.merge() is a Rasterio mosaic function. It mosaics multiple rasters into one array with a combined transform. Expected output: a mosaicked array and transform.',
         'relations': {
             'Raster': 'Multiple raster datasets are mosaicked into a single array with its transform. Target resolution and bounds can be forced, nodata handled explicitly, and the merge method chosen among first, last, minimum, maximum, sum, and count, or supplied as a custom callable. Inputs must share a coordinate reference system and band count. Memory use scales with the output extent, so very large mosaics are better handled through virtual rasters or tiling.',
         },
     },
     'rasterio.open()': {
         'source': 'Rasterio',
-        'blurb': 'Datasets are opened for reading, writing, or appending, returning an object best used as a context manager so file handles close deterministically. Read mode exposes width, height, band count, dtypes, coordinate reference system, affine transform, nodata, block windows, and overviews, while write mode requires those properties be declared up front, commonly by copying and editing an existing profile. Creation options set driver, compression, tiling, and predictor.',
+        'blurb': 'rasterio.open() is Rasterio’s dataset opener. It opens rasters for read/write in a context manager so handles close cleanly. Expected output: a dataset object yielding arrays/metadata.',
         'relations': {
             'Data Inspection': 'Datasets are opened for reading, writing, or appending, returning an object best used as a context manager so file handles close deterministically. Read mode exposes width, height, band count, dtypes, coordinate reference system, affine transform, nodata, block windows, and overviews, while write mode requires those properties be declared up front, commonly by copying and editing an existing profile. Creation options set driver, compression, tiling, and predictor.',
             'Metadata': 'Datasets are opened for reading, writing, or appending, returning an object best used as a context manager so file handles close deterministically. Read mode exposes width, height, band count, dtypes, coordinate reference system, affine transform, nodata, block windows, and overviews, while write mode requires those properties be declared up front, commonly by copying and editing an existing profile. Creation options set driver, compression, tiling, and predictor.',
             'Raster': 'Datasets are opened for reading, writing, or appending, returning an object best used as a context manager so file handles close deterministically. Read mode exposes width, height, band count, dtypes, coordinate reference system, affine transform, nodata, block windows, and overviews, while write mode requires those properties be declared up front, commonly by copying and editing an existing profile. Creation options set driver, compression, tiling, and predictor.',
         },
     },
+    'RDFLib': {
+        'source': 'RDFLib',
+        'blurb': 'RDFLib is a Python RDF library. It parses and SPARQL-queries knowledge graphs, including GeoSPARQL data in scripts/notebooks. Expected output: RDF graphs and query results.',
+        'relations': {
+            'Knowledge Graph': 'RDFLib is a Python library for working with RDF graphs: parsing, serialising, SPARQL querying, and basic graph operations. With GeoSPARQL-aware data it can inspect and query linked spatial datasets from scripts and notebooks. It is a lightweight alternative to full Java triple-store stacks for many research workflows.',
+        },
+    },
     'readers.las': {
         'source': 'PDAL',
-        'blurb': 'LAS and LAZ point clouds are read into a PDAL pipeline by this stage, exposing dimensions such as X, Y, Z, Intensity, Classification, ReturnNumber, GpsTime, and colour when present. Extra bytes can be requested by name and type, a count and start offset support partial reads, and options exist to ignore or override the spatial reference recorded in the file\'s header and VLRs. Scale and offset values are honoured for precision.',
+        'blurb': 'readers.las is a PDAL reader stage. It loads LAS/LAZ points with dimensions such as XYZ, intensity, and classification into a pipeline. Expected output: an in-pipeline point view from LAS/LAZ.',
         'relations': {
-            'Point Cloud': 'LAS and LAZ point clouds are read into a PDAL pipeline by this stage, exposing dimensions such as X, Y, Z, Intensity, Classification, ReturnNumber, GpsTime, and colour when present. Extra bytes can be requested by name and type, a count and start offset support partial reads, and options exist to ignore or override the spatial reference recorded in the file\'s header and VLRs. Scale and offset values are honoured for precision.',
+            'Point Cloud': "LAS and LAZ point clouds are read into a PDAL pipeline by this stage, exposing dimensions such as X, Y, Z, Intensity, Classification, ReturnNumber, GpsTime, and colour when present. Extra bytes can be requested by name and type, a count and start offset support partial reads, and options exist to ignore or override the spatial reference recorded in the file's header and VLRs. Scale and offset values are honoured for precision.",
         },
     },
     'Reclassify by table': {
         'source': 'QGIS Processing',
-        'blurb': 'Raster values are remapped using a table of minimum, maximum, and new value rows. Boundary handling options decide whether range limits count as inclusive on the minimum, the maximum, or both, and values falling outside every range can either be preserved or set to nodata. Output data type is selectable. Turning continuous slope, elevation, or distance surfaces into ordinal suitability classes is the standard application.',
+        'blurb': 'Reclassify by table is a QGIS Processing raster tool. It maps input value ranges to new classes using a reclassification table, preparing criteria for overlay. Expected output: a classified raster with discrete class values.',
         'relations': {
+            'Multi-Criteria Evaluation': 'Raster values are remapped using a table of minimum, maximum, and new value rows. Boundary handling options decide whether range limits count as inclusive on the minimum, the maximum, or both, and values falling outside every range can either be preserved or set to nodata. Output data type is selectable. Turning continuous slope, elevation, or distance surfaces into ordinal suitability classes is the standard application.',
             'Suitability Analysis': 'Raster values are remapped using a table of minimum, maximum, and new value rows. Boundary handling options decide whether range limits count as inclusive on the minimum, the maximum, or both, and values falling outside every range can either be preserved or set to nodata. Output data type is selectable. Turning continuous slope, elevation, or distance surfaces into ordinal suitability classes is the standard application.',
         },
     },
     'Refactor Fields': {
         'source': 'QGIS Processing',
-        'blurb': 'The attribute schema of a layer is rebuilt to a specification: fields can be renamed, reordered, retyped, resized, dropped, or created from expressions. Each output field is defined by name, type, length, precision, and a source expression, so concatenation, casting, and calculated values happen during the copy. Geometry passes through untouched. Aligning schemas before merging layers or loading into a database with fixed column definitions is the common motivation.',
+        'blurb': 'Refactor Fields is a QGIS Processing schema tool. It renames, retypes, reorders, and maps fields so tables match a target schema. Expected output: a layer with the revised attribute structure.',
         'relations': {
             'Schema Validation': 'The attribute schema of a layer is rebuilt to a specification: fields can be renamed, reordered, retyped, resized, dropped, or created from expressions. Each output field is defined by name, type, length, precision, and a source expression, so concatenation, casting, and calculated values happen during the copy. Geometry passes through untouched. Aligning schemas before merging layers or loading into a database with fixed column definitions is the common motivation.',
         },
     },
-    'Reproject layer': {
-        'source': 'QGIS Processing',
-        'blurb': 'Coordinates are converted from the source system into a chosen destination system, with datum shifts applied through PROJ rather than merely relabelled. Where multiple candidate transformations exist, specifying the operation avoids silently accepting a coarse default and its metre-level error. Attributes and feature counts stay the same, while geometry values change. This differs fundamentally from assigning a CRS, which edits metadata and leaves coordinates alone.',
-        'relations': {
-            'Common CRS Errors': 'Coordinates are converted from the source system into a chosen destination system, with datum shifts applied through PROJ rather than merely relabelled. Where multiple candidate transformations exist, specifying the operation avoids silently accepting a coarse default and its metre-level error. Attributes and feature counts stay the same, while geometry values change. This differs fundamentally from assigning a CRS, which edits metadata and leaves coordinates alone.',
-        },
-    },
     'Reproject Layer': {
         'source': 'QGIS Processing',
-        'blurb': 'Vector features are transformed from their current coordinate reference system into a target system, changing coordinate values while preserving topology and attributes. An optional operation parameter selects a specific transformation pipeline when several exist between two datums, which matters for accuracy. Output is a new layer declared in the target CRS. Reprojecting to an appropriate projected system is a prerequisite for trustworthy distance, area, and buffer measurements.',
+        'blurb': 'Reproject Layer is a QGIS Processing CRS tool. It transforms coordinates into a target CRS (unlike Assign projection), which is required for meaningful metre distances. Expected output: a new layer in the target CRS.',
         'relations': {
             'CRS Validation': 'Vector features are transformed from their current coordinate reference system into a target system, changing coordinate values while preserving topology and attributes. An optional operation parameter selects a specific transformation pipeline when several exist between two datums, which matters for accuracy. Output is a new layer declared in the target CRS. Reprojecting to an appropriate projected system is a prerequisite for trustworthy distance, area, and buffer measurements.',
+            'Common CRS Errors': 'Reproject Layer transforms vector features from their current CRS into a target CRS, changing coordinate values while preserving topology and attributes. An optional operation selects a specific PROJ transformation when several exist between datums. This differs from Assign projection, which only writes CRS metadata. Reprojecting to an appropriate projected system is required before trustworthy distance, area, and buffer measurements.',
         },
     },
     'rio info': {
         'source': 'Rasterio CLI',
-        'blurb': 'The rasterio command-line interface reports dataset metadata as JSON, covering driver, dimensions, band count, data types, nodata, coordinate reference system, transform, bounds, and block structure. Individual properties can be requested singly, which suits shell scripting, and statistics or an indented human-readable layout are available. Because output is structured, it feeds neatly into jq or Python for validating many files before batch processing begins.',
+        'blurb': 'rio info is the Rasterio command-line metadata tool. It prints raster metadata as JSON for scripting and quick checks. Expected output: JSON metadata (CRS, transform, dtype, bounds).',
         'relations': {
             'Metadata': 'The rasterio command-line interface reports dataset metadata as JSON, covering driver, dimensions, band count, data types, nodata, coordinate reference system, transform, bounds, and block structure. Individual properties can be requested singly, which suits shell scripting, and statistics or an indented human-readable layout are available. Because output is structured, it feeds neatly into jq or Python for validating many files before batch processing begins.',
             'Metadata Validation': 'The rasterio command-line interface reports dataset metadata as JSON, covering driver, dimensions, band count, data types, nodata, coordinate reference system, transform, bounds, and block structure. Individual properties can be requested singly, which suits shell scripting, and statistics or an indented human-readable layout are available. Because output is structured, it feeds neatly into jq or Python for validating many files before batch processing begins.',
@@ -1438,71 +1768,88 @@ TOOL_INFO = {
     },
     'Roughness': {
         'source': 'GDAL DEM / QGIS',
-        'blurb': 'Roughness measures local terrain irregularity as the difference between the largest and smallest elevation values within a moving neighbourhood, typically three by three cells. Larger results mark broken, rugged surfaces while low values indicate smooth slopes or plains, and units follow the elevation units of the input DEM. Cell size strongly influences the statistic, so comparisons across datasets need matching resolution. Noise and interpolation artefacts inflate the values.',
+        'blurb': 'Terrain roughness index from a DEM—how variable elevation is in a neighbourhood. Landform and habitat metric.',
         'relations': {
         },
     },
     'scikit-learn': {
         'source': 'scikit-learn',
-        'blurb': 'Scikit-learn provides a consistent estimator interface for classical machine learning: fit, predict, and transform methods across classification, regression, clustering, and dimensionality reduction. Pipelines chain preprocessing with models so scaling and encoding stay inside cross-validation, while model selection tools handle grid search, randomised search, and stratified splitting. Metrics cover accuracy, precision, recall, and regression errors. Spatial work usually needs blocked or spatially aware validation, since random splits leak information between nearby samples.',
+        'blurb': 'scikit-learn is a Python machine-learning library. It provides a consistent fit/predict API for classical classification, regression, and clustering on feature tables. Expected output: trained models and predictions.',
         'relations': {
             'AI': 'Scikit-learn provides a consistent estimator interface for classical machine learning: fit, predict, and transform methods across classification, regression, clustering, and dimensionality reduction. Pipelines chain preprocessing with models so scaling and encoding stay inside cross-validation, while model selection tools handle grid search, randomised search, and stratified splitting. Metrics cover accuracy, precision, recall, and regression errors. Spatial work usually needs blocked or spatially aware validation, since random splits leak information between nearby samples.',
         },
     },
     'scikit-learn DBSCAN': {
         'source': 'scikit-learn',
-        'blurb': 'Density-based clustering is exposed as an estimator taking eps, the neighbourhood radius, and min_samples, the count needed to make a point a core point. Any distance metric supported by the library can be used, including haversine on radians for geographic coordinates. Fitted labels mark noise as minus one, and core sample indices are available. Feature scaling matters, because eps applies in the combined feature space rather than to geography alone.',
+        'blurb': 'scikit-learn DBSCAN is scikit-learn’s density clustering estimator. It groups dense regions and labels noise using eps and min_samples (feed coordinates for spatial use). Expected output: cluster labels per sample.',
         'relations': {
             'Clustering': 'Density-based clustering is exposed as an estimator taking eps, the neighbourhood radius, and min_samples, the count needed to make a point a core point. Any distance metric supported by the library can be used, including haversine on radians for geographic coordinates. Fitted labels mark noise as minus one, and core sample indices are available. Feature scaling matters, because eps applies in the combined feature space rather than to geography alone.',
         },
     },
     'scikit-learn KMeans': {
         'source': 'scikit-learn',
-        'blurb': 'K-means partitions samples into a fixed number of clusters by iteratively minimising within-cluster sum of squares. The k-means++ initialisation with several restarts reduces sensitivity to starting positions, and results expose cluster centres, labels, and inertia for elbow-style diagnostics. MiniBatchKMeans scales the method to very large datasets. Features should be scaled beforehand, and the assumption of roughly spherical, similarly sized clusters limits its use on elongated spatial patterns.',
+        'blurb': 'scikit-learn KMeans is scikit-learn’s K-means estimator. It partitions samples into a fixed number of clusters quickly when K is known. Expected output: cluster labels and centroids.',
         'relations': {
             'Clustering': 'K-means partitions samples into a fixed number of clusters by iteratively minimising within-cluster sum of squares. The k-means++ initialisation with several restarts reduces sensitivity to starting positions, and results expose cluster centres, labels, and inertia for elbow-style diagnostics. MiniBatchKMeans scales the method to very large datasets. Features should be scaled beforehand, and the assumption of roughly spherical, similarly sized clusters limits its use on elongated spatial patterns.',
         },
     },
+    'scikit-learn.metrics': {
+        'source': 'scikit-learn',
+        'blurb': 'scikit-learn.metrics is the metrics module of scikit-learn. It computes confusion matrices, accuracy, precision, recall, F1, and kappa for predicted vs reference labels. Expected output: numeric scores and confusion matrices.',
+        'relations': {
+            'Accuracy Assessment': "sklearn.metrics computes classification and regression scores such as confusion matrices, accuracy, precision, recall, F1, and Cohen's kappa. In remote sensing they quantify agreement between predicted labels and reference samples. Average strategies (micro, macro, weighted) must match the class-balance story you want to tell.",
+            'Remote Sensing': 'Calculates accuracy scores for predictions: confusion matrix, overall accuracy, precision, recall, F1, Cohen’s kappa, and more. Widely used to validate remote-sensing classifications and other ML outputs against reference labels.',
+        },
+    },
     'Segment Anything Model (SAM)': {
         'source': 'Meta AI',
-        'blurb': 'SAM is a promptable segmentation model trained on a very large mask dataset, combining an image encoder with prompt and mask decoders. Points, boxes, or coarse masks guide it toward an object, and an automatic mode proposes masks across a whole image without prompts. Output masks are class-agnostic, so labels must come from another step. Geospatial wrappers tile large rasters, pass georeferencing through, and convert masks into vector features.',
+        'blurb': 'Segment Anything Model (SAM) is a foundation vision model (Meta) used in geospatial pipelines. It segments objects from prompts with fewer hand labels, helping extract features from imagery. Expected output: segmentation masks (then georeferenced into GIS layers).',
         'relations': {
             'AI': 'SAM is a promptable segmentation model trained on a very large mask dataset, combining an image encoder with prompt and mask decoders. Points, boxes, or coarse masks guide it toward an object, and an automatic mode proposes masks across a whole image without prompts. Output masks are class-agnostic, so labels must come from another step. Geospatial wrappers tile large rasters, pass georeferencing through, and convert masks into vector features.',
+            'Remote Sensing': 'Foundation vision model that segments objects in images from prompts (points, boxes). In geospatial work it helps extract features from aerial or satellite imagery with fewer hand-drawn labels. Outputs are masks that still need georeferencing into GIS layers.',
             'Remote Sensing Classification': 'SAM is a promptable segmentation model trained on a very large mask dataset, combining an image encoder with prompt and mask decoders. Points, boxes, or coarse masks guide it toward an object, and an automatic mode proposes masks across a whole image without prompts. Output masks are class-agnostic, so labels must come from another step. Geospatial wrappers tile large rasters, pass georeferencing through, and convert masks into vector features.',
+        },
+    },
+    'segment-geospatial (samgeo)': {
+        'source': 'Open Geospatial Solutions / samgeo',
+        'blurb': 'segment-geospatial (samgeo) is a Python package that applies Segment Anything to geospatial rasters. It simplifies prompting, georeferencing, and exporting segments as GIS vectors from satellite or aerial images. Expected output: georeferenced segmentation masks and vector polygons (e.g., GeoPackage/GeoJSON).',
+        'relations': {
+            'Geospatial Libraries': 'segment-geospatial (samgeo) is a Python package that applies Segment Anything to geospatial rasters. It simplifies prompting, georeferencing, and exporting segments as GIS vectors from satellite or aerial images. Expected output: georeferenced segmentation masks and vector polygons (e.g., GeoPackage/GeoJSON).',
         },
     },
     'Service Area': {
         'source': 'QGIS / network analysis',
-        'blurb': 'Service area analysis finds the portion of a network reachable from a start point within a travel budget. A line layer becomes a graph, with direction and speed fields optionally controlling traversal, and cost is measured either as distance or as time. Outputs include the reachable network edges and the boundary nodes where the budget runs out, which can be turned into a coverage polygon. Snapping tolerance determines how the start point joins the network.',
+        'blurb': 'Service Area is a QGIS network analysis algorithm. It delineates how far you can travel from facilities within a cost limit on the network. Expected output: reachable polygons or boundary lines.',
         'relations': {
             'Accessibility': 'Service area analysis finds the portion of a network reachable from a start point within a travel budget. A line layer becomes a graph, with direction and speed fields optionally controlling traversal, and cost is measured either as distance or as time. Outputs include the reachable network edges and the boundary nodes where the budget runs out, which can be turned into a coverage polygon. Snapping tolerance determines how the start point joins the network.',
             'Accessibility Analysis': 'Service area analysis finds the portion of a network reachable from a start point within a travel budget. A line layer becomes a graph, with direction and speed fields optionally controlling traversal, and cost is measured either as distance or as time. Outputs include the reachable network edges and the boundary nodes where the budget runs out, which can be turned into a coverage polygon. Snapping tolerance determines how the start point joins the network.',
             'Catchment Analysis': 'Service area analysis finds the portion of a network reachable from a start point within a travel budget. A line layer becomes a graph, with direction and speed fields optionally controlling traversal, and cost is measured either as distance or as time. Outputs include the reachable network edges and the boundary nodes where the budget runs out, which can be turned into a coverage polygon. Snapping tolerance determines how the start point joins the network.',
             'Infrastructure Planning': 'Service area analysis finds the portion of a network reachable from a start point within a travel budget. A line layer becomes a graph, with direction and speed fields optionally controlling traversal, and cost is measured either as distance or as time. Outputs include the reachable network edges and the boundary nodes where the budget runs out, which can be turned into a coverage polygon. Snapping tolerance determines how the start point joins the network.',
+            'Location-Allocation': 'Service area analysis finds the portion of a network reachable from a start point within a travel budget. A line layer becomes a graph, with direction and speed fields optionally controlling traversal, and cost is measured either as distance or as time. Outputs include the reachable network edges and the boundary nodes where the budget runs out, which can be turned into a coverage polygon. Snapping tolerance determines how the start point joins the network.',
             'Network Analysis': 'Service area analysis finds the portion of a network reachable from a start point within a travel budget. A line layer becomes a graph, with direction and speed fields optionally controlling traversal, and cost is measured either as distance or as time. Outputs include the reachable network edges and the boundary nodes where the budget runs out, which can be turned into a coverage polygon. Snapping tolerance determines how the start point joins the network.',
         },
     },
     'Shapely': {
         'source': 'Python (Toblerity)',
-        'blurb': 'Shapely provides planar geometry objects and operations in Python, wrapping GEOS. Points, lines, polygons, and their multipart forms support predicates such as intersects and contains, constructive methods including buffer, union, intersection, and simplify, and measurements like area, length, and distance. Validity checks and repair are available, and version two vectorises operations over NumPy arrays. Coordinate reference systems are outside its scope, so units follow whatever the caller supplies.',
+        'blurb': 'Shapely is a Python geometry library backed by GEOS. It creates and analyses geometries (buffers, overlays, predicates, validity) used under GeoPandas. Expected output: geometry objects and boolean/metric results.',
         'relations': {
             'Geospatial Libraries': 'Shapely provides planar geometry objects and operations in Python, wrapping GEOS. Points, lines, polygons, and their multipart forms support predicates such as intersects and contains, constructive methods including buffer, union, intersection, and simplify, and measurements like area, length, and distance. Validity checks and repair are available, and version two vectorises operations over NumPy arrays. Coordinate reference systems are outside its scope, so units follow whatever the caller supplies.',
         },
     },
     'Shortest Path': {
         'source': 'QGIS network analysis',
-        'blurb': 'Least-cost routes are computed across a network built from a line layer, using Dijkstra\'s algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.',
+        'blurb': 'Shortest Path is a QGIS network analysis algorithm. It finds a least-cost route on a network layer using length or another impedance field. Expected output: a path line (and cost) between chosen points.',
         'relations': {
-            'Infrastructure Planning': 'Least-cost routes are computed across a network built from a line layer, using Dijkstra\'s algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.',
-            'Network Analysis': 'Least-cost routes are computed across a network built from a line layer, using Dijkstra\'s algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.',
-            'Routing': 'Least-cost routes are computed across a network built from a line layer, using Dijkstra\'s algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.',
-            'Trajectory': 'Least-cost routes are computed across a network built from a line layer, using Dijkstra\'s algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.',
-            'Trajectory Analysis': 'Least-cost routes are computed across a network built from a line layer, using Dijkstra\'s algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.',
+            'Infrastructure Planning': "Least-cost routes are computed across a network built from a line layer, using Dijkstra's algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.",
+            'Network Analysis': "Least-cost routes are computed across a network built from a line layer, using Dijkstra's algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.",
+            'Routing': "Least-cost routes are computed across a network built from a line layer, using Dijkstra's algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.",
+            'Trajectory': "Least-cost routes are computed across a network built from a line layer, using Dijkstra's algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.",
+            'Trajectory Analysis': "Least-cost routes are computed across a network built from a line layer, using Dijkstra's algorithm. Variants run point to point, from a point to every feature of a layer, or from layer to point, and cost is either length or travel time derived from a speed value. Direction handling reads a field for one-way restrictions, with defaults for unmarked edges. Tolerance controls the snapping of endpoints, and unconnected geometry silently produces no path.",
         },
     },
     'Simplify': {
         'source': 'QGIS Processing',
-        'blurb': 'Vertices are removed to reduce geometric detail while retaining overall shape. Method choices include distance-based Douglas-Peucker, snapping to a grid, and area-based Visvalingam simplification, each governed by a tolerance in layer units. Higher tolerances yield smaller files and faster rendering at the cost of positional fidelity. Neighbouring polygons are processed independently, so shared boundaries can separate or overlap, and self-intersections may appear, making a validity check afterwards worthwhile.',
+        'blurb': 'Simplify is a QGIS Processing generalisation tool. It reduces vertices with a tolerance to speed drawing and remove unnecessary detail. Expected output: a simplified copy of the input geometries.',
         'relations': {
             'Precision': 'Vertices are removed to reduce geometric detail while retaining overall shape. Method choices include distance-based Douglas-Peucker, snapping to a grid, and area-based Visvalingam simplification, each governed by a tolerance in layer units. Higher tolerances yield smaller files and faster rendering at the cost of positional fidelity. Neighbouring polygons are processed independently, so shared boundaries can separate or overlap, and self-intersections may appear, making a validity check afterwards worthwhile.',
             'Scale': 'Vertices are removed to reduce geometric detail while retaining overall shape. Method choices include distance-based Douglas-Peucker, snapping to a grid, and area-based Visvalingam simplification, each governed by a tolerance in layer units. Higher tolerances yield smaller files and faster rendering at the cost of positional fidelity. Neighbouring polygons are processed independently, so shared boundaries can separate or overlap, and self-intersections may appear, making a validity check afterwards worthwhile.',
@@ -1511,42 +1858,63 @@ TOOL_INFO = {
     },
     'Slope': {
         'source': 'QGIS / GDAL DEM',
-        'blurb': 'Slope calculates the steepness of a terrain surface from an elevation model, returning inclination in degrees by default. A Z factor converts vertical units or exaggerates relief, and it becomes essential when elevation is in metres but coordinates are in degrees, where an uncorrected result is badly wrong. Values are computed from the elevation difference across a three by three neighbourhood, so coarser cells flatten steep local features.',
+        'blurb': 'Computes steepness from a DEM in degrees or percent. Core terrain derivative for hazard and engineering.',
         'relations': {
         },
     },
     'Snap geometries to grid': {
         'source': 'QGIS Processing',
-        'blurb': 'Vertex coordinates are rounded onto a regular grid whose horizontal and vertical spacing is supplied as a parameter, with optional Z and M spacing. Snapping removes coordinate precision noise, and adjacent features that round to the same positions can end up sharing boundaries exactly, which helps overlay operations succeed. Because vertices may collapse together, output geometries can become invalid or degenerate, so validation and a modest grid size are advisable.',
+        'blurb': 'Snap geometries to grid is a QGIS Processing precision tool. It moves vertices onto a coordinate grid to reduce slivers and micro-gaps when tolerance is set carefully. Expected output: geometries with snapped coordinates.',
         'relations': {
             'Precision': 'Vertex coordinates are rounded onto a regular grid whose horizontal and vertical spacing is supplied as a parameter, with optional Z and M spacing. Snapping removes coordinate precision noise, and adjacent features that round to the same positions can end up sharing boundaries exactly, which helps overlay operations succeed. Because vertices may collapse together, output geometries can become invalid or degenerate, so validation and a modest grid size are advisable.',
         },
     },
     'Split Vector Layer': {
         'source': 'QGIS Processing',
-        'blurb': 'An input layer is divided into several output files, one for each unique value found in a chosen field. The destination directory and output format are parameters, and file names derive from the field values, so a layer of national parcels can be exported per municipality in a single run. Attribute schema and geometry are preserved in each part. Fields with many distinct values generate correspondingly many files.',
+        'blurb': 'Split Vector Layer is a QGIS Processing tool. It writes separate outputs for each unique value of a chosen attribute field. Expected output: multiple layers or files, one per class.',
         'relations': {
             'Vector Processing': 'An input layer is divided into several output files, one for each unique value found in a chosen field. The destination directory and output format are parameters, and file names derive from the field values, so a layer of national parcels can be exported per municipality in a single run. Attribute schema and geometry are preserved in each part. Fields with many distinct values generate correspondingly many files.',
         },
     },
     'Split with lines': {
         'source': 'QGIS Processing',
-        'blurb': 'Features of an input line layer are cut wherever they are crossed by geometry from a split line layer, producing shorter segments as separate features. Attributes are duplicated onto every resulting piece, and the total length is unchanged. Only genuine intersections cause a split, so lines that merely come close remain intact. Segmenting a road network at administrative boundaries or at junction lines is a standard use.',
+        'blurb': 'Split with lines is a QGIS Processing tool. It cuts polygons or lines wherever they cross a line layer, creating segments at intersections. Expected output: split features of the input geometry type.',
         'relations': {
             'Overlay': 'Features of an input line layer are cut wherever they are crossed by geometry from a split line layer, producing shorter segments as separate features. Attributes are duplicated onto every resulting piece, and the total length is unchanged. Only genuine intersections cause a split, so lines that merely come close remain intact. Segmenting a road network at administrative boundaries or at junction lines is a standard use.',
             'Vector Analysis': 'Features of an input line layer are cut wherever they are crossed by geometry from a split line layer, producing shorter segments as separate features. Attributes are duplicated onto every resulting piece, and the total length is unchanged. Only genuine intersections cause a split, so lines that merely come close remain intact. Segmenting a road network at administrative boundaries or at junction lines is a standard use.',
         },
     },
+    'spreg.ML_Error': {
+        'source': 'PySAL spreg',
+        'blurb': 'spreg.ML_Error is a PySAL spreg spatial error model. It models spatial dependence in residuals when omitted factors are spatially structured. Expected output: spatial error model coefficients and fit stats.',
+        'relations': {
+            'Spatial Regression': 'Maximum-likelihood spatial error regression models spatial dependence in the residuals rather than in the outcome itself. It is appropriate when omitted variables or measurement error are spatially structured. Likelihood-based fit compares against OLS and lag alternatives via spatial diagnostics.',
+        },
+    },
+    'spreg.ML_Lag': {
+        'source': 'PySAL spreg',
+        'blurb': 'spreg.ML_Lag is a PySAL spreg spatial lag model. It models an outcome that depends on neighbouring outcomes (spillover) via maximum likelihood. Expected output: spatial lag model coefficients and fit stats.',
+        'relations': {
+            'Spatial Regression': 'Maximum-likelihood spatial lag regression models a dependent variable that depends on neighbouring values of itself through a weights matrix. It captures contagion or spillover in the outcome. Estimation accounts for endogeneity of the lagged term that OLS would mishandle.',
+        },
+    },
+    'spreg.OLS': {
+        'source': 'PySAL spreg',
+        'blurb': 'spreg.OLS is a PySAL spreg ordinary least squares estimator. It fits classical regression with optional spatial residual diagnostics before choosing spatial models. Expected output: regression coefficients and diagnostics.',
+        'relations': {
+            'Spatial Regression': "spreg.OLS fits classical ordinary least squares regression with optional spatial diagnostics on residuals. Moran's I and related tests on residuals indicate whether a spatial lag or error model is needed next. It is the baseline spatial-econometric step before ML_Lag or ML_Error.",
+        },
+    },
     'ST_Area': {
         'source': 'PostGIS',
-        'blurb': 'ST_Area returns the area of a polygonal geometry, with points and lines yielding zero. For the geometry type the result is expressed in the units of the spatial reference system, so a value computed in degrees is meaningless as an area; for the geography type calculation runs on the spheroid and returns square metres. A boolean argument can switch geography computation to the faster sphere. Reprojecting to an equal-area system suits large extents.',
+        'blurb': 'ST_Area is a PostGIS measurement function. It returns polygon area in CRS units (prefer equal-area CRS for comparable planar areas). Expected output: numeric area values.',
         'relations': {
             'Units': 'ST_Area returns the area of a polygonal geometry, with points and lines yielding zero. For the geometry type the result is expressed in the units of the spatial reference system, so a value computed in degrees is meaningless as an area; for the geography type calculation runs on the spheroid and returns square metres. A boolean argument can switch geography computation to the faster sphere. Reprojecting to an equal-area system suits large extents.',
         },
     },
     'ST_Buffer': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'A geometry covering every point within a given distance of the input is returned. Optional style parameters set quadrant segments, end cap as round, flat, or square, join as round, mitre, or bevel, and side for one-sided line buffers. Negative distances erode polygons and can eliminate narrow ones entirely. Geometry inputs measure distance in spatial reference units, while geography inputs work in metres, which usually explains surprising results in degree-based data.',
+        'blurb': 'ST_Buffer is a PostGIS buffering function. It expands or shrinks geometries by a distance in CRS units (use projected SRIDs for metres). Expected output: buffer geometries.',
         'relations': {
             'Database Processing': 'A geometry covering every point within a given distance of the input is returned. Optional style parameters set quadrant segments, end cap as round, flat, or square, join as round, mitre, or bevel, and side for one-sided line buffers. Negative distances erode polygons and can eliminate narrow ones entirely. Geometry inputs measure distance in spatial reference units, while geography inputs work in metres, which usually explains surprising results in degree-based data.',
             'Overlay': 'A geometry covering every point within a given distance of the input is returned. Optional style parameters set quadrant segments, end cap as round, flat, or square, join as round, mitre, or bevel, and side for one-sided line buffers. Negative distances erode polygons and can eliminate narrow ones entirely. Geometry inputs measure distance in spatial reference units, while geography inputs work in metres, which usually explains surprising results in degree-based data.',
@@ -1555,28 +1923,28 @@ TOOL_INFO = {
     },
     'ST_ClusterDBSCAN': {
         'source': 'PostGIS',
-        'blurb': 'This window function assigns density-based cluster identifiers to rows within a partition. Two parameters govern behaviour: eps, the maximum distance between neighbouring geometries, and minpoints, the minimum count required to form a core cluster. Geometries that meet neither condition receive NULL, marking them as noise. Because it is a window function, clustering can be computed per group with an OVER clause, and results remain deterministic for a given ordering of input rows.',
+        'blurb': 'ST_ClusterDBSCAN is a PostGIS clustering window function. It assigns DBSCAN cluster IDs by distance and minimum points inside SQL. Expected output: rows labelled with cluster IDs.',
         'relations': {
             'Clustering': 'This window function assigns density-based cluster identifiers to rows within a partition. Two parameters govern behaviour: eps, the maximum distance between neighbouring geometries, and minpoints, the minimum count required to form a core cluster. Geometries that meet neither condition receive NULL, marking them as noise. Because it is a window function, clustering can be computed per group with an OVER clause, and results remain deterministic for a given ordering of input rows.',
         },
     },
     'ST_ClusterKMeans': {
         'source': 'PostGIS',
-        'blurb': 'Rows in a window partition are divided into a specified number of clusters by k-means over geometry centroids, and each row receives its cluster number. A maximum radius argument can cap cluster extent, splitting groups that would otherwise sprawl, and weights may influence assignment in recent versions. Since every row is assigned, no noise category exists. Territory design, sales region building, and thinning dense point sets are typical database-side uses.',
+        'blurb': 'ST_ClusterKMeans is a PostGIS clustering function. It assigns K-means cluster IDs to geometries on the server. Expected output: rows labelled with K cluster IDs.',
         'relations': {
             'Clustering': 'Rows in a window partition are divided into a specified number of clusters by k-means over geometry centroids, and each row receives its cluster number. A maximum radius argument can cap cluster extent, splitting groups that would otherwise sprawl, and weights may influence assignment in recent versions. Since every row is assigned, no noise category exists. Territory design, sales region building, and thinning dense point sets are typical database-side uses.',
         },
     },
     'ST_ClusterWithin': {
         'source': 'PostGIS',
-        'blurb': 'As an aggregate function, ST_ClusterWithin gathers input geometries and returns an array of geometry collections, grouping together any geometries lying within a given distance of one another. Clustering is transitive, so a chain of nearby features forms one cluster even when its ends are far apart. Unlike the window variants, it collapses rows into collections rather than labelling them, so unnesting is usually the next step for further analysis.',
+        'blurb': 'ST_ClusterWithin is a PostGIS clustering aggregate. It groups geometries that fall within a given distance of each other. Expected output: clustered geometry collections/groups.',
         'relations': {
             'Clustering': 'As an aggregate function, ST_ClusterWithin gathers input geometries and returns an array of geometry collections, grouping together any geometries lying within a given distance of one another. Clustering is transitive, so a chain of nearby features forms one cluster even when its ends are far apart. Unlike the window variants, it collapses rows into collections rather than labelling them, so unnesting is usually the next step for further analysis.',
         },
     },
     'ST_Contains': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'ST_Contains reports whether the second geometry lies entirely inside the first, requiring that no point of B falls outside A and that their interiors share at least one point. A consequence of that interior rule is that a polygon does not contain a line lying wholly along its boundary, where ST_Covers would return true. Bounding-box indexing accelerates the test, and argument order is the reverse of ST_Within.',
+        'blurb': 'ST_Contains is a PostGIS containment predicate. It tests whether one geometry completely contains another. Expected output: boolean (or filtered rows).',
         'relations': {
             'Containment': 'ST_Contains reports whether the second geometry lies entirely inside the first, requiring that no point of B falls outside A and that their interiors share at least one point. A consequence of that interior rule is that a polygon does not contain a line lying wholly along its boundary, where ST_Covers would return true. Bounding-box indexing accelerates the test, and argument order is the reverse of ST_Within.',
             'Demographic Enrichment': 'ST_Contains reports whether the second geometry lies entirely inside the first, requiring that no point of B falls outside A and that their interiors share at least one point. A consequence of that interior rule is that a polygon does not contain a line lying wholly along its boundary, where ST_Covers would return true. Bounding-box indexing accelerates the test, and argument order is the reverse of ST_Within.',
@@ -1585,7 +1953,7 @@ TOOL_INFO = {
     },
     'ST_Crosses': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'Two geometries cross when they share some interior points but not all, and their intersection has a dimension lower than the maximum dimension of the inputs. A road crossing a river returns true, whereas two lines merely touching at endpoints does not. Polygon pairs never cross under this definition. It is a natural predicate for finding conflicts between linear networks and for validating that features intersect transversally rather than overlapping.',
+        'blurb': 'ST_Crosses is a PostGIS topology predicate. It is true when geometries cross under OGC rules (e.g., a line crossing a polygon). Expected output: boolean (or filtered rows).',
         'relations': {
             'Adjacency': 'Two geometries cross when they share some interior points but not all, and their intersection has a dimension lower than the maximum dimension of the inputs. A road crossing a river returns true, whereas two lines merely touching at endpoints does not. Polygon pairs never cross under this definition. It is a natural predicate for finding conflicts between linear networks and for validating that features intersect transversally rather than overlapping.',
             'Topology Validation': 'Two geometries cross when they share some interior points but not all, and their intersection has a dimension lower than the maximum dimension of the inputs. A road crossing a river returns true, whereas two lines merely touching at endpoints does not. Polygon pairs never cross under this definition. It is a natural predicate for finding conflicts between linear networks and for validating that features intersect transversally rather than overlapping.',
@@ -1593,7 +1961,7 @@ TOOL_INFO = {
     },
     'ST_Distance': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'The minimum distance between two geometries is returned, measured between their closest points, so overlapping or touching inputs give zero. Geometry arguments produce Cartesian distance in spatial reference units, which is only meaningful in a projected system, while geography arguments return metres computed on the spheroid by default. Ordering results by distance supports nearest-neighbour queries, particularly with the indexed distance operator for large tables.',
+        'blurb': 'ST_Distance is a PostGIS distance function. It returns the shortest distance between geometries in CRS units (spheroidal for geography). Expected output: numeric distances.',
         'relations': {
             'Distance': 'The minimum distance between two geometries is returned, measured between their closest points, so overlapping or touching inputs give zero. Geometry arguments produce Cartesian distance in spatial reference units, which is only meaningful in a projected system, while geography arguments return metres computed on the spheroid by default. Ordering results by distance supports nearest-neighbour queries, particularly with the indexed distance operator for large tables.',
             'Spatial SQL': 'The minimum distance between two geometries is returned, measured between their closest points, so overlapping or touching inputs give zero. Geometry arguments produce Cartesian distance in spatial reference units, which is only meaningful in a projected system, while geography arguments return metres computed on the spheroid by default. Ordering results by distance supports nearest-neighbour queries, particularly with the indexed distance operator for large tables.',
@@ -1601,7 +1969,7 @@ TOOL_INFO = {
     },
     'ST_DWithin': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'ST_DWithin answers whether two geometries lie within a specified distance of each other, returning true or false without computing the exact separation. Because it can be rewritten to use a bounding-box index expanded by the distance, it performs far better than comparing ST_Distance to a threshold. Geometry arguments use spatial reference units while geography arguments use metres, and geography accepts a flag to trade spheroid accuracy for sphere speed.',
+        'blurb': 'ST_DWithin is a PostGIS proximity predicate. It tests whether geometries are within a distance without buffering just to filter. Expected output: boolean (or filtered rows).',
         'relations': {
             'Database Processing': 'ST_DWithin answers whether two geometries lie within a specified distance of each other, returning true or false without computing the exact separation. Because it can be rewritten to use a bounding-box index expanded by the distance, it performs far better than comparing ST_Distance to a threshold. Geometry arguments use spatial reference units while geography arguments use metres, and geography accepts a flag to trade spheroid accuracy for sphere speed.',
             'Distance': 'ST_DWithin answers whether two geometries lie within a specified distance of each other, returning true or false without computing the exact separation. Because it can be rewritten to use a bounding-box index expanded by the distance, it performs far better than comparing ST_Distance to a threshold. Geometry arguments use spatial reference units while geography arguments use metres, and geography accepts a flag to trade spheroid accuracy for sphere speed.',
@@ -1609,9 +1977,16 @@ TOOL_INFO = {
             'Spatial SQL': 'ST_DWithin answers whether two geometries lie within a specified distance of each other, returning true or false without computing the exact separation. Because it can be rewritten to use a bounding-box index expanded by the distance, it performs far better than comparing ST_Distance to a threshold. Geometry arguments use spatial reference units while geography arguments use metres, and geography accepts a flag to trade spheroid accuracy for sphere speed.',
         },
     },
+    'ST_GeoHash': {
+        'source': 'PostGIS',
+        'blurb': 'ST_GeoHash is a PostGIS geohash function. It encodes geometries into geohash strings for hierarchical grid keys and coarse spatial grouping. Expected output: geohash text values.',
+        'relations': {
+            'Spatial Indexing': "ST_GeoHash encodes a geometry's bounding box or point into a geohash text string at a chosen precision. Geohashes support hierarchical grid indexing and prefix-based neighbourhood searches. They complement GiST indexes when applications prefer string keys for sharding or URL-friendly location tokens.",
+        },
+    },
     'ST_Intersection': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'The shared portion of two geometries is returned, and the result may be of lower dimension than the inputs, for example a line where two polygons abut or a point where two lines meet. Empty geometry comes back when nothing overlaps. Newer versions accept a grid size that snaps output coordinates, which helps avoid slivers and robustness failures. Filtering with ST_Intersects first keeps expensive overlay work off non-overlapping pairs.',
+        'blurb': 'ST_Intersection is a PostGIS overlay function. It returns the shared geometry of two inputs. Expected output: intersection geometries.',
         'relations': {
             'Overlay': 'The shared portion of two geometries is returned, and the result may be of lower dimension than the inputs, for example a line where two polygons abut or a point where two lines meet. Empty geometry comes back when nothing overlaps. Newer versions accept a grid size that snaps output coordinates, which helps avoid slivers and robustness failures. Filtering with ST_Intersects first keeps expensive overlay work off non-overlapping pairs.',
             'Spatial SQL': 'The shared portion of two geometries is returned, and the result may be of lower dimension than the inputs, for example a line where two polygons abut or a point where two lines meet. Empty geometry comes back when nothing overlaps. Newer versions accept a grid size that snaps output coordinates, which helps avoid slivers and robustness failures. Filtering with ST_Intersects first keeps expensive overlay work off non-overlapping pairs.',
@@ -1619,7 +1994,7 @@ TOOL_INFO = {
     },
     'ST_Intersects': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'ST_Intersects returns true whenever two geometries share any portion of space, making it the complement of ST_Disjoint and the most widely used spatial predicate. Query planners combine it with the bounding-box overlap operator so a GiST index prunes candidates before exact geometry comparison. Both arguments must share an SRID, otherwise the call errors. Geography arguments are supported, evaluating intersection on the spheroid rather than on a plane.',
+        'blurb': 'ST_Intersects is a PostGIS spatial predicate. It tests whether geometries share any space and runs fast with a spatial index. Expected output: boolean (or filtered rows).',
         'relations': {
             'Database Processing': 'ST_Intersects returns true whenever two geometries share any portion of space, making it the complement of ST_Disjoint and the most widely used spatial predicate. Query planners combine it with the bounding-box overlap operator so a GiST index prunes candidates before exact geometry comparison. Both arguments must share an SRID, otherwise the call errors. Geography arguments are supported, evaluating intersection on the spheroid rather than on a plane.',
             'Demographic Enrichment': 'ST_Intersects returns true whenever two geometries share any portion of space, making it the complement of ST_Disjoint and the most widely used spatial predicate. Query planners combine it with the bounding-box overlap operator so a GiST index prunes candidates before exact geometry comparison. Both arguments must share an SRID, otherwise the call errors. Geography arguments are supported, evaluating intersection on the spheroid rather than on a plane.',
@@ -1629,7 +2004,7 @@ TOOL_INFO = {
     },
     'ST_IsValid': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'Validity of a geometry is tested against OGC rules covering closed rings, correctly nested holes, absence of self-intersections, and no repeated or degenerate segments. A false result signals that overlay and measurement functions may fail or return nonsense, so validation belongs early in any loading routine. Companion functions explain the problem in text or return its location, and ST_MakeValid attempts repair, sometimes changing geometry type in the process.',
+        'blurb': 'ST_IsValid is a PostGIS validity function. It returns whether a geometry passes OGC validity rules. Expected output: boolean true/false.',
         'relations': {
             'Database Processing': 'Validity of a geometry is tested against OGC rules covering closed rings, correctly nested holes, absence of self-intersections, and no repeated or degenerate segments. A false result signals that overlay and measurement functions may fail or return nonsense, so validation belongs early in any loading routine. Companion functions explain the problem in text or return its location, and ST_MakeValid attempts repair, sometimes changing geometry type in the process.',
             'Geometry Validation': 'Validity of a geometry is tested against OGC rules covering closed rings, correctly nested holes, absence of self-intersections, and no repeated or degenerate segments. A false result signals that overlay and measurement functions may fail or return nonsense, so validation belongs early in any loading routine. Companion functions explain the problem in text or return its location, and ST_MakeValid attempts repair, sometimes changing geometry type in the process.',
@@ -1638,7 +2013,7 @@ TOOL_INFO = {
     },
     'ST_IsValidDetail': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'Instead of a bare boolean, this function returns a composite row containing a validity flag, a textual reason, and a geometry marking where the problem occurs. Extracting the location lets an analyst zoom straight to a self-intersection or a nested hole rather than searching a large polygon by hand. An optional flag treats certain self-touching ring configurations as valid. Combining it with a filtered query produces a concise repair worklist.',
+        'blurb': 'ST_IsValidDetail is a PostGIS validity diagnostic. It explains why a geometry is invalid and where the problem is. Expected output: reason/location details for invalid geometries.',
         'relations': {
             'Geometry Validation': 'Instead of a bare boolean, this function returns a composite row containing a validity flag, a textual reason, and a geometry marking where the problem occurs. Extracting the location lets an analyst zoom straight to a self-intersection or a nested hole rather than searching a large polygon by hand. An optional flag treats certain self-touching ring configurations as valid. Combining it with a filtered query produces a concise repair worklist.',
             'Validity': 'Instead of a bare boolean, this function returns a composite row containing a validity flag, a textual reason, and a geometry marking where the problem occurs. Extracting the location lets an analyst zoom straight to a self-intersection or a nested hole rather than searching a large polygon by hand. An optional flag treats certain self-touching ring configurations as valid. Combining it with a filtered query produces a concise repair worklist.',
@@ -1646,14 +2021,14 @@ TOOL_INFO = {
     },
     'ST_Length': {
         'source': 'PostGIS',
-        'blurb': 'Length is returned for linear geometries, with points and polygons giving zero; polygon perimeter requires ST_Perimeter instead. Geometry arguments are measured in spatial reference units, so results computed in degrees are not distances, while geography arguments return metres calculated on the spheroid. Multi-linestrings sum their component lengths. Summing lengths per attribute group over projected data is the usual way to report network extent.',
+        'blurb': 'ST_Length is a PostGIS measurement function. It returns length of linestrings in CRS units (or spheroidal for geography). Expected output: numeric length values.',
         'relations': {
             'Units': 'Length is returned for linear geometries, with points and polygons giving zero; polygon perimeter requires ST_Perimeter instead. Geometry arguments are measured in spatial reference units, so results computed in degrees are not distances, while geography arguments return metres calculated on the spheroid. Multi-linestrings sum their component lengths. Summing lengths per attribute group over projected data is the usual way to report network extent.',
         },
     },
     'ST_Overlaps': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'Overlap requires two geometries of the same dimension that intersect, whose intersection shares that dimension, and where neither wholly contains the other. Two partially covering polygons therefore overlap, but a polygon inside another does not, nor does a line crossing a polygon. This makes it the right test for finding illegal double coverage in a supposedly clean polygon layer, once bounding-box filtering has narrowed candidate pairs.',
+        'blurb': 'ST_Overlaps is a PostGIS topology predicate. It is true when geometries partly overlap without one containing the other. Expected output: boolean (or filtered rows).',
         'relations': {
             'Adjacency': 'Overlap requires two geometries of the same dimension that intersect, whose intersection shares that dimension, and where neither wholly contains the other. Two partially covering polygons therefore overlap, but a polygon inside another does not, nor does a line crossing a polygon. This makes it the right test for finding illegal double coverage in a supposedly clean polygon layer, once bounding-box filtering has narrowed candidate pairs.',
             'Topology Validation': 'Overlap requires two geometries of the same dimension that intersect, whose intersection shares that dimension, and where neither wholly contains the other. Two partially covering polygons therefore overlap, but a polygon inside another does not, nor does a line crossing a polygon. This makes it the right test for finding illegal double coverage in a supposedly clean polygon layer, once bounding-box filtering has narrowed candidate pairs.',
@@ -1661,14 +2036,14 @@ TOOL_INFO = {
     },
     'ST_SetSRID': {
         'source': 'PostGIS',
-        'blurb': 'ST_SetSRID stamps a spatial reference identifier onto a geometry without altering a single coordinate. It repairs geometries loaded with SRID zero or with a wrong identifier, when the true system is known from the data source. No reprojection occurs, so this is not a substitute for ST_Transform; applying it with an arbitrary code merely mislabels the data and makes later transformations wrong. ST_SRID reads back the current value.',
+        'blurb': 'ST_SetSRID is a PostGIS CRS tagging function. It assigns an SRID without changing coordinates (like assign projection). Expected output: geometry with updated SRID metadata.',
         'relations': {
             'Common CRS Errors': 'ST_SetSRID stamps a spatial reference identifier onto a geometry without altering a single coordinate. It repairs geometries loaded with SRID zero or with a wrong identifier, when the true system is known from the data source. No reprojection occurs, so this is not a substitute for ST_Transform; applying it with an arbitrary code merely mislabels the data and makes later transformations wrong. ST_SRID reads back the current value.',
         },
     },
     'ST_Touches': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'Two geometries touch when they have at least one point in common but their interiors do not intersect. Adjacent parcels sharing an edge return true, as do a line meeting a polygon boundary at its endpoint, while overlapping features return false. Because the definition depends on exact coordinate coincidence, unsnapped boundaries frequently defeat it, so tolerance-based snapping may be needed before topology checks rely on the result.',
+        'blurb': 'ST_Touches is a PostGIS adjacency predicate. It is true when geometries touch at boundaries but interiors do not intersect. Expected output: boolean (or filtered rows).',
         'relations': {
             'Adjacency': 'Two geometries touch when they have at least one point in common but their interiors do not intersect. Adjacent parcels sharing an edge return true, as do a line meeting a polygon boundary at its endpoint, while overlapping features return false. Because the definition depends on exact coordinate coincidence, unsnapped boundaries frequently defeat it, so tolerance-based snapping may be needed before topology checks rely on the result.',
             'Topology Validation': 'Two geometries touch when they have at least one point in common but their interiors do not intersect. Adjacent parcels sharing an edge return true, as do a line meeting a polygon boundary at its endpoint, while overlapping features return false. Because the definition depends on exact coordinate coincidence, unsnapped boundaries frequently defeat it, so tolerance-based snapping may be needed before topology checks rely on the result.',
@@ -1676,7 +2051,7 @@ TOOL_INFO = {
     },
     'ST_Transform': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'Coordinates are reprojected into a target spatial reference identifier, applying the datum shift and projection maths through PROJ. The input geometry must already carry a correct SRID, since the source definition drives the transformation; variants accept explicit PROJ pipelines or authority-qualified codes when a specific operation is required. Transforming inside a query prevents index use unless the expression is indexed, so storing a projected column often performs better.',
+        'blurb': 'ST_Transform is a PostGIS reprojection function. It converts geometries to another SRID inside the database. Expected output: geometries in the target SRID.',
         'relations': {
             'CRS Management': 'Coordinates are reprojected into a target spatial reference identifier, applying the datum shift and projection maths through PROJ. The input geometry must already carry a correct SRID, since the source definition drives the transformation; variants accept explicit PROJ pipelines or authority-qualified codes when a specific operation is required. Transforming inside a query prevents index use unless the expression is indexed, so storing a projected column often performs better.',
             'CRS Validation': 'Coordinates are reprojected into a target spatial reference identifier, applying the datum shift and projection maths through PROJ. The input geometry must already carry a correct SRID, since the source definition drives the transformation; variants accept explicit PROJ pipelines or authority-qualified codes when a specific operation is required. Transforming inside a query prevents index use unless the expression is indexed, so storing a projected column often performs better.',
@@ -1691,109 +2066,160 @@ TOOL_INFO = {
     },
     'ST_Within': {
         'source': 'PostGIS / Spatial SQL',
-        'blurb': 'ST_Within tests whether the first geometry lies completely inside the second, with no part outside and interiors sharing at least one point. It is the inverse of ST_Contains with arguments swapped, and it similarly excludes cases where a feature sits entirely on the other\'s boundary, which ST_CoveredBy accepts. Point-in-polygon assignment is the classic use, and GiST indexes on both tables keep such joins efficient.',
+        'blurb': 'ST_Within is a PostGIS containment predicate. It tests whether a geometry lies entirely inside another. Expected output: boolean (or filtered rows).',
         'relations': {
-            'Containment': 'ST_Within tests whether the first geometry lies completely inside the second, with no part outside and interiors sharing at least one point. It is the inverse of ST_Contains with arguments swapped, and it similarly excludes cases where a feature sits entirely on the other\'s boundary, which ST_CoveredBy accepts. Point-in-polygon assignment is the classic use, and GiST indexes on both tables keep such joins efficient.',
-            'Demographic Enrichment': 'ST_Within tests whether the first geometry lies completely inside the second, with no part outside and interiors sharing at least one point. It is the inverse of ST_Contains with arguments swapped, and it similarly excludes cases where a feature sits entirely on the other\'s boundary, which ST_CoveredBy accepts. Point-in-polygon assignment is the classic use, and GiST indexes on both tables keep such joins efficient.',
-            'Spatial SQL': 'ST_Within tests whether the first geometry lies completely inside the second, with no part outside and interiors sharing at least one point. It is the inverse of ST_Contains with arguments swapped, and it similarly excludes cases where a feature sits entirely on the other\'s boundary, which ST_CoveredBy accepts. Point-in-polygon assignment is the classic use, and GiST indexes on both tables keep such joins efficient.',
+            'Containment': "ST_Within tests whether the first geometry lies completely inside the second, with no part outside and interiors sharing at least one point. It is the inverse of ST_Contains with arguments swapped, and it similarly excludes cases where a feature sits entirely on the other's boundary, which ST_CoveredBy accepts. Point-in-polygon assignment is the classic use, and GiST indexes on both tables keep such joins efficient.",
+            'Demographic Enrichment': "ST_Within tests whether the first geometry lies completely inside the second, with no part outside and interiors sharing at least one point. It is the inverse of ST_Contains with arguments swapped, and it similarly excludes cases where a feature sits entirely on the other's boundary, which ST_CoveredBy accepts. Point-in-polygon assignment is the classic use, and GiST indexes on both tables keep such joins efficient.",
+            'Spatial SQL': "ST_Within tests whether the first geometry lies completely inside the second, with no part outside and interiors sharing at least one point. It is the inverse of ST_Contains with arguments swapped, and it similarly excludes cases where a feature sits entirely on the other's boundary, which ST_CoveredBy accepts. Point-in-polygon assignment is the classic use, and GiST indexes on both tables keep such joins efficient.",
+        },
+    },
+    'STAC': {
+        'source': 'STAC community / OGC',
+        'blurb': 'STAC (SpatioTemporal Asset Catalog) is a community/OGC-aligned JSON catalog spec. It makes cloud imagery and assets searchable by space, time, and properties. Expected output: STAC Catalog/Collection/Item JSON and search results.',
+        'relations': {
+            'SDI / Catalogs': 'The SpatioTemporal Asset Catalog (STAC) specification describes geospatial assets—especially clouds of COGs and related files—with JSON metadata that is easy to crawl and search. STAC Catalogs, Collections, and Items standardise discovery across planetary archives. Clients query by bbox, time, and properties without a proprietary catalogue API.',
         },
     },
     'Strahler order': {
         'source': 'QGIS / SAGA',
-        'blurb': 'Strahler stream ordering classifies channels in a drainage network by hierarchy. Headwater streams receive order one, and where two channels of equal order join the downstream channel increases by one, while a junction of unequal orders keeps the higher value. Input is normally a hydrologically conditioned elevation model or an existing flow direction grid, with output as an ordered raster. Ordering depends heavily on the channel initiation threshold chosen upstream.',
+        'blurb': 'Strahler order is a stream-ordering tool in hydrological toolboxes (SAGA/GRASS/QGIS). It classifies channel segments by hierarchical stream order for network morphology studies. Expected output: streams attributed with Strahler order values.',
         'relations': {
             'Hydrological Analysis': 'Strahler stream ordering classifies channels in a drainage network by hierarchy. Headwater streams receive order one, and where two channels of equal order join the downstream channel increases by one, while a junction of unequal orders keeps the higher value. Input is normally a hydrologically conditioned elevation model or an existing flow direction grid, with output as an ordered raster. Ordering depends heavily on the channel initiation threshold chosen upstream.',
         },
     },
+    'Structure from Motion': {
+        'source': 'Photogrammetry method',
+        'blurb': 'Structure from Motion (SfM) is a photogrammetry method implemented in tools such as OpenDroneMap. It recovers camera poses and 3D structure from overlapping photos before dense matching. Expected output: sparse/dense point clouds, meshes, DEMs, and orthomosaics (via a full SfM pipeline).',
+        'relations': {
+            'Remote Sensing': 'Photogrammetry method that recovers camera positions and a sparse 3D point cloud from overlapping photos, then densifies into clouds, meshes, DEMs, and orthomosaics. Implemented inside tools such as OpenDroneMap.',
+        },
+    },
     'TensorFlow': {
         'source': 'Google',
-        'blurb': 'TensorFlow is a machine learning framework spanning model definition, training, and deployment, with Keras as its high-level interface. Graph execution and XLA compilation optimise performance across CPU, GPU, and TPU, and the SavedModel format supports serving, while TensorFlow Lite and TensorFlow.js target edge and browser environments. Data pipelines built with tf.data stream large training sets efficiently. Remote sensing use commonly involves convolutional or transformer models trained on image chips.',
+        'blurb': 'TensorFlow is a deep-learning platform. It trains and deploys neural nets for EO and other geospatial learning tasks. Expected output: trained models and predictions.',
         'relations': {
             'AI': 'TensorFlow is a machine learning framework spanning model definition, training, and deployment, with Keras as its high-level interface. Graph execution and XLA compilation optimise performance across CPU, GPU, and TPU, and the SavedModel format supports serving, while TensorFlow Lite and TensorFlow.js target edge and browser environments. Data pipelines built with tf.data stream large training sets efficiently. Remote sensing use commonly involves convolutional or transformer models trained on image chips.',
         },
     },
+    'Thin plate spline': {
+        'source': 'QGIS / GDAL georeferencing',
+        'blurb': 'Thin plate spline (TPS) is used in QGIS georeferencing and interpolation contexts. It bends a flexible surface through control points while keeping bending energy low, good for irregular GCPs or samples. Expected output: a warped georeferenced image or an interpolated surface.',
+        'relations': {
+            'Spatial Interpolation': 'Thin-plate spline (TPS) interpolation warps a surface—or georeferences an image—by bending flexibly through control points while minimising bending energy. It suits irregularly distributed GCPs better than low-order polynomials when local distortion varies. Overfitting is a risk if control points are noisy or too few relative to warps.',
+        },
+    },
     'TIN Interpolation': {
         'source': 'QGIS Processing',
-        'blurb': 'A triangulated irregular network surface is built from input points by connecting nearest neighbours into triangles, then interpolating within each triangle to fill the output raster. Linear interpolation gives planar facets, so the surface is continuous but not smooth, with visible breaks in gradient along triangle edges; Clough-Tocher offers a smoother alternative. Inputs can use an attribute or Z value, and outputs are a raster plus optional triangulation lines.',
+        'blurb': 'TIN Interpolation is a QGIS Processing interpolator. It builds triangles from sample points and interpolates across faces, preserving sample locations well for terrain-like fields. Expected output: an interpolated raster (from the TIN).',
         'relations': {
             'Spatial Interpolation': 'A triangulated irregular network surface is built from input points by connecting nearest neighbours into triangles, then interpolating within each triangle to fill the output raster. Linear interpolation gives planar facets, so the surface is continuous but not smooth, with visible breaks in gradient along triangle edges; Clough-Tocher offers a smoother alternative. Inputs can use an attribute or Z value, and outputs are a raster plus optional triangulation lines.',
             'TIN': 'A triangulated irregular network surface is built from input points by connecting nearest neighbours into triangles, then interpolating within each triangle to fill the output raster. Linear interpolation gives planar facets, so the surface is continuous but not smooth, with visible breaks in gradient along triangle edges; Clough-Tocher offers a smoother alternative. Inputs can use an attribute or Z value, and outputs are a raster plus optional triangulation lines.',
         },
     },
+    'tobler.area_interpolate()': {
+        'source': 'PySAL tobler',
+        'blurb': 'tobler.area_interpolate() is a PySAL tobler areal interpolation function. It transfers polygon attributes to new zones by overlap area, handling extensive vs intensive values correctly. Expected output: a target-zone layer with interpolated attributes.',
+        'relations': {
+            'Raster Analysis': 'Transfers attributes from one set of polygons to another by overlapping area (areal interpolation). Handles extensive totals (counts) and intensive rates differently so values stay meaningful. Use when analysis zones differ from data zones, such as census units vs. custom regions.',
+        },
+    },
+    'TorchGeo': {
+        'source': 'TorchGeo / OSGeo community',
+        'blurb': 'TorchGeo is a PyTorch domain library for geospatial deep learning. It provides CRS-aware datasets, samplers, transforms, and pretrained models for satellite and aerial imagery. Expected output: trained geospatial models and tensor predictions aligned to geographic windows.',
+        'relations': {
+            'AI': 'TorchGeo is a PyTorch domain library for geospatial deep learning. It provides CRS-aware datasets, samplers, transforms, and pretrained models for satellite and aerial imagery. Expected output: trained geospatial models and tensor predictions aligned to geographic windows.',
+        },
+    },
     'TPI': {
         'source': 'GDAL DEM / terrain analysis',
-        'blurb': 'Topographic Position Index compares each cell\'s elevation with the mean elevation of its surrounding neighbourhood. Positive values indicate ridges and crests standing above their surroundings, negative values mark valleys and channels, and values near zero fall on flat ground or uniform slopes. The neighbourhood size chosen sets the scale of landform detected, so small windows highlight micro-relief while broader windows reveal regional position. Slope is often combined with it for landform classification.',
+        'blurb': 'Topographic Position Index: how much a cell sits above or below its neighbourhood mean. Helps map ridges vs. valleys.',
         'relations': {
         },
     },
     'TRI': {
         'source': 'GDAL DEM / terrain analysis',
-        'blurb': 'Terrain Ruggedness Index summarises local relief as the mean difference in elevation between a cell and the cells around it, following Riley\'s formulation. Higher values denote rugged, dissected terrain and low values indicate smooth surfaces, expressed in the vertical units of the elevation model. Because the statistic depends on cell size, results are only comparable between rasters of equal resolution. Habitat modelling and trafficability studies make regular use of it.',
+        'blurb': 'Terrain Ruggedness Index from a DEM. Summarises local elevation variation.',
         'relations': {
+        },
+    },
+    'Ultralytics YOLO': {
+        'source': 'Ultralytics',
+        'blurb': 'Ultralytics YOLO is a popular real-time object detection and segmentation framework. It is commonly applied to aerial/drone imagery to find buildings, vehicles, trees, and other objects. Expected output: bounding boxes or masks with class labels (exportable to GIS formats).',
+        'relations': {
+            'AI': 'Ultralytics YOLO is a popular real-time object detection and segmentation framework. It is commonly applied to aerial/drone imagery to find buildings, vehicles, trees, and other objects. Expected output: bounding boxes or masks with class labels (exportable to GIS formats).',
         },
     },
     'Union': {
         'source': 'QGIS / ArcGIS Processing',
-        'blurb': 'Union combines two layers so the output contains the overlapping portions plus the non-overlapping parts of each input. Attributes from both layers appear, with nulls where a feature came from only one source, and feature counts typically grow because overlaps are split out as separate pieces. Sliver polygons along nearly coincident boundaries are common, so a minimum-area cleanup often follows. Both inputs should share a coordinate reference system and be valid.',
+        'blurb': 'Union is a polygon overlay tool in QGIS/ArcGIS. It keeps all pieces from both layers and combines attributes where they overlap, giving a full topological union. Expected output: a polygon layer covering the combined extent with overlap attributes filled where relevant.',
         'relations': {
             'Overlay': 'Union combines two layers so the output contains the overlapping portions plus the non-overlapping parts of each input. Attributes from both layers appear, with nulls where a feature came from only one source, and feature counts typically grow because overlaps are split out as separate pieces. Sliver polygons along nearly coincident boundaries are common, so a minimum-area cleanup often follows. Both inputs should share a coordinate reference system and be valid.',
             'Vector Analysis': 'Union combines two layers so the output contains the overlapping portions plus the non-overlapping parts of each input. Attributes from both layers appear, with nulls where a feature came from only one source, and feature counts typically grow because overlaps are split out as separate pieces. Sliver polygons along nearly coincident boundaries are common, so a minimum-area cleanup often follows. Both inputs should share a coordinate reference system and be valid.',
             'Vector Processing': 'Union combines two layers so the output contains the overlapping portions plus the non-overlapping parts of each input. Attributes from both layers appear, with nulls where a feature came from only one source, and feature counts typically grow because overlaps are split out as separate pieces. Sliver polygons along nearly coincident boundaries are common, so a minimum-area cleanup often follows. Both inputs should share a coordinate reference system and be valid.',
         },
     },
+    'v.net.alloc': {
+        'source': 'GRASS GIS',
+        'blurb': 'v.net.alloc is a GRASS GIS network allocation tool. It assigns network edges to the nearest facility centre by network cost for service partitions. Expected output: network edges labelled by allocated centre.',
+        'relations': {
+            'Location-Allocation': 'v.net.alloc assigns network edges to the nearest centre (facility) along the graph, producing a network allocation / service partition. Centres compete by shortest-path cost rather than Euclidean distance. It is a classic GRASS tool for location-allocation style maps on a road network.',
+        },
+    },
     'Valhalla': {
         'source': 'Valhalla / Mapbox lineage',
-        'blurb': 'Valhalla is an open-source routing engine using hierarchical tiled graphs built from OpenStreetMap. Services cover routing with turn-by-turn narrative, isochrones, time-distance matrices, map matching of GPS traces, elevation lookup, and optimised multi-stop ordering. Costing models for car, truck, bicycle, pedestrian, and transit are configurable at request time, including avoidances and vehicle restrictions, which avoids reprocessing for each profile. Deployment can be self-hosted or accessed through public and commercial endpoints.',
+        'blurb': 'Valhalla is an open-source routing engine with flexible costing models. It supports multiple travel modes for self-hosted directions as an alternative to OSRM/ORS. Expected output: routing API responses (paths and costs).',
         'relations': {
             'Geospatial Libraries': 'Valhalla is an open-source routing engine using hierarchical tiled graphs built from OpenStreetMap. Services cover routing with turn-by-turn narrative, isochrones, time-distance matrices, map matching of GPS traces, elevation lookup, and optimised multi-stop ordering. Costing models for car, truck, bicycle, pedestrian, and transit are configurable at request time, including avoidances and vehicle restrictions, which avoids reprocessing for each profile. Deployment can be self-hosted or accessed through public and commercial endpoints.',
         },
     },
     'Viewshed': {
         'source': 'QGIS / GDAL',
-        'blurb': 'Visibility analysis determines which cells of an elevation model can be seen from one or more observer positions. Parameters include observer height above ground, optional target height, maximum search distance, and whether earth curvature and refraction are accounted for. Output is usually a binary or coded raster distinguishing visible from hidden terrain. Results reflect bare terrain only unless buildings and vegetation are added to the surface, which commonly overstates real visibility.',
+        'blurb': 'Viewshed is a QGIS/terrain visibility tool. It computes which DEM cells are visible from observer points given terrain occlusion. Expected output: a visibility raster (and optional vectorised visible areas).',
         'relations': {
             'Visibility Analysis': 'Visibility analysis determines which cells of an elevation model can be seen from one or more observer positions. Parameters include observer height above ground, optional target height, maximum search distance, and whether earth curvature and refraction are accounted for. Output is usually a binary or coded raster distinguishing visible from hidden terrain. Results reflect bare terrain only unless buildings and vegetation are added to the surface, which commonly overstates real visibility.',
         },
     },
     'Voronoi polygons': {
         'source': 'QGIS Processing',
-        'blurb': 'Each input point receives a polygon enclosing all locations closer to it than to any other point, producing a tessellation also known as Thiessen polygons. A buffer region parameter extends the tessellation beyond the data extent, since edge cells would otherwise be unbounded. Attributes transfer from the generating point to its polygon. Nearest-facility catchments, rainfall station weighting, and quick territory assignment are typical applications, and the structure is the dual of a Delaunay triangulation.',
+        'blurb': 'Voronoi (Thiessen) polygons is a QGIS Processing tool. It partitions the plane so each polygon is closer to its seed point than to any other, useful for planar catchments. Expected output: a polygon layer of Voronoi cells around input points.',
         'relations': {
             'Vector Analysis': 'Each input point receives a polygon enclosing all locations closer to it than to any other point, producing a tessellation also known as Thiessen polygons. A buffer region parameter extends the tessellation beyond the data extent, since edge cells would otherwise be unbounded. Attributes transfer from the generating point to its polygon. Nearest-facility catchments, rainfall station weighting, and quick territory assignment are typical applications, and the structure is the dual of a Delaunay triangulation.',
         },
     },
     'Watershed': {
         'source': 'QGIS Hydrology',
-        'blurb': 'Watershed delineation identifies the area draining to specified outlet locations, working from flow direction derived from a conditioned elevation model. Pour points must sit precisely on the modelled drainage line, since a cell or two off-channel yields a drastically wrong catchment. Output is a raster or polygon of the contributing area, sometimes with subbasins for each tributary. Depression filling and threshold choices upstream shape the boundaries that emerge.',
+        'blurb': 'Watershed is a hydrological delineation tool in QGIS/SAGA/GRASS workflows. It outlines drainage basins contributing to pour points or stream outlets. Expected output: watershed polygons or labelled basin rasters.',
         'relations': {
             'Hydrological Analysis': 'Watershed delineation identifies the area draining to specified outlet locations, working from flow direction derived from a conditioned elevation model. Pour points must sit precisely on the modelled drainage line, since a cell or two off-channel yields a drastically wrong catchment. Output is a raster or polygon of the contributing area, sometimes with subbasins for each tributary. Depression filling and threshold choices upstream shape the boundaries that emerge.',
         },
     },
     'Weighted Overlay': {
         'source': 'QGIS / ArcGIS',
-        'blurb': 'Multiple criteria are combined into a single suitability surface by rescaling each input to a common scale, assigning relative weights, and summing the weighted values cell by cell. Weights normally total one hundred percent, and reclassification decides how raw measurements map onto the shared scale, which usually influences the outcome more than the weights do. Documenting both steps matters, since suitability results are sensitive to these subjective choices and warrant sensitivity testing.',
+        'blurb': 'Weighted Overlay is a multi-criteria raster combination method (ArcGIS-style; similar patterns in QGIS models). It combines reclassified criteria with weights to rank suitability in a transparent, repeatable way. Expected output: a scored suitability raster.',
         'relations': {
+            'Multi-Criteria Evaluation': 'Multiple criteria are combined into a single suitability surface by rescaling each input to a common scale, assigning relative weights, and summing the weighted values cell by cell. Weights normally total one hundred percent, and reclassification decides how raw measurements map onto the shared scale, which usually influences the outcome more than the weights do. Documenting both steps matters, since suitability results are sensitive to these subjective choices and warrant sensitivity testing.',
             'Site Selection': 'Multiple criteria are combined into a single suitability surface by rescaling each input to a common scale, assigning relative weights, and summing the weighted values cell by cell. Weights normally total one hundred percent, and reclassification decides how raw measurements map onto the shared scale, which usually influences the outcome more than the weights do. Documenting both steps matters, since suitability results are sensitive to these subjective choices and warrant sensitivity testing.',
             'Suitability Analysis': 'Multiple criteria are combined into a single suitability surface by rescaling each input to a common scale, assigning relative weights, and summing the weighted values cell by cell. Weights normally total one hundred percent, and reclassification decides how raw measurements map onto the shared scale, which usually influences the outcome more than the weights do. Documenting both steps matters, since suitability results are sensitive to these subjective choices and warrant sensitivity testing.',
         },
     },
     'writers.gdal': {
         'source': 'PDAL',
-        'blurb': 'Point cloud data is written out as a raster through GDAL by interpolating scattered points onto a grid. Resolution and a search radius are required, and the output type option selects statistics such as minimum, maximum, mean, inverse distance weighted, count, standard deviation, or all of them as separate bands. Window size, nodata value, output driver, and creation options complete the configuration. Digital surface and terrain models are the usual products.',
+        'blurb': 'writers.gdal is a PDAL writer stage. It interpolates points onto a raster grid via GDAL (e.g., DSM/DEM surfaces). Expected output: a raster surface from the cloud.',
         'relations': {
             'Point Cloud': 'Point cloud data is written out as a raster through GDAL by interpolating scattered points onto a grid. Resolution and a search radius are required, and the output type option selects statistics such as minimum, maximum, mean, inverse distance weighted, count, standard deviation, or all of them as separate bands. Window size, nodata value, output driver, and creation options complete the configuration. Digital surface and terrain models are the usual products.',
+            'Remote Sensing': 'PDAL stage that interpolates a point cloud onto a raster grid via GDAL (for example DSM/DEM surfaces).',
         },
     },
     'writers.las': {
         'source': 'PDAL',
-        'blurb': 'LAS or LAZ files are produced from a PDAL pipeline, with the compression option deciding between the two. Point format identifier and minor version control which dimensions can be stored, so colour or GPS time requires an appropriate format, and scale and offset values for each axis set stored coordinate precision. A spatial reference can be forwarded from the input or overridden, and header metadata such as software identifier and creation date is configurable.',
+        'blurb': 'writers.las is a PDAL writer stage. It writes LAS/LAZ output from a pipeline (choose compression for LAZ). Expected output: a LAS or LAZ file.',
         'relations': {
             'Point Cloud': 'LAS or LAZ files are produced from a PDAL pipeline, with the compression option deciding between the two. Point format identifier and minor version control which dimensions can be stored, so colour or GPS time requires an appropriate format, and scale and offset values for each axis set stored coordinate precision. A spatial reference can be forwarded from the input or overridden, and header metadata such as software identifier and creation date is configurable.',
         },
     },
     'XGBoost': {
         'source': 'XGBoost project',
-        'blurb': 'XGBoost implements gradient-boosted decision trees with regularisation, efficient sparse handling, and support for parallel and distributed training. Key hyperparameters include tree depth, learning rate, subsampling rates, and L1 or L2 penalties, with early stopping guided by a validation set. It handles tabular classification and regression strongly, which fits attribute-driven geospatial modelling such as land value or landslide susceptibility. Feature importance and SHAP values help interpret the fitted model.',
+        'blurb': 'XGBoost is a gradient-boosting machine-learning library. It builds strong tabular predictors often used with remote-sensing and spatial features. Expected output: trained models and predicted values/classes.',
         'relations': {
             'AI': 'XGBoost implements gradient-boosted decision trees with regularisation, efficient sparse handling, and support for parallel and distributed training. Key hyperparameters include tree depth, learning rate, subsampling rates, and L1 or L2 penalties, with early stopping guided by a validation set. It handles tabular classification and regression strongly, which fits attribute-driven geospatial modelling such as land value or landslide susceptibility. Feature importance and SHAP values help interpret the fitted model.',
         },

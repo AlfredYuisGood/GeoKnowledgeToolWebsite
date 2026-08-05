@@ -1,6 +1,6 @@
 {
   "name": "Geo-KTF",
-  "description": "Geo Knowledge Tool Framework: six pillars that move from understanding foundations, to doing operations, applying workflows, ensuring quality, delivering outputs, and enabling analysis with providers.",
+  "description": "Geo-KTF (Geospatial Knowledge to Tool) organises geospatial practice into six pillars that follow a practical path: Understand foundations (Basic Geospatial Knowledge), Act with operations (Analytical Capabilities), Apply reusable workflows (Workflow), Ensure quality (Validation), Deliver outputs (Output), and Enable the work with software and data providers (Provider Registry). Concepts are kept separate from tools, so one idea can map to several equivalent implementations across QGIS, GDAL, PostGIS, Python, and related stacks. That separation makes it easier to learn what to do before choosing software, compare options fairly, and move from theory to executable practice.",
   "children": [
     {
       "name": "Basic Geospatial Knowledge",
@@ -12,7 +12,7 @@
           "children": [
             {
               "name": "Overlay",
-              "description": "Overlay applies geometric set operations so features are cut, merged, or buffered by spatial interaction. It produces new geometries that answer questions such as intersection, difference, and union. Desktop geoprocessing and GeoPandas overlay APIs are the practical implementations. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Overlay is the set of geometric operations that cut, merge, or reshape features by how they share space (buffer, clip, intersection, union, difference, dissolve). Use it when you need new geometries that answer “where do these layers interact?” Common tools include Buffer, Clip, Intersection, Union, Difference, Dissolve, and geopandas.overlay().",
               "tools": [
                 "Buffer",
                 "Clip",
@@ -29,7 +29,7 @@
             },
             {
               "name": "Adjacency",
-              "description": "Adjacency describes which features touch or share boundaries without requiring one to contain the other. It supports neighborhood modeling and topological checks between neighbors. Touch/overlap/cross predicates and location extractors operationalize adjacency. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Adjacency describes whether features touch or share a boundary without one containing the other. Use it to find neighbours, shared borders, or topology between adjacent polygons and lines. Common tools include ST_Touches, ST_Overlaps, ST_Crosses, and Extract by location.",
               "tools": [
                 "ST_Touches",
                 "ST_Overlaps",
@@ -40,7 +40,7 @@
             },
             {
               "name": "Containment",
-              "description": "Containment captures inside/outside relationships, such as points within polygons or polygons within regions. It underpins zoning checks, coverage tests, and inclusion-based spatial joins. Contains/within predicates, extract-by-location, and clip operations implement this concept. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Containment is the inside/outside relationship between features (contains, within, clip-to-boundary). Use it for points-in-polygons, zoning checks, and coverage tests. Common tools include ST_Contains, ST_Within, Clip, and Extract by location.",
               "tools": [
                 "ST_Contains",
                 "ST_Within",
@@ -51,9 +51,9 @@
             },
             {
               "name": "Distance",
-              "description": "Distance measures metric nearness between features for proximity and neighborhood definitions. It is distinct from topological predicates such as intersects or contains. Distance matrix, nearest-hub, nearest joins, and ST_Distance/ST_DWithin are representative tools. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Distance measures how far features are from each other in coordinate or ground units. Use it for proximity, nearest-neighbour, and neighbourhood definitions that are metric rather than purely topological. Common tools include Distance Matrix, Distance to nearest hub, ST_Distance, ST_DWithin, and Join attributes by nearest.",
               "tools": [
-                "Distance matrix",
+                "Distance Matrix",
                 "Distance to nearest hub",
                 "Join attributes by nearest",
                 "ST_Distance",
@@ -63,7 +63,7 @@
             },
             {
               "name": "Connectivity",
-              "description": "Connectivity concerns whether locations are linked by traversable paths in a network rather than straight-line proximity. It is central to routing, service accessibility, and corridor analysis. Graph algorithms such as Dijkstra and driving-distance routines are representative implementations. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Connectivity asks whether places are linked by a traversable network path, not just by straight-line nearness. Use it for routing, service reach, and corridor questions on roads or other graphs. Common tools include pgr_dijkstra, pgr_aStar, pgr_drivingDistance, and openrouteservice directions.",
               "tools": [
                 "pgr_dijkstra",
                 "pgr_aStar",
@@ -74,7 +74,7 @@
             },
             {
               "name": "Scale",
-              "description": "Scale concerns how geographic phenomena are represented and processed at different resolutions and levels of detail. Choosing an appropriate scale affects generalization, sampling density, and the meaning of measured patterns. This category covers simplification, grids, overviews, and multi-resolution raster preparation. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Scale is about how much detail a dataset keeps and at what resolution phenomena are represented. Use it when generalising maps, choosing cell size, or building multi-resolution pyramids so analysis matches the question. Common tools include Simplify, Generalize, Create grid, gdaladdo, and gdalbuildvrt.",
               "tools": [
                 "Simplify",
                 "Generalize",
@@ -87,7 +87,7 @@
             },
             {
               "name": "Uncertainty",
-              "description": "Uncertainty and randomness address incomplete knowledge and stochastic variation in spatial sampling. Quality practice includes representing variability rather than treating every location as exact. Random-point and random-selection tools are representative executors for this concept. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Uncertainty means locations or values are not known exactly and may vary randomly or vaguely. Use it when sampling, testing sensitivity, or avoiding false certainty in maps. Common tools include Random points in extent, Random points in polygons, and Random selection.",
               "tools": [
                 "Random points in extent",
                 "Random points in polygons",
@@ -102,7 +102,7 @@
           "children": [
             {
               "name": "Vector",
-              "description": "Vector data models represent geographic entities as points, lines, and polygons with attributes and optional topology. They are ideal for discrete features with crisp boundaries and rich tabular properties. This category covers inspection, conversion, overlays, joins, and validity checks in OGR, GeoPandas, and PostGIS. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Vector data stores discrete features as points, lines, or polygons with attributes. Use it for crisp boundaries, networks of features, and rich tabular properties. Common tools include ogrinfo, ogr2ogr, and GeoPandas read/write functions.",
               "tools": [
                 "ogrinfo",
                 "ogr2ogr",
@@ -115,7 +115,7 @@
             },
             {
               "name": "Raster",
-              "description": "Raster data models store values on a regular grid and are used for continuous fields and categorical surfaces such as imagery, elevation, and land cover. Cell size, extent, nodata, and georeferencing determine analytical validity. Tools here inspect, translate, warp, mosaic, and compute map algebra with GDAL and Rasterio. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Raster data stores values on a regular grid of cells (imagery, elevation, land cover). Use it for continuous fields and pixel-based analysis. Common tools include gdalinfo, gdal_translate, gdalwarp, gdalbuildvrt, and rasterio.open().",
               "tools": [
                 "gdalinfo",
                 "gdal_translate",
@@ -128,7 +128,7 @@
             },
             {
               "name": "Point Cloud",
-              "description": "Point clouds are dense 3D measurements, commonly from LiDAR or photogrammetry, capturing surface structure at high detail. They require specialized pipelines for reading, filtering, reprojection, and derived products. PDAL readers, filters, and writers are the representative tooling for this data model. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A point cloud is a dense set of 3D points, often from LiDAR or photogrammetry. Use it to capture fine surface structure before deriving DEMs or meshes. Common tools include PDAL pipeline stages such as readers.las, filters, and writers.",
               "tools": [
                 "PDAL pipeline",
                 "readers.las",
@@ -141,7 +141,7 @@
             },
             {
               "name": "Mesh",
-              "description": "Mesh datasets represent surfaces as connected faces and edges, often used for 3D visualization and simulation. They support calculations and exports that bridge mesh structures with conventional GIS layers. QGIS mesh tools illustrate how meshes are inspected, calculated, and converted for mapping. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A mesh represents surfaces as connected faces and edges, often for 3D visualisation or simulation. Use it when terrain or urban surfaces are more complex than a simple DEM grid. Common tools include Mesh Calculator and mesh export tools in QGIS.",
               "tools": [
                 "Mesh Calculator",
                 "Export mesh edges",
@@ -152,7 +152,7 @@
             },
             {
               "name": "TIN",
-              "description": "A TIN (triangulated irregular network) models surfaces from irregularly spaced points using triangles. It preserves sample locations and adapts density where relief or variation is high. This category focuses on TIN interpolation and Delaunay triangulation as core construction methods. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A TIN (triangulated irregular network) models a surface from irregular points connected as triangles. Use it to interpolate terrain or other fields while keeping sample locations. Common tools include TIN Interpolation and Delaunay triangulation.",
               "tools": [
                 "TIN Interpolation",
                 "Delaunay triangulation"
@@ -160,7 +160,7 @@
             },
             {
               "name": "DEM",
-              "description": "Digital elevation models encode terrain height on a grid and underpin slope, aspect, hydrology, and visibility analyses. Quality depends on resolution, vertical datum, and hydrologic conditioning. GDAL DEM tools derive hillshade, morphometric indices, contours, and viewsheds from elevation surfaces. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A DEM (digital elevation model) is a raster of ground (or surface) height. Use it as the base for slope, aspect, hydrology, viewsheds, and hillshade. Common tools include gdaldem derivatives, gdal_contour, and gdal_viewshed.",
               "tools": [
                 "gdaldem hillshade",
                 "gdaldem slope",
@@ -174,7 +174,7 @@
             },
             {
               "name": "Network",
-              "description": "Network data models represent connectivity as graphs of nodes and edges with costs such as length or travel time. They enable routing, catchments, and accessibility that planar buffers cannot capture. pgRouting algorithms exemplify graph-based analysis on top of PostGIS. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A network is a graph of nodes and edges with costs such as length or travel time. Use it when movement follows roads or pipes rather than straight lines. Common tools include pgRouting functions such as pgr_dijkstra and pgr_drivingDistance.",
               "tools": [
                 "pgr_dijkstra",
                 "pgr_aStar",
@@ -188,7 +188,7 @@
             },
             {
               "name": "Temporal Data",
-              "description": "Temporal data models attach timestamps, intervals, or valid-time ranges to geographic observations so that change can be analysed explicitly through time. They support trend detection, event sequencing, and comparison across multiple dates rather than treating maps as static snapshots. In Geo-KTF, this concept connects time-aware datasets to multi-temporal raster workflows, change-detection tasks, and any toolchain that preserves temporal context.",
+              "description": "Temporal data attaches times or date ranges to geographic observations so change can be tracked. Use it for multi-date imagery, event histories, and trend analysis. Common tools include gdalbuildvrt for time stacks, GeoParquet, and time-aware vector reads.",
               "tools": [
                 "gdalbuildvrt",
                 "gdal_translate",
@@ -199,7 +199,7 @@
             },
             {
               "name": "Hex Grid",
-              "description": "Hex-grid models discretize space into regular cells, often used for aggregation, indexing, and scale-stable comparison. Hex tessellations reduce directional bias relative to square grids in many use cases. Grid-generation and spatial-join tools are common ways to implement this model in practice. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A hex grid divides space into regular hexagonal cells for aggregation and comparison. Use it to summarise points or rates with less directional bias than square grids. Common tools include Create grid plus spatial joins such as geopandas.sjoin() or ST_Intersects.",
               "tools": [
                 "Create grid",
                 "geopandas.sjoin()",
@@ -209,7 +209,7 @@
             },
             {
               "name": "Trajectory",
-              "description": "Trajectory models represent moving objects as ordered positions through space and time, usually with timestamps, paths, or segments that capture travel behaviour. They are useful for mobility analytics, route comparison, and movement-cost interpretation. In Geo-KTF, this concept bridges path-based thinking with routing engines and matrix tools that can analyse movement rather than simple proximity.",
+              "description": "A trajectory is an ordered path of locations through time for a moving object. Use it for mobility, GPS tracks, and route behaviour analysis. Common tools include MovingPandas and network routing functions that reconstruct travel paths.",
               "tools": [
                 "Shortest Path",
                 "pgr_dijkstra",
@@ -220,12 +220,30 @@
             },
             {
               "name": "3D",
-              "description": "3D models represent buildings and urban surfaces with volumetric or mesh-based structures. They enable visibility, height-aware planning, and richer urban context than 2D footprints alone. Mesh and 3D-view tooling provides the practical bridge from model to analysis. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "3D geospatial models add height or full volumetric structure beyond flat maps. Use them for buildings, terrain scenes, and height-aware planning. Common tools include QGIS 3D Map View and mesh export utilities.",
               "tools": [
                 "QGIS 3D Map View",
                 "Export mesh faces",
                 "Export mesh edges",
                 "Mesh Calculator"
+              ]
+            },
+            {
+              "name": "Spatial Indexing",
+              "description": "Spatial indexing organises geometries so searches and joins do not scan every feature. Use it to keep large spatial queries fast in databases. Common tools include CREATE INDEX USING GIST, ST_GeoHash, and PostGIS.",
+              "tools": [
+                "CREATE INDEX USING GIST",
+                "ST_GeoHash",
+                "PostGIS"
+              ]
+            },
+            {
+              "name": "Knowledge Graph",
+              "description": "A spatial knowledge graph links places and concepts as typed relationships that can be queried semantically. Use it when meaning and links matter as much as coordinates. Common tools include GeoSPARQL, RDFLib, and Apache Jena.",
+              "tools": [
+                "GeoSPARQL",
+                "RDFLib",
+                "Apache Jena"
               ]
             }
           ]
@@ -236,7 +254,7 @@
           "children": [
             {
               "name": "Geographic",
-              "description": "Geographic CRS locate positions on an ellipsoidal Earth, while projected CRS map them onto a plane for measurement and mapping. Choosing between them affects distance, area, and visual distortion. This category covers defining, inspecting, and transforming CRS with pyproj, GeoPandas, PostGIS, and GDAL. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A geographic CRS locates positions on the Earth ellipsoid (latitude/longitude); a projected CRS maps them to a plane. Use the right type so distance, area, and alignment stay meaningful. Common tools include pyproj.CRS, geopandas.to_crs(), ST_Transform, and gdalwarp.",
               "tools": [
                 "pyproj.CRS",
                 "pyproj.Transformer",
@@ -248,7 +266,7 @@
             },
             {
               "name": "Datums",
-              "description": "Datums define the reference frame for horizontal (and related) coordinates, and transformations convert between frames. Incorrect datum handling is a frequent source of positional shift. Tools here inspect CRS definitions and apply PROJ-backed transformations safely. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A datum is the reference frame that defines where coordinates sit relative to the Earth. Use correct datum transformations to avoid metre- to tens-of-metre shifts between layers. Common tools include pyproj.Transformer, ST_Transform, gdalwarp, and projinfo.",
               "tools": [
                 "pyproj.CRS",
                 "pyproj.Transformer",
@@ -259,7 +277,7 @@
             },
             {
               "name": "Vertical CRS",
-              "description": "Vertical CRS define how heights and depths are referenced, including ellipsoidal heights and orthometric systems tied to a geoid. Mixing vertical references without conversion produces elevation errors in engineering and flood analyses. Inspection and transform tools help identify and convert vertical CRS metadata. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "A vertical CRS defines how heights and depths are referenced (ellipsoid, geoid, or local). Use it when elevation must be consistent for engineering, flood, or 3D work. Common tools include pyproj.CRS, projinfo, gdalinfo, and ST_Transform where vertical operations are supported.",
               "tools": [
                 "pyproj.CRS",
                 "pyproj.Transformer",
@@ -272,7 +290,7 @@
             },
             {
               "name": "Units",
-              "description": "CRS definitions carry linear or angular units that determine how coordinates and distances should be interpreted. Using degree-based layers for meter buffers is a classic mistake. CRS inspectors and planar length/area functions clarify units before measurement. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "CRS units are the linear or angular units of coordinates (degrees, metres, feet). Use them consciously so buffers and lengths are not computed in degrees by mistake. Common tools include pyproj.CRS, projinfo, ST_Length, and ST_Area.",
               "tools": [
                 "pyproj.CRS",
                 "projinfo",
@@ -286,7 +304,7 @@
             },
             {
               "name": "Common CRS Errors",
-              "description": "Common CRS errors include missing CRS tags, axis-order confusion, unit mismatches, and applying the wrong transformation. These problems often appear as small shifts or obvious misalignment on a map, but they can seriously distort distance and area measurements. Geo-KTF links this concept to explicit set, inspect, and reproject workflows that help prevent silent spatial misregistration.",
+              "description": "Common CRS errors include missing CRS tags, wrong axis order, wrong datum, and confusing assign vs reproject. Fix them early to prevent silent misalignment and bad measurements. Common tools include Assign projection, Reproject Layer, geopandas.set_crs()/to_crs(), and pyproj.Transformer(always_xy=True).",
               "tools": [
                 "pyproj.Transformer(always_xy=True)",
                 "geopandas.set_crs()",
@@ -294,7 +312,7 @@
                 "ST_SetSRID",
                 "ST_Transform",
                 "Assign projection",
-                "Reproject layer",
+                "Reproject Layer",
                 "gdalwarp",
                 "projinfo"
               ]
@@ -307,7 +325,7 @@
           "children": [
             {
               "name": "Metadata",
-              "description": "Metadata documents what a dataset is, how it was created, and how it should be used. Good metadata improves discovery, fitness-for-use decisions, and long-term stewardship. In Geo-KTF, this category links descriptive quality concepts to inspection utilities that surface CRS, lineage, schema, and file-level information for both vectors and rasters. In Geo-KTF, it helps users judge whether a dataset is sufficiently documented before they invest time in analysis.",
+              "description": "Metadata is descriptive information about a dataset (what it is, CRS, extent, how it was made). Use it to judge fitness for purpose before analysis. Common tools include gdalinfo, ogrinfo, rio info, and dataset openers that surface schema and CRS.",
               "tools": [
                 "gdalinfo",
                 "ogrinfo",
@@ -318,7 +336,7 @@
             },
             {
               "name": "Lineage",
-              "description": "Lineage records the processing history that led to a dataset or result, including transformations, filters, and workflow steps. Transparent lineage supports reproducibility, auditing, and teaching because it shows how outputs were made. In Geo-KTF, this concept connects provenance-aware practice to processing logs, model histories, and command-line runners that capture an executable trail.",
+              "description": "Lineage is the processing history of how a dataset or result was produced. Use it for reproducibility, auditing, and teaching. Common tools include QGIS Processing History, Processing Log, qgis_process, and Model Designer.",
               "tools": [
                 "QGIS Processing History",
                 "QGIS Processing Log",
@@ -328,7 +346,7 @@
             },
             {
               "name": "Precision",
-              "description": "Precision concerns how finely locations and attribute values are represented, such as coordinate decimals, cell size, and numeric resolution, rather than whether a value is correct in the real world. Choosing the right precision affects file size, generalization, and the meaning of small geometric differences. In Geo-KTF, this category helps users inspect and control representational detail before measurement or publication.",
+              "description": "Precision is how finely locations and values are represented (resolution, decimals, generalisation)—not whether they are correct. Use appropriate precision to balance detail, file size, and meaningful differences. Common tools include gdalinfo, Simplify, Generalize, Create grid, gdaladdo, and Snap geometries to grid.",
               "tools": [
                 "gdalinfo",
                 "Simplify",
@@ -341,7 +359,7 @@
             },
             {
               "name": "Validity",
-              "description": "Geometric validity ensures that features satisfy the structural and topological rules needed for overlays, joins, and database operations. Invalid geometries can silently fail, drop from analysis, or produce unexpected results. In Geo-KTF, this category links a conceptual quality rule to checker and repair tools that detect and fix common geometry problems before analysis proceeds.",
+              "description": "Geometric validity means features obey structural rules needed for overlays and databases. Use validity checks to stop silent failures before analysis. Common tools include Check Geometries, Fix Geometries, ST_IsValid, and the QGIS Geometry Checker.",
               "tools": [
                 "QGIS Geometry Checker Plugin",
                 "Check Geometries",
@@ -349,16 +367,36 @@
                 "ST_IsValid",
                 "ST_IsValidDetail"
               ]
+            },
+            {
+              "name": "Standards",
+              "description": "Standards define shared ways to describe and exchange geospatial information (especially metadata). Use them so data can be discovered and reused across organisations. Common tools and specs include ISO 19115, FGDC CSDGM, GeoNetwork, and pygeometa.",
+              "tools": [
+                "GeoNetwork",
+                "ISO 19115",
+                "FGDC CSDGM",
+                "pygeometa"
+              ]
+            },
+            {
+              "name": "Uncertainty Modeling",
+              "description": "Uncertainty modeling represents error, vagueness, or random variation instead of treating every value as exact. Use it when decisions need confidence ranges or soft thresholds. Common tools include Fuzzy Overlay, Monte Carlo simulation, and random sampling tools.",
+              "tools": [
+                "Fuzzy Overlay",
+                "Monte Carlo simulation",
+                "Random selection",
+                "Random points in extent"
+              ]
             }
           ]
         },
         {
           "name": "Spatial Analysis",
-          "description": "Core analytical families spanning vector, raster, network, and statistics.",
+          "description": "Core analytical families spanning vector, raster, network, and terrain.",
           "children": [
             {
               "name": "Vector Analysis",
-              "description": "Vector analysis comprises geometric and attribute operations on points, lines, and polygons. It includes overlays, buffers, dissolves, and spatial joins used throughout GIS practice. Mastery of these operations is essential before composing multi-step workflows. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Vector analysis is the family of geometry and attribute operations on points, lines, and polygons. Use it for overlays, buffers, dissolves, joins, and proximity on discrete features. Common tools include Buffer, Clip, Intersection, Dissolve, and spatial joins.",
               "tools": [
                 "Buffer",
                 "Clip",
@@ -373,13 +411,13 @@
                 "Line intersections",
                 "Join attributes by nearest",
                 "Extract by location",
-                "Distance matrix",
+                "Distance Matrix",
                 "Distance to nearest hub"
               ]
             },
             {
               "name": "Raster Analysis",
-              "description": "Raster analysis applies map algebra, resampling, and neighborhood operations on gridded surfaces. It supports indices, reclassification, proximity, and conversion to vectors. GDAL and raster calculators are core executors of these methods. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Raster analysis applies map algebra, resampling, proximity, and related operations on grids. Use it for indices, reclassification, distance surfaces, and areal transfers to new zones. Common tools include Raster Calculator, gdal_calc, gdal_proximity, and tobler.area_interpolate().",
               "tools": [
                 "Raster Calculator",
                 "gdal_calc",
@@ -387,12 +425,13 @@
                 "gdal_fillnodata",
                 "gdal_polygonize",
                 "gdalwarp",
-                "gdal_translate"
+                "gdal_translate",
+                "tobler.area_interpolate()"
               ]
             },
             {
               "name": "Terrain Analysis",
-              "description": "Terrain analysis derives landform metrics and surfaces from elevation data, such as slope, aspect, and ruggedness. These products inform hazard, ecology, and engineering studies. DEM tools generate the standard morphometric suite used in geospatial workflows. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Terrain analysis derives landform metrics from elevation (slope, aspect, ruggedness, viewshed, contours). Use it for hazard, ecology, engineering, and landscape characterisation. Common tools include gdaldem slope/aspect/hillshade/TRI/TPI, gdal_contour, and gdal_viewshed.",
               "tools": [
                 "gdaldem slope",
                 "gdaldem aspect",
@@ -406,7 +445,7 @@
             },
             {
               "name": "Network Analysis",
-              "description": "Network analysis solves path, cost, and catchment problems on connected graphs rather than on the open plane. It underpins logistics, emergency response, and service planning. Routing algorithms compute least-cost paths and driving-distance catchments. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
+              "description": "Network analysis solves path, cost, and catchment problems on connected graphs. Use it for logistics, emergency response, and service planning on roads or similar networks. Common tools include Shortest Path, Service Area, pgr_dijkstra, and openrouteservice directions.",
               "tools": [
                 "pgr_dijkstra",
                 "pgr_aStar",
@@ -418,34 +457,12 @@
                 "Service Area",
                 "openrouteservice directions"
               ]
-            },
-            {
-              "name": "Spatial Statistics",
-              "description": "Spatial statistics summarize pattern, clustering, and density in geographic distributions. They help distinguish structured spatial process from randomness. Heatmaps, distance summaries, and clustering tools provide exploratory statistical views of point patterns. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
-              "tools": [
-                "Heatmap (Kernel Density Estimation)",
-                "esda.Moran",
-                "esda.GetisOrd",
-                "esda.Moran_Local",
-                "esda.Geary",
-                "libpysal.weights"
-              ]
-            },
-            {
-              "name": "Spatial Interpolation",
-              "description": "Spatial interpolation estimates continuous surfaces from discrete sample points. Method choice (TIN, IDW, or others) affects smoothness and error characteristics. This category introduces foundational interpolators used before geostatistical modeling. In Geo-KTF, this concept anchors the knowledge layer and helps users move from a geospatial question to the right analytical capability before selecting software or a workflow.",
-              "tools": [
-                "TIN Interpolation",
-                "IDW Interpolation",
-                "gdal_grid",
-                "PyKrige"
-              ]
             }
           ]
         }
       ],
       "goal_verb": "Understand",
-      "goal": "The foundations of geospatial analysis."
+      "goal": "Foundations: data models, CRS, relationships, quality ideas, and core analysis concepts."
     },
     {
       "name": "Analytical Capabilities",
@@ -453,19 +470,32 @@
       "children": [
         {
           "name": "Data Inspection",
-          "description": "Data inspection is the first operational step: examining structure, CRS, extent, schema, and content before analysis. It prevents wasted effort on misaligned or incomplete inputs. Command-line and Python inspectors provide authoritative summaries for rasters, vectors, and point clouds. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Data inspection is checking structure, CRS, extent, schema, and content before analysis. Use it to catch bad inputs early and avoid wasted runs. Common tools include gdalinfo, ogrinfo, GeoPandas readers, rasterio.open(), and PDAL pipeline.",
           "tools": [
             "gdalinfo",
             "ogrinfo",
             "geopandas.read_file()",
             "geopandas.read_postgis()",
             "rasterio.open()",
-            "pdal pipeline"
+            "PDAL pipeline"
+          ]
+        },
+        {
+          "name": "Data Acquisition",
+          "description": "Data acquisition is capturing or collecting new geospatial observations in the field or from imagery and VGI. Use it when you need fresh, georeferenced primary data. Common tools include QField, ODK Collect, Georeferencer, GPSBabel, OpenDroneMap, iD Editor, and JOSM.",
+          "tools": [
+            "QField",
+            "ODK Collect",
+            "Georeferencer",
+            "GPSBabel",
+            "OpenDroneMap",
+            "iD Editor",
+            "JOSM"
           ]
         },
         {
           "name": "Data Conversion",
-          "description": "Data conversion transforms formats, encodings, and storage targets while preserving meaning where possible. Interoperability across desktop, database, and cloud depends on reliable conversion. ogr2ogr, GDAL translate/warp, and GeoPandas writers are standard conversion pathways. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Data conversion transforms formats, encodings, and storage targets while trying to preserve meaning. Use it to move data between desktop, database, and cloud ecosystems. Common tools include ogr2ogr, gdal_translate, gdalwarp, gdalbuildvrt, and GeoPandas writers.",
           "tools": [
             "ogr2ogr",
             "gdal_translate",
@@ -478,7 +508,7 @@
         },
         {
           "name": "CRS Management",
-          "description": "CRS management assigns, inspects, and reprojects spatial reference systems so layers align and measurements are valid. Explicit transformations reduce datum and axis-order errors. pyproj, GeoPandas, PostGIS, and GDAL provide complementary CRS operations. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "CRS management assigns, inspects, and reprojects coordinate reference systems. Use it so layers align and measurements stay valid. Common tools include pyproj, GeoPandas CRS methods, ST_Transform, Assign projection, and gdalwarp.",
           "tools": [
             "pyproj.CRS",
             "pyproj.Transformer",
@@ -492,7 +522,7 @@
         },
         {
           "name": "Vector Processing",
-          "description": "Vector processing executes geometry and attribute operations that reshape layers for analysis and mapping. Typical tasks include overlay, dissolve, multipart handling, and spatial joins. These capabilities are the workhorse operations of desktop GIS toolboxes. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Vector processing runs geometry and attribute operations that reshape vector layers. Use it as the day-to-day geoprocessing toolbox for overlays and edits. Common tools include Buffer, Clip, Intersection, Dissolve, Merge, Simplify, and nearest joins.",
           "tools": [
             "Buffer",
             "Clip",
@@ -509,7 +539,7 @@
         },
         {
           "name": "Raster Processing",
-          "description": "Raster processing covers resampling, algebra, mosaicking, proximity, and raster-vector conversion. It prepares imagery and surfaces for modeling and visualization. GDAL utilities and raster calculators implement most production raster pipelines. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Raster processing covers resampling, algebra, mosaics, proximity, and raster–vector conversion. Use it to prepare imagery and surfaces for modelling and maps. Common tools include Raster Calculator, gdal_calc, gdal_translate, gdalwarp, and gdal_polygonize.",
           "tools": [
             "Raster Calculator",
             "gdal_calc",
@@ -525,7 +555,7 @@
         },
         {
           "name": "Database Processing",
-          "description": "Database processing performs geospatial read/write and computation inside spatial databases, where indexes and SQL functions support scalable analysis close to the data. Keeping analysis in the database improves performance, governance, and repeatability for large datasets. PostGIS and DuckDB Spatial are the clearest in-database examples, while GeoPandas is best understood as a Python client layer that can read from or write to spatial databases.",
+          "description": "Database processing reads, writes, and computes spatial data inside a spatial database. Use it for scalable analysis close to stored data with indexes. Common tools include PostGIS ST_ functions, DuckDB ST_Read, and GeoPandas PostGIS I/O.",
           "tools": [
             "ST_Buffer",
             "ST_Intersects",
@@ -539,7 +569,7 @@
         },
         {
           "name": "Spatial SQL",
-          "description": "Spatial SQL expresses spatial predicates and overlays declaratively in queries. It enables reproducible, set-based analysis on large tables with indexes. PostGIS geometry functions are the reference implementation for this capability. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Spatial SQL expresses spatial filters and overlays as declarative queries. Use it for reproducible, set-based analysis on large tables. Common tools include ST_Intersects, ST_Contains, ST_Buffer, ST_DWithin, ST_Intersection, and ST_Transform.",
           "tools": [
             "ST_Intersects",
             "ST_Contains",
@@ -553,7 +583,7 @@
         },
         {
           "name": "Geocoding",
-          "description": "Geocoding converts place names and addresses to coordinates, and reverse geocoding does the opposite. It connects tabular records to the map for enrichment and routing. Open and commercial geocoding services provide this capability at scale. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Geocoding converts place names or addresses to coordinates (and reverse geocoding does the opposite). Use it to put tabular records on the map. Common tools include Nominatim, openrouteservice geocoding, Google Geocoding API, and ArcGIS Geocoding Service.",
           "tools": [
             "openrouteservice geocoding",
             "Nominatim",
@@ -563,10 +593,9 @@
         },
         {
           "name": "Routing",
-          "description": "Routing computes paths, costs, and directions on transportation networks. It is more realistic than straight-line distance for mobility questions. Desktop network tools, pgRouting, and web routing APIs implement complementary routing styles. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Routing computes paths, costs, and turn-by-turn directions on a transportation network. Use it when travel follows roads rather than straight lines. Common tools include Shortest Path, pgr_dijkstra, pgr_aStar, pgr_KSP, and openrouteservice directions.",
           "tools": [
             "Shortest Path",
-            "Distance Matrix",
             "pgr_dijkstra",
             "pgr_aStar",
             "pgr_KSP",
@@ -575,7 +604,7 @@
         },
         {
           "name": "Accessibility",
-          "description": "Accessibility measures how reachable destinations are given time, distance, or impedance constraints. Isochrones and service areas communicate coverage and equity. Network and openrouteservice tools generate accessibility surfaces for planning. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Accessibility measures how reachable places are under time, distance, or impedance limits. Use it for equity, service coverage, and catchment planning. Common tools include Service Area, openrouteservice isochrones/matrices, Distance Matrix, and pgr_drivingDistance.",
           "tools": [
             "Service Area",
             "Distance Matrix",
@@ -585,23 +614,43 @@
           ]
         },
         {
+          "name": "Location-Allocation",
+          "description": "Location-allocation chooses facility sites and assigns demand to them to cut travel cost or raise coverage. Use it for siting schools, clinics, warehouses, and similar facilities. Common tools include v.net.alloc, OD matrices, Service Area, Distance Matrix, and ortools.routing.",
+          "tools": [
+            "v.net.alloc",
+            "OD Matrix from Layers as Lines (m:n)",
+            "Distance Matrix",
+            "ortools.routing",
+            "Service Area"
+          ]
+        },
+        {
           "name": "Remote Sensing",
-          "description": "Remote sensing capabilities process Earth observation imagery into analysis-ready products and derived information. Typical steps include stacking, warping, band math, masking, and classification prep. GDAL, Rasterio, and OTB applications support these operations. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Remote sensing processes Earth observation imagery into analysis-ready layers and thematic maps. Use it for land cover, change, and feature extraction from satellites or drones. Common tools include GDAL/Rasterio/OTB utilities, OpenDroneMap, classifiers, and confusion-matrix tools.",
           "tools": [
             "gdal_translate",
             "gdalwarp",
-            "gdal_calc",
             "gdalbuildvrt",
+            "gdal_calc",
             "rasterio.mask.mask()",
             "OTB BandMath",
-            "OTB KMeansClassification",
             "OTB ComputeImagesStatistics",
-            "OTB TrainImagesClassifier"
+            "OpenDroneMap",
+            "Structure from Motion",
+            "PDAL pipeline",
+            "writers.gdal",
+            "OTB TrainImagesClassifier",
+            "OTB KMeansClassification",
+            "Segment Anything Model (SAM)",
+            "OTB ComputeConfusionMatrix",
+            "scikit-learn.metrics",
+            "Extract by location",
+            "Random points in polygons"
           ]
         },
         {
           "name": "Spatial Statistics",
-          "description": "This capability quantifies spatial autocorrelation, hotspots, and density with inferential or exploratory statistics. Spatial weights encode neighborhood structure for many tests. PySAL/ESDA and heatmap tools operationalize these methods in Python and GIS. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Spatial statistics quantify pattern, clustering, autocorrelation, and density in geographic data. Use it to test whether observed patterns are structured or likely random. Common tools include esda.Moran, Moran_Local, Geary, GetisOrd, libpysal.weights, and Heatmap (KDE).",
           "tools": [
             "esda.Moran",
             "esda.Moran_Local",
@@ -612,18 +661,53 @@
           ]
         },
         {
+          "name": "Spatial Regression",
+          "description": "Spatial regression models relationships while accounting for spatial dependence or local variation. Use it when ordinary regression residuals are spatially autocorrelated or effects change across space. Common tools include spreg.OLS, ML_Lag, ML_Error, mgwr.GWR, and libpysal.weights.",
+          "tools": [
+            "mgwr.GWR",
+            "spreg.OLS",
+            "spreg.ML_Lag",
+            "spreg.ML_Error",
+            "libpysal.weights"
+          ]
+        },
+        {
+          "name": "Point Pattern Analysis",
+          "description": "Point pattern analysis describes whether events cluster, disperse, or look random in space. Use it for crime, disease, retail, or any event-dot map beyond a simple heatmap. Common tools include pointpats.PointPattern, centrography, Heatmap (KDE), and DBSCAN.",
+          "tools": [
+            "pointpats.PointPattern",
+            "pointpats.centrography",
+            "Heatmap (Kernel Density Estimation)",
+            "DBSCAN clustering",
+            "Random points in extent"
+          ]
+        },
+        {
+          "name": "Multi-Criteria Evaluation",
+          "description": "Multi-criteria evaluation (MCE) combines weighted criteria layers to rank or select suitable places. Use it for suitability and site screening with several factors. Common tools include Weighted Overlay, Fuzzy Overlay, Reclassify by table, and raster calculators.",
+          "tools": [
+            "Weighted Overlay",
+            "Fuzzy Overlay",
+            "Reclassify by table",
+            "Raster Calculator",
+            "gdal_calc"
+          ]
+        },
+        {
           "name": "Spatial Interpolation",
-          "description": "Interpolation capabilities predict values at unsampled locations to create continuous surfaces. Deterministic and geostatistical methods trade off simplicity and uncertainty modeling. IDW, TIN, gdal_grid, and PyKrige cover common implementation options. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Spatial interpolation predicts values at unsampled locations to build a continuous surface. Use it to map sparse measurements such as temperature, pollution, or elevation samples. Common tools include IDW, TIN, multilevel B-spline, thin-plate spline, gdal_grid, and PyKrige.",
           "tools": [
             "IDW Interpolation",
             "TIN Interpolation",
             "gdal_grid",
-            "PyKrige"
+            "PyKrige",
+            "Multilevel B-Spline Interpolation",
+            "Thin plate spline"
           ]
         },
         {
           "name": "Clustering",
-          "description": "Spatial clustering groups observations by location, and sometimes by attributes, to reveal structure that is not obvious in raw data. Different algorithms vary in whether the number of clusters must be preselected, how noise is handled, and whether distance or density drives grouping. In Geo-KTF, the category connects desktop GIS, scikit-learn, and database-based clustering methods to this common analytic intent.",
+          "description": "Clustering groups observations by location and/or attributes into similar sets. Use it to find natural groupings without drawing boundaries by hand. Common tools include DBSCAN, K-means, HDBSCAN, scikit-learn clusterers, and PostGIS ST_Cluster* functions.",
           "tools": [
             "DBSCAN clustering",
             "K-means clustering",
@@ -637,28 +721,56 @@
         },
         {
           "name": "Cartography",
-          "description": "Cartography encodes spatial information visually through symbols, hierarchy, and layout. Good cartography communicates uncertainty and supports decisions without misleading. QGIS styling, layout, and server tools represent practical cartographic production. In Geo-KTF, this category acts as the bridge from conceptual knowledge to executable operations, so equivalent implementations can be compared across QGIS, GDAL, PostGIS, GeoPandas, Rasterio, PDAL, and other ecosystems without changing the underlying concept.",
+          "description": "Cartography designs how spatial information is seen through symbols, colour, labels, themes, and layout. Use it to communicate patterns clearly without misleading readers. Common tools include QGIS Style Manager, symbol/label tools, graduated/categorized renderers, Print Layout, contours, and hillshade.",
           "tools": [
             "QGIS Style Manager",
             "QGIS Symbol Selector",
             "QGIS Label settings",
-            "QGIS Print Layout"
+            "QGIS Print Layout",
+            "graduated renderer",
+            "categorized renderer",
+            "gdaldem hillshade",
+            "Contour",
+            "gdal_contour",
+            "QGIS 3D Map View"
+          ]
+        },
+        {
+          "name": "Space-Time Analysis",
+          "description": "Space-time analysis studies how locations, attributes, or movements change through time. Use it for dynamics, animation, and multi-date comparison. Common tools include MovingPandas, QGIS Temporal Controller, GeoParquet, and multi-date VRT stacks.",
+          "tools": [
+            "MovingPandas",
+            "QGIS Temporal Controller",
+            "GeoParquet",
+            "gdalbuildvrt",
+            "openrouteservice directions"
           ]
         },
         {
           "name": "Trajectory Analysis",
-          "description": "Trajectory analysis studies ordered movement paths and travel behaviour through space and time. It combines route computation, path comparison, and travel-cost summaries for mobility questions. In Geo-KTF, the category links movement-oriented concepts to routing and network tools that can support path-based reasoning, cost accumulation, and trajectory interpretation. In Geo-KTF, it bridges movement concepts with route engines, matrix calculations, and other path-based operations used to study travel behaviour.",
+          "description": "Trajectory analysis studies ordered movement paths and travel behaviour. Use it for GPS tracks, fleet routes, and path comparison. Common tools include MovingPandas, Shortest Path, and pgRouting/openrouteservice path tools.",
           "tools": [
             "Shortest Path",
             "pgr_dijkstra",
             "pgr_aStar",
             "pgr_dijkstraVia",
-            "openrouteservice directions"
+            "openrouteservice directions",
+            "MovingPandas"
+          ]
+        },
+        {
+          "name": "Geocomputation",
+          "description": "Geocomputation uses simulation and iterative models (agents, cellular automata, visual models) for spatial processes. Use it when static GIS overlays cannot capture evolving behaviour. Common tools include mesa, NetLogo, Cellular Automata concepts, and QGIS Model Designer.",
+          "tools": [
+            "mesa",
+            "NetLogo",
+            "Cellular Automata",
+            "QGIS Model Designer"
           ]
         }
       ],
-      "goal_verb": "Action",
-      "goal": "The operations to achieve objectives."
+      "goal_verb": "Act",
+      "goal": "Operations: the software-independent steps used to process, analyse, and map spatial data."
     },
     {
       "name": "Workflow",
@@ -666,7 +778,7 @@
       "children": [
         {
           "name": "Site Selection",
-          "description": "Site selection combines spatial criteria to identify candidate locations for facilities or interventions. It usually blends buffers, overlays, and suitability scoring into a single decision path. In Geo-KTF, this workflow shows how foundational operations become a repeatable and explainable location choice process. This workflow often combines exclusion zones, scoring, and ranking, so tool choice affects both transparency and the final candidate list.",
+          "description": "Site selection is a workflow that combines spatial criteria to shortlist candidate locations. Use it for facilities or interventions that must meet several geographic rules. Common tools include Buffer, Clip, Intersection, and Weighted Overlay.",
           "tools": [
             "Buffer",
             "Clip",
@@ -679,7 +791,7 @@
         },
         {
           "name": "Suitability Analysis",
-          "description": "Suitability analysis scores places against weighted criteria so that alternatives can be compared consistently. It translates policy, expert judgement, or scientific thresholds into a spatial ranking. In Geo-KTF, this workflow links raster algebra, weighting, and model-building tools to that decision logic. The category is useful wherever several criteria must be normalized, weighted, and combined into a single comparable score surface.",
+          "description": "Suitability analysis scores places against weighted criteria so alternatives can be ranked. Use it to turn policy or expert weights into a comparable map. Common tools include Raster Calculator, Weighted Overlay, Fuzzy Overlay, and Model Designer.",
           "tools": [
             "Raster Calculator",
             "gdal_calc",
@@ -691,7 +803,7 @@
         },
         {
           "name": "Catchment Analysis",
-          "description": "Catchment analysis delineates the area served by a facility or contributing to a downstream feature under network or hydrological logic. It is common in service planning, retail analysis, and watershed reasoning. In Geo-KTF, the workflow assembles routing, cost, and area-generation tools into a service-area style sequence. The same logic can serve service planning or watershed reasoning, depending on whether the network is man-made or natural.",
+          "description": "Catchment analysis delineates the area served by a facility or contributing to a downstream point. Use it for service areas and watershed-style reasoning. Common tools include Service Area, pgr_drivingDistance, and openrouteservice isochrones.",
           "tools": [
             "Service Area",
             "pgr_drivingDistance",
@@ -700,7 +812,7 @@
         },
         {
           "name": "Accessibility Analysis",
-          "description": "Accessibility analysis evaluates how easily people or goods can reach destinations under time, distance, or impedance constraints. It usually relies on network costs rather than simple straight-line buffers. In Geo-KTF, this workflow combines routing and cost surfaces to support planning, equity, and service-coverage questions. The result is usually a reachability surface or travel-time summary that can support planning and equity decisions.",
+          "description": "Accessibility analysis evaluates how easily people or goods reach destinations under travel constraints. Use it for equity and coverage studies. Common tools include Service Area, Distance Matrix, and openrouteservice isochrones/matrices.",
           "tools": [
             "Service Area",
             "Distance Matrix",
@@ -711,7 +823,7 @@
         },
         {
           "name": "Demographic Enrichment",
-          "description": "Demographic enrichment attaches population or socioeconomic attributes to spatial features through spatial joins or containment rules. It turns boundary data and census-style tables into decision-ready layers. In Geo-KTF, this workflow links enrichment concepts to join operations that transfer demographic context into analysis. This is especially useful when spatial analysis needs contextual socioeconomic data that is not originally attached to the geometry.",
+          "description": "Demographic enrichment attaches population or socioeconomic attributes to spatial features. Use it when analysis needs census-like context not stored on the geometry. Common tools include Join attributes by location, geopandas.sjoin(), ST_Contains, and ST_Intersects.",
           "tools": [
             "geopandas.sjoin()",
             "geopandas.sjoin_nearest()",
@@ -725,7 +837,7 @@
         },
         {
           "name": "Hazard Assessment",
-          "description": "Hazard assessment maps exposure and susceptibility using terrain, overlays, and thematic criteria. It supports preparedness, screening, and risk communication. In Geo-KTF, the workflow combines elevation derivatives and spatial intersection tools to turn hazard concepts into executable screening logic. It is commonly assembled from multiple criteria layers, so Geo-KTF treats it as a repeatable decision workflow rather than a single tool call.",
+          "description": "Hazard assessment maps exposure and susceptibility using terrain and thematic overlays. Use it for screening and preparedness communication. Common tools include gdaldem slope/aspect, Intersection, Clip, and Buffer.",
           "tools": [
             "gdaldem slope",
             "gdaldem aspect",
@@ -738,7 +850,7 @@
         },
         {
           "name": "Environmental Assessment",
-          "description": "Environmental assessment evaluates conditions and potential impacts across landscapes using buffers, proximity, overlays, and raster criteria. It is often used to compare sensitivity, exposure, or constraint scenarios. In Geo-KTF, the workflow connects those criteria to tools that quantify environmental pressure and support planning decisions. The workflow often blends exposure, sensitivity, and constraint layers, making it suitable for multi-criteria environmental screening.",
+          "description": "Environmental assessment evaluates conditions and impacts with buffers, proximity, overlays, and raster criteria. Use it for screening sensitivity and constraints. Common tools include Buffer, Clip, Intersection, gdal_proximity, and raster calculators.",
           "tools": [
             "Buffer",
             "Clip",
@@ -751,7 +863,7 @@
         },
         {
           "name": "Infrastructure Planning",
-          "description": "Infrastructure planning uses networks, catchments, and proximity to site facilities and corridors under cost and access constraints. It often balances service reach, travel time, and spatial suitability. In Geo-KTF, this workflow maps planning concepts to routing and buffering tools that support spatial design decisions. It often needs repeatable comparison across scenarios, which makes interchangeable tools and documented assumptions especially valuable.",
+          "description": "Infrastructure planning uses networks, catchments, and proximity to site facilities and corridors. Use it when cost, access, and spatial suitability must be balanced. Common tools include Shortest Path, Service Area, Distance Matrix, Buffer, and routing engines.",
           "tools": [
             "Shortest Path",
             "Service Area",
@@ -764,7 +876,7 @@
         },
         {
           "name": "Change Detection",
-          "description": "Change detection compares multi-temporal datasets to identify where and how landscapes have changed. Accurate alignment and consistent preprocessing are prerequisites for meaningful differences. In Geo-KTF, this workflow combines raster translation, band math, and multi-date preparation tools to produce comparable time slices. In practice, it often requires alignment, consistent preprocessing, and multi-date comparison before the actual change surface is interpreted.",
+          "description": "Change detection compares multi-temporal datasets to find where and how landscapes changed. Use it for monitoring land cover, urban growth, or disturbance. Common tools include gdalwarp, gdal_translate, gdal_calc, BandMath, and gdalbuildvrt.",
           "tools": [
             "gdalwarp",
             "gdal_translate",
@@ -775,23 +887,8 @@
           ]
         },
         {
-          "name": "Terrain Analysis",
-          "description": "Terrain analysis applies DEM derivatives to questions about slope, form, exposure, and line of sight. It is often combined with planning or hazard scenarios rather than used as a stand-alone calculation. In Geo-KTF, this workflow turns elevation reasoning into a structured chain of terrain operations. It frequently becomes an upstream stage for hazard, visibility, and hydrological analysis, so the category must stay workflow-aware.",
-          "tools": [
-            "gdaldem slope",
-            "gdaldem aspect",
-            "gdaldem hillshade",
-            "gdaldem TRI",
-            "gdaldem TPI",
-            "gdaldem roughness",
-            "gdal_viewshed",
-            "gdal_contour",
-            "Contour"
-          ]
-        },
-        {
           "name": "Hydrological Analysis",
-          "description": "Hydrological analysis models surface drainage using filled DEMs, flow direction, accumulation, and watershed boundaries. It supports flood studies, watershed management, and infrastructure design. In Geo-KTF, this workflow converts elevation data into hydrologically meaningful catchments and flow pathways. This workflow often depends on the order of preprocessing steps, so tools are chosen for how well they support a stable drainage pipeline.",
+          "description": "Hydrological analysis models surface drainage from filled DEMs through flow and watersheds. Use it for flood, watershed, and drainage design studies. Common tools include Fill sinks, Flow direction, Flow accumulation, Watershed, and Channel network.",
           "tools": [
             "Fill sinks",
             "Flow direction",
@@ -803,7 +900,7 @@
         },
         {
           "name": "Visibility Analysis",
-          "description": "Visibility analysis determines what can be seen from observer locations given terrain occlusion. It supports tower siting, scenic assessment, security planning, and similar line-of-sight questions. In Geo-KTF, this workflow links DEM-derived terrain models to practical viewshed computation. This makes the category useful for siting, security, and scenic studies where line-of-sight assumptions must be made explicit.",
+          "description": "Visibility analysis finds what can be seen from observer points given terrain occlusion. Use it for towers, scenic assessment, and security line-of-sight. Common tools include Viewshed and gdal_viewshed.",
           "tools": [
             "Viewshed",
             "gdal_viewshed"
@@ -811,7 +908,7 @@
         },
         {
           "name": "Remote Sensing Classification",
-          "description": "Remote sensing classification assigns thematic classes to pixels or objects from imagery. Training data quality and feature design strongly affect accuracy, so the workflow is both data- and model-sensitive. In Geo-KTF, this category connects imagery preprocessing to classification tools that produce land-cover or similar classes. This workflow also depends on training data, feature selection, and post-classification review, not just the classifier itself.",
+          "description": "Remote sensing classification assigns thematic classes to pixels or objects from imagery. Use it to produce land-cover or similar maps from EO data. Common tools include OTB TrainImagesClassifier, KMeansClassification, SAM, and BandMath.",
           "tools": [
             "OTB TrainImagesClassifier",
             "OTB KMeansClassification",
@@ -823,7 +920,7 @@
         },
         {
           "name": "Urban Growth Analysis",
-          "description": "Urban growth analysis tracks expansion patterns and intensifying development over time. It typically combines multi-date alignment, band math, and density or clustering signals to reveal where growth concentrates. In Geo-KTF, this workflow connects remote sensing, raster processing, and spatial statistics to urban planning questions. In Geo-KTF, the workflow also highlights how raster comparison and pattern detection can be combined for planning insight.",
+          "description": "Urban growth analysis tracks expansion and intensification of development over time. Use it for planning insight from multi-date imagery and pattern metrics. Common tools include gdalwarp, gdal_calc, Heatmap (KDE), and spatial statistics tools.",
           "tools": [
             "Raster Calculator",
             "gdal_calc",
@@ -837,7 +934,7 @@
         }
       ],
       "goal_verb": "Apply",
-      "goal": "Reusable workflows for real-world tasks."
+      "goal": "Workflows: repeatable chains of operations for common real-world geospatial tasks."
     },
     {
       "name": "Validation",
@@ -845,7 +942,7 @@
       "children": [
         {
           "name": "Geometry Validation",
-          "description": "Geometry validation detects and repairs invalid vector geometries before overlays, joins, or spatial SQL operations are run. Catching these problems early prevents failed analysis and unpredictable outputs. In Geo-KTF, this category ties quality assurance to checker and repair tools that make vector data safe for downstream processing. The category is a practical safeguard because many higher-level workflows fail silently when geometries are not clean.",
+          "description": "Geometry validation detects and repairs invalid vector geometries. Use it before overlays, joins, or database loads. Common tools include Check Geometries, Fix Geometries, ST_IsValid, and Shapely is_valid.",
           "tools": [
             "Check Geometries",
             "Fix Geometries",
@@ -857,7 +954,7 @@
         },
         {
           "name": "CRS Validation",
-          "description": "CRS validation confirms that coordinate systems are assigned correctly and that any transformation is appropriate for the intended analysis. Misvalidated CRS can cause major alignment and measurement errors even when the map looks plausible. In Geo-KTF, this category links validation concepts to inspection and reprojection tools that verify consistent spatial reference handling.",
+          "description": "CRS validation confirms that coordinate systems are assigned and transformed correctly. Use it to prevent alignment and measurement errors. Common tools include pyproj, projinfo, Reproject Layer, Assign projection, and gdalinfo/ogrinfo.",
           "tools": [
             "pyproj.CRS",
             "pyproj.Transformer",
@@ -875,7 +972,7 @@
         },
         {
           "name": "Metadata Validation",
-          "description": "Metadata validation checks whether descriptive information is complete, consistent, and aligned with the actual dataset. Missing CRS, lineage, or schema details can reduce trust and make later reuse difficult. In Geo-KTF, this category links metadata concepts to inspection utilities that verify file-level and record-level description quality. In practice, this category helps prevent ambiguous handoffs between teams by ensuring the dataset can be understood without extra explanation.",
+          "description": "Metadata validation checks whether descriptive information is complete and consistent with the data. Use it before publishing or handing datasets to others. Common tools include gdalinfo, ogrinfo, rio info, and GeoPandas readers.",
           "tools": [
             "gdalinfo",
             "ogrinfo",
@@ -885,7 +982,7 @@
         },
         {
           "name": "Schema Validation",
-          "description": "Schema validation ensures that fields, types, and structural expectations are consistent before joins, loads, or exports are performed. Schema mismatches can break automation and database ingestion. In Geo-KTF, this category links a structural validation concept to tools that inspect, refactor, and clean attribute schemas before use. It is particularly important when outputs need to move into databases, models, or automated processing chains.",
+          "description": "Schema validation checks fields, types, and table structure before joins or loads. Use it to stop automation and database failures from mismatched attributes. Common tools include ogrinfo, GeoPandas readers, and Refactor Fields.",
           "tools": [
             "ogrinfo",
             "geopandas.read_file()",
@@ -895,7 +992,7 @@
         },
         {
           "name": "Topology Validation",
-          "description": "Topology validation checks relationships between features—such as unintended overlaps, gaps, and shared-boundary rules—rather than only whether a single geometry is structurally valid. Predicates like touches, overlaps, and crosses, plus extract-by-location and duplicate checks, support these inter-feature tests. In Geo-KTF, this category links multi-feature topological rules to practical inspection tools used before overlays and network building.",
+          "description": "Topology validation checks relationships between features (gaps, overlaps, shared borders), not only single-geometry validity. Use it before overlays and network building. Common tools include ST_Touches/Overlaps/Crosses, Extract by location, and Check Geometries.",
           "tools": [
             "ST_Touches",
             "ST_Overlaps",
@@ -907,7 +1004,7 @@
         },
         {
           "name": "Statistical Validation",
-          "description": "Statistical validation uses spatial statistics to test whether observed patterns are structured, clustered, or consistent with expectations. It supports scientific claims and quality checks for exploratory analysis. In Geo-KTF, this category connects validation concepts to PySAL-style diagnostics and other inferential tools that quantify spatial dependence. In Geo-KTF, it acts as a quality gate when users need a stronger argument that observed patterns are not random noise.",
+          "description": "Statistical validation uses spatial statistics to test whether patterns are structured or consistent with expectations. Use it as a quality gate for claims about clustering or dependence. Common tools include esda Moran/Geary/GetisOrd and libpysal.weights.",
           "tools": [
             "esda.Moran",
             "esda.Moran_Local",
@@ -917,8 +1014,18 @@
           ]
         },
         {
+          "name": "Accuracy Assessment",
+          "description": "Accuracy assessment compares classified or predicted maps with reference samples. Use it to report how close results are to truth (distinct from precision/resolution). Common tools include OTB ComputeConfusionMatrix, scikit-learn.metrics, Extract by location, and Random points in polygons.",
+          "tools": [
+            "OTB ComputeConfusionMatrix",
+            "scikit-learn.metrics",
+            "Extract by location",
+            "Random points in polygons"
+          ]
+        },
+        {
           "name": "Result Validation",
-          "description": "Result validation audits outputs against methods, parameters, and processing trails to ensure they are trustworthy and reproducible. It is especially important when a result will be published or handed to another analyst. In Geo-KTF, this category connects workflow QA to logs, reports, and run histories that document what actually happened.",
+          "description": "Result validation audits outputs against methods, parameters, and processing history. Use it before publishing or handing results to another analyst. Common tools include QGIS Processing History/Log, qgis_process, and field statistics reports.",
           "tools": [
             "QGIS Processing History",
             "QGIS Processing Log",
@@ -929,7 +1036,7 @@
         }
       ],
       "goal_verb": "Ensure",
-      "goal": "Quality and reliability of results."
+      "goal": "Quality: checks that data, CRS, geometry, and results are valid and trustworthy."
     },
     {
       "name": "Output",
@@ -937,7 +1044,7 @@
       "children": [
         {
           "name": "Tables",
-          "description": "Tables export attributes and summaries for spreadsheets, statistics, and databases, which many stakeholders prefer over maps for review or reporting. They are also useful as intermediate products for joins and aggregation. In Geo-KTF, this category links tabular deliverables to file and database writers that preserve analytical results in structured form.",
+          "description": "Tables are tabular exports of attributes and summaries. Use them for spreadsheets, statistics, and non-map review. Common tools include GeoPandas writers, ogr2ogr, and field statistics tools.",
           "tools": [
             "geopandas.to_file()",
             "geopandas.to_parquet()",
@@ -949,7 +1056,7 @@
         },
         {
           "name": "GIS Files",
-          "description": "GIS files package geometries, attributes, and metadata for exchange across software ecosystems. Format choice affects fidelity, file size, and cloud readiness, so conversion is often part of the publication process. In Geo-KTF, this category covers exporting analysis-ready files through conversion tools that preserve usable spatial structure. This matters because portable files are often the handoff point between analysis, review, and future reuse in other systems.",
+          "description": "GIS files package geometries, attributes, and georeferencing for exchange between systems. Use them as the portable handoff between analysis and reuse. Common tools include ogr2ogr, gdal_translate/warp/buildvrt/merge, and GeoPandas file writers.",
           "tools": [
             "ogr2ogr",
             "gdal_translate",
@@ -963,15 +1070,24 @@
         },
         {
           "name": "Reports",
-          "description": "Reports combine narrative, figures, and methods so that stakeholders can interpret a result without reading code or inspecting layers directly. They also document assumptions that maps alone may leave implicit. In Geo-KTF, this category connects publication-oriented outputs to report and layout tools that generate structured analytical storytelling. Reports also preserve the assumptions and parameter settings that make a map or analysis easier to interpret later.",
+          "description": "Reports combine narrative, figures, and methods for stakeholders. Use them when a map alone is not enough explanation. Common tools include QGIS Reports and QGIS Print Layout.",
           "tools": [
             "QGIS Reports",
             "QGIS Print Layout"
           ]
         },
         {
+          "name": "Story Maps",
+          "description": "Story maps present maps, text, and media in a guided narrative sequence. Use them for outreach, teaching, and explained spatial stories. Common tools include ArcGIS StoryMaps, QGIS Print Layout, and MapLibre GL JS.",
+          "tools": [
+            "ArcGIS StoryMaps",
+            "QGIS Print Layout",
+            "MapLibre GL JS"
+          ]
+        },
+        {
           "name": "Dashboards",
-          "description": "Dashboards provide interactive operational views of changing spatial conditions and are designed for monitoring, exploration, and quick decision support. They are more dynamic than static maps or reports and often combine indicators, filters, and live web layers. In Geo-KTF, this category links analytical outputs to presentation tools that support monitoring-oriented communication.",
+          "description": "Dashboards are interactive operational views of spatial results. Use them for monitoring and exploration beyond static maps. Common tools include QGIS Server, GeoServer, Leaflet, MapLibre GL JS, and OpenLayers.",
           "tools": [
             "QGIS Server",
             "MapLibre GL JS",
@@ -982,7 +1098,7 @@
         },
         {
           "name": "APIs",
-          "description": "APIs expose spatial data and processing programmatically so applications can consume results without opening a desktop GIS. They support integration, automation, and reuse across services, dashboards, and custom applications. In Geo-KTF, this category describes server or database endpoints that turn analytical outputs into machine-readable services for downstream workflows. This makes the category especially relevant when Geo-KTF needs to feed other applications, dashboards, or automated agents.",
+          "description": "APIs expose spatial data and processing programmatically. Use them to integrate GIS results into other applications. Common tools and services include QGIS Server, GeoServer, PostGIS, DuckDB Spatial, and routing/geocoding APIs.",
           "tools": [
             "QGIS Server",
             "GeoServer",
@@ -997,7 +1113,7 @@
         }
       ],
       "goal_verb": "Deliver",
-      "goal": "Outputs for decision making and sharing."
+      "goal": "Outputs: tables, files, maps, reports, APIs, and other products for sharing and decisions."
     },
     {
       "name": "Provider Registry",
@@ -1005,7 +1121,7 @@
       "children": [
         {
           "name": "Geospatial Libraries",
-          "description": "Geospatial libraries implement core algorithms, I/O, and spatial operations that many desktop tools and pipelines rely on underneath. They often provide the reusable building blocks for conversion, geometry, indexing, routing, and raster processing. In Geo-KTF, this category records the software ecosystems that expose the framework's representative implementations. This category is central to Geo-KTF because many desktop tools are built on top of these libraries even when users never see them directly.",
+          "description": "Geospatial libraries are the software engines behind many GIS operations (I/O, geometry, raster, routing). Use this registry to see which stack implements a capability. Common entries include GDAL/OGR, GeoPandas, PostGIS, PDAL, PySAL, and routing libraries.",
           "tools": [
             "GDAL / OGR",
             "GeoPandas",
@@ -1022,22 +1138,56 @@
             "OSRM",
             "pgRouting",
             "openrouteservice",
-            "Valhalla"
+            "Valhalla",
+            "segment-geospatial (samgeo)"
           ]
         },
         {
           "name": "Cloud",
-          "description": "Cloud and big-data providers enable scalable storage and compute for large spatial datasets and streaming workflows. Formats like Cloud Optimized GeoTIFF and GeoParquet support efficient remote access, while distributed engines handle larger-than-memory processing. In Geo-KTF, this category records the infrastructure layer that makes high-volume geospatial analysis practical. This registry entry is useful when large datasets, repeated processing, or web-scale dissemination require infrastructure beyond a desktop machine.",
+          "description": "Cloud providers and formats support scalable storage and compute for large spatial data. Use them when desktop machines are not enough. Common entries include AWS, Google Earth Engine, ArcGIS Online, COG, GeoParquet, and Apache Sedona.",
           "tools": [
             "Apache Sedona",
             "GeoParquet",
             "Cloud Optimized GeoTIFF (COG)",
-            "AWS"
+            "AWS",
+            "Google Earth Engine",
+            "ArcGIS Online"
+          ]
+        },
+        {
+          "name": "SDI / Catalogs",
+          "description": "SDI and catalogs make datasets discoverable through metadata search and standard access. Use them to find and publish organisational or open data. Common entries include GeoNetwork, CKAN, STAC, pystac, and Planetary Computer.",
+          "tools": [
+            "GeoNetwork",
+            "CKAN",
+            "STAC",
+            "pystac",
+            "Microsoft Planetary Computer"
+          ]
+        },
+        {
+          "name": "Notebooks",
+          "description": "Notebooks are literate computing environments mixing code, text, and figures. Use them for reproducible teaching and analysis workflows. Common entries include Jupyter Notebook, Google Colab, and ArcGIS Notebooks.",
+          "tools": [
+            "Jupyter Notebook",
+            "Google Colab",
+            "ArcGIS Notebooks"
+          ]
+        },
+        {
+          "name": "Development",
+          "description": "Development covers languages and automation used to build GIS scripts and apps. Use them to move beyond one-off GUI clicks. Common entries include Python for GIS, R for GIS, JavaScript for GIS, Model Designer, and qgis_process.",
+          "tools": [
+            "Python for GIS",
+            "R for GIS",
+            "JavaScript for GIS",
+            "QGIS Model Designer",
+            "qgis_process"
           ]
         },
         {
           "name": "Basemap",
-          "description": "Basemap and data-source providers supply reference geography and open thematic layers that ground analysis in shared spatial context. They are often used as context layers, boundary references, or background datasets for mapping. In Geo-KTF, this category records the services that supply reusable data inputs rather than analytical functions. These providers are often the starting point for contextual analysis, map framing, or communicating results against a familiar geographic backdrop.",
+          "description": "Basemap providers supply reference geography and open contextual layers. Use them as background or boundary inputs for analysis and maps. Common entries include OpenStreetMap, Google Maps, Overture Maps, Natural Earth, and open data APIs.",
           "tools": [
             "OpenStreetMap",
             "Google Maps",
@@ -1049,7 +1199,7 @@
         },
         {
           "name": "Web Mapping",
-          "description": "Web mapping providers deliver client libraries and servers for interactive maps, lightweight visualisation, and online dissemination. They are commonly used to publish analytical results beyond desktop GIS. In Geo-KTF, this category records the web-facing environments that turn analytical outputs into usable map products. This category records the web stack that publishes those outputs and makes them interactive for end users.",
+          "description": "Web mapping providers are clients and servers for interactive online maps. Use them to publish results beyond desktop GIS. Common entries include MapLibre GL JS, Leaflet, OpenLayers, GeoServer, and QGIS Server.",
           "tools": [
             "MapLibre GL JS",
             "OpenLayers",
@@ -1060,18 +1210,24 @@
         },
         {
           "name": "AI",
-          "description": "AI and machine-learning providers supply models and frameworks for prediction, classification, perception, and language-guided interaction with spatial data. They extend classical GIS with learning-based workflows and inference pipelines. In Geo-KTF, this category records the libraries and model ecosystems that enable AI-assisted geospatial reasoning and automation. This registry helps separate the model provider from the geospatial concept so the same task can be implemented in different ML stacks.",
+          "description": "AI providers are machine-learning and deep-learning frameworks applied to geospatial tasks such as classification, detection, and segmentation. Use them when patterns are learned from labelled (or pretrained) data rather than only hand-coded GIS rules. Common tools include scikit-learn, XGBoost/LightGBM, PyTorch/TensorFlow/Keras, TorchGeo, Raster Vision, YOLO, Transformers, and SAM/samgeo.",
           "tools": [
             "scikit-learn",
             "XGBoost",
+            "LightGBM",
+            "Keras",
             "PyTorch",
             "TensorFlow",
+            "TorchGeo",
+            "Raster Vision",
+            "Hugging Face Transformers",
+            "Ultralytics YOLO",
             "Segment Anything Model (SAM)"
           ]
         }
       ],
       "goal_verb": "Enable",
-      "goal": "Resources and platforms to power analysis."
+      "goal": "Providers: libraries, platforms, catalogues, and data sources that power the analysis stack."
     }
   ]
 }
