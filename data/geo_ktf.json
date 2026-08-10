@@ -1,10 +1,10 @@
 {
   "name": "Geo-KTF",
-  "description": "Geo-KTF (Geospatial Knowledge to Tool) organises geospatial practice into six pillars that follow a practical path: Understand foundations (Basic Geospatial Knowledge), Act with operations (Analytical Capabilities), Apply reusable workflows (Workflow), Ensure quality (Validation), Deliver outputs (Output), and Enable the work with software and data providers (Provider Registry). Concepts are kept separate from tools, so one idea can map to several equivalent implementations across QGIS, GDAL, PostGIS, Python, and related stacks. That separation makes it easier to learn what to do before choosing software, compare options fairly, and move from theory to executable practice.",
+  "description": "Geo-KTF is a platform-independent framework which maps geospatial knowledge to computational tools; it aims to help users find suitable tools, compare equivalent implementations across platforms, and turn concepts into executable workflows. Generally, it includes six pillars via a practical path: Understand foundations (Basic Geospatial Knowledge), Act with operations (Analytical Capabilities), Apply reusable workflows (Workflow), Ensure quality (Validation), Deliver outputs (Output), and Enable the stack via providers (Provider Registry).",
   "children": [
     {
       "name": "Basic Geospatial Knowledge",
-      "description": "Foundational geospatial concepts, data models, CRS, quality, and analysis.",
+      "description": "",
       "children": [
         {
           "name": "Relationship",
@@ -152,10 +152,12 @@
             },
             {
               "name": "TIN",
-              "description": "A TIN (triangulated irregular network) models a surface from irregular points connected as triangles. Use it to interpolate terrain or other fields while keeping sample locations. Common tools include TIN Interpolation and Delaunay triangulation.",
+              "description": "A TIN (triangulated irregular network) models a surface from irregular points connected as triangles. Use it to interpolate terrain or other fields while keeping sample locations. Common tools include TIN Interpolation, Delaunay triangulation, Create grid, and gdal_grid.",
               "tools": [
                 "TIN Interpolation",
-                "Delaunay triangulation"
+                "Delaunay triangulation",
+                "Create grid",
+                "gdal_grid"
               ]
             },
             {
@@ -209,8 +211,9 @@
             },
             {
               "name": "Trajectory",
-              "description": "A trajectory is an ordered path of locations through time for a moving object. Use it for mobility, GPS tracks, and route behaviour analysis. Common tools include MovingPandas and network routing functions that reconstruct travel paths.",
+              "description": "A trajectory is an ordered path of locations through time for a moving object. Use it for mobility, GPS tracks, and route-behaviour analysis. Common tools include MovingPandas, Shortest Path, pgr_dijkstra, pgr_dijkstraVia, pgr_aStar, and openrouteservice directions.",
               "tools": [
+                "MovingPandas",
                 "Shortest Path",
                 "pgr_dijkstra",
                 "pgr_dijkstraVia",
@@ -230,20 +233,49 @@
             },
             {
               "name": "Spatial Indexing",
-              "description": "Spatial indexing organises geometries so searches and joins do not scan every feature. Use it to keep large spatial queries fast in databases. Common tools include CREATE INDEX USING GIST, ST_GeoHash, and PostGIS.",
+              "description": "Spatial indexing organises geometries so searches and joins do not scan every feature. Use it to keep large spatial queries fast in databases and analytics engines. Common tools include CREATE INDEX USING GIST, ST_GeoHash, PostGIS, ST_Intersects, and DuckDB Spatial.",
               "tools": [
                 "CREATE INDEX USING GIST",
                 "ST_GeoHash",
-                "PostGIS"
+                "PostGIS",
+                "ST_Intersects",
+                "DuckDB Spatial"
               ]
             },
             {
               "name": "Knowledge Graph",
-              "description": "A spatial knowledge graph links places and concepts as typed relationships that can be queried semantically. Use it when meaning and links matter as much as coordinates. Common tools include GeoSPARQL, RDFLib, and Apache Jena.",
+              "description": "A spatial knowledge graph links places and concepts as typed relationships that can be queried semantically (often with GeoSPARQL). Use it when meaning and links matter as much as coordinates. Common tools include GeoSPARQL, RDFLib, Apache Jena, Apache Jena Fuseki, GraphDB, and Ontop.",
               "tools": [
                 "GeoSPARQL",
                 "RDFLib",
-                "Apache Jena"
+                "Apache Jena",
+                "Apache Jena Fuseki",
+                "GraphDB",
+                "Ontop"
+              ]
+            },
+            {
+              "name": "Topology",
+              "description": "Topology is a data model that records how features share boundaries and connect, not only their shapes. Use it to enforce adjacency rules, catch gaps/overlaps, and support network-ready geometry. Common tools include Check Geometries, Fix Geometries, Delete Duplicate Geometries, ST_Touches, ST_Overlaps, and ST_Crosses.",
+              "tools": [
+                "Check Geometries",
+                "Fix Geometries",
+                "Delete Duplicate Geometries",
+                "ST_Touches",
+                "ST_Overlaps",
+                "ST_Crosses"
+              ]
+            },
+            {
+              "name": "Coverage",
+              "description": "A coverage maps positions in space (and often time) to attribute values, typically as continuous fields such as temperature or elevation surfaces. Use it when analysis needs values “everywhere” rather than discrete features. Common tools include gdalinfo, gdal_translate, rasterio.open(), COG, STAC, and gdalbuildvrt.",
+              "tools": [
+                "gdalinfo",
+                "gdal_translate",
+                "rasterio.open()",
+                "Cloud Optimized GeoTIFF (COG)",
+                "STAC",
+                "gdalbuildvrt"
               ]
             }
           ]
@@ -304,17 +336,21 @@
             },
             {
               "name": "Common CRS Errors",
-              "description": "Common CRS errors include missing CRS tags, wrong axis order, wrong datum, and confusing assign vs reproject. Fix them early to prevent silent misalignment and bad measurements. Common tools include Assign projection, Reproject Layer, geopandas.set_crs()/to_crs(), and pyproj.Transformer(always_xy=True).",
+              "description": "Common CRS errors include missing CRS tags, wrong axis order, wrong datum, and confusing assign-versus-reproject. Fix them early with inspection and the correct assign or transform tools. Common tools include pyproj.CRS, projinfo, gdalinfo/ogrinfo/rio info, geopandas.set_crs()/to_crs(), ST_SRID/ST_SetSRID/ST_Transform, Assign projection, Reproject Layer, and gdalwarp.",
               "tools": [
-                "pyproj.Transformer(always_xy=True)",
+                "pyproj.CRS",
+                "projinfo",
+                "gdalinfo",
+                "ogrinfo",
+                "rio info",
                 "geopandas.set_crs()",
                 "geopandas.to_crs()",
+                "ST_SRID",
                 "ST_SetSRID",
                 "ST_Transform",
                 "Assign projection",
                 "Reproject Layer",
-                "gdalwarp",
-                "projinfo"
+                "gdalwarp"
               ]
             }
           ]
@@ -370,11 +406,16 @@
             },
             {
               "name": "Standards",
-              "description": "Standards define shared ways to describe and exchange geospatial information (especially metadata). Use them so data can be discovered and reused across organisations. Common tools and specs include ISO 19115, FGDC CSDGM, GeoNetwork, and pygeometa.",
+              "description": "Geospatial standards provide common rules for describing data, reporting quality, encoding metadata, and publishing catalogue records. They make datasets easier to discover, validate, exchange, and reuse across organisations and software. This category covers metadata models, XML/RDF encodings, quality standards, regional metadata profiles, catalogue interfaces, and tools that create or manage standards-based records.",
               "tools": [
                 "GeoNetwork",
                 "ISO 19115",
+                "ISO 19139",
+                "ISO 19157",
                 "FGDC CSDGM",
+                "INSPIRE Metadata",
+                "GeoDCAT-AP",
+                "OGC CSW",
                 "pygeometa"
               ]
             },
@@ -462,11 +503,11 @@
         }
       ],
       "goal_verb": "Understand",
-      "goal": "Foundations: data models, CRS, relationships, quality ideas, and core analysis concepts."
+      "goal": "Build the foundations: data models, CRS, spatial relationships, quality, and core analysis ideas."
     },
     {
       "name": "Analytical Capabilities",
-      "description": "Software-independent operations bridging concepts and executable tools.",
+      "description": "",
       "children": [
         {
           "name": "Data Inspection",
@@ -767,14 +808,92 @@
             "Cellular Automata",
             "QGIS Model Designer"
           ]
+        },
+        {
+          "name": "Terrain Analysis",
+          "description": "Terrain analysis derives landform metrics from elevation (slope, aspect, ruggedness, contours, viewshed). Use it for hazard, engineering, ecology, and landscape characterisation. Common tools include gdaldem slope/aspect/hillshade/TRI/TPI, gdal_contour, and gdal_viewshed.",
+          "tools": [
+            "gdaldem slope",
+            "gdaldem aspect",
+            "gdaldem hillshade",
+            "gdaldem roughness",
+            "gdaldem TRI",
+            "gdaldem TPI",
+            "gdal_contour",
+            "gdal_viewshed"
+          ]
+        },
+        {
+          "name": "Network Analysis",
+          "description": "Network analysis solves path, cost, and catchment problems on connected graphs. Use it when movement must follow roads or similar networks rather than straight lines. Common tools include Shortest Path, Service Area, pgr_dijkstra, pgr_aStar, pgr_KSP, pgr_drivingDistance, and openrouteservice directions.",
+          "tools": [
+            "Shortest Path",
+            "Service Area",
+            "pgr_dijkstra",
+            "pgr_aStar",
+            "pgr_KSP",
+            "pgr_drivingDistance",
+            "pgr_dijkstraCostMatrix",
+            "openrouteservice directions"
+          ]
+        },
+        {
+          "name": "Proximity Analysis",
+          "description": "Proximity analysis measures how near features are using buffers, distances, nearest joins, and proximity rasters. Use it for setbacks, service reach in Euclidean space, and exposure screening. Common tools include Buffer, Distance Matrix, ST_Distance, ST_DWithin, gdal_proximity, and nearest-join tools.",
+          "tools": [
+            "Buffer",
+            "Distance Matrix",
+            "Distance to nearest hub",
+            "Join attributes by nearest",
+            "geopandas.sjoin_nearest()",
+            "ST_Distance",
+            "ST_DWithin",
+            "gdal_proximity"
+          ]
+        },
+        {
+          "name": "Density Analysis",
+          "description": "Density analysis estimates how intensely events or features concentrate across space. Use it for hotspots, demand surfaces, and grid-based counts. Common tools include Heatmap (KDE), Create grid with spatial joins, DBSCAN clustering, and ST_ClusterDBSCAN.",
+          "tools": [
+            "Heatmap (Kernel Density Estimation)",
+            "Create grid",
+            "geopandas.sjoin()",
+            "Join attributes by location",
+            "DBSCAN clustering",
+            "ST_ClusterDBSCAN"
+          ]
+        },
+        {
+          "name": "Feature Extraction",
+          "description": "Feature extraction turns imagery or dense surfaces into discrete GIS features (buildings, objects, polygons). Use it to move from pixels to vector objects for downstream analysis. Common tools include SAM/samgeo, gdal_polygonize, OTB classifiers, OpenDroneMap, and Structure from Motion.",
+          "tools": [
+            "Segment Anything Model (SAM)",
+            "segment-geospatial (samgeo)",
+            "gdal_polygonize",
+            "OTB TrainImagesClassifier",
+            "OpenDroneMap",
+            "Structure from Motion"
+          ]
+        },
+        {
+          "name": "Data Cleaning",
+          "description": "Data cleaning repairs and tidies geometries and attributes before analysis. Use it to remove invalid shapes, duplicates, schema mismatches, and digitising noise. Common tools include Check/Fix Geometries, Delete Duplicate Geometries, Snap geometries to grid, Refactor Fields, and Simplify.",
+          "tools": [
+            "Check Geometries",
+            "Fix Geometries",
+            "Delete Duplicate Geometries",
+            "Snap geometries to grid",
+            "Refactor Fields",
+            "Simplify"
+          ]
         }
       ],
       "goal_verb": "Act",
-      "goal": "Operations: the software-independent steps used to process, analyse, and map spatial data."
+      "goal": "Carry out software-neutral operations to inspect, transform, analyse, and map spatial data."
     },
     {
       "name": "Workflow",
-      "description": "Reusable analytical workflows that combine capabilities for real tasks.",
+      "description": "",
       "children": [
         {
           "name": "Site Selection",
@@ -931,14 +1050,96 @@
             "gdalbuildvrt",
             "Intersection"
           ]
+        },
+        {
+          "name": "Flood Risk Analysis",
+          "description": "Flood risk analysis combines drainage modelling with overlays to screen exposure near channels, basins, or low areas. Use it for preparedness screening and planning communication. Common tools include Fill sinks, Flow direction/accumulation, Watershed, Buffer, Intersection, Raster Calculator, and gdal_proximity.",
+          "tools": [
+            "Fill sinks",
+            "Flow direction",
+            "Flow accumulation",
+            "Watershed",
+            "Buffer",
+            "Intersection",
+            "Raster Calculator",
+            "gdal_proximity"
+          ]
+        },
+        {
+          "name": "Least-Cost Corridor Analysis",
+          "description": "Least-cost corridor analysis finds preferred routes that minimise travel impedance across networks or cost rasters. Use it for infrastructure corridors, wildlife passages, and access planning. Common tools include Shortest Path, pgr_dijkstra, gdal_proximity, Weighted Overlay, Raster Calculator, and Buffer.",
+          "tools": [
+            "Shortest Path",
+            "pgr_dijkstra",
+            "gdal_proximity",
+            "Raster Calculator",
+            "Weighted Overlay",
+            "Reclassify by table",
+            "Buffer"
+          ]
+        },
+        {
+          "name": "Land Cover Mapping",
+          "description": "Land cover mapping is an end-to-end workflow from imagery preparation to classified maps and accuracy checks. Use it to produce thematic land-cover products for monitoring and planning. Common tools include OTB TrainImagesClassifier/KMeans/BandMath, gdal_calc, confusion-matrix tools, and SAM.",
+          "tools": [
+            "OTB TrainImagesClassifier",
+            "OTB KMeansClassification",
+            "OTB BandMath",
+            "OTB ComputeImagesStatistics",
+            "gdal_calc",
+            "OTB ComputeConfusionMatrix",
+            "scikit-learn.metrics",
+            "Segment Anything Model (SAM)"
+          ]
+        },
+        {
+          "name": "Emergency Response Planning",
+          "description": "Emergency response planning evaluates how quickly responders or people can reach critical locations under network constraints. Use it for station coverage, evacuation routing, and response-time scenarios. Common tools include Service Area, Shortest Path, pgr_dijkstra, pgr_drivingDistance, and openrouteservice isochrones/directions.",
+          "tools": [
+            "Service Area",
+            "Shortest Path",
+            "pgr_dijkstra",
+            "pgr_drivingDistance",
+            "openrouteservice isochrones",
+            "openrouteservice directions",
+            "Distance Matrix"
+          ]
+        },
+        {
+          "name": "Solar Site Assessment",
+          "description": "Solar site assessment screens candidate locations using terrain orientation, shading, and visibility-related criteria. Use it for rooftop or ground-mounted solar screening before detailed engineering. Common tools include gdaldem slope/aspect/hillshade, Viewshed, gdal_viewshed, Raster Calculator, and Weighted Overlay.",
+          "tools": [
+            "gdaldem slope",
+            "gdaldem aspect",
+            "gdaldem hillshade",
+            "Viewshed",
+            "gdal_viewshed",
+            "Raster Calculator",
+            "Weighted Overlay",
+            "Reclassify by table"
+          ]
+        },
+        {
+          "name": "Habitat Suitability Mapping",
+          "description": "Habitat suitability mapping ranks places for species or conservation goals from weighted environmental criteria. Use it for conservation planning and impact screening. Common tools include Weighted Overlay, Fuzzy Overlay, Reclassify by table, raster calculators, Buffer, Clip, and Intersection.",
+          "tools": [
+            "Weighted Overlay",
+            "Fuzzy Overlay",
+            "Reclassify by table",
+            "Raster Calculator",
+            "gdal_calc",
+            "Buffer",
+            "Clip",
+            "Intersection"
+          ]
         }
       ],
       "goal_verb": "Apply",
-      "goal": "Workflows: repeatable chains of operations for common real-world geospatial tasks."
+      "goal": "Combine operations into reusable end-to-end workflows for common geospatial tasks."
     },
     {
       "name": "Validation",
-      "description": "Quality, correctness, and reproducibility checks for data and outputs.",
+      "description": "",
       "children": [
         {
           "name": "Geometry Validation",
@@ -958,14 +1159,15 @@
           "tools": [
             "pyproj.CRS",
             "pyproj.Transformer",
-            "pyproj.Transformer(always_xy=True)",
             "projinfo",
+            "ST_SRID",
             "ST_Transform",
             "geopandas.to_crs()",
             "geopandas.set_crs()",
             "gdalwarp",
             "gdalinfo",
             "ogrinfo",
+            "rio info",
             "Reproject Layer",
             "Assign projection"
           ]
@@ -1036,11 +1238,11 @@
         }
       ],
       "goal_verb": "Ensure",
-      "goal": "Quality: checks that data, CRS, geometry, and results are valid and trustworthy."
+      "goal": "Check that data, CRS, geometry, logic, and results are valid, consistent, and trustworthy."
     },
     {
       "name": "Output",
-      "description": "Deliverables and channels for data, APIs, reports, and sharing.",
+      "description": "",
       "children": [
         {
           "name": "Tables",
@@ -1069,20 +1271,77 @@
           ]
         },
         {
+          "name": "Maps",
+          "description": "Map-centred deliverables: cartographic map products and narrative story maps.",
+          "children": [
+            {
+              "name": "Cartographic Maps",
+              "description": "Cartographic maps are designed map sheets or images with symbols, labels, legend, and layout. Use them for print, PDF, or image export when the deliverable is a map—not a scrollable story. Common tools include QGIS Print Layout, Style Manager, symbol/label tools, graduated/categorized renderers, Contour, and hillshade.",
+              "tools": [
+                "QGIS Print Layout",
+                "QGIS Style Manager",
+                "QGIS Symbol Selector",
+                "QGIS Label settings",
+                "graduated renderer",
+                "categorized renderer",
+                "Contour",
+                "gdal_contour",
+                "gdaldem hillshade"
+              ]
+            },
+            {
+              "name": "Story Maps",
+              "description": "Story maps are guided multimedia narratives under the Maps family that sequence maps with text, photos, and media. Unlike cartographic maps, they walk readers through a storyline rather than presenting a single map sheet. Common tools include ArcGIS StoryMaps and Knight Lab StoryMapJS.",
+              "tools": [
+                "ArcGIS StoryMaps",
+                "StoryMapJS"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Tiles",
+          "description": "Tiles are pre-cut map images or vector tiles served by zoom level for fast web mapping. Use them to publish large maps online without sending full datasets to every client. Common tools include gdal_retile, gdaladdo, GeoServer, QGIS Server, MapLibre GL JS, Leaflet, and OpenLayers.",
+          "tools": [
+            "gdal_retile",
+            "gdaladdo",
+            "GeoServer",
+            "QGIS Server",
+            "MapLibre GL JS",
+            "Leaflet",
+            "OpenLayers"
+          ]
+        },
+        {
+          "name": "Cloud-Native Products",
+          "description": "Cloud-native products are spatial datasets organised for efficient cloud storage and partial access. Use them when sharing large rasters or vector tables via object storage and modern analytics. Common tools and formats include COG, GeoParquet, STAC, gdal_translate, geopandas.to_parquet(), and AWS.",
+          "tools": [
+            "Cloud Optimized GeoTIFF (COG)",
+            "GeoParquet",
+            "STAC",
+            "gdal_translate",
+            "geopandas.to_parquet()",
+            "AWS"
+          ]
+        },
+        {
+          "name": "Metadata Records",
+          "description": "Metadata records describe datasets and services so others can discover and judge them. Use them when publishing outputs into an SDI or open-data catalogue. Common tools and specs include GeoNetwork, pygeometa, ISO 19115/19139, INSPIRE Metadata, and OGC CSW.",
+          "tools": [
+            "GeoNetwork",
+            "pygeometa",
+            "ISO 19115",
+            "ISO 19139",
+            "INSPIRE Metadata",
+            "OGC CSW"
+          ]
+        },
+        {
           "name": "Reports",
           "description": "Reports combine narrative, figures, and methods for stakeholders. Use them when a map alone is not enough explanation. Common tools include QGIS Reports and QGIS Print Layout.",
           "tools": [
             "QGIS Reports",
             "QGIS Print Layout"
-          ]
-        },
-        {
-          "name": "Story Maps",
-          "description": "Story maps present maps, text, and media in a guided narrative sequence. Use them for outreach, teaching, and explained spatial stories. Common tools include ArcGIS StoryMaps, QGIS Print Layout, and MapLibre GL JS.",
-          "tools": [
-            "ArcGIS StoryMaps",
-            "QGIS Print Layout",
-            "MapLibre GL JS"
           ]
         },
         {
@@ -1113,11 +1372,11 @@
         }
       ],
       "goal_verb": "Deliver",
-      "goal": "Outputs: tables, files, maps, reports, APIs, and other products for sharing and decisions."
+      "goal": "Produce tables, files, maps, reports, APIs, and dashboards for sharing and decision-making."
     },
     {
       "name": "Provider Registry",
-      "description": "Software ecosystems, libraries, and infrastructure behind the tools.",
+      "description": "",
       "children": [
         {
           "name": "Geospatial Libraries",
@@ -1227,7 +1486,7 @@
         }
       ],
       "goal_verb": "Enable",
-      "goal": "Providers: libraries, platforms, catalogues, and data sources that power the analysis stack."
+      "goal": "Access the libraries, platforms, catalogues, and data sources that power the analysis stack."
     }
   ]
 }
